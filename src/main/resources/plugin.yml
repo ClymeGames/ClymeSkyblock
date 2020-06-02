@@ -1,0 +1,6 @@
+name: ClymeSkyblock
+version: 1.0
+api-version: 1.15
+author: CAMOU
+website: https://misi.solutions/
+main: solutions.misi.clymeskyblock.ClymeSkyblock
