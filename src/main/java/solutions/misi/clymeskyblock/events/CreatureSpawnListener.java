@@ -9,7 +9,7 @@ public class CreatureSpawnListener implements Listener {
     @EventHandler
     public void onSpawn(CreatureSpawnEvent event) {
         if(event.getLocation().getWorld().getName().contains("skyblock")) {
-            if(event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.NATURAL) {
+            if(event.getSpawnReason() != CreatureSpawnEvent.SpawnReason.SPAWNER) {
                 event.setCancelled(true);
             }
         }
