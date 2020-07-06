@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>solutions.misi</groupId>
-    <artifactId>clymeskyblock</artifactId>
-    <version>1.0</version>
+    <artifactId>ClymeSkyblockCore</artifactId>
+    <version>v1.0</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -38,16 +38,30 @@
         </repository>
 
         <repository>
-            <id>savagelabs</id>
-            <url>https://nexus.savagelabs.net/repository/maven-public/</url>
+            <id>destroystokyo-repo</id>
+            <url>https://repo.destroystokyo.com/repository/maven-public//</url>
+        </repository>
+
+        <repository>
+            <id>sk89q-repo</id>
+            <url>https://maven.enginehub.org/repo/</url>
         </repository>
     </repositories>
 
     <dependencies>
+        <!-- Paperclip API -->
+        <dependency>
+            <groupId>com.destroystokyo.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.16.1-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Spigot API and NMS -->
         <dependency>
             <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.15.2-R0.1-SNAPSHOT</version>
+            <artifactId>spigot</artifactId>
+            <version>1.16.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
@@ -59,6 +73,13 @@
         </dependency>
 
         <dependency>
+            <groupId>com.sk89q.worldguard</groupId>
+            <artifactId>worldguard-bukkit</artifactId>
+            <version>7.0.4-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.12</version>
@@ -66,9 +87,11 @@
         </dependency>
 
         <dependency>
-            <groupId>net.savagelabs</groupId>
+            <groupId>SavageLabs</groupId>
             <artifactId>SkyblockX</artifactId>
-            <version>v1.4.3-alpha</version>
+            <version>1.5</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/dependencies/SkyblockX-v1.5.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

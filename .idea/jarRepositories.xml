@@ -22,9 +22,19 @@
       <option name="url" value="https://repo1.maven.org/maven2" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="sk89q-repo" />
+      <option name="name" value="sk89q-repo" />
+      <option name="url" value="https://maven.enginehub.org/repo/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="savagelabs" />
       <option name="name" value="savagelabs" />
       <option name="url" value="https://nexus.savagelabs.net/repository/maven-public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="destroystokyo-repo" />
+      <option name="name" value="destroystokyo-repo" />
+      <option name="url" value="https://repo.destroystokyo.com/repository/maven-public//" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="jboss.community" />

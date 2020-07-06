@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/clymeskyblock.iml" filepath="$PROJECT_DIR$/.idea/clymeskyblock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ClymeSkyblockCore.iml" filepath="$PROJECT_DIR$/ClymeSkyblockCore.iml" />
     </modules>
   </component>
 </project>
