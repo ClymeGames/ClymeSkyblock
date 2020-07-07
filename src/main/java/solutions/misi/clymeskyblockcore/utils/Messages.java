@@ -15,6 +15,7 @@ public class Messages {
 
     @Getter private final String prefix;
     @Getter private final String commandSpam;
+    @Getter private final String noPermission;
 
     @SneakyThrows
     public Messages() {
@@ -26,6 +27,7 @@ public class Messages {
         //> Messages
         prefix = getFormattedMessage("prefix");
         commandSpam = prefix + getFormattedMessage("command-spam");
+        noPermission = prefix + getFormattedMessage("no-permission");
     }
 
     private String getFormattedMessage(String path) {

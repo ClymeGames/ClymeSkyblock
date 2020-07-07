@@ -16,12 +16,23 @@ public class PlayerCommandPreprocessListener implements Listener {
         Player player = event.getPlayer();
         String cmd = event.getMessage();
 
+        //> Island menu Command
         if(cmd.equalsIgnoreCase("/is") || cmd.equalsIgnoreCase("/island")) {
             IPlayer iPlayer = IPlayerKt.getIPlayer(player);
 
             if(iPlayer.hasIsland()) {
                 event.setCancelled(true);
                 ClymeSkyblockCore.getInstance().getIslandGUI().open(player);
+            }
+        }
+
+        //> Island settings Command
+        if(cmd.equalsIgnoreCase("/is settings") || cmd.equalsIgnoreCase("/island settings")) {
+            IPlayer iPlayer = IPlayerKt.getIPlayer(player);
+
+            if(iPlayer.hasIsland()) {
+                event.setCancelled(true);
+                ClymeSkyblockCore.getInstance().getIslandSettingsGUI().open(player);
             }
         }
 

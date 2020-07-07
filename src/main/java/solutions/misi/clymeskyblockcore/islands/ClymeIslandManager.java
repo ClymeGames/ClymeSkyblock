@@ -53,9 +53,8 @@ public class ClymeIslandManager {
             oldFlags.put(Flags.FIRE_SPREAD, islandRegion.getFlag(Flags.FIRE_SPREAD));
             oldFlags.put(Flags.LEAF_DECAY, islandRegion.getFlag(Flags.LEAF_DECAY));
             oldFlags.put(Flags.TNT, islandRegion.getFlag(Flags.TNT));
-            oldFlags.put(ClymeSkyblockCore.getInstance().getAnimalsSpawningFlag(), islandRegion.getFlag(ClymeSkyblockCore.getInstance().getAnimalsSpawningFlag()));
-            oldFlags.put(ClymeSkyblockCore.getInstance().getMonstersSpawningFlag(), islandRegion.getFlag(ClymeSkyblockCore.getInstance().getMonstersSpawningFlag()));
-            oldFlags.put(ClymeSkyblockCore.getInstance().getVisitorsFlag(), islandRegion.getFlag(ClymeSkyblockCore.getInstance().getVisitorsFlag()));
+            oldFlags.put(ClymeSkyblockCore.getInstance().getFlags().getAnimalsSpawningFlag(), islandRegion.getFlag(ClymeSkyblockCore.getInstance().getFlags().getAnimalsSpawningFlag()));
+            oldFlags.put(ClymeSkyblockCore.getInstance().getFlags().getMonstersSpawningFlag(), islandRegion.getFlag(ClymeSkyblockCore.getInstance().getFlags().getMonstersSpawningFlag()));
 
             regionManager.removeRegion(islandRegion.getId());
             return;
@@ -64,7 +63,7 @@ public class ClymeIslandManager {
         //> Create new island region
         ProtectedRegion islandRegion = new ProtectedCuboidRegion(getIslandId(island), islandMinPosition, islandMaxPosition);
         DefaultDomain ownerDomain = new DefaultDomain();
-        ownerDomain.addPlayer(island.getOwnerUUID());
+        ownerDomain.addPlayer(island.getOwnerIPlayer().getName());
         islandRegion.setOwners(ownerDomain);
         regionManager.addRegion(islandRegion);
         Bukkit.getConsoleSender().sendMessage("[ClymeGames] §aIsland at (" + island.getIslandCenter().getBlockX() + ", " + island.getIslandCenter().getBlockY() + ", " + island.getIslandCenter().getBlockZ() + ") has been created.");

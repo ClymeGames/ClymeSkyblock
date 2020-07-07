@@ -196,7 +196,7 @@ public class IslandGUI implements Listener {
                         player.performCommand("is top");
                         break;
                     case "§fIsland Settings":
-
+                        ClymeSkyblockCore.getInstance().getIslandSettingsGUI().open(player);
                         break;
                 }
             }

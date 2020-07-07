@@ -1,5 +1,15 @@
-package solutions.misi.clymeskyblockcore.islands.settings;
+package solutions.misi.clymeskyblockcore.guis;
 
+import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldguard.WorldGuard;
+import com.sk89q.worldguard.protection.flags.Flag;
+import com.sk89q.worldguard.protection.flags.Flags;
+import com.sk89q.worldguard.protection.flags.StateFlag;
+import com.sk89q.worldguard.protection.managers.RegionManager;
+import com.sk89q.worldguard.protection.regions.RegionContainer;
+import net.savagelabs.skyblockx.core.IPlayer;
+import net.savagelabs.skyblockx.core.IPlayerKt;
+import net.savagelabs.skyblockx.core.Island;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -17,7 +27,83 @@ import java.util.List;
 public class IslandSettingsGUI implements Listener {
 
     public void open(Player player) {
+        IPlayer iPlayer = IPlayerKt.getIPlayer(player);
+        Island island = iPlayer.getIsland();
+
+        //> Only continue when player is owner of the Island
+        if(iPlayer.getIsland().getOwnerIPlayer() != iPlayer) {
+            player.sendMessage(ClymeSkyblockCore.getInstance().getMessages().getNoPermission());
+            return;
+        }
+
         Inventory gui = Bukkit.createInventory(null, 27, ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§eIsland Settings");
+        refresh(gui, island);
+        player.openInventory(gui);
+    }
+
+    @EventHandler
+    public void onClick(InventoryClickEvent event) {
+        Player player = (Player) event.getWhoClicked();
+
+        if(!event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§eIsland Settings")) return;
+        event.setCancelled(true);
+        try { if(event.getCurrentItem().getItemMeta().getDisplayName().equals(" ")) return; } catch(NullPointerException ex) { return; }
+
+        Island island = IPlayerKt.getIPlayer(player).getIsland();
+
+        switch(event.getCurrentItem().getType()) {
+            //> Toggle animal spawning
+            case TROPICAL_FISH:
+                toggleFlag(island, ClymeSkyblockCore.getInstance().getFlags().getAnimalsSpawningFlag());
+                break;
+            //> Toggle monster spawning
+            case ROTTEN_FLESH:
+                toggleFlag(island, ClymeSkyblockCore.getInstance().getFlags().getMonstersSpawningFlag());
+                break;
+            //> Toggle PvP
+            case GOLDEN_SWORD:
+                toggleFlag(island, Flags.PVP);
+                break;
+            //> Toggle Fire
+            case FLINT_AND_STEEL:
+                toggleFlag(island, Flags.FIRE_SPREAD);
+                break;
+            //> Toggle Leaf Decay
+            case ACACIA_LEAVES:
+                toggleFlag(island, Flags.LEAF_DECAY);
+                break;
+            //> Toggle Block damage
+            case TNT:
+               toggleFlag(island, Flags.TNT);
+                break;
+            //> Toggle visitors
+            case PLAYER_HEAD:
+                if(island.getAllowVisitors()) {
+                    island.setAllowVisitors(false);
+                    break;
+                }
+
+                island.setAllowVisitors(true);
+                break;
+        }
+
+        refresh(event.getClickedInventory(), island);
+    }
+
+    private void toggleFlag(Island island, Flag flag) {
+        RegionContainer regionContainer = WorldGuard.getInstance().getPlatform().getRegionContainer();
+        RegionManager regionManager = regionContainer.get(BukkitAdapter.adapt(island.getMaxLocation().getLocation().getWorld()));
+
+        if(regionManager.getRegion(ClymeSkyblockCore.getInstance().getClymeIslandManager().getIslandId(island)).getFlag(flag) == StateFlag.State.ALLOW) {
+            regionManager.getRegion(ClymeSkyblockCore.getInstance().getClymeIslandManager().getIslandId(island)).setFlag(flag, StateFlag.State.DENY);
+        }
+
+        regionManager.getRegion(ClymeSkyblockCore.getInstance().getClymeIslandManager().getIslandId(island)).setFlag(flag, StateFlag.State.ALLOW);
+    }
+
+    private void refresh(Inventory gui, Island island) {
+        RegionContainer regionContainer = WorldGuard.getInstance().getPlatform().getRegionContainer();
+        RegionManager regionManager = regionContainer.get(BukkitAdapter.adapt(island.getMaxLocation().getLocation().getWorld()));
 
         ItemStack placeholder = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
         ItemMeta placeholderMeta = placeholder.getItemMeta();
@@ -207,20 +293,40 @@ public class IslandSettingsGUI implements Listener {
         denyVisitors.setItemMeta(denyVisitorsMeta);
 
         for(int i = 0; i < gui.getSize(); i++) gui.setItem(i, placeholder);
-        gui.setItem(10, animalSpawningEnabled);
-        gui.setItem(11, monsterSpawningEnabled);
-        gui.setItem(12, pvpDisabled);
-        gui.setItem(13, fireDisabled);
-        gui.setItem(14, leafDecayDisabled);
-        gui.setItem(15, blockDamageDisabled);
-        gui.setItem(16, allowVisitors);
 
-        player.openInventory(gui);
-    }
+        //> Animal Spawning Setting
+        if(regionManager.getRegion(ClymeSkyblockCore.getInstance().getClymeIslandManager().getIslandId(island)).getFlag(ClymeSkyblockCore.getInstance().getFlags().getAnimalsSpawningFlag()) == StateFlag.State.ALLOW) {
+            gui.setItem(10, animalSpawningEnabled);
+        } else { gui.setItem(10, animalSpawningDisabled); }
 
-    @EventHandler
-    public void onClick(InventoryClickEvent event) {
-        if(!event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§eIsland Settings")) return;
-        event.setCancelled(true);
+        //> Monster Spawning Setting
+        if(regionManager.getRegion(ClymeSkyblockCore.getInstance().getClymeIslandManager().getIslandId(island)).getFlag(ClymeSkyblockCore.getInstance().getFlags().getMonstersSpawningFlag()) == StateFlag.State.ALLOW) {
+            gui.setItem(11, monsterSpawningEnabled);
+        } else { gui.setItem(11, monsterSpawningDisabled); }
+
+        //> PvP Setting
+        if(regionManager.getRegion(ClymeSkyblockCore.getInstance().getClymeIslandManager().getIslandId(island)).getFlag(Flags.PVP) == StateFlag.State.ALLOW) {
+            gui.setItem(12, pvpEnabled);
+        } else { gui.setItem(12, pvpDisabled); }
+
+        //> Fire Setting
+        if(regionManager.getRegion(ClymeSkyblockCore.getInstance().getClymeIslandManager().getIslandId(island)).getFlag(Flags.FIRE_SPREAD) == StateFlag.State.ALLOW) {
+            gui.setItem(13, fireEnabled);
+        } else { gui.setItem(13, fireDisabled); }
+
+        //> Leaf Decay Setting
+        if(regionManager.getRegion(ClymeSkyblockCore.getInstance().getClymeIslandManager().getIslandId(island)).getFlag(Flags.LEAF_DECAY) == StateFlag.State.ALLOW) {
+            gui.setItem(14, leafDecayEnabled);
+        } else { gui.setItem(14, leafDecayDisabled); }
+
+        //> Block Damage Setting
+        if(regionManager.getRegion(ClymeSkyblockCore.getInstance().getClymeIslandManager().getIslandId(island)).getFlag(Flags.TNT) == StateFlag.State.ALLOW) {
+            gui.setItem(15, blockDamageEnabled);
+        } else { gui.setItem(15, blockDamageDisabled); }
+
+        //> Visitors Setting
+        if(island.getAllowVisitors()) {
+            gui.setItem(16, allowVisitors);
+        } else { gui.setItem(16, denyVisitors); }
     }
 }

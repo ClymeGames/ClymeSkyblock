@@ -4,18 +4,18 @@ import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
 import lombok.Getter;
-import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import solutions.misi.clymeskyblockcore.commands.SpawnCommand;
-import solutions.misi.clymeskyblockcore.events.CreatureSpawnListener;
 import solutions.misi.clymeskyblockcore.events.PlayerCommandPreprocessListener;
+import solutions.misi.clymeskyblockcore.guis.IslandSettingsGUI;
 import solutions.misi.clymeskyblockcore.guis.SpawnerValuesGUI;
 import solutions.misi.clymeskyblockcore.guis.islandmenu.IslandGUI;
 import solutions.misi.clymeskyblockcore.islands.ClymeIslandManager;
 import solutions.misi.clymeskyblockcore.islands.events.IslandCreateListener;
 import solutions.misi.clymeskyblockcore.islands.settings.IslandSettings;
-import solutions.misi.clymeskyblockcore.islands.settings.flags.PlayerTeleportListener;
+import solutions.misi.clymeskyblockcore.islands.settings.flags.Flags;
+import solutions.misi.clymeskyblockcore.islands.settings.flags.events.CreatureSpawnFlagListener;
 import solutions.misi.clymeskyblockcore.security.CommandHandler;
 import solutions.misi.clymeskyblockcore.utils.Messages;
 
@@ -24,25 +24,23 @@ public class ClymeSkyblockCore extends JavaPlugin {
     //> Classes
     @Getter private static ClymeSkyblockCore instance;
     @Getter private Messages messages;
-    @Getter private IslandGUI islandGUI;
-    @Getter private SpawnerValuesGUI spawnerValuesGUI;
     @Getter private CommandHandler commandHandler;
     @Getter private ClymeIslandManager clymeIslandManager;
     @Getter private IslandSettings islandSettings;
+    @Getter private Flags flags;
 
-    //> Flags
-    @Getter @Setter private StateFlag animalsSpawningFlag;
-    @Getter @Setter private StateFlag monstersSpawningFlag;
-    @Getter @Setter private StateFlag visitorsFlag;
+    @Getter private IslandGUI islandGUI;
+    @Getter private SpawnerValuesGUI spawnerValuesGUI;
+    @Getter private IslandSettingsGUI islandSettingsGUI;
 
     @Override
     public void onLoad() {
+        loadClasses();
         registerFlags();
     }
 
     @Override
     public void onEnable() {
-        loadClasses();
         loadFiles();
         registerEvents();
         registerGUIs();
@@ -57,11 +55,14 @@ public class ClymeSkyblockCore extends JavaPlugin {
     private void loadClasses() {
         instance = this;
         messages = new Messages();
-        islandGUI = new IslandGUI();
-        spawnerValuesGUI = new SpawnerValuesGUI();
         commandHandler = new CommandHandler();
         clymeIslandManager = new ClymeIslandManager();
         islandSettings = new IslandSettings();
+        flags = new Flags();
+
+        islandGUI = new IslandGUI();
+        spawnerValuesGUI = new SpawnerValuesGUI();
+        islandSettingsGUI = new IslandSettingsGUI();
     }
 
     private void loadFiles() {
@@ -69,18 +70,17 @@ public class ClymeSkyblockCore extends JavaPlugin {
     }
 
     private void registerEvents() {
-        Bukkit.getPluginManager().registerEvents(new CreatureSpawnListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerCommandPreprocessListener(), this);
         Bukkit.getPluginManager().registerEvents(new IslandCreateListener(), this);
 
         //> Flags
-        Bukkit.getPluginManager().registerEvents(new CreatureSpawnListener(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerTeleportListener(), this);
+        Bukkit.getPluginManager().registerEvents(new CreatureSpawnFlagListener(), this);
     }
 
     private void registerGUIs() {
         Bukkit.getPluginManager().registerEvents(new IslandGUI(), this);
         Bukkit.getPluginManager().registerEvents(new SpawnerValuesGUI(), this);
+        Bukkit.getPluginManager().registerEvents(new IslandSettingsGUI(), this);
     }
 
     private void registerFlags() {
@@ -89,17 +89,12 @@ public class ClymeSkyblockCore extends JavaPlugin {
         //> Animals Spawning Flag
         StateFlag animalsSpawningFlag = new StateFlag("animals-spawning", true);
         flagRegistry.register(animalsSpawningFlag);
-        setAnimalsSpawningFlag(animalsSpawningFlag);
+        getFlags().setAnimalsSpawningFlag(animalsSpawningFlag);
 
         //> Monsters Spawning Flag
         StateFlag monstersSpawningFlag = new StateFlag("monsters-spawning", true);
         flagRegistry.register(monstersSpawningFlag);
-        setMonstersSpawningFlag(monstersSpawningFlag);
-
-        //> Visitors Flag
-        StateFlag visitorsFlag = new StateFlag("visitors", true);
-        flagRegistry.register(visitorsFlag);
-        setVisitorsFlag(visitorsFlag);
+        getFlags().setMonstersSpawningFlag(monstersSpawningFlag);
     }
 
     private void loadCommands() {

@@ -1,4 +1,4 @@
-package solutions.misi.clymeskyblockcore.islands.settings.flags;
+package solutions.misi.clymeskyblockcore.islands.settings.flags.events;
 
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldguard.WorldGuard;
@@ -10,7 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 
-public class CreatureSpawnListener implements Listener {
+public class CreatureSpawnFlagListener implements Listener {
 
     @EventHandler
     public void onCreatureSpawn(CreatureSpawnEvent event) {
@@ -22,7 +22,7 @@ public class CreatureSpawnListener implements Listener {
 
         //> Monster Spawn Flag
         if(event.getEntity() instanceof Monster) {
-            if(!regionQuery.testState(BukkitAdapter.adapt(event.getLocation()), null, ClymeSkyblockCore.getInstance().getMonstersSpawningFlag())) {
+            if(!regionQuery.testState(BukkitAdapter.adapt(event.getLocation()), null, ClymeSkyblockCore.getInstance().getFlags().getMonstersSpawningFlag())) {
                 event.setCancelled(true);
             }
 
@@ -30,7 +30,7 @@ public class CreatureSpawnListener implements Listener {
         }
 
         //> Animal Spawn Flag
-        if(!regionQuery.testState(BukkitAdapter.adapt(event.getLocation()), null, ClymeSkyblockCore.getInstance().getMonstersSpawningFlag())) {
+        if(!regionQuery.testState(BukkitAdapter.adapt(event.getLocation()), null, ClymeSkyblockCore.getInstance().getFlags().getAnimalsSpawningFlag())) {
             event.setCancelled(true);
         }
     }

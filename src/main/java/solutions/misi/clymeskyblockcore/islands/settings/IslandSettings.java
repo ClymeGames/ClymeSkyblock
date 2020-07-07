@@ -13,8 +13,7 @@ public class IslandSettings {
         islandRegion.setFlag(Flags.FIRE_SPREAD, StateFlag.State.DENY);
         islandRegion.setFlag(Flags.LEAF_DECAY, StateFlag.State.DENY);
         islandRegion.setFlag(Flags.TNT, StateFlag.State.DENY);
-        islandRegion.setFlag(ClymeSkyblockCore.getInstance().getAnimalsSpawningFlag(), StateFlag.State.ALLOW);
-        islandRegion.setFlag(ClymeSkyblockCore.getInstance().getMonstersSpawningFlag(), StateFlag.State.ALLOW);
-        islandRegion.setFlag(ClymeSkyblockCore.getInstance().getVisitorsFlag(), StateFlag.State.ALLOW);
+        islandRegion.setFlag(ClymeSkyblockCore.getInstance().getFlags().getAnimalsSpawningFlag(), StateFlag.State.ALLOW);
+        islandRegion.setFlag(ClymeSkyblockCore.getInstance().getFlags().getMonstersSpawningFlag(), StateFlag.State.ALLOW);
     }
 }
