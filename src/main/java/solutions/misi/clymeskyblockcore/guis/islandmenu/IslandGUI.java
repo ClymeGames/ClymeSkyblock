@@ -21,7 +21,7 @@ import java.util.List;
 public class IslandGUI implements Listener {
 
     public void open(Player player) {
-        Inventory gui = Bukkit.createInventory(null, 36, ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§eIsland Menu");
+        Inventory gui = Bukkit.createInventory(null, 36, ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§0Island Menu");
 
         ItemStack placeholder = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
         ItemMeta placeholderMeta = placeholder.getItemMeta();
@@ -137,7 +137,7 @@ public class IslandGUI implements Listener {
         islandGeneratorMeta.setDisplayName("§3Island Generator");
         List<String> islandGeneratorLore = new ArrayList<>();
         islandGeneratorLore.add(" ");
-        islandGeneratorLore.add("§7Click here to view & upgradce");
+        islandGeneratorLore.add("§7Click here to view & upgrade");
         islandGeneratorLore.add("§7your Island Generator");
         islandGeneratorLore.add(" ");
         islandGeneratorMeta.setLore(islandGeneratorLore);
@@ -163,7 +163,7 @@ public class IslandGUI implements Listener {
         Player player = (Player) event.getWhoClicked();
 
         try {
-            if(event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§eIsland Menu")) {
+            if(event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§0Island Menu")) {
                 event.setCancelled(true);
 
                 if(event.getCurrentItem().getType() != Material.BLACK_STAINED_GLASS_PANE) player.closeInventory();
@@ -180,14 +180,14 @@ public class IslandGUI implements Listener {
                         break;
                     case "§dYour Island Level":
                         if(event.getClick() == ClickType.LEFT) {
-                            //> Calculate island
                             IPlayer iPlayer = IPlayerKt.getIPlayer(player);
                             Island island = iPlayer.getIsland();
+
                             island.calcIsland();
 
+                            player.closeInventory();
                             player.sendMessage(ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "Successfully calculated the worth of your island..");
-                            open(player);
-                        } else {
+                        } else if(event.getClick() == ClickType.RIGHT) {
                             ClymeSkyblockCore.getInstance().getSpawnerValuesGUI().open(player);
                         }
 
@@ -197,6 +197,18 @@ public class IslandGUI implements Listener {
                         break;
                     case "§fIsland Settings":
                         ClymeSkyblockCore.getInstance().getIslandSettingsGUI().open(player);
+                        break;
+                    case "§cIsland Team":
+                        ClymeSkyblockCore.getInstance().getIslandMembersGUI().open(player);
+                        break;
+                    case "§aHow to play SkyBlock":
+                        //> TODO: How to play Skyblock GUI
+                        break;
+                    case "§cIsland Border":
+                        player.performCommand("is border");
+                        break;
+                    case "§3Island Generator":
+                        player.performCommand("is upgrades");
                         break;
                 }
             }

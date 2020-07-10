@@ -1,4 +1,4 @@
-package solutions.misi.clymeskyblockcore.guis;
+package solutions.misi.clymeskyblockcore.guis.islandmenu;
 
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldguard.WorldGuard;
@@ -16,6 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -31,12 +32,12 @@ public class IslandSettingsGUI implements Listener {
         Island island = iPlayer.getIsland();
 
         //> Only continue when player is owner of the Island
-        if(iPlayer.getIsland().getOwnerIPlayer() != iPlayer) {
+        if(island.getOwnerIPlayer() != iPlayer) {
             player.sendMessage(ClymeSkyblockCore.getInstance().getMessages().getNoPermission());
             return;
         }
 
-        Inventory gui = Bukkit.createInventory(null, 27, ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§eIsland Settings");
+        Inventory gui = Bukkit.createInventory(null, 27, ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§0Island Settings");
         refresh(gui, island);
         player.openInventory(gui);
     }
@@ -45,7 +46,7 @@ public class IslandSettingsGUI implements Listener {
     public void onClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
 
-        if(!event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§eIsland Settings")) return;
+        if(!event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§0Island Settings")) return;
         event.setCancelled(true);
         try { if(event.getCurrentItem().getItemMeta().getDisplayName().equals(" ")) return; } catch(NullPointerException ex) { return; }
 
@@ -88,6 +89,14 @@ public class IslandSettingsGUI implements Listener {
         }
 
         refresh(event.getClickedInventory(), island);
+    }
+
+    @EventHandler
+    public void onClose(InventoryCloseEvent event) {
+        Player player = (Player) event.getPlayer();
+
+        if(!event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§0Island Settings")) return;
+        Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> ClymeSkyblockCore.getInstance().getIslandGUI().open(player), 1);
     }
 
     private void toggleFlag(Island island, Flag flag) {

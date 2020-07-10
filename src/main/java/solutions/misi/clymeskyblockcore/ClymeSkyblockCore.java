@@ -8,9 +8,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import solutions.misi.clymeskyblockcore.commands.SpawnCommand;
 import solutions.misi.clymeskyblockcore.events.PlayerCommandPreprocessListener;
-import solutions.misi.clymeskyblockcore.guis.IslandSettingsGUI;
-import solutions.misi.clymeskyblockcore.guis.SpawnerValuesGUI;
 import solutions.misi.clymeskyblockcore.guis.islandmenu.IslandGUI;
+import solutions.misi.clymeskyblockcore.guis.islandmenu.IslandMembersGUI;
+import solutions.misi.clymeskyblockcore.guis.islandmenu.IslandSettingsGUI;
+import solutions.misi.clymeskyblockcore.guis.islandmenu.SpawnerValuesGUI;
 import solutions.misi.clymeskyblockcore.islands.ClymeIslandManager;
 import solutions.misi.clymeskyblockcore.islands.events.IslandCreateListener;
 import solutions.misi.clymeskyblockcore.islands.settings.IslandSettings;
@@ -32,6 +33,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private IslandGUI islandGUI;
     @Getter private SpawnerValuesGUI spawnerValuesGUI;
     @Getter private IslandSettingsGUI islandSettingsGUI;
+    @Getter private IslandMembersGUI islandMembersGUI;
 
     @Override
     public void onLoad() {
@@ -63,6 +65,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         islandGUI = new IslandGUI();
         spawnerValuesGUI = new SpawnerValuesGUI();
         islandSettingsGUI = new IslandSettingsGUI();
+        islandMembersGUI = new IslandMembersGUI();
     }
 
     private void loadFiles() {
@@ -81,6 +84,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new IslandGUI(), this);
         Bukkit.getPluginManager().registerEvents(new SpawnerValuesGUI(), this);
         Bukkit.getPluginManager().registerEvents(new IslandSettingsGUI(), this);
+        Bukkit.getPluginManager().registerEvents(new IslandMembersGUI(), this);
     }
 
     private void registerFlags() {

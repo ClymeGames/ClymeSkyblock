@@ -1,4 +1,4 @@
-package solutions.misi.clymeskyblockcore.guis;
+package solutions.misi.clymeskyblockcore.guis.islandmenu;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -17,17 +18,12 @@ import java.util.List;
 public class SpawnerValuesGUI implements Listener {
 
     public void open(Player player) {
-        Inventory gui = Bukkit.createInventory(null, 54, ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§7Spawner Values");
+        Inventory gui = Bukkit.createInventory(null, 45, ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§0Spawner Values");
 
         ItemStack placeholder = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
         ItemMeta placeholderMeta = placeholder.getItemMeta();
         placeholderMeta.setDisplayName(" ");
         placeholder.setItemMeta(placeholderMeta);
-
-        ItemStack back = new ItemStack(Material.BARRIER);
-        ItemMeta backMeta = back.getItemMeta();
-        backMeta.setDisplayName("§cGo Back");
-        back.setItemMeta(backMeta);
 
         ItemStack sheepSpawner = new ItemStack(Material.SPAWNER);
         ItemMeta sheepSpawnerMeta = sheepSpawner.getItemMeta();
@@ -222,7 +218,6 @@ public class SpawnerValuesGUI implements Listener {
         gui.setItem(25, zombiePigmanSpawner);
         gui.setItem(29, ironGolemSpawner);
         gui.setItem(33, witherSkeletonSpawner);
-        gui.setItem(45, back);
 
         player.openInventory(gui);
     }
@@ -232,7 +227,7 @@ public class SpawnerValuesGUI implements Listener {
         Player player = (Player) event.getWhoClicked();
 
         try {
-            if(event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§7Spawner Values")) {
+            if(event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§0Spawner Values")) {
                 event.setCancelled(true);
 
                 if(event.getCurrentItem().getType() == Material.BARRIER) {
@@ -241,5 +236,13 @@ public class SpawnerValuesGUI implements Listener {
                 }
             }
         } catch(NullPointerException ex) { }
+    }
+
+    @EventHandler
+    public void onClose(InventoryCloseEvent event) {
+        Player player = (Player) event.getPlayer();
+
+        if(!event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§0Spawner Values")) return;
+        Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> ClymeSkyblockCore.getInstance().getIslandGUI().open(player), 1);
     }
 }
