@@ -5,8 +5,10 @@ solutions\misi\clymeskyblockcore\security\CommandHandler$2.class
 solutions\misi\clymeskyblockcore\ClymeSkyblockCore.class
 solutions\misi\clymeskyblockcore\guis\islandmenu\SpawnerValuesGUI.class
 solutions\misi\clymeskyblockcore\guis\islandmenu\IslandMembersGUI.class
+solutions\misi\clymeskyblockcore\utils\ClymeChat.class
 solutions\misi\clymeskyblockcore\security\CommandHandler.class
 solutions\misi\clymeskyblockcore\guis\islandmenu\IslandSettingsGUI$1.class
+solutions\misi\clymeskyblockcore\islands\events\IslandUpgradeListener.class
 solutions\misi\clymeskyblockcore\guis\islandmenu\IslandGUI.class
 solutions\misi\clymeskyblockcore\islands\settings\flags\events\CreatureSpawnFlagListener.class
 solutions\misi\clymeskyblockcore\islands\events\IslandCreateListener.class

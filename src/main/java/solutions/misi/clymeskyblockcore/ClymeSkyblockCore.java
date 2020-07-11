@@ -14,6 +14,7 @@ import solutions.misi.clymeskyblockcore.guis.islandmenu.IslandSettingsGUI;
 import solutions.misi.clymeskyblockcore.guis.islandmenu.SpawnerValuesGUI;
 import solutions.misi.clymeskyblockcore.islands.ClymeIslandManager;
 import solutions.misi.clymeskyblockcore.islands.events.IslandCreateListener;
+import solutions.misi.clymeskyblockcore.islands.events.IslandUpgradeListener;
 import solutions.misi.clymeskyblockcore.islands.settings.IslandSettings;
 import solutions.misi.clymeskyblockcore.islands.settings.flags.Flags;
 import solutions.misi.clymeskyblockcore.islands.settings.flags.events.CreatureSpawnFlagListener;
@@ -75,6 +76,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
     private void registerEvents() {
         Bukkit.getPluginManager().registerEvents(new PlayerCommandPreprocessListener(), this);
         Bukkit.getPluginManager().registerEvents(new IslandCreateListener(), this);
+        Bukkit.getPluginManager().registerEvents(new IslandUpgradeListener(), this);
 
         //> Flags
         Bukkit.getPluginManager().registerEvents(new CreatureSpawnFlagListener(), this);

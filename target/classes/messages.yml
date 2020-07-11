@@ -1,4 +1,4 @@
-prefix: "&e&lClyme&6&lGames &7➢ "
+prefix: "#e67e22&lClyme#c0392b&lGames &f➢ "
 
-command-spam: "&cPlease wait until you use the next command!"
-no-permission: "&cYou do not have permission to do that!"
+command-spam: "%error%Please wait until you use the next command!"
+no-permission: "%error%You do not have permission to do that!"

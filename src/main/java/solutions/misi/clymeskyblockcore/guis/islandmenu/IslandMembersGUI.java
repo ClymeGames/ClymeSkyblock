@@ -111,6 +111,7 @@ public class IslandMembersGUI implements Listener {
         if(!event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§0Island Members")) return;
         event.setCancelled(true);
         try { if(event.getCurrentItem().getItemMeta().getDisplayName().equals(" ")) return; } catch(NullPointerException ex) { return; }
+        if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§cYou have no Island Members!")) return;
 
         if(event.getClick() == ClickType.LEFT) {
             IPlayer iPlayer = IPlayerKt.getIPlayerByName(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));

@@ -63,10 +63,10 @@ public class ClymeIslandManager {
         //> Create new island region
         ProtectedRegion islandRegion = new ProtectedCuboidRegion(getIslandId(island), islandMinPosition, islandMaxPosition);
         DefaultDomain ownerDomain = new DefaultDomain();
-        ownerDomain.addPlayer(island.getOwnerIPlayer().getName());
+        ownerDomain.addPlayer(island.getOwnerIPlayer().getUuid());
         islandRegion.setOwners(ownerDomain);
         regionManager.addRegion(islandRegion);
-        Bukkit.getConsoleSender().sendMessage("[ClymeGames] §aIsland at (" + island.getIslandCenter().getBlockX() + ", " + island.getIslandCenter().getBlockY() + ", " + island.getIslandCenter().getBlockZ() + ") has been created.");
+        Bukkit.getConsoleSender().sendMessage("[ClymeGames] §aIsland Region at (" + island.getIslandCenter().getBlockX() + ", " + island.getIslandCenter().getBlockY() + ", " + island.getIslandCenter().getBlockZ() + ") has been created.");
 
         //> Set default flags
         if(oldFlags.isEmpty()) {

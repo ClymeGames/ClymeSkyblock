@@ -8,6 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
+import solutions.misi.clymeskyblockcore.utils.ClymeChat;
 
 public class SpawnCommand implements CommandExecutor {
 
@@ -26,7 +27,7 @@ public class SpawnCommand implements CommandExecutor {
 
         player.teleport(spawn);
         player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
-        player.sendMessage(ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "§aSuccessfully teleported to the spawn..");
+        player.sendMessage(ClymeSkyblockCore.getInstance().getMessages().getPrefix() + ClymeChat.format(ClymeChat.SUCCESS() + "Successfully teleported to the spawn.."));
 
         return false;
     }

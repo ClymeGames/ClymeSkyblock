@@ -14,6 +14,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
+import solutions.misi.clymeskyblockcore.utils.ClymeChat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -186,7 +187,7 @@ public class IslandGUI implements Listener {
                             island.calcIsland();
 
                             player.closeInventory();
-                            player.sendMessage(ClymeSkyblockCore.getInstance().getMessages().getPrefix() + "Successfully calculated the worth of your island..");
+                            player.sendMessage(ClymeSkyblockCore.getInstance().getMessages().getPrefix() + ClymeChat.format(ClymeChat.SUCCESS() + "Successfully calculated the worth of your island.."));
                         } else if(event.getClick() == ClickType.RIGHT) {
                             ClymeSkyblockCore.getInstance().getSpawnerValuesGUI().open(player);
                         }

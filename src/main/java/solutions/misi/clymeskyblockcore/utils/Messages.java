@@ -2,7 +2,6 @@ package solutions.misi.clymeskyblockcore.utils;
 
 import lombok.Getter;
 import lombok.SneakyThrows;
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
@@ -31,6 +30,6 @@ public class Messages {
     }
 
     private String getFormattedMessage(String path) {
-        return ChatColor.translateAlternateColorCodes('&', messagesFileCfg.getString(path));
+        return ClymeChat.format(messagesFileCfg.getString(path).replace("%success%", ClymeChat.SUCCESS()).replace("%info%", ClymeChat.INFO()).replace("%error%", ClymeChat.ERROR()));
     }
 }
