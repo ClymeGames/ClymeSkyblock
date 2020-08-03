@@ -29,7 +29,7 @@ public class CommandHandler {
                 removeBlockedScheduler(player);
             }
 
-            player.sendMessage(ClymeSkyblockCore.getInstance().getMessages().getCommandSpam());
+            player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getCommandSpam());
         }
     }
 

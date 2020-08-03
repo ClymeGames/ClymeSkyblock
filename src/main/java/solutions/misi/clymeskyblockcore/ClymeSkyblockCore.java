@@ -3,15 +3,18 @@ package solutions.misi.clymeskyblockcore;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
+import com.zaxxer.hikari.HikariDataSource;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import solutions.misi.clymeskyblockcore.commands.SpawnCommand;
+import solutions.misi.clymeskyblockcore.data.SqlManager;
 import solutions.misi.clymeskyblockcore.events.PlayerCommandPreprocessListener;
-import solutions.misi.clymeskyblockcore.guis.islandmenu.IslandGUI;
-import solutions.misi.clymeskyblockcore.guis.islandmenu.IslandMembersGUI;
-import solutions.misi.clymeskyblockcore.guis.islandmenu.IslandSettingsGUI;
-import solutions.misi.clymeskyblockcore.guis.islandmenu.SpawnerValuesGUI;
+import solutions.misi.clymeskyblockcore.events.PlayerJoinListener;
+import solutions.misi.clymeskyblockcore.gui.islandmenu.IslandGUI;
+import solutions.misi.clymeskyblockcore.gui.islandmenu.IslandMembersGUI;
+import solutions.misi.clymeskyblockcore.gui.islandmenu.IslandSettingsGUI;
+import solutions.misi.clymeskyblockcore.gui.islandmenu.SpawnerValuesGUI;
 import solutions.misi.clymeskyblockcore.islands.ClymeIslandManager;
 import solutions.misi.clymeskyblockcore.islands.events.IslandCreateListener;
 import solutions.misi.clymeskyblockcore.islands.events.IslandUpgradeListener;
@@ -19,13 +22,16 @@ import solutions.misi.clymeskyblockcore.islands.settings.IslandSettings;
 import solutions.misi.clymeskyblockcore.islands.settings.flags.Flags;
 import solutions.misi.clymeskyblockcore.islands.settings.flags.events.CreatureSpawnFlagListener;
 import solutions.misi.clymeskyblockcore.security.CommandHandler;
-import solutions.misi.clymeskyblockcore.utils.Messages;
+import solutions.misi.clymeskyblockcore.utils.ClymeMessage;
 
 public class ClymeSkyblockCore extends JavaPlugin {
 
     //> Classes
     @Getter private static ClymeSkyblockCore instance;
-    @Getter private Messages messages;
+    @Getter private ClymeMessage clymeMessage;
+    @Getter private HikariDataSource dataSource;
+
+    @Getter private SqlManager sqlManager;
     @Getter private CommandHandler commandHandler;
     @Getter private ClymeIslandManager clymeIslandManager;
     @Getter private IslandSettings islandSettings;
@@ -44,20 +50,22 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        loadFiles();
         registerEvents();
         registerGUIs();
         loadCommands();
+        getSqlManager().initializeDatabase();
     }
 
     @Override
     public void onDisable() {
-
+        getSqlManager().closeDataSource();
     }
 
     private void loadClasses() {
         instance = this;
-        messages = new Messages();
+        clymeMessage = new ClymeMessage();
+        dataSource = new HikariDataSource();
+        sqlManager = new SqlManager();
         commandHandler = new CommandHandler();
         clymeIslandManager = new ClymeIslandManager();
         islandSettings = new IslandSettings();
@@ -69,14 +77,11 @@ public class ClymeSkyblockCore extends JavaPlugin {
         islandMembersGUI = new IslandMembersGUI();
     }
 
-    private void loadFiles() {
-        saveDefaultConfig();
-    }
-
     private void registerEvents() {
         Bukkit.getPluginManager().registerEvents(new PlayerCommandPreprocessListener(), this);
         Bukkit.getPluginManager().registerEvents(new IslandCreateListener(), this);
         Bukkit.getPluginManager().registerEvents(new IslandUpgradeListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
 
         //> Flags
         Bukkit.getPluginManager().registerEvents(new CreatureSpawnFlagListener(), this);

@@ -20,7 +20,7 @@ public class PlayerCommandPreprocessListener implements Listener {
         if(cmd.equalsIgnoreCase("/is") || cmd.equalsIgnoreCase("/island")) {
             IPlayer iPlayer = IPlayerKt.getIPlayer(player);
 
-            if(iPlayer.hasIsland()) {
+            if(iPlayer.getIsland() != null) {
                 event.setCancelled(true);
                 ClymeSkyblockCore.getInstance().getIslandGUI().open(player);
             }
@@ -30,7 +30,7 @@ public class PlayerCommandPreprocessListener implements Listener {
         if(cmd.equalsIgnoreCase("/is settings") || cmd.equalsIgnoreCase("/island settings")) {
             IPlayer iPlayer = IPlayerKt.getIPlayer(player);
 
-            if(iPlayer.hasIsland()) {
+            if(iPlayer.getIsland() != null) {
                 event.setCancelled(true);
                 ClymeSkyblockCore.getInstance().getIslandSettingsGUI().open(player);
             }
