@@ -11,6 +11,7 @@ import solutions.misi.clymeskyblockcore.commands.SpawnCommand;
 import solutions.misi.clymeskyblockcore.data.SqlManager;
 import solutions.misi.clymeskyblockcore.events.PlayerCommandPreprocessListener;
 import solutions.misi.clymeskyblockcore.events.PlayerJoinListener;
+import solutions.misi.clymeskyblockcore.events.PlayerQuitListener;
 import solutions.misi.clymeskyblockcore.gui.islandmenu.IslandGUI;
 import solutions.misi.clymeskyblockcore.gui.islandmenu.IslandMembersGUI;
 import solutions.misi.clymeskyblockcore.gui.islandmenu.IslandSettingsGUI;
@@ -82,6 +83,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new IslandCreateListener(), this);
         Bukkit.getPluginManager().registerEvents(new IslandUpgradeListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(), this);
 
         //> Flags
         Bukkit.getPluginManager().registerEvents(new CreatureSpawnFlagListener(), this);
