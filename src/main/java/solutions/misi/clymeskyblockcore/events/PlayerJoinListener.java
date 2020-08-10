@@ -21,13 +21,13 @@ public class PlayerJoinListener implements Listener {
         ClymeSkyblockCore.getInstance().getClymeMessage().clearChat(player);
 
         player.sendMessage(" ");
-        player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.SECONDARY() + "× " + ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix().replace(" ➢ ", "") + ClymeChatColor.SECONDARY() + " // §fclyme.games"));
-        player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.SECONDARY() + "× You are playing on ClymeGames Skyblock!"));
+        player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.SECONDARY() + "× " + ClymeSkyblockCore.getInstance().getClymeMessage().getRawPrefix() + ClymeChatColor.SECONDARY() + " // §fclyme.games"));
+        player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.SECONDARY() + "× You are playing Skyblock!"));
         player.sendMessage(" ");
-        player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.PRIMARY() + "➢ Website: " + ClymeChatColor.SECONDARY() + " www.clyme.games"));
-        player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.PRIMARY() + "➢ Shop: " + ClymeChatColor.SECONDARY() + " shop.clyme.games"));
-        player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.PRIMARY() + "➢ Discord: " + ClymeChatColor.SECONDARY() + " clyme.games/discord"));
-        player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.PRIMARY() + "➢ Vote: " + ClymeChatColor.SECONDARY() + " clyme.games/vote"));
+        player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.ACCENT() + "➢ Website: " + ClymeChatColor.SECONDARY() + " www.clyme.games"));
+        player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.ACCENT() + "➢ Shop: " + ClymeChatColor.SECONDARY() + " shop.clyme.games"));
+        player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.ACCENT() + "➢ Discord: " + ClymeChatColor.SECONDARY() + " clyme.games/discord"));
+        player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.ACCENT() + "➢ Vote: " + ClymeChatColor.SECONDARY() + " clyme.games/vote"));
         player.sendMessage(" ");
     }
 }

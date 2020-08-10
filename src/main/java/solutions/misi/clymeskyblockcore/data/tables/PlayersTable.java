@@ -22,8 +22,7 @@ public class PlayersTable {
                             + "last_join TIMESTAMP NULL DEFAULT NULL,"
                             + "ip VARCHAR(15))";
 
-        new ExecuteBukkitRunnable(ClymeSkyblockCore.getInstance().getDataSource(), statement, (result, thrown) -> {
-        }).runTaskAsynchronously(ClymeSkyblockCore.getInstance());
+        new ExecuteBukkitRunnable(ClymeSkyblockCore.getInstance().getDataSource(), statement).runTaskAsynchronously(ClymeSkyblockCore.getInstance());
     }
 
     public void registerPlayer(Player player) {
@@ -43,9 +42,8 @@ public class PlayersTable {
                                                         + "'" + joined + "',"
                                                         + "'" + joined + "',"
                                                         + "'" + ip + "')"
-                                                        + " ON DUPLICATE KEY UPDATE 'username' = '" + username + "'";
+                                                        + " ON DUPLICATE KEY UPDATE last_join = '" + joined + "'";
 
-        new UpdateBukkitRunnable(ClymeSkyblockCore.getInstance().getDataSource(), statement, ((result, thrown) -> {
-        })).runTaskAsynchronously(ClymeSkyblockCore.getInstance());
+        new UpdateBukkitRunnable(ClymeSkyblockCore.getInstance().getDataSource(), statement).runTaskAsynchronously(ClymeSkyblockCore.getInstance());
     }
 }

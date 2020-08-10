@@ -18,6 +18,7 @@ public class ClymeMessage {
     private final FileConfiguration MESSAGES_FILE_CFG;
     private final Pattern PATTERN = Pattern.compile("#[a-fA-f0-9]{6}");
 
+    @Getter private final String rawPrefix;
     @Getter private final String prefix;
     @Getter private final String commandSpam;
     @Getter private final String noPermission;
@@ -30,7 +31,8 @@ public class ClymeMessage {
         MESSAGES_FILE_CFG.load(messagesFile);
 
         //> Messages
-        prefix = getFormattedMessage("prefix");
+        rawPrefix = getFormattedMessage("prefix");
+        prefix = rawPrefix + " §f➢ ";
         commandSpam = prefix + getFormattedMessage("command-spam");
         noPermission = prefix + getFormattedMessage("no-permission");
     }
