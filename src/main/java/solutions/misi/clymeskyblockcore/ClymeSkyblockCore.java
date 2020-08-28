@@ -5,7 +5,9 @@ import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.Getter;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import solutions.misi.clymeskyblockcore.commands.SpawnCommand;
 import solutions.misi.clymeskyblockcore.data.SqlManager;
@@ -44,6 +46,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private IslandSettingsGUI islandSettingsGUI;
     @Getter private IslandMembersGUI islandMembersGUI;
 
+    @Getter private Economy economy;
+
     @Override
     public void onLoad() {
         loadClasses();
@@ -56,6 +60,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         registerGUIs();
         loadCommands();
         getSqlManager().initializeDatabase();
+        setupEconomy();
     }
 
     @Override
@@ -115,5 +120,12 @@ public class ClymeSkyblockCore extends JavaPlugin {
     private void loadCommands() {
         SpawnCommand spawnCommand = new SpawnCommand();
         getCommand("spawn").setExecutor(spawnCommand);
+    }
+
+    private void setupEconomy() {
+        if(getServer().getPluginManager().getPlugin("Vault") == null) return;
+        RegisteredServiceProvider<Economy> serviceProvider = getServer().getServicesManager().getRegistration(Economy.class);
+        if(serviceProvider == null) return;
+        economy = serviceProvider.getProvider();
     }
 }
