@@ -5,6 +5,7 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
+import solutions.misi.clymeskyblockcore.data.tables.EconomyTable;
 import solutions.misi.clymeskyblockcore.data.tables.PlayersTable;
 
 import java.io.File;
@@ -13,7 +14,10 @@ import java.io.IOException;
 public class SqlManager {
 
     private FileConfiguration databaseFileCfg;
+
+    //> Tables
     @Getter private PlayersTable playersTable;
+    @Getter private EconomyTable economyTable;
 
     public SqlManager() {
         try {
@@ -35,6 +39,7 @@ public class SqlManager {
 
         //> Create tables
         playersTable = new PlayersTable();
+        economyTable = new EconomyTable();
     }
 
     public void closeDataSource() {
