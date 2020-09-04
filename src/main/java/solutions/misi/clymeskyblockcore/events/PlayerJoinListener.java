@@ -14,8 +14,8 @@ public class PlayerJoinListener implements Listener {
 
         Player player = event.getPlayer();
 
-        ClymeSkyblockCore.getInstance().getSqlManager().getPlayersTable().registerPlayer(player);
-        ClymeSkyblockCore.getInstance().getSqlManager().getEconomyTable().registerPlayer(player);
+        ClymeSkyblockCore.getInstance().getDataManager().getPlayersTable().registerPlayer(player);
+        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().registerPlayer(player);
 
         //> Welcome message
         event.setJoinMessage("");

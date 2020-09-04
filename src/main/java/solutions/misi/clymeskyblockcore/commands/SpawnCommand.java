@@ -12,6 +12,8 @@ import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
 
 public class SpawnCommand implements CommandExecutor {
 
+    //> Usage: /spawn
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
@@ -29,6 +31,6 @@ public class SpawnCommand implements CommandExecutor {
         player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
         player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the spawn.."));
 
-        return false;
+        return true;
     }
 }

@@ -5,12 +5,15 @@ import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.Getter;
+import lombok.Setter;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import redis.clients.jedis.JedisPool;
+import solutions.misi.clymeskyblockcore.commands.MoneyCommand;
 import solutions.misi.clymeskyblockcore.commands.SpawnCommand;
-import solutions.misi.clymeskyblockcore.data.SqlManager;
+import solutions.misi.clymeskyblockcore.data.DataManager;
 import solutions.misi.clymeskyblockcore.events.PlayerCommandPreprocessListener;
 import solutions.misi.clymeskyblockcore.events.PlayerJoinListener;
 import solutions.misi.clymeskyblockcore.events.PlayerQuitListener;
@@ -34,8 +37,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private static ClymeSkyblockCore instance;
     @Getter private ClymeMessage clymeMessage;
     @Getter private HikariDataSource dataSource;
+    @Getter @Setter private JedisPool jedisPool;
 
-    @Getter private SqlManager sqlManager;
+    @Getter private DataManager dataManager;
     @Getter private CommandHandler commandHandler;
     @Getter private ClymeIslandManager clymeIslandManager;
     @Getter private IslandSettings islandSettings;
@@ -59,20 +63,20 @@ public class ClymeSkyblockCore extends JavaPlugin {
         registerEvents();
         registerGUIs();
         loadCommands();
-        getSqlManager().initializeDatabase();
+        getDataManager().initializeDatabases();
         setupEconomy();
     }
 
     @Override
     public void onDisable() {
-        getSqlManager().closeDataSource();
+        getDataManager().closeDatabases();
     }
 
     private void loadClasses() {
         instance = this;
         clymeMessage = new ClymeMessage();
         dataSource = new HikariDataSource();
-        sqlManager = new SqlManager();
+        dataManager = new DataManager();
         commandHandler = new CommandHandler();
         clymeIslandManager = new ClymeIslandManager();
         islandSettings = new IslandSettings();
@@ -120,6 +124,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
     private void loadCommands() {
         SpawnCommand spawnCommand = new SpawnCommand();
         getCommand("spawn").setExecutor(spawnCommand);
+
+        MoneyCommand moneyCommand = new MoneyCommand();
+        getCommand("money").setExecutor(moneyCommand);
     }
 
     private void setupEconomy() {

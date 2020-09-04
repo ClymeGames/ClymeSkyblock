@@ -11,3 +11,6 @@ depend:
 commands:
   spawn:
     description: Teleports you to the spawn
+  money:
+    description: Shows your current balance
+    aliases: [economy, econ, bal, balance, mon]
