@@ -8,8 +8,8 @@ import redis.clients.jedis.BinaryShardedJedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
-import solutions.misi.clymeskyblockcore.data.tables.EconomyStorage;
-import solutions.misi.clymeskyblockcore.data.tables.PlayersTable;
+import solutions.misi.clymeskyblockcore.data.mysql.PlayersTable;
+import solutions.misi.clymeskyblockcore.data.vault.economy.EconomyStorage;
 
 import java.io.File;
 import java.io.IOException;

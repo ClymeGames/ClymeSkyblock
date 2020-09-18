@@ -1,5 +1,8 @@
 package solutions.misi.clymeskyblockcore.gui.islandmenu;
 
+import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
+import com.bgsoftware.superiorskyblock.api.island.Island;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.flags.Flag;
@@ -7,9 +10,6 @@ import com.sk89q.worldguard.protection.flags.Flags;
 import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
-import net.savagelabs.skyblockx.core.IPlayer;
-import net.savagelabs.skyblockx.core.IPlayerKt;
-import net.savagelabs.skyblockx.core.Island;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -28,11 +28,11 @@ import java.util.List;
 public class IslandSettingsGUI implements Listener {
 
     public void open(Player player) {
-        IPlayer iPlayer = IPlayerKt.getIPlayer(player);
-        Island island = iPlayer.getIsland();
+        SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
+        Island island = superiorPlayer.getIsland();
 
         //> Only continue when player is owner of the Island
-        if(island.getLeader() != iPlayer) {
+        if(island.getOwner() != superiorPlayer) {
             player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getNoPermission());
             return;
         }
@@ -50,7 +50,7 @@ public class IslandSettingsGUI implements Listener {
         event.setCancelled(true);
         try { if(event.getCurrentItem().getItemMeta().getDisplayName().equals(" ")) return; } catch(NullPointerException ex) { return; }
 
-        Island island = IPlayerKt.getIPlayer(player).getIsland();
+        Island island = SuperiorSkyblockAPI.getPlayer(player).getIsland();
 
         switch(event.getCurrentItem().getType()) {
             //> Toggle animal spawning
@@ -79,12 +79,12 @@ public class IslandSettingsGUI implements Listener {
                 break;
             //> Toggle visitors
             case PLAYER_HEAD:
-                if(island.getAllowVisitors()) {
-                    island.setAllowVisitors(false);
+                if(island.isLocked()) {
+                    island.setLocked(false);
                     break;
                 }
 
-                island.setAllowVisitors(true);
+                island.setLocked(true);
                 break;
         }
 
@@ -101,7 +101,7 @@ public class IslandSettingsGUI implements Listener {
 
     private void toggleFlag(Island island, Flag flag) {
         RegionContainer regionContainer = WorldGuard.getInstance().getPlatform().getRegionContainer();
-        RegionManager regionManager = regionContainer.get(BukkitAdapter.adapt(island.getMaxLocation().getLocation().getWorld()));
+        RegionManager regionManager = regionContainer.get(BukkitAdapter.adapt(island.getMaximum().getWorld()));
 
         if(regionManager.getRegion(ClymeSkyblockCore.getInstance().getClymeIslandManager().getIslandId(island)).getFlag(flag) == StateFlag.State.ALLOW) {
             regionManager.getRegion(ClymeSkyblockCore.getInstance().getClymeIslandManager().getIslandId(island)).setFlag(flag, StateFlag.State.DENY);
@@ -112,7 +112,7 @@ public class IslandSettingsGUI implements Listener {
 
     private void refresh(Inventory gui, Island island) {
         RegionContainer regionContainer = WorldGuard.getInstance().getPlatform().getRegionContainer();
-        RegionManager regionManager = regionContainer.get(BukkitAdapter.adapt(island.getMaxLocation().getLocation().getWorld()));
+        RegionManager regionManager = regionContainer.get(BukkitAdapter.adapt(island.getMaximum().getWorld()));
 
         ItemStack placeholder = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
         ItemMeta placeholderMeta = placeholder.getItemMeta();
@@ -334,7 +334,7 @@ public class IslandSettingsGUI implements Listener {
         } else { gui.setItem(15, blockDamageDisabled); }
 
         //> Visitors Setting
-        if(island.getAllowVisitors()) {
+        if(!island.isLocked()) {
             gui.setItem(16, allowVisitors);
         } else { gui.setItem(16, denyVisitors); }
     }

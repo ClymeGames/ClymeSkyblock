@@ -1,7 +1,7 @@
 package solutions.misi.clymeskyblockcore.events;
 
-import net.savagelabs.skyblockx.core.IPlayer;
-import net.savagelabs.skyblockx.core.IPlayerKt;
+import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -18,9 +18,9 @@ public class PlayerCommandPreprocessListener implements Listener {
 
         //> Island menu Command
         if(cmd.equalsIgnoreCase("/is") || cmd.equalsIgnoreCase("/island")) {
-            IPlayer iPlayer = IPlayerKt.getIPlayer(player);
+            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
 
-            if(iPlayer.getIsland() != null) {
+            if(superiorPlayer.getIsland() != null) {
                 event.setCancelled(true);
                 ClymeSkyblockCore.getInstance().getIslandGUI().open(player);
             }
@@ -28,9 +28,9 @@ public class PlayerCommandPreprocessListener implements Listener {
 
         //> Island settings Command
         if(cmd.equalsIgnoreCase("/is settings") || cmd.equalsIgnoreCase("/island settings")) {
-            IPlayer iPlayer = IPlayerKt.getIPlayer(player);
+            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
 
-            if(iPlayer.getIsland() != null) {
+            if(superiorPlayer.getIsland() != null) {
                 event.setCancelled(true);
                 ClymeSkyblockCore.getInstance().getIslandSettingsGUI().open(player);
             }

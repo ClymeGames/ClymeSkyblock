@@ -1,6 +1,6 @@
 package solutions.misi.clymeskyblockcore.islands.events;
 
-import net.savagelabs.skyblockx.event.IslandCreateEvent;
+import com.bgsoftware.superiorskyblock.api.events.IslandCreateEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;

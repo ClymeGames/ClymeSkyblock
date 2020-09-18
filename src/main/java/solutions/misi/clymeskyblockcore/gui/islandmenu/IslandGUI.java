@@ -1,8 +1,8 @@
 package solutions.misi.clymeskyblockcore.gui.islandmenu;
 
-import net.savagelabs.skyblockx.core.IPlayer;
-import net.savagelabs.skyblockx.core.IPlayerKt;
-import net.savagelabs.skyblockx.core.Island;
+import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
+import com.bgsoftware.superiorskyblock.api.island.Island;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -60,8 +60,8 @@ public class IslandGUI implements Listener {
         tpToSpawnMeta.setLore(tpToSpawnLore);
         tpToSpawn.setItemMeta(tpToSpawnMeta);
 
-        IPlayer iPlayer = IPlayerKt.getIPlayer(player);
-        Island island = iPlayer.getIsland();
+        SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
+        Island island = superiorPlayer.getIsland();
         ItemStack islandLevel = new ItemStack(Material.EXPERIENCE_BOTTLE);
         ItemMeta islandLevelMeta = islandLevel.getItemMeta();
         islandLevelMeta.setDisplayName("§dYour Island Level");
@@ -72,7 +72,7 @@ public class IslandGUI implements Listener {
         islandLevelLore.add(" ");
         islandLevelLore.add("§7Increase your level by placing spawners on your island.");
         islandLevelLore.add(" ");
-        islandLevelLore.add("§7Current level: §e" + island.getLevel());
+        islandLevelLore.add("§7Current level: §e" + island.getIslandLevel());
         islandLevelLore.add(" ");
         islandLevelLore.add("§7Left-Click to refresh your current level.");
         islandLevelLore.add("§7Right-Click to view the spawner values.");
@@ -181,10 +181,10 @@ public class IslandGUI implements Listener {
                         break;
                     case "§dYour Island Level":
                         if(event.getClick() == ClickType.LEFT) {
-                            IPlayer iPlayer = IPlayerKt.getIPlayer(player);
-                            Island island = iPlayer.getIsland();
+                            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
+                            Island island = superiorPlayer.getIsland();
 
-                            Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), island::calcIsland);
+                            Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> island.calcIslandWorth(superiorPlayer));
 
                             player.closeInventory();
                             player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + (ClymeChatColor.SUCCESS() + "Successfully calculated the worth of your island..")));

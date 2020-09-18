@@ -1,4 +1,4 @@
-package solutions.misi.clymeskyblockcore.data.tables;
+package solutions.misi.clymeskyblockcore.data.mysql;
 
 import org.bukkit.entity.Player;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;

@@ -12,7 +12,7 @@ public class ServerListPingListener implements Listener {
     public void onPing(ServerListPingEvent event) {
         event.setMotd(ClymeSkyblockCore.getInstance().getClymeMessage().format(
                 ClymeChatColor.PRIMARY() + "§m§l-----" + ClymeChatColor.ACCENT() + "§m§l-----§r" + "  " +
-                ClymeSkyblockCore.getInstance().getClymeMessage().getRawPrefix() + " " + ClymeChatColor.SECONDARY() + "[1.16.2]" + "  " +
+                ClymeSkyblockCore.getInstance().getClymeMessage().getRawPrefix() + " " + ClymeChatColor.SECONDARY() + "[1.16.3]" + "  " +
                 ClymeChatColor.ACCENT() + "§m§l-----" + ClymeChatColor.PRIMARY() + "§m§l-----§r\n" +
                 "                      " + ClymeChatColor.INFO() + "Skyblock Release!" + "                    "));
     }

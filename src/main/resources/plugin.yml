@@ -5,7 +5,7 @@ author: CAMOU
 website: https://misi.solutions/
 main: solutions.misi.clymeskyblockcore.ClymeSkyblockCore
 depend:
-  - SkyblockX
+  - SuperiorSkyblock2
   - WorldGuard
 
 commands:

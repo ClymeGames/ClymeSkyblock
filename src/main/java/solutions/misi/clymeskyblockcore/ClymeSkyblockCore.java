@@ -9,11 +9,13 @@ import lombok.Setter;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 import redis.clients.jedis.JedisPool;
 import solutions.misi.clymeskyblockcore.commands.MoneyCommand;
 import solutions.misi.clymeskyblockcore.commands.SpawnCommand;
 import solutions.misi.clymeskyblockcore.data.DataManager;
+import solutions.misi.clymeskyblockcore.data.vault.economy.ClymeEconomy;
 import solutions.misi.clymeskyblockcore.events.PlayerCommandPreprocessListener;
 import solutions.misi.clymeskyblockcore.events.PlayerJoinListener;
 import solutions.misi.clymeskyblockcore.events.PlayerQuitListener;
@@ -131,6 +133,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
     private void setupEconomy() {
         if(getServer().getPluginManager().getPlugin("Vault") == null) return;
+        Bukkit.getServicesManager().register(Economy.class, new ClymeEconomy(), getServer().getPluginManager().getPlugin("Vault"), ServicePriority.Normal);
         RegisteredServiceProvider<Economy> serviceProvider = getServer().getServicesManager().getRegistration(Economy.class);
         if(serviceProvider == null) return;
         economy = serviceProvider.getProvider();

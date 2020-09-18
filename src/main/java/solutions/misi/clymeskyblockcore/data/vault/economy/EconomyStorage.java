@@ -1,8 +1,9 @@
-package solutions.misi.clymeskyblockcore.data.tables;
+package solutions.misi.clymeskyblockcore.data.vault.economy;
 
 import org.bukkit.entity.Player;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Pipeline;
+import redis.clients.jedis.Response;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 
 public class EconomyStorage {
@@ -21,8 +22,9 @@ public class EconomyStorage {
         try {
             jedis = ClymeSkyblockCore.getInstance().getJedisPool().getResource();
             pipeline = jedis.pipelined();
-            result = pipeline.exists("balance." + uuid).get();
+            Response<Boolean> pipelineResponse = pipeline.exists("balance." + uuid);
             pipeline.sync();
+            result = pipelineResponse.get();
         } finally {
             jedis.close();
         }
@@ -41,8 +43,9 @@ public class EconomyStorage {
         try {
             jedis = ClymeSkyblockCore.getInstance().getJedisPool().getResource();
             pipeline = jedis.pipelined();
-            result = Double.parseDouble(pipeline.get("balance." + uuid).get());
+            Response<String> pipelineResponse = pipeline.get("balance." + uuid);
             pipeline.sync();
+            result = Double.parseDouble(pipelineResponse.get());
         } finally {
             jedis.close();
         }
@@ -63,13 +66,5 @@ public class EconomyStorage {
         } finally {
             jedis.close();
         }
-    }
-
-    public void addBalance(Player player, double balance) {
-        setBalance(player, getBalance(player) + balance);
-    }
-
-    public void removeBalance(Player player, double balance) {
-        setBalance(player, getBalance(player) - balance);
     }
 }

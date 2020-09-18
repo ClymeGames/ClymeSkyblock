@@ -1,8 +1,8 @@
 package solutions.misi.clymeskyblockcore.gui.islandmenu;
 
-import net.savagelabs.skyblockx.core.IPlayer;
-import net.savagelabs.skyblockx.core.IPlayerKt;
-import net.savagelabs.skyblockx.core.Island;
+import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
+import com.bgsoftware.superiorskyblock.api.island.Island;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -21,16 +21,15 @@ import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class IslandMembersGUI implements Listener {
 
     public void open(Player player) {
-        IPlayer iPlayer = IPlayerKt.getIPlayer(player);
-        Island island = iPlayer.getIsland();
+        SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
+        Island island = superiorPlayer.getIsland();
 
         //> Only continue when player is owner of the Island
-        if(island.getLeader() != iPlayer) {
+        if(island.getOwner() != superiorPlayer) {
             player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getNoPermission());
             return;
         }
@@ -50,13 +49,13 @@ public class IslandMembersGUI implements Listener {
         for(int i = 0; i < gui.getSize(); i++) gui.setItem(i, placeholder);
 
         //> Create Skulls for each member
-        for(UUID memberUUID : island.getMembers()) {
-            OfflinePlayer member = Bukkit.getOfflinePlayer(memberUUID);
+        for(SuperiorPlayer superiorMember : island.getIslandMembers(true)) {
+            OfflinePlayer member = Bukkit.getOfflinePlayer(superiorMember.getUniqueId());
             String onlineStatus = "§c§lOFFLINE";
             String islandRank = "Member";
 
             if(member.isOnline()) onlineStatus = "§a§lONLINE";
-            if(island.getLeader().getUuid().toString().equals(memberUUID)) islandRank = "Island Leader";
+            if(island.getOwner().getUniqueId().equals(superiorMember.getUniqueId())) islandRank = "Island Leader";
 
             ItemStack memberSkull = new ItemStack(Material.PLAYER_HEAD);
             SkullMeta memberSkullMeta = (SkullMeta) memberSkull.getItemMeta();
@@ -114,17 +113,17 @@ public class IslandMembersGUI implements Listener {
         if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§cYou have no Island Members!")) return;
 
         if(event.getClick() == ClickType.LEFT) {
-            IPlayer iPlayer = IPlayerKt.getIPlayerByName(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
-            iPlayer.getIsland().kickMember(iPlayer.getName());
+            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
+            superiorPlayer.getIsland().kickMember(superiorPlayer);
 
             player.closeInventory();
-            player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§e" + iPlayer.getName() + " has been kicked from your Island!");
+            player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§e" + superiorPlayer.getName() + " has been kicked from your Island!");
         } else if(event.getClick() == ClickType.RIGHT) {
-            IPlayer iPlayer = IPlayerKt.getIPlayerByName(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
-            iPlayer.getIsland().promoteNewLeader(iPlayer);
+            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
+            superiorPlayer.getIsland().transferIsland(superiorPlayer);
 
             player.closeInventory();
-            player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§e" + iPlayer.getName() + " has been promoted to Island Leader!");
+            player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§e" + superiorPlayer.getName() + " has been promoted to Island Leader!");
         }
     }
 
