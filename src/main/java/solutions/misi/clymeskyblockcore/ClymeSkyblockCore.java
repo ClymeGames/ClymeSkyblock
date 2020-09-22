@@ -12,6 +12,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 import redis.clients.jedis.JedisPool;
+import solutions.misi.clymeskyblockcore.commands.Aliases;
 import solutions.misi.clymeskyblockcore.commands.MoneyCommand;
 import solutions.misi.clymeskyblockcore.commands.SpawnCommand;
 import solutions.misi.clymeskyblockcore.data.DataManager;
@@ -91,6 +92,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
     }
 
     private void registerEvents() {
+        Bukkit.getPluginManager().registerEvents(new Aliases(), this);
+
         Bukkit.getPluginManager().registerEvents(new PlayerCommandPreprocessListener(), this);
         Bukkit.getPluginManager().registerEvents(new IslandCreateListener(), this);
         Bukkit.getPluginManager().registerEvents(new IslandUpgradeListener(), this);

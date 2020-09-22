@@ -40,12 +40,14 @@ public class MoneyCommand implements CommandExecutor {
                 double targetBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(target);
                 player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "The player " + ClymeChatColor.SECONDARY() + args[0] + ClymeChatColor.INFO() + " has " + ClymeChatColor.SECONDARY() + "$" + targetBalance));
                 return true;
+            case 2:
+                //> Usage: /money pay (player) (amount)
             case 3:
-                //> Usage: /money (player) set|add|remove (amount)
-                target = Bukkit.getPlayer(args[0]);
+                //> Usage: /money set|add|remove|pay (player) (amount)
+                target = Bukkit.getPlayer(args[1]);
 
                 if(target == null || !target.isOnline()) {
-                    player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + args[0] + ClymeChatColor.ERROR() + " is not online!"));
+                    player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + args[1] + ClymeChatColor.ERROR() + " is not online!"));
                     return false;
                 }
 
@@ -61,24 +63,38 @@ public class MoneyCommand implements CommandExecutor {
                 double currentTargetBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(target);
                 double changedTargetBalance = currentTargetBalance;
 
-                switch(args[1]) {
+                switch(args[0]) {
+                    case "pay":
+                        double currentPlayerBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(player);
+                        double changedPlayerBalance = currentPlayerBalance -= amount;
+                        changedTargetBalance += amount;
+
+                        if(changedPlayerBalance < 0) {
+                            player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "You don't have " + ClymeChatColor.SECONDARY() + "$" + amount + ClymeChatColor.ERROR() + "!"));
+                            return false;
+                        }
+
+                        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(player, changedPlayerBalance);
+                        player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You paid " + ClymeChatColor.SECONDARY() + "$" + changedTargetBalance + ClymeChatColor.INFO() + " to " + ClymeChatColor.SECONDARY() + target.getName()));
+                        break;
                     case "set":
                         changedTargetBalance = amount;
+                        player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "The balance of " + ClymeChatColor.SECONDARY() + args[0] + ClymeChatColor.INFO() + " has been set to " + ClymeChatColor.SECONDARY() + "$" + changedTargetBalance));
                         break;
                     case "add":
                         changedTargetBalance += amount;
+                        player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You added " + ClymeChatColor.SECONDARY() + "$" + changedTargetBalance + ClymeChatColor.INFO() + " to " + ClymeChatColor.SECONDARY() + target.getName()));
                         break;
                     case "remove":
                         changedTargetBalance -= amount;
+                        player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You removed " + ClymeChatColor.SECONDARY() + "$" + changedTargetBalance + ClymeChatColor.INFO() + " from " + ClymeChatColor.SECONDARY() + target.getName()));
                         break;
                     default:
                         player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "Wrong usage! Please use " + ClymeChatColor.SECONDARY() + "/money" + ClymeChatColor.ERROR() + "!"));
                         return false;
                 }
 
-                ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(player, changedTargetBalance);
-
-                player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "The balance of " + ClymeChatColor.SECONDARY() + args[0] + ClymeChatColor.INFO() + " has been set to " + ClymeChatColor.SECONDARY() + "$" + changedTargetBalance));
+                ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(target, changedTargetBalance);
                 return true;
             default:
                 //> Wrong usage
