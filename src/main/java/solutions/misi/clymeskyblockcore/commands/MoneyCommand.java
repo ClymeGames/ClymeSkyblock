@@ -65,8 +65,16 @@ public class MoneyCommand implements CommandExecutor {
 
                 switch(args[0]) {
                     case "pay":
-                        double currentPlayerBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(player);
-                        double changedPlayerBalance = currentPlayerBalance -= amount;
+                        double currentPlayerBalance;
+                        double changedPlayerBalance;
+
+                        if(player == target) {
+                            player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "You can't pay money to yourself!"));
+                            return false;
+                        }
+
+                        currentPlayerBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(player);
+                        changedPlayerBalance = currentPlayerBalance - amount;
                         changedTargetBalance += amount;
 
                         if(changedPlayerBalance < 0) {
