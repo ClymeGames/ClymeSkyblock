@@ -14,6 +14,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
+import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
 
 import java.util.ArrayList;
@@ -162,6 +163,7 @@ public class IslandGUI implements Listener {
     @EventHandler
     public void onClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
+        ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
 
         try {
             if(event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0Island Menu")) {
@@ -187,7 +189,7 @@ public class IslandGUI implements Listener {
                             Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> island.calcIslandWorth(superiorPlayer));
 
                             player.closeInventory();
-                            player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + (ClymeChatColor.SUCCESS() + "Successfully calculated the worth of your island..")));
+                            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + (ClymeChatColor.SUCCESS() + "Successfully calculated the worth of your island.."));
                         } else if(event.getClick() == ClickType.RIGHT) {
                             ClymeSkyblockCore.getInstance().getSpawnerValuesGUI().open(player);
                         }

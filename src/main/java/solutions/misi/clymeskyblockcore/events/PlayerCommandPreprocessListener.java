@@ -23,6 +23,9 @@ public class PlayerCommandPreprocessListener implements Listener {
             if(superiorPlayer.getIsland() != null) {
                 event.setCancelled(true);
                 ClymeSkyblockCore.getInstance().getIslandGUI().open(player);
+            } else {
+                event.setCancelled(true);
+                ClymeSkyblockCore.getInstance().getIslandCreationGUI().open(player);
             }
         }
 

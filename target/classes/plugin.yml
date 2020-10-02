@@ -14,3 +14,6 @@ commands:
   money:
     description: Shows your current balance
     aliases: [economy, econ, bal, balance, mon]
+  playtime:
+    description: Shows your current playtime
+    aliases: [pt, time, playingtime, onlinetime, ot]

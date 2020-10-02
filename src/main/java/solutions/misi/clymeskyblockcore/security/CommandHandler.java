@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
+import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 
 import java.util.*;
 
@@ -13,6 +14,8 @@ public class CommandHandler {
     @Getter public List<UUID> blocked = new ArrayList<>();
 
     public void usedCommand(Player player) {
+        ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
+
         if(!usedCommands.containsKey(player.getUniqueId())) {
             usedCommands.put(player.getUniqueId(), 1);
             removeUsedCommandScheduler(player);
@@ -29,7 +32,7 @@ public class CommandHandler {
                 removeBlockedScheduler(player);
             }
 
-            player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getCommandSpam());
+            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getCommandSpam());
         }
     }
 
