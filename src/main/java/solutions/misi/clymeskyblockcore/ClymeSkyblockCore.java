@@ -6,7 +6,9 @@ import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.Getter;
 import lombok.Setter;
+import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.ServicePriority;
@@ -18,10 +20,7 @@ import solutions.misi.clymeskyblockcore.commands.PlaytimeCommand;
 import solutions.misi.clymeskyblockcore.commands.SpawnCommand;
 import solutions.misi.clymeskyblockcore.data.DataManager;
 import solutions.misi.clymeskyblockcore.data.vault.economy.ClymeEconomy;
-import solutions.misi.clymeskyblockcore.events.PlayerCommandPreprocessListener;
-import solutions.misi.clymeskyblockcore.events.PlayerJoinListener;
-import solutions.misi.clymeskyblockcore.events.PlayerQuitListener;
-import solutions.misi.clymeskyblockcore.events.ServerListPingListener;
+import solutions.misi.clymeskyblockcore.events.*;
 import solutions.misi.clymeskyblockcore.gui.islandmenu.*;
 import solutions.misi.clymeskyblockcore.islands.ClymeIslandManager;
 import solutions.misi.clymeskyblockcore.islands.events.IslandCreateListener;
@@ -55,6 +54,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private IslandCreationGUI islandCreationGUI;
 
     @Getter private Economy economy;
+    @Getter private Permission permission;
+    @Getter private Chat chat;
 
     @Override
     public void onLoad() {
@@ -68,7 +69,10 @@ public class ClymeSkyblockCore extends JavaPlugin {
         registerGUIs();
         loadCommands();
         getDataManager().initializeDatabases();
+
         setupEconomy();
+        setupPermission();
+        setupChat();
     }
 
     @Override
@@ -97,15 +101,15 @@ public class ClymeSkyblockCore extends JavaPlugin {
     private void registerEvents() {
         Bukkit.getPluginManager().registerEvents(new Aliases(), this);
 
+        Bukkit.getPluginManager().registerEvents(new CreatureSpawnFlagListener(), this);
+
         Bukkit.getPluginManager().registerEvents(new PlayerCommandPreprocessListener(), this);
         Bukkit.getPluginManager().registerEvents(new IslandCreateListener(), this);
         Bukkit.getPluginManager().registerEvents(new IslandUpgradeListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(), this);
         Bukkit.getPluginManager().registerEvents(new ServerListPingListener(), this);
-
-        //> Flags
-        Bukkit.getPluginManager().registerEvents(new CreatureSpawnFlagListener(), this);
+        Bukkit.getPluginManager().registerEvents(new AsyncPlayerChatListener(), this);
     }
 
     private void registerGUIs() {
@@ -147,5 +151,19 @@ public class ClymeSkyblockCore extends JavaPlugin {
         RegisteredServiceProvider<Economy> serviceProvider = getServer().getServicesManager().getRegistration(Economy.class);
         if(serviceProvider == null) return;
         economy = serviceProvider.getProvider();
+    }
+
+    private void setupPermission() {
+        if(getServer().getPluginManager().getPlugin("Vault") == null) return;
+        RegisteredServiceProvider<Permission> serviceProvider = getServer().getServicesManager().getRegistration(Permission.class);
+        if(serviceProvider == null) return;
+        permission = serviceProvider.getProvider();
+    }
+
+    private void setupChat() {
+        if(getServer().getPluginManager().getPlugin("Vault") == null) return;
+        RegisteredServiceProvider<Chat> serviceProvider = getServer().getServicesManager().getRegistration(Chat.class);
+        if(serviceProvider == null) return;
+        chat = serviceProvider.getProvider();
     }
 }
