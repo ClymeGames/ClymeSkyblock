@@ -2,3 +2,4 @@ prefix: "#e67e22&lClyme#c0392b&lGames"
 
 command-spam: "%error%Please wait until you use the next command!"
 no-permission: "%error%You do not have permission to do that!"
+no-command: "%error%Unknown command. Type /help for help!"

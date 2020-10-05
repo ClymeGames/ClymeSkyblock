@@ -3,7 +3,6 @@ package solutions.misi.clymeskyblockcore.utils;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -20,8 +19,10 @@ public class ClymeMessage {
 
     @Getter private final String rawPrefix;
     @Getter private final String prefix;
+
     @Getter private final String commandSpam;
     @Getter private final String noPermission;
+    @Getter private final String noCommand;
 
     @SneakyThrows
     public ClymeMessage() {
@@ -35,6 +36,7 @@ public class ClymeMessage {
         prefix = rawPrefix + " §f➢ ";
         commandSpam = prefix + getFormattedMessage("command-spam");
         noPermission = prefix + getFormattedMessage("no-permission");
+        noCommand = prefix + getFormattedMessage("no-command");
     }
 
     private String getFormattedMessage(String path) {
@@ -45,13 +47,11 @@ public class ClymeMessage {
     }
 
     public String format(String message) {
-        if(Bukkit.getVersion().contains("1.16")) {
-            Matcher matcher = PATTERN.matcher(message);
-            while(matcher.find()) {
-                String color = message.substring(matcher.start(), matcher.end());
-                message = message.replace(color, ChatColor.of(color) + "");
-                matcher = PATTERN.matcher(message);
-            }
+        Matcher matcher = PATTERN.matcher(message);
+        while(matcher.find()) {
+            String color = message.substring(matcher.start(), matcher.end());
+            message = message.replace(color, ChatColor.of(color) + "");
+            matcher = PATTERN.matcher(message);
         }
 
         return ChatColor.translateAlternateColorCodes('&', message);

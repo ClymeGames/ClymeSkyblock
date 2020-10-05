@@ -2,18 +2,22 @@ package solutions.misi.clymeskyblockcore.events;
 
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.help.HelpTopic;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
+import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 
 public class PlayerCommandPreprocessListener implements Listener {
 
     @EventHandler (priority = EventPriority.MONITOR)
     public void onCommand(PlayerCommandPreprocessEvent event) {
         Player player = event.getPlayer();
+        ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
         String cmd = event.getMessage();
 
         //> Island menu Command
@@ -42,5 +46,15 @@ public class PlayerCommandPreprocessListener implements Listener {
         //> Anti Command spam
         ClymeSkyblockCore.getInstance().getCommandHandler().usedCommand(player);
         if(ClymeSkyblockCore.getInstance().getCommandHandler().getBlocked().contains(player.getUniqueId())) event.setCancelled(true);
+
+        //> Custom help message
+        if(!event.isCancelled()) {
+            String command = event.getMessage().split(" ")[0];
+            HelpTopic helpTopic = Bukkit.getServer().getHelpMap().getHelpTopic(command);
+            if(helpTopic == null) {
+                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getNoCommand());
+                event.setCancelled(true);
+            }
+        }
     }
 }
