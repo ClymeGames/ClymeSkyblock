@@ -17,3 +17,6 @@ commands:
   playtime:
     description: Shows your current playtime
     aliases: [pt, time, playingtime, onlinetime, ot]
+  staffpanel:
+    description: Opens the Staffpanel
+    aliases: [sp, adminpanel, ap, helperpanel, modmenu, modpanel, adminmenu, staffmenu]

@@ -14,14 +14,13 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 import redis.clients.jedis.JedisPool;
-import solutions.misi.clymeskyblockcore.commands.Aliases;
-import solutions.misi.clymeskyblockcore.commands.MoneyCommand;
-import solutions.misi.clymeskyblockcore.commands.PlaytimeCommand;
-import solutions.misi.clymeskyblockcore.commands.SpawnCommand;
+import solutions.misi.clymeskyblockcore.commands.*;
 import solutions.misi.clymeskyblockcore.data.DataManager;
 import solutions.misi.clymeskyblockcore.data.vault.economy.ClymeEconomy;
 import solutions.misi.clymeskyblockcore.events.*;
 import solutions.misi.clymeskyblockcore.gui.islandmenu.*;
+import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelGUI;
+import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelPlayerGui;
 import solutions.misi.clymeskyblockcore.islands.ClymeIslandManager;
 import solutions.misi.clymeskyblockcore.islands.events.IslandCreateListener;
 import solutions.misi.clymeskyblockcore.islands.events.IslandUpgradeListener;
@@ -52,6 +51,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private IslandSettingsGUI islandSettingsGUI;
     @Getter private IslandMembersGUI islandMembersGUI;
     @Getter private IslandCreationGUI islandCreationGUI;
+    @Getter private StaffpanelGUI staffpanelGUI;
+    @Getter private StaffpanelPlayerGui staffpanelPlayerGui;
 
     @Getter private Economy economy;
     @Getter private Permission permission;
@@ -96,6 +97,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
         islandSettingsGUI = new IslandSettingsGUI();
         islandMembersGUI = new IslandMembersGUI();
         islandCreationGUI = new IslandCreationGUI();
+        staffpanelGUI = new StaffpanelGUI();
+        staffpanelPlayerGui = new StaffpanelPlayerGui();
     }
 
     private void registerEvents() {
@@ -118,6 +121,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new IslandSettingsGUI(), this);
         Bukkit.getPluginManager().registerEvents(new IslandMembersGUI(), this);
         Bukkit.getPluginManager().registerEvents(new IslandCreationGUI(), this);
+        Bukkit.getPluginManager().registerEvents(new StaffpanelGUI(), this);
+        Bukkit.getPluginManager().registerEvents(new StaffpanelPlayerGui(), this);
     }
 
     private void registerFlags() {
@@ -143,6 +148,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         PlaytimeCommand playtimeCommand = new PlaytimeCommand();
         getCommand("playtime").setExecutor(playtimeCommand);
+
+        StaffpanelCommand staffpanelCommand = new StaffpanelCommand();
+        getCommand("staffpanel").setExecutor(staffpanelCommand);
     }
 
     private void setupEconomy() {

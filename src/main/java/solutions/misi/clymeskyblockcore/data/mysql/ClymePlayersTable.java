@@ -8,6 +8,7 @@ import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 import java.sql.*;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 public class ClymePlayersTable {
 
@@ -44,7 +45,7 @@ public class ClymePlayersTable {
             try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
                  PreparedStatement insertOrUpdate = connection.prepareStatement(sql)) {
                 insertOrUpdate.setString(1, uuid);
-                insertOrUpdate.setString(2, username);
+                insertOrUpdate.setString(2, username.toLowerCase());
                 insertOrUpdate.setLong(3, playtime);
                 insertOrUpdate.setTimestamp(4, joined);
                 insertOrUpdate.setTimestamp(5, joined);
@@ -87,5 +88,19 @@ public class ClymePlayersTable {
                 exception.printStackTrace();
             }
         });
+    }
+
+    public UUID getUuidFromName(String username) {
+        try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
+                PreparedStatement select = connection.prepareStatement("SELECT uuid FROM clymePlayers WHERE username = ?")) {
+            select.setString(1, username.toLowerCase());
+            ResultSet resultSet = select.executeQuery();
+            if(resultSet.next()) return UUID.fromString(resultSet.getString("uuid"));
+            resultSet.close();
+        } catch(SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return null;
     }
 }
