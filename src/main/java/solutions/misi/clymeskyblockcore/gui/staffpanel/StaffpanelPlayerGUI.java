@@ -1,26 +1,34 @@
 package solutions.misi.clymeskyblockcore.gui.staffpanel;
 
+import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
+import solutions.misi.clymeskyblockcore.player.ClymePlayer;
+import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.sql.Timestamp;
+import java.util.*;
 
-public class StaffpanelPlayerGui implements Listener {
+public class StaffpanelPlayerGUI implements Listener {
+
+    @Getter private final Map<Player, Player> playerKicking = new HashMap<>();
+    @Getter private final Map<Player, OfflinePlayer> playerBanning = new HashMap<>();
+    @Getter private final Map<Player, String> playerTempBanning = new HashMap<>();
 
     public void open(Player player, UUID targetUuid) {
         OfflinePlayer target = Bukkit.getOfflinePlayer(targetUuid);
-        Inventory gui = Bukkit.createInventory(null, 36, ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0Staffpanel - " + target.getName());
+        Inventory gui = Bukkit.createInventory(null, 36, ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0SP - " + target.getName());
 
         ItemStack placeholder = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
         ItemMeta placeholderMeta = placeholder.getItemMeta();
@@ -37,7 +45,7 @@ public class StaffpanelPlayerGui implements Listener {
         kickPlayerMeta.setDisplayName("§aKick Player");
         List<String> kickPlayerLore = new ArrayList<>();
         kickPlayerLore.add(" ");
-        kickPlayerLore.add("§7Right-Click to kick");
+        kickPlayerLore.add("§7Left-Click to kick");
         kickPlayerLore.add("§7" + target.getName() + ".");
         kickPlayerLore.add(" ");
         kickPlayerMeta.setLore(kickPlayerLore);
@@ -48,7 +56,7 @@ public class StaffpanelPlayerGui implements Listener {
         tempMuteMeta.setDisplayName("§aTemp-Mute Player");
         List<String> tempMuteLore = new ArrayList<>();
         tempMuteLore.add(" ");
-        tempMuteLore.add("§7Right-Click to temporarily mute");
+        tempMuteLore.add("§7Left-Click to temporarily mute");
         tempMuteLore.add("§7" + target.getName() + ".");
         tempMuteLore.add(" ");
         tempMuteMeta.setLore(tempMuteLore);
@@ -59,7 +67,7 @@ public class StaffpanelPlayerGui implements Listener {
         unMuteMeta.setDisplayName("§aUn-Mute Player");
         List<String> unMuteLore = new ArrayList<>();
         unMuteLore.add(" ");
-        unMuteLore.add("§7Right-Click to delete the mute of");
+        unMuteLore.add("§7Left-Click to delete the mute of");
         unMuteLore.add("§7" + target.getName() + ".");
         unMuteLore.add(" ");
         unMuteMeta.setLore(unMuteLore);
@@ -70,7 +78,7 @@ public class StaffpanelPlayerGui implements Listener {
         clearChatMeta.setDisplayName("§aClear chat for Player");
         List<String> clearChatLore = new ArrayList<>();
         clearChatLore.add(" ");
-        clearChatLore.add("§7Right-Click to clear the chat for");
+        clearChatLore.add("§7Left-Click to clear the chat for");
         clearChatLore.add("§7" + target.getName() + ".");
         clearChatLore.add(" ");
         clearChatMeta.setLore(clearChatLore);
@@ -81,7 +89,7 @@ public class StaffpanelPlayerGui implements Listener {
         sendWarningMeta.setDisplayName("§aSend warning to Player");
         List<String> sendWarningLore = new ArrayList<>();
         sendWarningLore.add(" ");
-        sendWarningLore.add("§7Right-Click to send a warning to");
+        sendWarningLore.add("§7Left-Click to send a warning to");
         sendWarningLore.add("§7" + target.getName() + ".");
         sendWarningLore.add(" ");
         sendWarningMeta.setLore(sendWarningLore);
@@ -92,7 +100,7 @@ public class StaffpanelPlayerGui implements Listener {
         tempBanMeta.setDisplayName("§bTemp-Ban a Player");
         List<String> tempBanLore = new ArrayList<>();
         tempBanLore.add(" ");
-        tempBanLore.add("§7Right-Click to temporarily ban");
+        tempBanLore.add("§7Left-Click to temporarily ban");
         tempBanLore.add("§7" + target.getName() + ".");
         tempBanLore.add(" ");
         tempBanMeta.setLore(tempBanLore);
@@ -103,7 +111,7 @@ public class StaffpanelPlayerGui implements Listener {
         screenShareMeta.setDisplayName("§bScreenshare");
         List<String> screenShareLore = new ArrayList<>();
         screenShareLore.add(" ");
-        screenShareLore.add("§7Right-Click to start screensharing with");
+        screenShareLore.add("§7Left-Click to start screensharing with");
         screenShareLore.add("§7" + target.getName() + ".");
         screenShareLore.add(" ");
         screenShareMeta.setLore(screenShareLore);
@@ -114,7 +122,7 @@ public class StaffpanelPlayerGui implements Listener {
         spectatePlayerMeta.setDisplayName("§bSpectate Player");
         List<String> spectatePlayerLore = new ArrayList<>();
         spectatePlayerLore.add(" ");
-        spectatePlayerLore.add("§7Right-Click to start spectating");
+        spectatePlayerLore.add("§7Left-Click to start spectating");
         spectatePlayerLore.add("§7" + target.getName() + ".");
         spectatePlayerLore.add(" ");
         spectatePlayerMeta.setLore(spectatePlayerLore);
@@ -125,7 +133,7 @@ public class StaffpanelPlayerGui implements Listener {
         mutePlayerMeta.setDisplayName("§bMute Player");
         List<String> mutePlayerLore = new ArrayList<>();
         mutePlayerLore.add(" ");
-        mutePlayerLore.add("§7Right-Click to permanently mute");
+        mutePlayerLore.add("§7Left-Click to permanently mute");
         mutePlayerLore.add("§7" + target.getName() + ".");
         mutePlayerLore.add(" ");
         mutePlayerMeta.setLore(mutePlayerLore);
@@ -136,7 +144,7 @@ public class StaffpanelPlayerGui implements Listener {
         unBanMeta.setDisplayName("§cUn-Ban Player");
         List<String> unBanLore = new ArrayList<>();
         unBanLore.add(" ");
-        unBanLore.add("§7Right-Click to delete the ban of");
+        unBanLore.add("§7Left-Click to delete the ban of");
         unBanLore.add("§7" + target.getName() + ".");
         unBanLore.add(" ");
         unBanMeta.setLore(unBanLore);
@@ -147,7 +155,7 @@ public class StaffpanelPlayerGui implements Listener {
         banMeta.setDisplayName("§cBan Player");
         List<String> banLore = new ArrayList<>();
         banLore.add(" ");
-        banLore.add("§7Right-Click to permanently ban");
+        banLore.add("§7Left-Click to permanently ban");
         banLore.add("§7" + target.getName() + ".");
         banLore.add(" ");
         banMeta.setLore(banLore);
@@ -158,7 +166,7 @@ public class StaffpanelPlayerGui implements Listener {
         freezeMeta.setDisplayName("§cFreeze Player");
         List<String> freezeLore = new ArrayList<>();
         freezeLore.add(" ");
-        freezeLore.add("§7Right-Click to freeze");
+        freezeLore.add("§7Left-Click to freeze");
         freezeLore.add("§7" + target.getName() + ".");
         freezeLore.add(" ");
         freezeMeta.setLore(freezeLore);
@@ -169,7 +177,7 @@ public class StaffpanelPlayerGui implements Listener {
         inspectPlayerInventoryMeta.setDisplayName("§cInspect Player Inventory");
         List<String> inspectPlayerInventoryLore = new ArrayList<>();
         inspectPlayerInventoryLore.add(" ");
-        inspectPlayerInventoryLore.add("§7Right-Click to inspect the Inventory of");
+        inspectPlayerInventoryLore.add("§7Left-Click to inspect the Inventory of");
         inspectPlayerInventoryLore.add("§7" + target.getName() + ".");
         inspectPlayerInventoryLore.add(" ");
         inspectPlayerInventoryMeta.setLore(inspectPlayerInventoryLore);
@@ -180,7 +188,7 @@ public class StaffpanelPlayerGui implements Listener {
         gotoPlayerIslandMeta.setDisplayName("§cGo to Player Island");
         List<String> gotoPlayerIslandLore = new ArrayList<>();
         gotoPlayerIslandLore.add(" ");
-        gotoPlayerIslandLore.add("§7Right-Click to teleport to");
+        gotoPlayerIslandLore.add("§7Left-Click to teleport to");
         gotoPlayerIslandLore.add("§7" + target.getName() + "'s Island.");
         gotoPlayerIslandLore.add(" ");
         gotoPlayerIslandMeta.setLore(gotoPlayerIslandLore);
@@ -252,10 +260,87 @@ public class StaffpanelPlayerGui implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-        if(!event.getView().getTitle().startsWith(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0Staffpanel -")) return;
+        if(!event.getView().getTitle().startsWith(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0SP -")) return;
 
         event.setCancelled(true);
-        //> TODO: add features to player management gui
 
+        Player player = (Player) event.getWhoClicked();
+        ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
+        String targetName = ChatColor.stripColor(event.getInventory().getItem(10).getLore().get(2));
+        targetName = targetName.substring(0, targetName.length() - 1);
+        OfflinePlayer target = Bukkit.getOfflinePlayer(ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().getUuidFromName(targetName));
+
+        try {
+            switch(event.getCurrentItem().getItemMeta().getDisplayName()) {
+                case "§aKick Player":
+                    player.closeInventory();
+                    if(target.isOnline()) {
+                        ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerKicking().put(player, target.getPlayer());
+                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Please enter the reason for kicking " + ClymeChatColor.SECONDARY() + targetName + ClymeChatColor.INFO() + "!");
+                    } else {
+                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + targetName + ClymeChatColor.ERROR() + " is not online!");
+                    }
+
+                    break;
+                case "§cBan Player":
+                    ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerBanning().put(player, target);
+                    player.closeInventory();
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Please enter the reason for banning " + ClymeChatColor.SECONDARY() + targetName + ClymeChatColor.INFO() + " permanently!");
+                    break;
+                case "§cUn-Ban Player":
+                    ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().unbanPlayer(target);
+                    player.closeInventory();
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully un-banned " + ClymeChatColor.SECONDARY() + targetName + ClymeChatColor.SUCCESS() + " from this server!");
+                    break;
+                case "§bTemp-Ban a Player":
+                    ClymeSkyblockCore.getInstance().getStaffpanelTempbanGUI().open(player, target);
+                    break;
+            }
+        } catch(NullPointerException exception) { }
+    }
+
+    @EventHandler
+    public void onChat(AsyncPlayerChatEvent event) {
+        Player player = event.getPlayer();
+
+        //> Kick
+        if(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerKicking().containsKey(player)) {
+            event.setCancelled(true);
+
+            ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
+            Player target = ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerKicking().get(player);
+
+            Bukkit.getScheduler().runTask(ClymeSkyblockCore.getInstance(), () -> {
+                target.kickPlayer(" \n" +
+                        ClymeSkyblockCore.getInstance().getClymeMessage().getRawPrefix() + "\n" +
+                        " \n" +
+                        " \n" +
+                        "§cYou got kicked from the Server!\n" +
+                        " \n" +
+                        "§f§lReason: §7" + event.getMessage() + "\n" +
+                        "\n" +
+                        "");
+            });
+
+            ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerKicking().remove(player);
+            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.SUCCESS() + " has been kicked from the server!");
+            return;
+        }
+
+        //> Ban
+        if(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerBanning().containsKey(player)) {
+            event.setCancelled(true);
+
+            ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
+            OfflinePlayer target = ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerBanning().get(player);
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.MONTH, 99);
+            Timestamp banned = new Timestamp(calendar.getTime().getTime());
+            ClymeSkyblockCore.getInstance().getPlayersHandler().banPlayer(target, banned, event.getMessage());
+            ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerBanning().remove(player);
+            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.SUCCESS() + " has been banned from the server!");
+            return;
+        }
     }
 }

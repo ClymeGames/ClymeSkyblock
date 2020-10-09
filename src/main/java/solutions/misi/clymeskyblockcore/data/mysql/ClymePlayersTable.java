@@ -1,6 +1,7 @@
 package solutions.misi.clymeskyblockcore.data.mysql;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
@@ -19,7 +20,9 @@ public class ClymePlayersTable {
                             + "playtime BIGINT,"
                             + "first_join TIMESTAMP NULL DEFAULT NULL,"
                             + "last_join TIMESTAMP NULL DEFAULT NULL,"
-                            + "ip VARCHAR(15))";
+                            + "ip VARCHAR(15),"
+                            + "banned TIMESTAMP NULL DEFAULT NULL,"
+                            + "banReason VARCHAR(255))";
 
         try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
                 PreparedStatement createTable = connection.prepareStatement(sql)) {
@@ -68,6 +71,9 @@ public class ClymePlayersTable {
                     clymePlayer.setPlaytime(resultSet.getLong("playtime"));
                     clymePlayer.setFirstJoin(resultSet.getTimestamp("first_join"));
                     clymePlayer.setLast_join(resultSet.getTimestamp("last_join"));
+                    clymePlayer.setBanned(resultSet.getTimestamp("banned"));
+                    clymePlayer.setBanReason(resultSet.getString("banReason"));
+                    clymePlayer.checkBanStatus();
                 }
                 resultSet.close();
             } catch(SQLException exception) {
@@ -102,5 +108,34 @@ public class ClymePlayersTable {
         }
 
         return null;
+    }
+
+    public void banPlayer(OfflinePlayer player, Timestamp duration, String reason) {
+        Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
+            try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
+                 PreparedStatement update = connection.prepareStatement("UPDATE clymePlayers SET banned = ?, banReason = ? WHERE uuid = ?")) {
+                update.setTimestamp(1, duration);
+                update.setString(2, reason);
+                update.setString(3, player.getUniqueId().toString());
+                update.executeUpdate();
+            } catch(SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
+    public void unbanPlayer(OfflinePlayer player) {
+        Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
+            Timestamp currentTime = new Timestamp(new Date().getTime());
+            try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
+                 PreparedStatement update = connection.prepareStatement("UPDATE clymePlayers SET banned = ?, banReason = ? WHERE uuid = ?")) {
+                update.setTimestamp(1, currentTime);
+                update.setString(2, "");
+                update.setString(3, player.getUniqueId().toString());
+                update.executeUpdate();
+            } catch(SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
     }
 }

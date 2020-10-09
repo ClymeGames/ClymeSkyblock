@@ -36,7 +36,7 @@ public class StaffpanelGUI implements Listener {
         managePlayerMeta.setDisplayName("§aManage a player");
         List<String> managePlayerLore = new ArrayList<>();
         managePlayerLore.add(" ");
-        managePlayerLore.add("§7Right-Click and enter a username");
+        managePlayerLore.add("§7Left-Click and enter a username");
         managePlayerLore.add("§7to manage the selected player.");
         managePlayerLore.add(" ");
         managePlayerMeta.setLore(managePlayerLore);
@@ -47,7 +47,7 @@ public class StaffpanelGUI implements Listener {
         manageServerMeta.setDisplayName("§aManage the server");
         List<String> manageServerLore = new ArrayList<>();
         manageServerLore.add(" ");
-        manageServerLore.add("§7Right-Click to open the menu for");
+        manageServerLore.add("§7Left-Click to open the menu for");
         manageServerLore.add("§7editing the server you are playing on.");
         manageServerLore.add(" ");
         manageServerMeta.setLore(manageServerLore);
@@ -55,8 +55,8 @@ public class StaffpanelGUI implements Listener {
 
         for(int i = 0; i < gui.getSize(); i++) gui.setItem(i, placeholder);
 
-        gui.setItem(4, managePlayer);
-        gui.setItem(6, manageServer);
+        gui.setItem(3, managePlayer);
+        gui.setItem(5, manageServer);
 
         player.openInventory(gui);
     }
@@ -73,6 +73,7 @@ public class StaffpanelGUI implements Listener {
         try {
             if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§aManage a player")) {
                 if(!ClymeSkyblockCore.getInstance().getStaffpanelGUI().getEnteringPlayerManager().contains(player)) ClymeSkyblockCore.getInstance().getStaffpanelGUI().getEnteringPlayerManager().add(player);
+                player.closeInventory();
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Please enter the desired username!");
             } else if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§aManage the server")) {
                 //> TODO: make staff open the server gui
@@ -98,6 +99,8 @@ public class StaffpanelGUI implements Listener {
             return;
         }
 
-        ClymeSkyblockCore.getInstance().getStaffpanelPlayerGui().open(player, targetUuid);
+        Bukkit.getScheduler().runTask(ClymeSkyblockCore.getInstance(), () -> {
+            ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().open(player, targetUuid);
+        });
     }
 }

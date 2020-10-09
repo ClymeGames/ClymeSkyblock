@@ -39,6 +39,7 @@ public class StaffpanelCommand implements CommandExecutor {
                 ClymeSkyblockCore.getInstance().getStaffpanelGUI().open(player);
                 return true;
             default:
+                clymePlayer.sendMessage(playerRank);
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getNoPermission());
                 return false;
         }

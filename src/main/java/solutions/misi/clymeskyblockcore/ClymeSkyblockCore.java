@@ -20,7 +20,8 @@ import solutions.misi.clymeskyblockcore.data.vault.economy.ClymeEconomy;
 import solutions.misi.clymeskyblockcore.events.*;
 import solutions.misi.clymeskyblockcore.gui.islandmenu.*;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelGUI;
-import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelPlayerGui;
+import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelPlayerGUI;
+import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelTempbanGUI;
 import solutions.misi.clymeskyblockcore.islands.ClymeIslandManager;
 import solutions.misi.clymeskyblockcore.islands.events.IslandCreateListener;
 import solutions.misi.clymeskyblockcore.islands.events.IslandUpgradeListener;
@@ -52,7 +53,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private IslandMembersGUI islandMembersGUI;
     @Getter private IslandCreationGUI islandCreationGUI;
     @Getter private StaffpanelGUI staffpanelGUI;
-    @Getter private StaffpanelPlayerGui staffpanelPlayerGui;
+    @Getter private StaffpanelPlayerGUI staffpanelPlayerGUI;
+    @Getter private StaffpanelTempbanGUI staffpanelTempbanGUI;
 
     @Getter private Economy economy;
     @Getter private Permission permission;
@@ -98,7 +100,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
         islandMembersGUI = new IslandMembersGUI();
         islandCreationGUI = new IslandCreationGUI();
         staffpanelGUI = new StaffpanelGUI();
-        staffpanelPlayerGui = new StaffpanelPlayerGui();
+        staffpanelPlayerGUI = new StaffpanelPlayerGUI();
+        staffpanelTempbanGUI = new StaffpanelTempbanGUI();
     }
 
     private void registerEvents() {
@@ -122,7 +125,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new IslandMembersGUI(), this);
         Bukkit.getPluginManager().registerEvents(new IslandCreationGUI(), this);
         Bukkit.getPluginManager().registerEvents(new StaffpanelGUI(), this);
-        Bukkit.getPluginManager().registerEvents(new StaffpanelPlayerGui(), this);
+        Bukkit.getPluginManager().registerEvents(new StaffpanelPlayerGUI(), this);
+        Bukkit.getPluginManager().registerEvents(new StaffpanelTempbanGUI(), this);
     }
 
     private void registerFlags() {
