@@ -22,10 +22,10 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
-public class StaffpanelTempbanGUI implements Listener {
+public class StaffpanelDurationGUI implements Listener {
 
-    public void open(Player player, OfflinePlayer target) {
-        Inventory gui = Bukkit.createInventory(null, 27, ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0Tempban");
+    public void open(Player player, OfflinePlayer target, String title) {
+        Inventory gui = Bukkit.createInventory(null, 27, ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + title);
 
         ItemStack placeholder = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
         ItemMeta placeholderMeta = placeholder.getItemMeta();
@@ -37,7 +37,7 @@ public class StaffpanelTempbanGUI implements Listener {
         thirtyMinutesMeta.setDisplayName("§a30 minutes");
         List<String> thirtyMinutesLore = new ArrayList<>();
         thirtyMinutesLore.add(" ");
-        thirtyMinutesLore.add("§7Left-Click here to tempban");
+        thirtyMinutesLore.add("§7Left-Click here to punish");
         thirtyMinutesLore.add("§7" + target.getName() + " for 30 minutes.");
         thirtyMinutesLore.add(" ");
         thirtyMinutesMeta.setLore(thirtyMinutesLore);
@@ -48,7 +48,7 @@ public class StaffpanelTempbanGUI implements Listener {
         twoHoursMeta.setDisplayName("§a2 hours");
         List<String> twoHoursLore = new ArrayList<>();
         twoHoursLore.add(" ");
-        twoHoursLore.add("§7Left-Click here to tempban");
+        twoHoursLore.add("§7Left-Click here to punish");
         twoHoursLore.add("§7" + target.getName() + " for 2 hours.");
         twoHoursLore.add(" ");
         twoHoursMeta.setLore(twoHoursLore);
@@ -56,10 +56,10 @@ public class StaffpanelTempbanGUI implements Listener {
 
         ItemStack twelveHours = new ItemStack(Material.CLOCK);
         ItemMeta twelveHoursMeta = twelveHours.getItemMeta();
-        twelveHoursMeta.setDisplayName("§a2 hours");
+        twelveHoursMeta.setDisplayName("§a12 hours");
         List<String> twelveHoursLore = new ArrayList<>();
         twelveHoursLore.add(" ");
-        twelveHoursLore.add("§7Left-Click here to tempban");
+        twelveHoursLore.add("§7Left-Click here to punish");
         twelveHoursLore.add("§7" + target.getName() + " for 12 hours.");
         twelveHoursLore.add(" ");
         twelveHoursMeta.setLore(twelveHoursLore);
@@ -70,7 +70,7 @@ public class StaffpanelTempbanGUI implements Listener {
         oneDayMeta.setDisplayName("§a1 day");
         List<String> oneDayLore = new ArrayList<>();
         oneDayLore.add(" ");
-        oneDayLore.add("§7Left-Click here to tempban");
+        oneDayLore.add("§7Left-Click here to punish");
         oneDayLore.add("§7" + target.getName() + " for 1 day.");
         oneDayLore.add(" ");
         oneDayMeta.setLore(oneDayLore);
@@ -81,7 +81,7 @@ public class StaffpanelTempbanGUI implements Listener {
         sevenDaysMeta.setDisplayName("§a7 days");
         List<String> sevenDaysLore = new ArrayList<>();
         sevenDaysLore.add(" ");
-        sevenDaysLore.add("§7Left-Click here to tempban");
+        sevenDaysLore.add("§7Left-Click here to punish");
         sevenDaysLore.add("§7" + target.getName() + " for 7 days.");
         sevenDaysLore.add(" ");
         sevenDaysMeta.setLore(sevenDaysLore);
@@ -92,7 +92,7 @@ public class StaffpanelTempbanGUI implements Listener {
         thirtyDaysMeta.setDisplayName("§a30 days");
         List<String> thirtyDaysLore = new ArrayList<>();
         thirtyDaysLore.add(" ");
-        thirtyDaysLore.add("§7Left-Click here to tempban");
+        thirtyDaysLore.add("§7Left-Click here to punish");
         thirtyDaysLore.add("§7" + target.getName() + " for 30 days.");
         thirtyDaysLore.add(" ");
         thirtyDaysMeta.setLore(thirtyDaysLore);
@@ -103,7 +103,7 @@ public class StaffpanelTempbanGUI implements Listener {
         ninetyDaysMeta.setDisplayName("§a90 days");
         List<String> ninetyDaysLore = new ArrayList<>();
         ninetyDaysLore.add(" ");
-        ninetyDaysLore.add("§7Left-Click here to tempban");
+        ninetyDaysLore.add("§7Left-Click here to punish");
         ninetyDaysLore.add("§7" + target.getName() + " for 90 days.");
         ninetyDaysLore.add(" ");
         ninetyDaysMeta.setLore(ninetyDaysLore);
@@ -124,22 +124,63 @@ public class StaffpanelTempbanGUI implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-        if(!event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0Tempban")) return;
-        event.setCancelled(true);
-
         Player player = (Player) event.getWhoClicked();
         ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
 
-        try {
-            if(event.getCurrentItem().getItemMeta().getDisplayName().startsWith("§a") && event.getCurrentItem().getType() == Material.CLOCK) {
-                OfflinePlayer target = Bukkit.getOfflinePlayer(UUID.fromString(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerTempBanning().get(player).split("/")[0]));
-                String tempbanData = target.getUniqueId().toString() + "/" + ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName());
-                ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerTempBanning().put(player, tempbanData);
+        if(event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0Tempban")) {
+            event.setCancelled(true);
 
-                player.closeInventory();
-                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Please enter the reason for banning " + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.INFO() + " temporarily!");
-            }
-        } catch(NullPointerException exception) { }
+            try {
+                if(event.getCurrentItem().getItemMeta().getDisplayName().startsWith("§a") && event.getCurrentItem().getType() == Material.CLOCK) {
+                    OfflinePlayer target = Bukkit.getOfflinePlayer(UUID.fromString(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerTempBanning().get(player).split("/")[0]));
+                    String tempbanData = target.getUniqueId().toString() + "/" + ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName());
+                    ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerTempBanning().put(player, tempbanData);
+
+                    player.closeInventory();
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Please enter the reason for banning " + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.INFO() + " temporarily!");
+                }
+            } catch(NullPointerException exception) { }
+        } else if(event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0Tempmute")) {
+            event.setCancelled(true);
+
+            try {
+                if(event.getCurrentItem().getItemMeta().getDisplayName().startsWith("§a") && event.getCurrentItem().getType() == Material.CLOCK) {
+                    OfflinePlayer target = ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerTempMuting().get(player);
+
+                    Calendar calendar = Calendar.getInstance();
+
+                    switch(event.getCurrentItem().getItemMeta().getDisplayName()) {
+                        case "§a30 minutes":
+                            calendar.add(Calendar.MINUTE, 30);
+                            break;
+                        case "§a2 hours":
+                            calendar.add(Calendar.HOUR, 2);
+                            break;
+                        case "§a12 hours":
+                            calendar.add(Calendar.HOUR, 12);
+                            break;
+                        case "§a1 day":
+                            calendar.add(Calendar.DAY_OF_WEEK, 1);
+                            break;
+                        case "§a7 days":
+                            calendar.add(Calendar.DAY_OF_WEEK, 7);
+                            break;
+                        case "§a30 days":
+                            calendar.add(Calendar.MONTH, 1);
+                            break;
+                        case "§a90 days":
+                            calendar.add(Calendar.MONTH, 3);
+                            break;
+                    }
+
+                    Timestamp muted = new Timestamp(calendar.getTime().getTime());
+                    ClymeSkyblockCore.getInstance().getPlayersHandler().mutePlayer(target, muted);
+                    ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerTempMuting().remove(player);
+                    player.closeInventory();
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.SUCCESS() + " has been muted!");
+                }
+            } catch(NullPointerException exception) { }
+        }
     }
 
     @EventHandler

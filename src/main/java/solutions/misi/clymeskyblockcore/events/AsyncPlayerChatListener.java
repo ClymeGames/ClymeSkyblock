@@ -6,6 +6,10 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
+import solutions.misi.clymeskyblockcore.player.ClymePlayer;
+import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
+
+import java.util.Date;
 
 public class AsyncPlayerChatListener implements Listener {
 
@@ -18,5 +22,20 @@ public class AsyncPlayerChatListener implements Listener {
 
         String message = event.getMessage();
         event.setFormat(ClymeSkyblockCore.getInstance().getClymeMessage().format(playerPrefix + " " + player.getName() + playerPrefixColor + " » " + playerChatColor) + message);
+
+        //> Player muted
+        ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
+        if(clymePlayer.getMuted() != null && clymePlayer.getMuted().after(new Date())) {
+            event.setCancelled(true);
+
+            Date today = new Date();
+            Date muteDate = clymePlayer.getMuted();
+            String timeLeft = ClymeSkyblockCore.getInstance().getTimeUtil().getTimeDifference(muteDate, today);
+
+            clymePlayer.sendMessage(" ");
+            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "You are muted!");
+            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "Time left: " + ClymeChatColor.SECONDARY() + timeLeft);
+            clymePlayer.sendMessage(" ");
+        }
     }
 }

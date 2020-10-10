@@ -3,6 +3,7 @@ solutions\misi\clymeskyblockcore\events\PlayerJoinListener.class
 solutions\misi\clymeskyblockcore\data\vault\economy\ClymeEconomy.class
 solutions\misi\clymeskyblockcore\commands\Aliases.class
 solutions\misi\clymeskyblockcore\commands\PlaytimeCommand.class
+solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelDurationGUI.class
 solutions\misi\clymeskyblockcore\security\CommandHandler$2.class
 solutions\misi\clymeskyblockcore\security\CommandHandler.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandGUI.class
@@ -23,6 +24,7 @@ solutions\misi\clymeskyblockcore\ClymeSkyblockCore.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelGUI.class
 solutions\misi\clymeskyblockcore\utils\ClymeChatColor.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\SpawnerValuesGUI.class
+solutions\misi\clymeskyblockcore\utils\TimeUtil.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandMembersGUI.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandSettingsGUI$1.class
 solutions\misi\clymeskyblockcore\player\ClymePlayer.class
@@ -32,6 +34,5 @@ solutions\misi\clymeskyblockcore\data\DataManager.class
 solutions\misi\clymeskyblockcore\data\mysql\ClymePlayersTable.class
 solutions\misi\clymeskyblockcore\islands\ClymeIslandManager.class
 solutions\misi\clymeskyblockcore\islands\settings\IslandSettings.class
-solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelTempbanGUI.class
 solutions\misi\clymeskyblockcore\commands\SpawnCommand.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandSettingsGUI.class

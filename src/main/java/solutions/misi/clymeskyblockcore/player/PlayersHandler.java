@@ -5,10 +5,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
+import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
 
 import java.sql.Timestamp;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 public class PlayersHandler {
 
@@ -48,15 +48,7 @@ public class PlayersHandler {
 
             Date today = new Date();
             Date banDate = duration;
-            long timeDifference = banDate.getTime() - today.getTime();
-
-            long daysLeft = TimeUnit.MILLISECONDS.toDays(timeDifference);
-            timeDifference -= TimeUnit.DAYS.toMillis(daysLeft);
-            long hoursLeft = TimeUnit.MILLISECONDS.toHours(timeDifference);
-            timeDifference -= TimeUnit.HOURS.toMillis(hoursLeft);
-            long minutesLeft = TimeUnit.MILLISECONDS.toMinutes(timeDifference);
-            timeDifference -= TimeUnit.MINUTES.toMillis(minutesLeft);
-            long secondsLeft = TimeUnit.MILLISECONDS.toSeconds(timeDifference);
+            String timeLeft = ClymeSkyblockCore.getInstance().getTimeUtil().getTimeDifference(banDate, today);
 
             Bukkit.getScheduler().runTask(ClymeSkyblockCore.getInstance(), () -> {
                 target.getPlayer().kickPlayer(" \n" +
@@ -66,13 +58,28 @@ public class PlayersHandler {
                         "§cYou are banned from the Server!\n" +
                         " \n" +
                         "§f§lReason: §7" + clymeTarget.getBanReason() + "\n" +
-                        "§f§lTime left: §7" + daysLeft + " day(s) " + hoursLeft + " hour(s) " + minutesLeft + " minute(s) " + secondsLeft + " second(s)\n" +
+                        "§f§lTime left: §7" + timeLeft + "\n" +
                         "\n\n" +
                         "§c§oIf you think you have been wrongly punished,\n" +
                         "please contact our support team!\n" +
                         "§c§oor purchase a ban evasion in our store: §fshop.clyme.games§c§o!" +
                         "\n");
             });
+        }
+    }
+
+    public void mutePlayer(OfflinePlayer target, Timestamp duration) {
+        ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().mutePlayer(target, duration);
+
+        if(target.isOnline()) {
+            ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target.getPlayer());
+            clymeTarget.setMuted(duration);
+
+            Date today = new Date();
+            Date muteDate = duration;
+            String timeLeft = ClymeSkyblockCore.getInstance().getTimeUtil().getTimeDifference(muteDate, today);
+
+            clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You got muted for " + ClymeChatColor.SECONDARY() + timeLeft + ClymeChatColor.INFO() + "!");
         }
     }
 }

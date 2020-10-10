@@ -9,7 +9,6 @@ import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 public class ClymePlayer {
 
@@ -21,6 +20,7 @@ public class ClymePlayer {
     @Getter @Setter private Timestamp last_join;
     @Getter @Setter private Timestamp banned;
     @Getter @Setter private String banReason;
+    @Getter @Setter private Timestamp muted;
 
     public ClymePlayer(Player player) {
         this.uuid = player.getUniqueId();
@@ -53,15 +53,7 @@ public class ClymePlayer {
         if(getBanned() != null && getBanned().after(getLast_join())) {
             Date today = new Date();
             Date banDate = getBanned();
-            long timeDifference = banDate.getTime() - today.getTime();
-
-            long daysLeft = TimeUnit.MILLISECONDS.toDays(timeDifference);
-            timeDifference -= TimeUnit.DAYS.toMillis(daysLeft);
-            long hoursLeft = TimeUnit.MILLISECONDS.toHours(timeDifference);
-            timeDifference -= TimeUnit.HOURS.toMillis(hoursLeft);
-            long minutesLeft = TimeUnit.MILLISECONDS.toMinutes(timeDifference);
-            timeDifference -= TimeUnit.MINUTES.toMillis(minutesLeft);
-            long secondsLeft = TimeUnit.MILLISECONDS.toSeconds(timeDifference);
+            String timeLeft = ClymeSkyblockCore.getInstance().getTimeUtil().getTimeDifference(banDate, today);
 
             Bukkit.getScheduler().runTask(ClymeSkyblockCore.getInstance(), () -> {
                 getPlayer().kickPlayer(" \n" +
@@ -71,7 +63,7 @@ public class ClymePlayer {
                         "§cYou are banned from the Server!\n" +
                         " \n" +
                         "§f§lReason: §7" + getBanReason() + "\n" +
-                        "§f§lTime left: §7" + daysLeft + " day(s) " + hoursLeft + " hour(s) " + minutesLeft + " minute(s) " + secondsLeft + " second(s)\n" +
+                        "§f§lTime left: §7" + timeLeft + "\n" +
                         "\n\n" +
                         "§c§oIf you think you have been wrongly punished,\n" +
                         "please contact our support team!\n" +

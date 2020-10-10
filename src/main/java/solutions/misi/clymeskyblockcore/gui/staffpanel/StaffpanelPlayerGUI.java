@@ -25,6 +25,8 @@ public class StaffpanelPlayerGUI implements Listener {
     @Getter private final Map<Player, Player> playerKicking = new HashMap<>();
     @Getter private final Map<Player, OfflinePlayer> playerBanning = new HashMap<>();
     @Getter private final Map<Player, String> playerTempBanning = new HashMap<>();
+    @Getter private final Map<Player, OfflinePlayer> playerTempMuting = new HashMap<>();
+    @Getter private final List<Player> frozen = new ArrayList<>();
 
     public void open(Player player, UUID targetUuid) {
         OfflinePlayer target = Bukkit.getOfflinePlayer(targetUuid);
@@ -293,7 +295,32 @@ public class StaffpanelPlayerGUI implements Listener {
                     clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully un-banned " + ClymeChatColor.SECONDARY() + targetName + ClymeChatColor.SUCCESS() + " from this server!");
                     break;
                 case "§bTemp-Ban a Player":
-                    ClymeSkyblockCore.getInstance().getStaffpanelTempbanGUI().open(player, target);
+                    ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerTempBanning().put(player, target.getUniqueId().toString() + "/NULL");
+                    ClymeSkyblockCore.getInstance().getStaffpanelDurationGUI().open(player, target, "§0Tempban");
+                    break;
+                case "§bMute Player":
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.add(Calendar.MONTH, 99);
+                    Timestamp muted = new Timestamp(calendar.getTime().getTime());
+                    ClymeSkyblockCore.getInstance().getPlayersHandler().mutePlayer(target, muted);
+                    player.closeInventory();
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.SUCCESS() + " has been muted!");
+                    break;
+                case "§aTemp-Mute Player":
+                    ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerTempMuting().put(player, target);
+                    ClymeSkyblockCore.getInstance().getStaffpanelDurationGUI().open(player, target, "§0Tempmute");
+                    break;
+                case "§aUn-Mute Player":
+                    ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().unmutePlayer(target);
+                    player.closeInventory();
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully un-muted " + ClymeChatColor.SECONDARY() + targetName + ClymeChatColor.SUCCESS() + "!");
+
+                    if(target.isOnline()) {
+                        ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target.getPlayer());
+                        clymeTarget.setMuted(new Timestamp(new Date().getTime()-100));
+                        clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You got un-muted!");
+                    }
+
                     break;
             }
         } catch(NullPointerException exception) { }

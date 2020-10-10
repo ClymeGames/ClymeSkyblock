@@ -22,7 +22,8 @@ public class ClymePlayersTable {
                             + "last_join TIMESTAMP NULL DEFAULT NULL,"
                             + "ip VARCHAR(15),"
                             + "banned TIMESTAMP NULL DEFAULT NULL,"
-                            + "banReason VARCHAR(255))";
+                            + "banReason VARCHAR(255),"
+                            + "muted TIMESTAMP NULL DEFAULT NULL)";
 
         try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
                 PreparedStatement createTable = connection.prepareStatement(sql)) {
@@ -73,6 +74,7 @@ public class ClymePlayersTable {
                     clymePlayer.setLast_join(resultSet.getTimestamp("last_join"));
                     clymePlayer.setBanned(resultSet.getTimestamp("banned"));
                     clymePlayer.setBanReason(resultSet.getString("banReason"));
+                    clymePlayer.setMuted(resultSet.getTimestamp("muted"));
                     clymePlayer.checkBanStatus();
                 }
                 resultSet.close();
@@ -128,10 +130,37 @@ public class ClymePlayersTable {
         Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
             Timestamp currentTime = new Timestamp(new Date().getTime());
             try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
-                 PreparedStatement update = connection.prepareStatement("UPDATE clymePlayers SET banned = ?, banReason = ? WHERE uuid = ?")) {
+                    PreparedStatement update = connection.prepareStatement("UPDATE clymePlayers SET banned = ?, banReason = ? WHERE uuid = ?")) {
                 update.setTimestamp(1, currentTime);
                 update.setString(2, "");
                 update.setString(3, player.getUniqueId().toString());
+                update.executeUpdate();
+            } catch(SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
+    public void mutePlayer(OfflinePlayer player, Timestamp duration) {
+        Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
+           try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
+                    PreparedStatement update = connection.prepareStatement("UPDATE clymePlayers SET muted = ? WHERE uuid = ?")) {
+               update.setTimestamp(1, duration);
+               update.setString(2, player.getUniqueId().toString());
+               update.executeUpdate();
+           } catch(SQLException exception) {
+               exception.printStackTrace();
+           }
+        });
+    }
+
+    public void unmutePlayer(OfflinePlayer player) {
+        Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
+            Timestamp currentTime = new Timestamp(new Date().getTime());
+            try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
+                    PreparedStatement update = connection.prepareStatement("UPDATE clymePlayers SET muted = ? WHERE uuid = ?")) {
+                update.setTimestamp(1, currentTime);
+                update.setString(2, player.getUniqueId().toString());
                 update.executeUpdate();
             } catch(SQLException exception) {
                 exception.printStackTrace();

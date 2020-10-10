@@ -19,9 +19,9 @@ import solutions.misi.clymeskyblockcore.data.DataManager;
 import solutions.misi.clymeskyblockcore.data.vault.economy.ClymeEconomy;
 import solutions.misi.clymeskyblockcore.events.*;
 import solutions.misi.clymeskyblockcore.gui.islandmenu.*;
+import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelDurationGUI;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelGUI;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelPlayerGUI;
-import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelTempbanGUI;
 import solutions.misi.clymeskyblockcore.islands.ClymeIslandManager;
 import solutions.misi.clymeskyblockcore.islands.events.IslandCreateListener;
 import solutions.misi.clymeskyblockcore.islands.events.IslandUpgradeListener;
@@ -31,6 +31,7 @@ import solutions.misi.clymeskyblockcore.islands.settings.flags.events.CreatureSp
 import solutions.misi.clymeskyblockcore.player.PlayersHandler;
 import solutions.misi.clymeskyblockcore.security.CommandHandler;
 import solutions.misi.clymeskyblockcore.utils.ClymeMessage;
+import solutions.misi.clymeskyblockcore.utils.TimeUtil;
 
 public class ClymeSkyblockCore extends JavaPlugin {
 
@@ -46,6 +47,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private IslandSettings islandSettings;
     @Getter private Flags flags;
     @Getter private PlayersHandler playersHandler;
+    @Getter private TimeUtil timeUtil;
 
     @Getter private IslandGUI islandGUI;
     @Getter private SpawnerValuesGUI spawnerValuesGUI;
@@ -54,7 +56,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private IslandCreationGUI islandCreationGUI;
     @Getter private StaffpanelGUI staffpanelGUI;
     @Getter private StaffpanelPlayerGUI staffpanelPlayerGUI;
-    @Getter private StaffpanelTempbanGUI staffpanelTempbanGUI;
+    @Getter private StaffpanelDurationGUI staffpanelDurationGUI;
 
     @Getter private Economy economy;
     @Getter private Permission permission;
@@ -93,6 +95,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         islandSettings = new IslandSettings();
         flags = new Flags();
         playersHandler = new PlayersHandler();
+        timeUtil = new TimeUtil();
 
         islandGUI = new IslandGUI();
         spawnerValuesGUI = new SpawnerValuesGUI();
@@ -101,7 +104,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         islandCreationGUI = new IslandCreationGUI();
         staffpanelGUI = new StaffpanelGUI();
         staffpanelPlayerGUI = new StaffpanelPlayerGUI();
-        staffpanelTempbanGUI = new StaffpanelTempbanGUI();
+        staffpanelDurationGUI = new StaffpanelDurationGUI();
     }
 
     private void registerEvents() {
@@ -126,7 +129,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new IslandCreationGUI(), this);
         Bukkit.getPluginManager().registerEvents(new StaffpanelGUI(), this);
         Bukkit.getPluginManager().registerEvents(new StaffpanelPlayerGUI(), this);
-        Bukkit.getPluginManager().registerEvents(new StaffpanelTempbanGUI(), this);
+        Bukkit.getPluginManager().registerEvents(new StaffpanelDurationGUI(), this);
     }
 
     private void registerFlags() {
