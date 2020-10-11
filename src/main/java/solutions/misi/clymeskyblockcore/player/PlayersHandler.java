@@ -43,6 +43,7 @@ public class PlayersHandler {
 
         if(target.isOnline()) {
             ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target.getPlayer());
+            if(clymeTarget == null) return;
             clymeTarget.setBanReason(reason);
             clymeTarget.setBanned(duration);
 

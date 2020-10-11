@@ -1,10 +1,7 @@
 package solutions.misi.clymeskyblockcore.gui.staffpanel;
 
 import lombok.Getter;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,6 +10,8 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
@@ -27,6 +26,8 @@ public class StaffpanelPlayerGUI implements Listener {
     @Getter private final Map<Player, String> playerTempBanning = new HashMap<>();
     @Getter private final Map<Player, OfflinePlayer> playerTempMuting = new HashMap<>();
     @Getter private final List<Player> frozen = new ArrayList<>();
+    @Getter private final List<Player> screensharing = new ArrayList<>();
+    @Getter private final Map<Player, Player> sendingWarning = new HashMap<>();
 
     public void open(Player player, UUID targetUuid) {
         OfflinePlayer target = Bukkit.getOfflinePlayer(targetUuid);
@@ -113,7 +114,7 @@ public class StaffpanelPlayerGUI implements Listener {
         screenShareMeta.setDisplayName("§bScreenshare");
         List<String> screenShareLore = new ArrayList<>();
         screenShareLore.add(" ");
-        screenShareLore.add("§7Left-Click to start screensharing with");
+        screenShareLore.add("§7Left-Click to start/stop screensharing with");
         screenShareLore.add("§7" + target.getName() + ".");
         screenShareLore.add(" ");
         screenShareMeta.setLore(screenShareLore);
@@ -168,7 +169,7 @@ public class StaffpanelPlayerGUI implements Listener {
         freezeMeta.setDisplayName("§cFreeze Player");
         List<String> freezeLore = new ArrayList<>();
         freezeLore.add(" ");
-        freezeLore.add("§7Left-Click to freeze");
+        freezeLore.add("§7Left-Click to freeze/unfreeze");
         freezeLore.add("§7" + target.getName() + ".");
         freezeLore.add(" ");
         freezeMeta.setLore(freezeLore);
@@ -268,6 +269,7 @@ public class StaffpanelPlayerGUI implements Listener {
 
         Player player = (Player) event.getWhoClicked();
         ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
+        ClymePlayer clymeTarget;
         String targetName = ChatColor.stripColor(event.getInventory().getItem(10).getLore().get(2));
         targetName = targetName.substring(0, targetName.length() - 1);
         OfflinePlayer target = Bukkit.getOfflinePlayer(ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().getUuidFromName(targetName));
@@ -316,11 +318,115 @@ public class StaffpanelPlayerGUI implements Listener {
                     clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully un-muted " + ClymeChatColor.SECONDARY() + targetName + ClymeChatColor.SUCCESS() + "!");
 
                     if(target.isOnline()) {
-                        ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target.getPlayer());
+                        clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target.getPlayer());
                         clymeTarget.setMuted(new Timestamp(new Date().getTime()-100));
                         clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You got un-muted!");
                     }
 
+                    break;
+                case "§cFreeze Player":
+                    player.closeInventory();
+
+                    if(!target.isOnline()) {
+                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.ERROR() + " is not online!");
+                        break;
+                    }
+
+                    clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target.getPlayer());
+
+                    if(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getFrozen().contains(target.getPlayer())) {
+                        ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getFrozen().remove(target.getPlayer());
+                        clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You got un-frozen!");
+                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully un-frozen " + ClymeChatColor.SECONDARY() + targetName + ClymeChatColor.SUCCESS() + "!");
+                    } else {
+                        ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getFrozen().add(target.getPlayer());
+                        clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You got frozen!");
+                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully frozen " + ClymeChatColor.SECONDARY() + targetName + ClymeChatColor.SUCCESS() + "!");
+                    }
+
+                    break;
+                case "§bScreenshare":
+                    player.closeInventory();
+
+                    if(!target.isOnline()) {
+                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.ERROR() + " is not online!");
+                        break;
+                    }
+
+                    clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target.getPlayer());
+
+                    if(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getScreensharing().contains(target.getPlayer())) {
+                        ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getScreensharing().remove(target.getPlayer());
+                        target.getPlayer().removePotionEffect(PotionEffectType.BLINDNESS);
+                        target.getPlayer().teleport(target.getPlayer().getLocation().clone().add(0, -300, 0));
+                        target.getPlayer().setFlying(false);
+                        clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Screenshare is done! Thanks for your patience.");
+                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully stopped screenshare with " + ClymeChatColor.SECONDARY() + targetName + ClymeChatColor.SUCCESS() + "!");
+                    } else {
+                        ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getScreensharing().add(target.getPlayer());
+                        target.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 9999999, 10));
+                        target.getPlayer().setFlying(true);
+                        target.getPlayer().teleport(target.getPlayer().getLocation().clone().add(0, 300, 0));
+
+                        ClymeSkyblockCore.getInstance().getClymeMessage().clearChat(target.getPlayer());
+                        clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Please join " + ClymeChatColor.ACCENT() + "clyme.games/discord");
+                        clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "within " + ClymeChatColor.ACCENT() + "5 minutes " + ClymeChatColor.INFO() + "and connect to the Support Waiting room!");
+                        clymeTarget.sendMessage(" ");
+                        clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "Be aware that if you leave the server before you get verified, you will get banned!");
+
+                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Started screenshare with " + ClymeChatColor.SECONDARY() + targetName + ClymeChatColor.SUCCESS() + "!");
+                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Make sure to look for him in the Support Waiting room!");
+
+                        ClymeSkyblockCore.getInstance().getScreenshare().start(target.getPlayer());
+                    }
+
+                    break;
+                case "§aClear chat for Player":
+                    player.closeInventory();
+
+                    if(!target.isOnline()) {
+                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.ERROR() + " is not online!");
+                        break;
+                    }
+
+                    ClymeSkyblockCore.getInstance().getClymeMessage().clearChat(target.getPlayer());
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully cleared the chat of " + ClymeChatColor.SECONDARY() + targetName);
+                    break;
+                case "§bSpectate Player":
+                    player.closeInventory();
+
+                    if(!target.isOnline()) {
+                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.ERROR() + " is not online!");
+                        break;
+                    }
+
+                    player.setGameMode(GameMode.SPECTATOR);
+                    player.setSpectatorTarget(target.getPlayer());
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully started spectating " + ClymeChatColor.SECONDARY() + targetName);
+                    break;
+                case "§cInspect Player Inventory":
+                    if(!target.isOnline()) {
+                        player.closeInventory();
+                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.ERROR() + " is not online!");
+                        break;
+                    }
+
+                    ClymeSkyblockCore.getInstance().getStaffpanelInventoryInspectorGUI().open(player, target.getPlayer());
+                    break;
+                case "§cGo to Player Island":
+                    player.closeInventory();
+                    player.performCommand("is admin teleport " + targetName);
+                    break;
+                case "§aSend warning to Player":
+                    player.closeInventory();
+
+                    if(!target.isOnline()) {
+                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.ERROR() + " is not online!");
+                        break;
+                    }
+
+                    if(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getSendingWarning().containsKey(player)) ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getSendingWarning().put(player, target.getPlayer());
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Please enter the reason for warning " + ClymeChatColor.SECONDARY() + targetName);
                     break;
             }
         } catch(NullPointerException exception) { }
@@ -368,6 +474,20 @@ public class StaffpanelPlayerGUI implements Listener {
             ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerBanning().remove(player);
             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.SUCCESS() + " has been banned from the server!");
             return;
+        }
+
+        //> Send warning
+        if(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getSendingWarning().containsKey(player)) {
+            event.setCancelled(true);
+
+            ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
+            Player target = ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getSendingWarning().get(player);
+            ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target);
+
+            clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "You got warned! Reason: " + ClymeChatColor.SECONDARY() + event.getMessage() + ClymeChatColor.ERROR() + "!");
+            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully sent warning to " + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.SUCCESS() + "!");
+
+            ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getSendingWarning().remove(player);
         }
     }
 }

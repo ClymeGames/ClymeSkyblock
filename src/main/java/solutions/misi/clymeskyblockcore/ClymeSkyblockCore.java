@@ -21,6 +21,7 @@ import solutions.misi.clymeskyblockcore.events.*;
 import solutions.misi.clymeskyblockcore.gui.islandmenu.*;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelDurationGUI;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelGUI;
+import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelInventoryInspectorGUI;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelPlayerGUI;
 import solutions.misi.clymeskyblockcore.islands.ClymeIslandManager;
 import solutions.misi.clymeskyblockcore.islands.events.IslandCreateListener;
@@ -30,6 +31,7 @@ import solutions.misi.clymeskyblockcore.islands.settings.flags.Flags;
 import solutions.misi.clymeskyblockcore.islands.settings.flags.events.CreatureSpawnFlagListener;
 import solutions.misi.clymeskyblockcore.player.PlayersHandler;
 import solutions.misi.clymeskyblockcore.security.CommandHandler;
+import solutions.misi.clymeskyblockcore.security.Screenshare;
 import solutions.misi.clymeskyblockcore.utils.ClymeMessage;
 import solutions.misi.clymeskyblockcore.utils.TimeUtil;
 
@@ -48,6 +50,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private Flags flags;
     @Getter private PlayersHandler playersHandler;
     @Getter private TimeUtil timeUtil;
+    @Getter private Screenshare screenshare;
 
     @Getter private IslandGUI islandGUI;
     @Getter private SpawnerValuesGUI spawnerValuesGUI;
@@ -57,6 +60,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private StaffpanelGUI staffpanelGUI;
     @Getter private StaffpanelPlayerGUI staffpanelPlayerGUI;
     @Getter private StaffpanelDurationGUI staffpanelDurationGUI;
+    @Getter private StaffpanelInventoryInspectorGUI staffpanelInventoryInspectorGUI;
 
     @Getter private Economy economy;
     @Getter private Permission permission;
@@ -96,6 +100,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         flags = new Flags();
         playersHandler = new PlayersHandler();
         timeUtil = new TimeUtil();
+        screenshare = new Screenshare();
 
         islandGUI = new IslandGUI();
         spawnerValuesGUI = new SpawnerValuesGUI();
@@ -105,6 +110,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         staffpanelGUI = new StaffpanelGUI();
         staffpanelPlayerGUI = new StaffpanelPlayerGUI();
         staffpanelDurationGUI = new StaffpanelDurationGUI();
+        staffpanelInventoryInspectorGUI = new StaffpanelInventoryInspectorGUI();
     }
 
     private void registerEvents() {
@@ -119,6 +125,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(), this);
         Bukkit.getPluginManager().registerEvents(new ServerListPingListener(), this);
         Bukkit.getPluginManager().registerEvents(new AsyncPlayerChatListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerMoveListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerToggleFlightListener(), this);
     }
 
     private void registerGUIs() {
@@ -130,6 +138,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new StaffpanelGUI(), this);
         Bukkit.getPluginManager().registerEvents(new StaffpanelPlayerGUI(), this);
         Bukkit.getPluginManager().registerEvents(new StaffpanelDurationGUI(), this);
+        Bukkit.getPluginManager().registerEvents(new StaffpanelInventoryInspectorGUI(), this);
     }
 
     private void registerFlags() {

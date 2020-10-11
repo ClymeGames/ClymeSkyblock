@@ -1,5 +1,6 @@
 package solutions.misi.clymeskyblockcore.events;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,5 +20,8 @@ public class PlayerQuitListener implements Listener {
         ClymeSkyblockCore.getInstance().getPlayersHandler().updatePlayerData(clymePlayer);
         ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().saveClymePlayerData(clymePlayer);
         ClymeSkyblockCore.getInstance().getPlayersHandler().removeClymePlayer(clymePlayer);
+
+        if(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getScreensharing().contains(player))
+            ClymeSkyblockCore.getInstance().getScreenshare().banPlayer(Bukkit.getOfflinePlayer(player.getUniqueId()));
     }
 }
