@@ -17,21 +17,24 @@ public class PlayerJoinListener implements Listener {
     @EventHandler (priority = EventPriority.MONITOR)
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().addClymePlayer(player);
 
-        //> Welcome message
         event.setJoinMessage("");
-        ClymeSkyblockCore.getInstance().getClymeMessage().clearChat(player);
 
-        clymePlayer.sendMessage(" ");
-        clymePlayer.sendMessage(ClymeChatColor.SECONDARY() + "× " + ClymeSkyblockCore.getInstance().getClymeMessage().getRawPrefix() + ClymeChatColor.SECONDARY() + " // §fclyme.games");
-        clymePlayer.sendMessage(ClymeChatColor.SECONDARY() + "× You are playing Skyblock!");
-        clymePlayer.sendMessage(" ");
-        clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "➢ Website: " + ClymeChatColor.SECONDARY() + " www.clyme.games");
-        clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "➢ Shop: " + ClymeChatColor.SECONDARY() + " shop.clyme.games");
-        clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "➢ Discord: " + ClymeChatColor.SECONDARY() + " clyme.games/discord");
-        clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "➢ Vote: " + ClymeChatColor.SECONDARY() + " clyme.games/vote");
-        clymePlayer.sendMessage(" ");
+        Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
+            ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().addClymePlayer(player);
+            ClymeSkyblockCore.getInstance().getClymeMessage().clearChat(player);
+
+            //> Welcome message
+            clymePlayer.sendMessage(" ");
+            clymePlayer.sendMessage(ClymeChatColor.SECONDARY() + "× " + ClymeSkyblockCore.getInstance().getClymeMessage().getRawPrefix() + ClymeChatColor.SECONDARY() + " // §fclyme.games");
+            clymePlayer.sendMessage(ClymeChatColor.SECONDARY() + "× You are playing Skyblock!");
+            clymePlayer.sendMessage(" ");
+            clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "➢ Website: " + ClymeChatColor.SECONDARY() + " www.clyme.games");
+            clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "➢ Shop: " + ClymeChatColor.SECONDARY() + " shop.clyme.games");
+            clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "➢ Discord: " + ClymeChatColor.SECONDARY() + " clyme.games/discord");
+            clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "➢ Vote: " + ClymeChatColor.SECONDARY() + " clyme.games/vote");
+            clymePlayer.sendMessage(" ");
+        });
 
         player.teleport(new Location(Bukkit.getWorld("world"), 75.432, 175.0, 102.524));
         player.setFlying(false);

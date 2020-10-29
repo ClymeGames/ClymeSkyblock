@@ -31,7 +31,7 @@ public class SpawnerValuesGUI implements Listener {
         List<String> sheepSpawnerLore = new ArrayList<>();
         sheepSpawnerLore.add(" ");
         sheepSpawnerLore.add("§aTier I Spawner");
-        sheepSpawnerLore.add("§7Worth: §e$100");
+        sheepSpawnerLore.add("§7Worth: §e$10,000");
         sheepSpawnerLore.add(" ");
         sheepSpawnerMeta.setLore(sheepSpawnerLore);
         sheepSpawner.setItemMeta(sheepSpawnerMeta);
@@ -42,7 +42,7 @@ public class SpawnerValuesGUI implements Listener {
         List<String> cowSpawnerLore = new ArrayList<>();
         cowSpawnerLore.add(" ");
         cowSpawnerLore.add("§aTier I Spawner");
-        cowSpawnerLore.add("§7Worth: §e$100");
+        cowSpawnerLore.add("§7Worth: §e$10,000");
         cowSpawnerLore.add(" ");
         cowSpawnerMeta.setLore(cowSpawnerLore);
         cowSpawner.setItemMeta(cowSpawnerMeta);
@@ -53,7 +53,7 @@ public class SpawnerValuesGUI implements Listener {
         List<String> pigSpawnerLore = new ArrayList<>();
         pigSpawnerLore.add(" ");
         pigSpawnerLore.add("§aTier I Spawner");
-        pigSpawnerLore.add("§7Worth: §e$100");
+        pigSpawnerLore.add("§7Worth: §e$10,000");
         pigSpawnerLore.add(" ");
         pigSpawnerMeta.setLore(pigSpawnerLore);
         pigSpawner.setItemMeta(pigSpawnerMeta);
@@ -64,7 +64,7 @@ public class SpawnerValuesGUI implements Listener {
         List<String> zombieSpawnerLore = new ArrayList<>();
         zombieSpawnerLore.add(" ");
         zombieSpawnerLore.add("§bTier II Spawner");
-        zombieSpawnerLore.add("§7Worth: §e$200");
+        zombieSpawnerLore.add("§7Worth: §e$20,000");
         zombieSpawnerLore.add(" ");
         zombieSpawnerMeta.setLore(zombieSpawnerLore);
         zombieSpawner.setItemMeta(zombieSpawnerMeta);
@@ -75,7 +75,7 @@ public class SpawnerValuesGUI implements Listener {
         List<String> skeletonSpawnerLore = new ArrayList<>();
         skeletonSpawnerLore.add(" ");
         skeletonSpawnerLore.add("§bTier II Spawner");
-        skeletonSpawnerLore.add("§7Worth: §e$200");
+        skeletonSpawnerLore.add("§7Worth: §e$20,000");
         skeletonSpawnerLore.add(" ");
         skeletonSpawnerMeta.setLore(skeletonSpawnerLore);
         skeletonSpawner.setItemMeta(skeletonSpawnerMeta);
@@ -86,7 +86,7 @@ public class SpawnerValuesGUI implements Listener {
         List<String> pandaSpawnerLore = new ArrayList<>();
         pandaSpawnerLore.add(" ");
         pandaSpawnerLore.add("§dTier III Spawner");
-        pandaSpawnerLore.add("§7Worth: §e$300");
+        pandaSpawnerLore.add("§7Worth: §e$30,000");
         pandaSpawnerLore.add(" ");
         pandaSpawnerMeta.setLore(pandaSpawnerLore);
         pandaSpawner.setItemMeta(pandaSpawnerMeta);
@@ -97,7 +97,7 @@ public class SpawnerValuesGUI implements Listener {
         List<String> wolfSpawnerLore = new ArrayList<>();
         wolfSpawnerLore.add(" ");
         wolfSpawnerLore.add("§dTier III Spawner");
-        wolfSpawnerLore.add("§7Worth: §e$300");
+        wolfSpawnerLore.add("§7Worth: §e$30,000");
         wolfSpawnerLore.add(" ");
         wolfSpawnerMeta.setLore(wolfSpawnerLore);
         wolfSpawner.setItemMeta(wolfSpawnerMeta);
@@ -108,9 +108,9 @@ public class SpawnerValuesGUI implements Listener {
         List<String> spiderSpawnerLore = new ArrayList<>();
         spiderSpawnerLore.add(" ");
         spiderSpawnerLore.add("§dTier III Spawner");
-        spiderSpawnerLore.add("§7Worth: §e$300");
+        spiderSpawnerLore.add("§7Worth: §e$30,000");
         spiderSpawnerLore.add(" ");
-        wolfSpawnerMeta.setLore(spiderSpawnerLore);
+        spiderSpawnerMeta.setLore(spiderSpawnerLore);
         spiderSpawner.setItemMeta(spiderSpawnerMeta);
 
         ItemStack caveSpiderSpawner = new ItemStack(Material.SPAWNER);
@@ -119,7 +119,7 @@ public class SpawnerValuesGUI implements Listener {
         List<String> caveSpiderSpawnerLore = new ArrayList<>();
         caveSpiderSpawnerLore.add(" ");
         caveSpiderSpawnerLore.add("§cTier IV Spawner");
-        caveSpiderSpawnerLore.add("§7Worth: §e$400");
+        caveSpiderSpawnerLore.add("§7Worth: §e$40,000");
         caveSpiderSpawnerLore.add(" ");
         caveSpiderSpawnerMeta.setLore(caveSpiderSpawnerLore);
         caveSpiderSpawner.setItemMeta(caveSpiderSpawnerMeta);
@@ -130,7 +130,7 @@ public class SpawnerValuesGUI implements Listener {
         List<String> creeperSpawnerLore = new ArrayList<>();
         creeperSpawnerLore.add(" ");
         creeperSpawnerLore.add("§cTier IV Spawner");
-        creeperSpawnerLore.add("§7Worth: §e$400");
+        creeperSpawnerLore.add("§7Worth: §e$40,000");
         creeperSpawnerLore.add(" ");
         creeperSpawnerMeta.setLore(creeperSpawnerLore);
         creeperSpawner.setItemMeta(creeperSpawnerMeta);
@@ -141,7 +141,7 @@ public class SpawnerValuesGUI implements Listener {
         List<String> witchSpawnerLore = new ArrayList<>();
         witchSpawnerLore.add(" ");
         witchSpawnerLore.add("§3Tier V Spawner");
-        witchSpawnerLore.add("§7Worth: §e$600");
+        witchSpawnerLore.add("§7Worth: §e$60,000");
         witchSpawnerLore.add(" ");
         witchSpawnerMeta.setLore(witchSpawnerLore);
         witchSpawner.setItemMeta(witchSpawnerMeta);
@@ -152,7 +152,7 @@ public class SpawnerValuesGUI implements Listener {
         List<String> zombieVillagerSpawnerLore = new ArrayList<>();
         zombieVillagerSpawnerLore.add(" ");
         zombieVillagerSpawnerLore.add("§3Tier V Spawner");
-        zombieVillagerSpawnerLore.add("§7Worth: §e$600");
+        zombieVillagerSpawnerLore.add("§7Worth: §e$60,000");
         zombieVillagerSpawnerLore.add(" ");
         zombieVillagerSpawnerMeta.setLore(zombieVillagerSpawnerLore);
         zombieVillagerSpawner.setItemMeta(zombieVillagerSpawnerMeta);
@@ -163,7 +163,7 @@ public class SpawnerValuesGUI implements Listener {
         List<String> mushroomCowSpawnerLore = new ArrayList<>();
         mushroomCowSpawnerLore.add(" ");
         mushroomCowSpawnerLore.add("§3Tier V Spawner");
-        mushroomCowSpawnerLore.add("§7Worth: §e$600");
+        mushroomCowSpawnerLore.add("§7Worth: §e$60,000");
         mushroomCowSpawnerLore.add(" ");
         mushroomCowSpawnerMeta.setLore(mushroomCowSpawnerLore);
         mushroomCowSpawner.setItemMeta(mushroomCowSpawnerMeta);
@@ -174,7 +174,7 @@ public class SpawnerValuesGUI implements Listener {
         List<String> zombiePigmanSpawnerLore = new ArrayList<>();
         zombiePigmanSpawnerLore.add(" ");
         zombiePigmanSpawnerLore.add("§3Tier VI Spawner");
-        zombiePigmanSpawnerLore.add("§7Worth: §e$700");
+        zombiePigmanSpawnerLore.add("§7Worth: §e$70,000");
         zombiePigmanSpawnerLore.add(" ");
         zombiePigmanSpawnerMeta.setLore(zombiePigmanSpawnerLore);
         zombiePigmanSpawner.setItemMeta(zombiePigmanSpawnerMeta);
@@ -185,7 +185,7 @@ public class SpawnerValuesGUI implements Listener {
         List<String> ironGolemSpawnerLore = new ArrayList<>();
         ironGolemSpawnerLore.add(" ");
         ironGolemSpawnerLore.add("§3Tier VII Spawner");
-        ironGolemSpawnerLore.add("§7Worth: §e$1,000");
+        ironGolemSpawnerLore.add("§7Worth: §e$100,000");
         ironGolemSpawnerLore.add(" ");
         ironGolemSpawnerMeta.setLore(ironGolemSpawnerLore);
         ironGolemSpawner.setItemMeta(ironGolemSpawnerMeta);
@@ -196,7 +196,7 @@ public class SpawnerValuesGUI implements Listener {
         List<String> witherSkeletonSpawnerLore = new ArrayList<>();
         witherSkeletonSpawnerLore.add(" ");
         witherSkeletonSpawnerLore.add("§3Tier VIII Spawner");
-        witherSkeletonSpawnerLore.add("§7Worth: §e$1,500");
+        witherSkeletonSpawnerLore.add("§7Worth: §e$150,000");
         witherSkeletonSpawnerLore.add(" ");
         witherSkeletonSpawnerMeta.setLore(witherSkeletonSpawnerLore);
         witherSkeletonSpawner.setItemMeta(witherSkeletonSpawnerMeta);
