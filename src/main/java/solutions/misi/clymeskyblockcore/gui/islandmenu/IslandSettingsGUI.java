@@ -105,6 +105,7 @@ public class IslandSettingsGUI implements Listener {
 
         if(regionManager.getRegion(ClymeSkyblockCore.getInstance().getClymeIslandManager().getIslandId(island)).getFlag(flag) == StateFlag.State.ALLOW) {
             regionManager.getRegion(ClymeSkyblockCore.getInstance().getClymeIslandManager().getIslandId(island)).setFlag(flag, StateFlag.State.DENY);
+            return;
         }
 
         regionManager.getRegion(ClymeSkyblockCore.getInstance().getClymeIslandManager().getIslandId(island)).setFlag(flag, StateFlag.State.ALLOW);

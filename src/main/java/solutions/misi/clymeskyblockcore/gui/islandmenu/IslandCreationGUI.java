@@ -89,7 +89,7 @@ public class IslandCreationGUI implements Listener {
                                     "" + ClymeChatColor.SECONDARY() + "The default SkyBlock Experience with everything you need to start.");
                             clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "Avg. Temperature: " + ClymeChatColor.SECONDARY() + "80 °F // 26.6 °C");
                             clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "Biomes: " + ClymeChatColor.SECONDARY() + "ALL");
-                            clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "Boost: " + ClymeChatColor.SECONDARY() + "NONE");
+                            //clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "Boost: " + ClymeChatColor.SECONDARY() + "NONE");
                             break;
                         case "§aJungle Island":
                             clymePlayer.sendMessage(" ");
@@ -99,7 +99,7 @@ public class IslandCreationGUI implements Listener {
                                     "" + ClymeChatColor.SECONDARY() + "Amazing Jungle experience in a hot biome and a lot of plants.");
                             clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "Avg. Temperature: " + ClymeChatColor.SECONDARY() + "100 °F // 37.8 °C");
                             clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "Biomes: " + ClymeChatColor.SECONDARY() + "JUNGLE");
-                            clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "Boost: " + ClymeChatColor.SECONDARY() + "+6% Growth Rate for Cocoa");
+                            //clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "Boost: " + ClymeChatColor.SECONDARY() + "+6% Growth Rate for Cocoa");
                             break;
                         case "§aSnowy Mountains Island":
                             clymePlayer.sendMessage(" ");
@@ -109,7 +109,7 @@ public class IslandCreationGUI implements Listener {
                                     "" + ClymeChatColor.SECONDARY() + "High mountain island in snowy area. Be aware of the coldness!");
                             clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "Avg. Temperature: " + ClymeChatColor.SECONDARY() + "20 °F // -6.7 °C");
                             clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "Biomes: " + ClymeChatColor.SECONDARY() + "TAIGA");
-                            clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "Boost: " + ClymeChatColor.SECONDARY() + "+6% Growth Rate for Flowers");
+                            //clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "Boost: " + ClymeChatColor.SECONDARY() + "+6% Growth Rate for Flowers");
                             break;
                         case "§aStone Gaze Island":
                             clymePlayer.sendMessage(" ");
@@ -119,7 +119,7 @@ public class IslandCreationGUI implements Listener {
                                     "" + ClymeChatColor.SECONDARY() + "A mystical oak island surrounded by flying stones.");
                             clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "Avg. Temperature: " + ClymeChatColor.SECONDARY() + "70 °F // 21.1 °C");
                             clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "Biomes: " + ClymeChatColor.SECONDARY() + "ALL");
-                            clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "Boost: " + ClymeChatColor.SECONDARY() + "+6% Growth Rate for Sugarcane");
+                            //clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "Boost: " + ClymeChatColor.SECONDARY() + "+6% Growth Rate for Sugarcane");
                             break;
                     }
                 } else {

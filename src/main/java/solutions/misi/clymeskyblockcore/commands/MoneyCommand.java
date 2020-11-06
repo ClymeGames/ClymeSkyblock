@@ -9,6 +9,8 @@ import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
 
+import java.math.BigDecimal;
+
 public class MoneyCommand implements CommandExecutor {
 
     @Override
@@ -25,7 +27,7 @@ public class MoneyCommand implements CommandExecutor {
         switch(args.length) {
             case 0:
                 //> Usage: /money
-                double balance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(player);
+                BigDecimal balance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(player);
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You have " + ClymeChatColor.SECONDARY() + "$" + balance);
 
                 return true;
@@ -38,7 +40,7 @@ public class MoneyCommand implements CommandExecutor {
                     return false;
                 }
 
-                double targetBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(target);
+                BigDecimal targetBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(target);
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "The player " + ClymeChatColor.SECONDARY() + args[0] + ClymeChatColor.INFO() + " has " + ClymeChatColor.SECONDARY() + "$" + targetBalance);
                 return true;
             case 3:
@@ -51,22 +53,22 @@ public class MoneyCommand implements CommandExecutor {
                     return false;
                 }
 
-                double amount;
+                BigDecimal amount;
 
                 try {
-                    amount = Double.parseDouble(args[2]);
+                    amount = new BigDecimal(args[2]);
                 } catch(NumberFormatException ex) {
                     clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "Wrong usage! Please use a real number!");
                     return false;
                 }
 
-                double currentTargetBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(target);
-                double changedTargetBalance = currentTargetBalance;
+                BigDecimal currentTargetBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(target);
+                BigDecimal changedTargetBalance = currentTargetBalance;
 
                 switch(args[0]) {
                     case "pay":
-                        double currentPlayerBalance;
-                        double changedPlayerBalance;
+                        BigDecimal currentPlayerBalance;
+                        BigDecimal changedPlayerBalance;
 
                         if(player == target) {
                             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "You can't pay money to yourself!");
@@ -74,10 +76,10 @@ public class MoneyCommand implements CommandExecutor {
                         }
 
                         currentPlayerBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(player);
-                        changedPlayerBalance = currentPlayerBalance - amount;
-                        changedTargetBalance += amount;
+                        changedPlayerBalance = currentPlayerBalance.subtract(amount);
+                        changedTargetBalance = changedTargetBalance.add(amount);
 
-                        if(changedPlayerBalance < 0) {
+                        if(changedPlayerBalance.compareTo(BigDecimal.ZERO) < 0) {
                             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "You don't have " + ClymeChatColor.SECONDARY() + "$" + amount + ClymeChatColor.ERROR() + "!");
                             return false;
                         }
@@ -91,11 +93,11 @@ public class MoneyCommand implements CommandExecutor {
                         clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "The balance of " + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.SUCCESS() + " has been set to " + ClymeChatColor.SECONDARY() + "$" + changedTargetBalance);
                         break;
                     case "add":
-                        changedTargetBalance += amount;
-                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You added " + ClymeChatColor.SECONDARY() + "$" + changedTargetBalance + ClymeChatColor.SUCCESS() + " to " + ClymeChatColor.SECONDARY() + target.getName());
+                        changedTargetBalance = changedTargetBalance.add(amount);
+                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You added " + ClymeChatColor.SECONDARY() + "$" + amount + ClymeChatColor.SUCCESS() + " to " + ClymeChatColor.SECONDARY() + target.getName());
                         break;
                     case "remove":
-                        changedTargetBalance -= amount;
+                        changedTargetBalance = changedTargetBalance.subtract(amount);
                         clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You removed " + ClymeChatColor.SECONDARY() + "$" + changedTargetBalance + ClymeChatColor.SUCCESS() + " from " + ClymeChatColor.SECONDARY() + target.getName());
                         break;
                     default:

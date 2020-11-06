@@ -19,12 +19,15 @@ import solutions.misi.clymeskyblockcore.data.DataManager;
 import solutions.misi.clymeskyblockcore.data.vault.economy.ClymeEconomy;
 import solutions.misi.clymeskyblockcore.events.*;
 import solutions.misi.clymeskyblockcore.gui.islandmenu.*;
+import solutions.misi.clymeskyblockcore.gui.menu.MenuGUI;
+import solutions.misi.clymeskyblockcore.gui.shop.MinionShopGUI;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelDurationGUI;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelGUI;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelInventoryInspectorGUI;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelPlayerGUI;
 import solutions.misi.clymeskyblockcore.islands.ClymeIslandManager;
 import solutions.misi.clymeskyblockcore.islands.events.IslandCreateListener;
+import solutions.misi.clymeskyblockcore.islands.events.IslandDisbandListener;
 import solutions.misi.clymeskyblockcore.islands.events.IslandUpgradeListener;
 import solutions.misi.clymeskyblockcore.islands.settings.IslandSettings;
 import solutions.misi.clymeskyblockcore.islands.settings.flags.Flags;
@@ -61,6 +64,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private StaffpanelPlayerGUI staffpanelPlayerGUI;
     @Getter private StaffpanelDurationGUI staffpanelDurationGUI;
     @Getter private StaffpanelInventoryInspectorGUI staffpanelInventoryInspectorGUI;
+    @Getter private MinionShopGUI minionShopGUI;
+    @Getter private MenuGUI menuGUI;
 
     @Getter private Economy economy;
     @Getter private Permission permission;
@@ -111,15 +116,17 @@ public class ClymeSkyblockCore extends JavaPlugin {
         staffpanelPlayerGUI = new StaffpanelPlayerGUI();
         staffpanelDurationGUI = new StaffpanelDurationGUI();
         staffpanelInventoryInspectorGUI = new StaffpanelInventoryInspectorGUI();
+        minionShopGUI = new MinionShopGUI();
+        menuGUI = new MenuGUI();
     }
 
     private void registerEvents() {
         Bukkit.getPluginManager().registerEvents(new Aliases(), this);
 
         Bukkit.getPluginManager().registerEvents(new CreatureSpawnFlagListener(), this);
-
         Bukkit.getPluginManager().registerEvents(new PlayerCommandPreprocessListener(), this);
         Bukkit.getPluginManager().registerEvents(new IslandCreateListener(), this);
+        Bukkit.getPluginManager().registerEvents(new IslandDisbandListener(), this);
         Bukkit.getPluginManager().registerEvents(new IslandUpgradeListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(), this);
@@ -139,6 +146,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new StaffpanelPlayerGUI(), this);
         Bukkit.getPluginManager().registerEvents(new StaffpanelDurationGUI(), this);
         Bukkit.getPluginManager().registerEvents(new StaffpanelInventoryInspectorGUI(), this);
+        Bukkit.getPluginManager().registerEvents(new MinionShopGUI(), this);
+        Bukkit.getPluginManager().registerEvents(new MenuGUI(), this);
     }
 
     private void registerFlags() {
@@ -167,6 +176,12 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         StaffpanelCommand staffpanelCommand = new StaffpanelCommand();
         getCommand("staffpanel").setExecutor(staffpanelCommand);
+
+        MinionsCommand minionsCommand = new MinionsCommand();
+        getCommand("minions").setExecutor(minionsCommand);
+
+        MenuCommand menuCommand = new MenuCommand();
+        getCommand("menu").setExecutor(menuCommand);
     }
 
     private void setupEconomy() {

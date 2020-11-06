@@ -6,11 +6,13 @@ import redis.clients.jedis.Pipeline;
 import redis.clients.jedis.Response;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 
+import java.math.BigDecimal;
+
 public class EconomyStorage {
 
     public void registerPlayer(Player player) {
         if (userBalanceExists(player)) return;
-        setBalance(player, 1000);
+        setBalance(player, new BigDecimal(1000));
     }
 
     public boolean userBalanceExists(Player player) {
@@ -21,6 +23,7 @@ public class EconomyStorage {
 
         try {
             jedis = ClymeSkyblockCore.getInstance().getJedisPool().getResource();
+            jedis.auth(ClymeSkyblockCore.getInstance().getDataManager().getDatabaseFileCfg().getString("redis.password"));
             pipeline = jedis.pipelined();
             Response<Boolean> pipelineResponse = pipeline.exists("balance." + uuid);
             pipeline.sync();
@@ -32,20 +35,21 @@ public class EconomyStorage {
         return result;
     }
 
-    public double getBalance(Player player) {
-        if(!userBalanceExists(player)) return -1;
+    public BigDecimal getBalance(Player player) {
+        if(!userBalanceExists(player)) return null;
 
         Jedis jedis = null;
         Pipeline pipeline;
         String uuid = player.getUniqueId().toString();
-        double result;
+        BigDecimal result;
 
         try {
             jedis = ClymeSkyblockCore.getInstance().getJedisPool().getResource();
+            jedis.auth(ClymeSkyblockCore.getInstance().getDataManager().getDatabaseFileCfg().getString("redis.password"));
             pipeline = jedis.pipelined();
             Response<String> pipelineResponse = pipeline.get("balance." + uuid);
             pipeline.sync();
-            result = Double.parseDouble(pipelineResponse.get());
+            result = new BigDecimal(pipelineResponse.get());
         } finally {
             jedis.close();
         }
@@ -53,13 +57,14 @@ public class EconomyStorage {
         return result;
     }
 
-    public void setBalance(Player player, double balance) {
+    public void setBalance(Player player, BigDecimal balance) {
         Jedis jedis = null;
         Pipeline pipeline;
         String uuid = player.getUniqueId().toString();
 
         try {
             jedis = ClymeSkyblockCore.getInstance().getJedisPool().getResource();
+            jedis.auth(ClymeSkyblockCore.getInstance().getDataManager().getDatabaseFileCfg().getString("redis.password"));
             pipeline = jedis.pipelined();
             pipeline.set("balance." + uuid, String.valueOf(balance));
             pipeline.sync();

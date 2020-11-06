@@ -2,6 +2,7 @@ solutions\misi\clymeskyblockcore\events\AsyncPlayerChatListener.class
 solutions\misi\clymeskyblockcore\events\PlayerJoinListener.class
 solutions\misi\clymeskyblockcore\data\vault\economy\ClymeEconomy.class
 solutions\misi\clymeskyblockcore\events\PlayerMoveListener.class
+solutions\misi\clymeskyblockcore\islands\events\IslandDisbandListener.class
 solutions\misi\clymeskyblockcore\commands\Aliases.class
 solutions\misi\clymeskyblockcore\commands\PlaytimeCommand.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelDurationGUI.class
@@ -10,6 +11,8 @@ solutions\misi\clymeskyblockcore\security\CommandHandler.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandGUI.class
 solutions\misi\clymeskyblockcore\islands\events\IslandUpgradeListener.class
 solutions\misi\clymeskyblockcore\utils\ClymeMessage.class
+solutions\misi\clymeskyblockcore\gui\shop\MinionShopGUI.class
+solutions\misi\clymeskyblockcore\utils\SkullCreator.class
 solutions\misi\clymeskyblockcore\islands\settings\flags\events\CreatureSpawnFlagListener.class
 solutions\misi\clymeskyblockcore\islands\events\IslandCreateListener.class
 solutions\misi\clymeskyblockcore\data\vault\economy\EconomyStorage.class
@@ -24,6 +27,7 @@ solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelPlayerGUI.class
 solutions\misi\clymeskyblockcore\player\PlayersHandler.class
 solutions\misi\clymeskyblockcore\ClymeSkyblockCore.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelGUI.class
+solutions\misi\clymeskyblockcore\commands\MinionsCommand.class
 solutions\misi\clymeskyblockcore\security\Screenshare.class
 solutions\misi\clymeskyblockcore\utils\ClymeChatColor.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\SpawnerValuesGUI.class

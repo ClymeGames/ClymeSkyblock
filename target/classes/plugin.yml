@@ -7,6 +7,9 @@ main: solutions.misi.clymeskyblockcore.ClymeSkyblockCore
 depend:
   - SuperiorSkyblock2
   - WorldGuard
+  - UltraMinions
+loadbefore:
+  - TAB
 
 commands:
   spawn:
@@ -20,3 +23,6 @@ commands:
   staffpanel:
     description: Opens the Staffpanel
     aliases: [sp, adminpanel, ap, helperpanel, modmenu, modpanel, adminmenu, staffmenu]
+  minions:
+    description: Opens the Minions Shop
+    aliases: [minion]

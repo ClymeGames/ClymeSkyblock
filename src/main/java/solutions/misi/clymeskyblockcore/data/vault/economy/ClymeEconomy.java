@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class ClymeEconomy implements Economy {
@@ -67,97 +68,97 @@ public class ClymeEconomy implements Economy {
 
     @Override
     public double getBalance(String s) {
-        return ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s));
+        return ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s)).doubleValue();
     }
 
     @Override
     public double getBalance(OfflinePlayer offlinePlayer) {
-        return ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(offlinePlayer.getUniqueId()));
+        return ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(offlinePlayer.getUniqueId())).doubleValue();
     }
 
     @Override
     public double getBalance(String s, String s1) {
-        return ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s));
+        return ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s)).doubleValue();
     }
 
     @Override
     public double getBalance(OfflinePlayer offlinePlayer, String s) {
-        return ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(offlinePlayer.getUniqueId()));
+        return ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(offlinePlayer.getUniqueId())).doubleValue();
     }
 
     @Override
     public boolean has(String s, double v) {
-        return ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s)) >= v;
+        return ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s)).doubleValue() >= v;
     }
 
     @Override
     public boolean has(OfflinePlayer offlinePlayer, double v) {
-        return ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(offlinePlayer.getUniqueId())) >= v;
+        return ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(offlinePlayer.getUniqueId())).doubleValue() >= v;
     }
 
     @Override
     public boolean has(String s, String s1, double v) {
-        return ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s)) >= v;
+        return ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s)).doubleValue() >= v;
     }
 
     @Override
     public boolean has(OfflinePlayer offlinePlayer, String s, double v) {
-        return ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(offlinePlayer.getUniqueId())) >= v;
+        return ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(offlinePlayer.getUniqueId())).doubleValue() >= v;
     }
 
     @Override
     public EconomyResponse withdrawPlayer(String s, double v) {
-        double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s)) - v;
-        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(Bukkit.getPlayer(s), changedBalance);
+        double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s)).doubleValue() - v;
+        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(Bukkit.getPlayer(s), new BigDecimal(changedBalance));
         return new EconomyResponse(v, changedBalance, EconomyResponse.ResponseType.SUCCESS, "");
     }
 
     @Override
     public EconomyResponse withdrawPlayer(OfflinePlayer offlinePlayer, double v) {
-        double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(offlinePlayer.getPlayer()) - v;
-        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(offlinePlayer.getPlayer(), changedBalance);
+        double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(offlinePlayer.getPlayer()).doubleValue() - v;
+        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(offlinePlayer.getPlayer(), new BigDecimal(changedBalance));
         return new EconomyResponse(v, changedBalance, EconomyResponse.ResponseType.SUCCESS, "");
     }
 
     @Override
     public EconomyResponse withdrawPlayer(String s, String s1, double v) {
-        double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s)) - v;
-        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(Bukkit.getPlayer(s), changedBalance);
+        double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s)).doubleValue() - v;
+        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(Bukkit.getPlayer(s), new BigDecimal(changedBalance));
         return new EconomyResponse(v, changedBalance, EconomyResponse.ResponseType.SUCCESS, "");
     }
 
     @Override
     public EconomyResponse withdrawPlayer(OfflinePlayer offlinePlayer, String s, double v) {
-        double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(offlinePlayer.getPlayer()) - v;
-        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(offlinePlayer.getPlayer(), changedBalance);
+        double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(offlinePlayer.getPlayer()).doubleValue() - v;
+        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(offlinePlayer.getPlayer(), new BigDecimal(changedBalance));
         return new EconomyResponse(v, changedBalance, EconomyResponse.ResponseType.SUCCESS, "");
     }
 
     @Override
     public EconomyResponse depositPlayer(String s, double v) {
-        double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s)) + v;
-        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(Bukkit.getPlayer(s), changedBalance);
+        double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s)).doubleValue() + v;
+        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(Bukkit.getPlayer(s), new BigDecimal(changedBalance));
         return new EconomyResponse(v, changedBalance, EconomyResponse.ResponseType.SUCCESS, "");
     }
 
     @Override
     public EconomyResponse depositPlayer(OfflinePlayer offlinePlayer, double v) {
-        double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(offlinePlayer.getPlayer()) + v;
-        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(offlinePlayer.getPlayer(), changedBalance);
+        double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(offlinePlayer.getPlayer()).doubleValue() + v;
+        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(offlinePlayer.getPlayer(), new BigDecimal(changedBalance));
         return new EconomyResponse(v, changedBalance, EconomyResponse.ResponseType.SUCCESS, "");
     }
 
     @Override
     public EconomyResponse depositPlayer(String s, String s1, double v) {
-        double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s)) + v;
-        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(Bukkit.getPlayer(s), changedBalance);
+        double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s)).doubleValue() + v;
+        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(Bukkit.getPlayer(s), new BigDecimal(changedBalance));
         return new EconomyResponse(v, changedBalance, EconomyResponse.ResponseType.SUCCESS, "");
     }
 
     @Override
     public EconomyResponse depositPlayer(OfflinePlayer offlinePlayer, String s, double v) {
-        double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(offlinePlayer.getPlayer()) + v;
-        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(offlinePlayer.getPlayer(), changedBalance);
+        double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(offlinePlayer.getPlayer()).doubleValue() + v;
+        ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(offlinePlayer.getPlayer(), new BigDecimal(changedBalance));
         return new EconomyResponse(v, changedBalance, EconomyResponse.ResponseType.SUCCESS, "");
     }
 
