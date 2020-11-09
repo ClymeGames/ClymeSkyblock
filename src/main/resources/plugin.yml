@@ -29,3 +29,6 @@ commands:
   menu:
     description: Opens the Server Menu
     aliases: [help]
+  crate:
+    description: Teleports you to the crates
+    aliases: [crates]

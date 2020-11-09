@@ -182,6 +182,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         MenuCommand menuCommand = new MenuCommand();
         getCommand("menu").setExecutor(menuCommand);
+
+        CrateCommand crateCommand = new CrateCommand();
+        getCommand("crate").setExecutor(crateCommand);
     }
 
     private void setupEconomy() {

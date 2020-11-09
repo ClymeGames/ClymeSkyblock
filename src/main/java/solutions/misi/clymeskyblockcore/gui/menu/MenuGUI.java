@@ -52,7 +52,8 @@ public class MenuGUI implements Listener {
         playerInfoLore.add("§f➢ §7Level: " + player.getLevel());
         playerInfoLore.add("§f➢ §7Ping: " + ping);
         playerInfoLore.add("§f➢ §7Playtime: " + hours + " hours and " + minutes + " minutes");
-        playerInfoLore.add("§f➢ §7Island Level: " + superiorPlayer.getIsland().getIslandLevel());
+        if(superiorPlayer.getIsland() != null)
+            playerInfoLore.add("§f➢ §7Island Level: " + superiorPlayer.getIsland().getIslandLevel());
         playerInfoLore.add(" ");
         playerInfoMeta.setLore(playerInfoLore);
         playerInfo.setItemMeta(playerInfoMeta);
@@ -158,7 +159,7 @@ public class MenuGUI implements Listener {
         richestPlayersLore.add(" ");
         richestPlayersLore.add("§7Look at the current");
         richestPlayersLore.add("§7richest Players on this");
-        richestPlayersLore.add("7server!");
+        richestPlayersLore.add("§7server!");
         richestPlayersLore.add(" ");
         richestPlayersMeta.setLore(richestPlayersLore);
         richestPlayers.setItemMeta(richestPlayersMeta);
@@ -210,6 +211,9 @@ public class MenuGUI implements Listener {
                             break;
                         case "§6Top Players":
                             player.performCommand("bal top");
+                            break;
+                        case "§6Crates":
+                            player.performCommand("crates");
                             break;
                         default:
                             break;
