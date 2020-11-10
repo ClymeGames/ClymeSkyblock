@@ -29,7 +29,7 @@ public class SpawnCommand implements CommandExecutor {
         spawn.setYaw((float) -0.7);
         spawn.setPitch((float) -0.0);
 
-        player.teleport(spawn);
+        player.teleportAsync(spawn);
         player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
         clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the spawn..");
 

@@ -16,6 +16,7 @@ public class PlayersHandler {
 
     //> Player data Cache
     @Getter private final Map<ClymePlayer, Long> playtimeCache = new HashMap<>();
+    @Getter private final Map<ClymePlayer, ClymePlayer> messagingCache = new HashMap<>();
 
     public ClymePlayer getClymePlayer(Player player) {
         for(ClymePlayer clymePlayer : playerList) if(clymePlayer.getPlayer() == player) return clymePlayer;

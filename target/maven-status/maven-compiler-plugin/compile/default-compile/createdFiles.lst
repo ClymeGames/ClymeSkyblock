@@ -12,6 +12,7 @@ solutions\misi\clymeskyblockcore\utils\ClymeMessage.class
 solutions\misi\clymeskyblockcore\utils\SkullCreator.class
 solutions\misi\clymeskyblockcore\islands\settings\flags\events\CreatureSpawnFlagListener.class
 solutions\misi\clymeskyblockcore\islands\settings\flags\Flags.class
+solutions\misi\clymeskyblockcore\commands\FarmingCommand.class
 solutions\misi\clymeskyblockcore\events\ServerListPingListener.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelPlayerGUI.class
 solutions\misi\clymeskyblockcore\ClymeSkyblockCore.class
@@ -39,11 +40,13 @@ solutions\misi\clymeskyblockcore\security\CommandHandler$1.class
 solutions\misi\clymeskyblockcore\events\PlayerCommandPreprocessListener.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelInventoryInspectorGUI.class
 solutions\misi\clymeskyblockcore\player\PlayersHandler.class
+solutions\misi\clymeskyblockcore\commands\ReplyCommand.class
 solutions\misi\clymeskyblockcore\utils\ClymeChatColor.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandSettingsGUI$1.class
 solutions\misi\clymeskyblockcore\player\ClymePlayer.class
 solutions\misi\clymeskyblockcore\events\PlayerToggleFlightListener.class
 solutions\misi\clymeskyblockcore\events\PlayerQuitListener.class
 solutions\misi\clymeskyblockcore\commands\MoneyCommand.class
+solutions\misi\clymeskyblockcore\commands\MessageCommand.class
 solutions\misi\clymeskyblockcore\islands\ClymeIslandManager.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandSettingsGUI.class

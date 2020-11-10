@@ -20,7 +20,7 @@ public class ClymePlayersTable {
                             + "playtime BIGINT,"
                             + "first_join TIMESTAMP NULL DEFAULT NULL,"
                             + "last_join TIMESTAMP NULL DEFAULT NULL,"
-                            + "ip VARCHAR(15),"
+                            + "ip VARCHAR(255),"
                             + "banned TIMESTAMP NULL DEFAULT NULL,"
                             + "banReason VARCHAR(255),"
                             + "muted TIMESTAMP NULL DEFAULT NULL)";

@@ -32,3 +32,12 @@ commands:
   crate:
     description: Teleports you to the crates
     aliases: [crates]
+  farming:
+    description: Teleports you to the farming world
+    aliases: [farm, resources, resource, mining, farmworld]
+  message:
+    description: Sends a private messsage to another player
+    aliases: [msg, pm, mail]
+  reply:
+    description: Replies to the players you messaged with recently
+    aliases: [r]

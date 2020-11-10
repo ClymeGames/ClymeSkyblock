@@ -14,6 +14,10 @@ public class Aliases implements Listener {
             return;
         }
 
-
+        //> /? => /help
+        if(event.getMessage().startsWith("/?")) {
+            event.setMessage(event.getMessage().replaceFirst("/?", "/help"));
+            return;
+        }
     }
 }

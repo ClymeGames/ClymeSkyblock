@@ -185,6 +185,15 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         CrateCommand crateCommand = new CrateCommand();
         getCommand("crate").setExecutor(crateCommand);
+
+        FarmingCommand farmingCommand = new FarmingCommand();
+        getCommand("farming").setExecutor(farmingCommand);
+
+        MessageCommand messageCommand = new MessageCommand();
+        getCommand("message").setExecutor(messageCommand);
+
+        ReplyCommand replyCommand = new ReplyCommand();
+        getCommand("reply").setExecutor(replyCommand);
     }
 
     private void setupEconomy() {
