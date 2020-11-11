@@ -1,6 +1,5 @@
 solutions\misi\clymeskyblockcore\events\PlayerJoinListener.class
 solutions\misi\clymeskyblockcore\data\vault\economy\ClymeEconomy.class
-solutions\misi\clymeskyblockcore\player\TeleportHandler.class
 solutions\misi\clymeskyblockcore\events\PlayerMoveListener.class
 solutions\misi\clymeskyblockcore\commands\Aliases.class
 solutions\misi\clymeskyblockcore\commands\PlaytimeCommand.class
@@ -14,6 +13,7 @@ solutions\misi\clymeskyblockcore\commands\teleport\TpacceptCommand.class
 solutions\misi\clymeskyblockcore\utils\SkullCreator.class
 solutions\misi\clymeskyblockcore\commands\message\ReplyCommand.class
 solutions\misi\clymeskyblockcore\islands\settings\flags\events\CreatureSpawnFlagListener.class
+solutions\misi\clymeskyblockcore\gui\HomeGUI.class
 solutions\misi\clymeskyblockcore\islands\settings\flags\Flags.class
 solutions\misi\clymeskyblockcore\commands\teleport\TpaCommand.class
 solutions\misi\clymeskyblockcore\events\ServerListPingListener.class
@@ -24,7 +24,9 @@ solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelGUI.class
 solutions\misi\clymeskyblockcore\commands\MinionsCommand.class
 solutions\misi\clymeskyblockcore\commands\warps\FarmingCommand.class
 solutions\misi\clymeskyblockcore\security\Screenshare.class
+solutions\misi\clymeskyblockcore\utils\CommandUtil.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\SpawnerValuesGUI.class
+solutions\misi\clymeskyblockcore\commands\HomeCommand.class
 solutions\misi\clymeskyblockcore\utils\TimeUtil.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandMembersGUI.class
 solutions\misi\clymeskyblockcore\data\DataManager.class
@@ -54,4 +56,5 @@ solutions\misi\clymeskyblockcore\events\PlayerToggleFlightListener.class
 solutions\misi\clymeskyblockcore\events\PlayerQuitListener.class
 solutions\misi\clymeskyblockcore\commands\MoneyCommand.class
 solutions\misi\clymeskyblockcore\islands\ClymeIslandManager.class
+solutions\misi\clymeskyblockcore\data\mysql\ClymeHomesTable.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandSettingsGUI.class

@@ -56,8 +56,8 @@ public class ClymePlayersTable {
                 insertOrUpdate.setTimestamp(4, joined);
                 insertOrUpdate.setTimestamp(5, joined);
                 insertOrUpdate.setString(6, ip);
-                insertOrUpdate.setTimestamp(7, joined);
-                insertOrUpdate.setInt(8, maxHomes);
+                insertOrUpdate.setInt(7, maxHomes);
+                insertOrUpdate.setTimestamp(8, joined);
                 insertOrUpdate.executeUpdate();
             } catch(SQLException exception) {
                 exception.printStackTrace();
@@ -94,8 +94,8 @@ public class ClymePlayersTable {
                     PreparedStatement update = connection.prepareStatement("UPDATE clymePlayers SET playtime = ?, ip = ?, maxHomes = ? WHERE uuid = ?")) {
                 update.setLong(1, clymePlayer.getPlaytime());
                 update.setString(2, clymePlayer.getIp());
-                update.setString(3, clymePlayer.getUuid().toString());
-                update.setInt(4, clymePlayer.getMaxHomes());
+                update.setInt(3, clymePlayer.getMaxHomes());
+                update.setString(4, clymePlayer.getUuid().toString());
                 update.executeUpdate();
             } catch(SQLException exception) {
                 exception.printStackTrace();

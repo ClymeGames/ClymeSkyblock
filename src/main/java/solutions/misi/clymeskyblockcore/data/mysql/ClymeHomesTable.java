@@ -65,7 +65,6 @@ public class ClymeHomesTable {
 
     public void deleteHome(Player player, String name) {
         String uuid = player.getUniqueId().toString();
-
         String sql = "DELETE FROM clymeHomes WHERE uuid = ? AND name = ?";
 
         Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
@@ -115,33 +114,11 @@ public class ClymeHomesTable {
     }
 
     public void saveClymePlayerData(ClymePlayer clymePlayer) {
-        Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
-            Map<Location, String> playerHomes = clymePlayer.getHomes();
-            Map<Location, String> oldPlayerHomes = getPlayerHomes(clymePlayer.getPlayer());
+        Map<Location, String> playerHomes = clymePlayer.getHomes();
+        Map<Location, String> oldPlayerHomes = getPlayerHomes(clymePlayer.getPlayer());
 
-            boolean updatedPlayerHomes = false;
-            for(Map.Entry<Location, String> entry : playerHomes.entrySet()) {
-                if(!oldPlayerHomes.containsKey(entry.getKey())) {
-                    updatedPlayerHomes = true;
-                    break;
-                }
-
-                if(oldPlayerHomes.get(entry.getKey()).equals(entry.getValue())) {
-                    updatedPlayerHomes = true;
-                    break;
-                }
-            }
-
-            //> Delete current homes & add updated ones
-            if(updatedPlayerHomes) {
-                for(String home : oldPlayerHomes.values()) {
-                    deleteHome(clymePlayer.getPlayer(), home);
-                }
-
-                for(Map.Entry<Location, String> entry : playerHomes.entrySet()) {
-                    setHome(clymePlayer.getPlayer(), entry.getKey(), entry.getValue());
-                }
-            }
-        });
+        //> Update homes to database
+        for(String home : oldPlayerHomes.values()) deleteHome(clymePlayer.getPlayer(), home);
+        for(Map.Entry<Location, String> entry : playerHomes.entrySet()) setHome(clymePlayer.getPlayer(), entry.getKey(), entry.getValue());
     }
 }

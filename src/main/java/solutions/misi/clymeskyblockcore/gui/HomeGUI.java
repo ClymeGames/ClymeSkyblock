@@ -1,9 +1,6 @@
 package solutions.misi.clymeskyblockcore.gui;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -53,7 +50,7 @@ public class HomeGUI implements Listener {
             if(playerHomes.size() > i) {
                 home.setType(Material.ORANGE_BED);
                 ItemMeta homeMeta = home.getItemMeta();
-                homeMeta.setDisplayName(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.ACCENT() + "§l" + clymePlayer.getHomes().get(playerHomes.get(0))));
+                homeMeta.setDisplayName(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.ACCENT() + "§l" + clymePlayer.getHomes().get(playerHomes.get(i))));
                 List<String> homeMetaLore = new ArrayList<>();
                 homeMetaLore.add(" ");
                 homeMetaLore.add("§f➢ §7World: " + playerHomes.get(i).getWorld().getName());
@@ -75,8 +72,8 @@ public class HomeGUI implements Listener {
         for(int i = 10; i < gui.getSize(); i++) {
             if(i == 17 || i == 18 || i > 25) continue;
             if(playerHomeItems.isEmpty()) break;
-            gui.setItem(i, playerHomeItems.get(i));
-            playerHomeItems.remove(i);
+            gui.setItem(i, playerHomeItems.get(0));
+            playerHomeItems.remove(0);
         }
 
         player.openInventory(gui);
@@ -91,7 +88,6 @@ public class HomeGUI implements Listener {
                 event.setCancelled(true);
 
                 if(event.getCurrentItem().getType() != Material.BLACK_STAINED_GLASS_PANE) player.closeInventory();
-                player.closeInventory();
 
                 ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
 
@@ -115,9 +111,12 @@ public class HomeGUI implements Listener {
                 }
 
                 //> Teleport to home
-                Location home = ClymeSkyblockCore.getInstance().getPlayersHandler().getPlayerHomeFromName(clymePlayer, ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
-                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to " + ClymeChatColor.SECONDARY() + ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName())  + ClymeChatColor.SUCCESS() + " ..");
-                player.teleportAsync(home);
+                if(event.getCurrentItem().getType() != Material.BLACK_STAINED_GLASS_PANE) {
+                    Location home = ClymeSkyblockCore.getInstance().getPlayersHandler().getPlayerHomeFromName(clymePlayer, ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to " + ClymeChatColor.SECONDARY() + ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName())  + ClymeChatColor.SUCCESS() + "..");
+                    player.teleportAsync(home);
+                    player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
+                }
             }
         } catch(NullPointerException ex) {}
     }
@@ -129,19 +128,25 @@ public class HomeGUI implements Listener {
         String homeName = event.getMessage();
 
         //> Create player home
-        if(ClymeSkyblockCore.getInstance().getCommandUtil().getHomeCreation().containsKey(clymePlayer)) return;
+        if(!ClymeSkyblockCore.getInstance().getCommandUtil().getHomeCreation().containsKey(clymePlayer)) return;
+        event.setCancelled(true);
 
         if(clymePlayer.getHomes().containsValue(homeName)) {
-            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "You already have a home called " + ClymeChatColor.SECONDARY() + homeName);
-            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Please try something else or use " + ClymeChatColor.SECONDARY() + "EXIT" + ClymeChatColor.INFO() + " to cancel!");
-            return;
+            if(!homeName.equals(ChatColor.stripColor(ClymeSkyblockCore.getInstance().getCommandUtil().getHomeCreation().get(clymePlayer)))) {
+                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "You already have a home called " + ClymeChatColor.SECONDARY() + homeName);
+                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Please try something else or use " + ClymeChatColor.SECONDARY() + "EXIT" + ClymeChatColor.INFO() + " to cancel!");
+                return;
+            }
         }
 
         Map<Location, String> playerHomes = clymePlayer.getHomes();
 
         if(ClymeSkyblockCore.getInstance().getCommandUtil().getHomeCreation().get(clymePlayer) != null) {
-            for(Map.Entry<Location, String> entry : clymePlayer.getHomes().entrySet())
-                if(entry.getKey().equals(ClymeSkyblockCore.getInstance().getCommandUtil().getHomeCreation().get(clymePlayer))) { playerHomes.remove(entry.getKey()); break; }
+            for(Map.Entry<Location, String> entry : clymePlayer.getHomes().entrySet()) {
+                if(entry.getValue().equals(ChatColor.stripColor(ClymeSkyblockCore.getInstance().getCommandUtil().getHomeCreation().get(clymePlayer)))) {
+                    playerHomes.remove(entry.getKey()); break;
+                }
+            }
         }
 
         playerHomes.put(player.getLocation(), homeName);
