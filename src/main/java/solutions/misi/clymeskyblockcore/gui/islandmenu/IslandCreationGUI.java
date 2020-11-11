@@ -125,16 +125,16 @@ public class IslandCreationGUI implements Listener {
                 } else {
                     switch(event.getCurrentItem().getItemMeta().getDisplayName()) {
                         case "§aBasic Island":
-                            player.performCommand("is create " + player.getName() + "_Island basic");
+                            player.performCommand("is create basic");
                             break;
                         case "§aJungle Island":
-                            player.performCommand("is create " + player.getName() + "_Island jungle");
+                            player.performCommand("is create jungle");
                             break;
                         case "§aSnowy Mountains Island":
-                            player.performCommand("is create " + player.getName() + "_Island snowymountains");
+                            player.performCommand("is create snowymountains");
                             break;
                         case "§aStone Gaze Island":
-                            player.performCommand("is create " + player.getName() + "_Island stonegaze");
+                            player.performCommand("is create stonegaze");
                             break;
                     }
                 }

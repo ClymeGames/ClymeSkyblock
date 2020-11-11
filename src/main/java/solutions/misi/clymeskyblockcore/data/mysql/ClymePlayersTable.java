@@ -23,7 +23,8 @@ public class ClymePlayersTable {
                             + "ip VARCHAR(255),"
                             + "banned TIMESTAMP NULL DEFAULT NULL,"
                             + "banReason VARCHAR(255),"
-                            + "muted TIMESTAMP NULL DEFAULT NULL)";
+                            + "muted TIMESTAMP NULL DEFAULT NULL,"
+                            + "maxHomes INT)";
 
         try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
                 PreparedStatement createTable = connection.prepareStatement(sql)) {
@@ -42,8 +43,9 @@ public class ClymePlayersTable {
         Date currentDate = calendar.getTime();
         long currentTime = currentDate.getTime();
         Timestamp joined = new Timestamp(currentTime);
+        int maxHomes = 3;
 
-        String sql = "INSERT INTO clymePlayers (uuid, username, playtime, first_join, last_join, ip) VALUES (?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE last_join = ?";
+        String sql = "INSERT INTO clymePlayers (uuid, username, playtime, first_join, last_join, ip, maxHomes) VALUES (?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE last_join = ?";
 
         Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
             try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
@@ -55,6 +57,7 @@ public class ClymePlayersTable {
                 insertOrUpdate.setTimestamp(5, joined);
                 insertOrUpdate.setString(6, ip);
                 insertOrUpdate.setTimestamp(7, joined);
+                insertOrUpdate.setInt(8, maxHomes);
                 insertOrUpdate.executeUpdate();
             } catch(SQLException exception) {
                 exception.printStackTrace();
@@ -75,6 +78,7 @@ public class ClymePlayersTable {
                     clymePlayer.setBanned(resultSet.getTimestamp("banned"));
                     clymePlayer.setBanReason(resultSet.getString("banReason"));
                     clymePlayer.setMuted(resultSet.getTimestamp("muted"));
+                    clymePlayer.setMaxHomes(resultSet.getInt("maxHomes"));
                     clymePlayer.checkBanStatus();
                 }
                 resultSet.close();
@@ -87,10 +91,11 @@ public class ClymePlayersTable {
     public void saveClymePlayerData(ClymePlayer clymePlayer) {
         Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
             try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
-                    PreparedStatement update = connection.prepareStatement("UPDATE clymePlayers SET playtime = ?, ip = ? WHERE uuid = ?")) {
+                    PreparedStatement update = connection.prepareStatement("UPDATE clymePlayers SET playtime = ?, ip = ?, maxHomes = ? WHERE uuid = ?")) {
                 update.setLong(1, clymePlayer.getPlaytime());
                 update.setString(2, clymePlayer.getIp());
                 update.setString(3, clymePlayer.getUuid().toString());
+                update.setInt(4, clymePlayer.getMaxHomes());
                 update.executeUpdate();
             } catch(SQLException exception) {
                 exception.printStackTrace();

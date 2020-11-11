@@ -41,3 +41,15 @@ commands:
   reply:
     description: Replies to the players you messaged with recently
     aliases: [r]
+  tpa:
+    description: Sends a teleport request to a player
+  tpaccept:
+    description: Accepts a teleport request
+    aliases: [tpaaccept]
+  tpdeny:
+    description: Denies a teleport request
+  tpahere:
+    description: Sends a request to teleport a player to you
+  home:
+    description: Opens the Home Menu
+    aliases: [sethome, homes]

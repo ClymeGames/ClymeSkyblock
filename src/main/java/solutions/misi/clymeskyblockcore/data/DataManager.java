@@ -8,6 +8,7 @@ import redis.clients.jedis.BinaryShardedJedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
+import solutions.misi.clymeskyblockcore.data.mysql.ClymeHomesTable;
 import solutions.misi.clymeskyblockcore.data.mysql.ClymePlayersTable;
 import solutions.misi.clymeskyblockcore.data.vault.economy.EconomyStorage;
 
@@ -20,6 +21,7 @@ public class DataManager {
 
     //> Tables
     @Getter private ClymePlayersTable clymePlayersTable;
+    @Getter private ClymeHomesTable clymeHomesTable;
     @Getter private EconomyStorage economyStorage;
 
     public DataManager() {
@@ -49,6 +51,7 @@ public class DataManager {
 
         //> Create tables
         clymePlayersTable = new ClymePlayersTable();
+        clymeHomesTable = new ClymeHomesTable();
         economyStorage = new EconomyStorage();
     }
 

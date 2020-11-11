@@ -1,4 +1,4 @@
-package solutions.misi.clymeskyblockcore.commands;
+package solutions.misi.clymeskyblockcore.commands.message;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

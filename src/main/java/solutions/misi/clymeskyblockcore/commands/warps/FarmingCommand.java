@@ -1,4 +1,4 @@
-package solutions.misi.clymeskyblockcore.commands;
+package solutions.misi.clymeskyblockcore.commands.warps;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -11,9 +11,9 @@ import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
 
-public class SpawnCommand implements CommandExecutor {
+public class FarmingCommand implements CommandExecutor {
 
-    //> Usage: /spawn
+    //> Usage: /farming
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -25,13 +25,13 @@ public class SpawnCommand implements CommandExecutor {
 
         Player player = (Player) sender;
         ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
-        Location spawn = new Location(Bukkit.getWorld("world"), 75.432, 175.0, 102.524);
-        spawn.setYaw((float) -0.7);
-        spawn.setPitch((float) -0.0);
+        Location farming = new Location(Bukkit.getWorld("farming"), -13.316, 130.0, -97.686);
+        farming.setYaw((float) 171.7);
+        farming.setPitch((float) 4.4);
 
-        player.teleportAsync(spawn);
+        player.teleportAsync(farming);
         player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
-        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the spawn..");
+        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the farming world..");
 
         return true;
     }

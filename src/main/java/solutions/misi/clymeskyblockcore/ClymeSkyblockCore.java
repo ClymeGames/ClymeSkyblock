@@ -15,9 +15,19 @@ import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 import redis.clients.jedis.JedisPool;
 import solutions.misi.clymeskyblockcore.commands.*;
+import solutions.misi.clymeskyblockcore.commands.message.MessageCommand;
+import solutions.misi.clymeskyblockcore.commands.message.ReplyCommand;
+import solutions.misi.clymeskyblockcore.commands.teleport.TpaCommand;
+import solutions.misi.clymeskyblockcore.commands.teleport.TpacceptCommand;
+import solutions.misi.clymeskyblockcore.commands.teleport.TpahereCommand;
+import solutions.misi.clymeskyblockcore.commands.teleport.TpdenyCommand;
+import solutions.misi.clymeskyblockcore.commands.warps.CrateCommand;
+import solutions.misi.clymeskyblockcore.commands.warps.FarmingCommand;
+import solutions.misi.clymeskyblockcore.commands.warps.SpawnCommand;
 import solutions.misi.clymeskyblockcore.data.DataManager;
 import solutions.misi.clymeskyblockcore.data.vault.economy.ClymeEconomy;
 import solutions.misi.clymeskyblockcore.events.*;
+import solutions.misi.clymeskyblockcore.gui.HomeGUI;
 import solutions.misi.clymeskyblockcore.gui.islandmenu.*;
 import solutions.misi.clymeskyblockcore.gui.menu.MenuGUI;
 import solutions.misi.clymeskyblockcore.gui.shop.MinionShopGUI;
@@ -36,6 +46,7 @@ import solutions.misi.clymeskyblockcore.player.PlayersHandler;
 import solutions.misi.clymeskyblockcore.security.CommandHandler;
 import solutions.misi.clymeskyblockcore.security.Screenshare;
 import solutions.misi.clymeskyblockcore.utils.ClymeMessage;
+import solutions.misi.clymeskyblockcore.utils.CommandUtil;
 import solutions.misi.clymeskyblockcore.utils.TimeUtil;
 
 public class ClymeSkyblockCore extends JavaPlugin {
@@ -54,6 +65,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private PlayersHandler playersHandler;
     @Getter private TimeUtil timeUtil;
     @Getter private Screenshare screenshare;
+    @Getter private CommandUtil commandUtil;
 
     @Getter private IslandGUI islandGUI;
     @Getter private SpawnerValuesGUI spawnerValuesGUI;
@@ -66,6 +78,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private StaffpanelInventoryInspectorGUI staffpanelInventoryInspectorGUI;
     @Getter private MinionShopGUI minionShopGUI;
     @Getter private MenuGUI menuGUI;
+    @Getter private HomeGUI homeGUI;
 
     @Getter private Economy economy;
     @Getter private Permission permission;
@@ -106,6 +119,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         playersHandler = new PlayersHandler();
         timeUtil = new TimeUtil();
         screenshare = new Screenshare();
+        commandUtil = new CommandUtil();
 
         islandGUI = new IslandGUI();
         spawnerValuesGUI = new SpawnerValuesGUI();
@@ -118,6 +132,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         staffpanelInventoryInspectorGUI = new StaffpanelInventoryInspectorGUI();
         minionShopGUI = new MinionShopGUI();
         menuGUI = new MenuGUI();
+        homeGUI = new HomeGUI();
     }
 
     private void registerEvents() {
@@ -148,6 +163,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new StaffpanelInventoryInspectorGUI(), this);
         Bukkit.getPluginManager().registerEvents(new MinionShopGUI(), this);
         Bukkit.getPluginManager().registerEvents(new MenuGUI(), this);
+        Bukkit.getPluginManager().registerEvents(new HomeGUI(), this);
     }
 
     private void registerFlags() {
@@ -194,6 +210,21 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         ReplyCommand replyCommand = new ReplyCommand();
         getCommand("reply").setExecutor(replyCommand);
+
+        TpaCommand tpaCommand = new TpaCommand();
+        getCommand("tpa").setExecutor(tpaCommand);
+
+        TpacceptCommand tpacceptCommand = new TpacceptCommand();
+        getCommand("tpaccept").setExecutor(tpacceptCommand);
+
+        TpdenyCommand tpdenyCommand = new TpdenyCommand();
+        getCommand("tpdeny").setExecutor(tpdenyCommand);
+
+        TpahereCommand tpahereCommand = new TpahereCommand();
+        getCommand("tpahere").setExecutor(tpahereCommand);
+
+        HomeCommand homeCommand = new HomeCommand();
+        getCommand("home").setExecutor(homeCommand);
     }
 
     private void setupEconomy() {
