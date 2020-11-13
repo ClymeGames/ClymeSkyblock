@@ -2,6 +2,7 @@ package solutions.misi.clymeskyblockcore.events;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -39,5 +40,8 @@ public class PlayerJoinListener implements Listener {
         player.teleport(new Location(Bukkit.getWorld("world"), 75.432, 175.0, 102.524));
         player.setFlying(false);
         player.removePotionEffect(PotionEffectType.BLINDNESS);
+
+        //> Disable PvP Cooldown
+        player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(100);
     }
 }

@@ -17,12 +17,15 @@ import redis.clients.jedis.JedisPool;
 import solutions.misi.clymeskyblockcore.commands.*;
 import solutions.misi.clymeskyblockcore.commands.message.MessageCommand;
 import solutions.misi.clymeskyblockcore.commands.message.ReplyCommand;
+import solutions.misi.clymeskyblockcore.commands.staff.GamemodeCommand;
+import solutions.misi.clymeskyblockcore.commands.staff.StaffpanelCommand;
 import solutions.misi.clymeskyblockcore.commands.teleport.TpaCommand;
 import solutions.misi.clymeskyblockcore.commands.teleport.TpacceptCommand;
 import solutions.misi.clymeskyblockcore.commands.teleport.TpahereCommand;
 import solutions.misi.clymeskyblockcore.commands.teleport.TpdenyCommand;
 import solutions.misi.clymeskyblockcore.commands.warps.CrateCommand;
 import solutions.misi.clymeskyblockcore.commands.warps.FarmingCommand;
+import solutions.misi.clymeskyblockcore.commands.warps.PvPCommand;
 import solutions.misi.clymeskyblockcore.commands.warps.SpawnCommand;
 import solutions.misi.clymeskyblockcore.data.DataManager;
 import solutions.misi.clymeskyblockcore.data.vault.economy.ClymeEconomy;
@@ -149,6 +152,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new AsyncPlayerChatListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerMoveListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerToggleFlightListener(), this);
+        Bukkit.getPluginManager().registerEvents(new EntityDamageByEntityListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerTeleportListener(), this);
     }
 
     private void registerGUIs() {
@@ -225,6 +230,12 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         HomeCommand homeCommand = new HomeCommand();
         getCommand("home").setExecutor(homeCommand);
+
+        GamemodeCommand gamemodeCommand = new GamemodeCommand();
+        getCommand("gamemode").setExecutor(gamemodeCommand);
+
+        PvPCommand pvpCommand = new PvPCommand();
+        getCommand("pvp").setExecutor(pvpCommand);
     }
 
     private void setupEconomy() {

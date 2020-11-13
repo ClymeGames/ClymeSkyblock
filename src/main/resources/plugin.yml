@@ -53,3 +53,9 @@ commands:
   home:
     description: Opens the Home Menu
     aliases: [sethome, homes]
+  gamemode:
+    description: Changes your or someones current gamemode
+    aliases: [gm]
+  pvp:
+    description: Teleports you to the pvp arena
+    aliases: [fight, pvparena, battle]

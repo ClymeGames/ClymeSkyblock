@@ -1,4 +1,4 @@
-package solutions.misi.clymeskyblockcore.commands;
+package solutions.misi.clymeskyblockcore.commands.staff;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -39,7 +39,6 @@ public class StaffpanelCommand implements CommandExecutor {
                 ClymeSkyblockCore.getInstance().getStaffpanelGUI().open(player);
                 return true;
             default:
-                clymePlayer.sendMessage(playerRank);
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getNoPermission());
                 return false;
         }

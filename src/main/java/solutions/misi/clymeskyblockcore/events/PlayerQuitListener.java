@@ -1,6 +1,7 @@
 package solutions.misi.clymeskyblockcore.events;
 
 import org.bukkit.Bukkit;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,5 +25,8 @@ public class PlayerQuitListener implements Listener {
 
         if(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getScreensharing().contains(player))
             ClymeSkyblockCore.getInstance().getScreenshare().banPlayer(Bukkit.getOfflinePlayer(player.getUniqueId()));
+
+        if (player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).getBaseValue() != 4.0D)
+            player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(4.0D);
     }
 }
