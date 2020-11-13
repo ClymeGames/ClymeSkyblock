@@ -59,3 +59,12 @@ commands:
   pvp:
     description: Teleports you to the pvp arena
     aliases: [fight, pvparena, battle]
+  day:
+    description: Sets the time to day
+  night:
+    descriptioN: Sets the time to night
+  sun:
+    description: Sets the weather to sunny
+  rain:
+    description: Sets the weather to raining
+    aliases: [storm]

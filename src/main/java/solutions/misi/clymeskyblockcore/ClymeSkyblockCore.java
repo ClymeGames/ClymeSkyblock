@@ -17,8 +17,7 @@ import redis.clients.jedis.JedisPool;
 import solutions.misi.clymeskyblockcore.commands.*;
 import solutions.misi.clymeskyblockcore.commands.message.MessageCommand;
 import solutions.misi.clymeskyblockcore.commands.message.ReplyCommand;
-import solutions.misi.clymeskyblockcore.commands.staff.GamemodeCommand;
-import solutions.misi.clymeskyblockcore.commands.staff.StaffpanelCommand;
+import solutions.misi.clymeskyblockcore.commands.staff.*;
 import solutions.misi.clymeskyblockcore.commands.teleport.TpaCommand;
 import solutions.misi.clymeskyblockcore.commands.teleport.TpacceptCommand;
 import solutions.misi.clymeskyblockcore.commands.teleport.TpahereCommand;
@@ -238,6 +237,18 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         PvPCommand pvpCommand = new PvPCommand();
         getCommand("pvp").setExecutor(pvpCommand);
+
+        DayCommand dayCommand = new DayCommand();
+        getCommand("day").setExecutor(dayCommand);
+
+        NightCommand nightCommand = new NightCommand();
+        getCommand("night").setExecutor(nightCommand);
+
+        SunCommand sunCommand = new SunCommand();
+        getCommand("sun").setExecutor(sunCommand);
+
+        RainCommand rainCommand = new RainCommand();
+        getCommand("rain").setExecutor(rainCommand);
     }
 
     private void setupEconomy() {
