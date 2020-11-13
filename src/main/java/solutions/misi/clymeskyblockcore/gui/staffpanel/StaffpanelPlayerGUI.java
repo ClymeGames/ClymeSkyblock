@@ -360,11 +360,13 @@ public class StaffpanelPlayerGUI implements Listener {
                         target.getPlayer().removePotionEffect(PotionEffectType.BLINDNESS);
                         target.getPlayer().teleport(target.getPlayer().getLocation().clone().add(0, -300, 0));
                         target.getPlayer().setFlying(false);
+                        target.getPlayer().setAllowFlight(false);
                         clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Screenshare is done! Thanks for your patience.");
                         clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully stopped screenshare with " + ClymeChatColor.SECONDARY() + targetName + ClymeChatColor.SUCCESS() + "!");
                     } else {
                         ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getScreensharing().add(target.getPlayer());
                         target.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 9999999, 10));
+                        target.getPlayer().setAllowFlight(true);
                         target.getPlayer().setFlying(true);
                         target.getPlayer().teleport(target.getPlayer().getLocation().clone().add(0, 300, 0));
 

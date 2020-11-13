@@ -20,8 +20,7 @@ public class AsyncPlayerChatListener implements Listener {
         String playerChatColor = ClymeSkyblockCore.getInstance().getChat().getPlayerSuffix(player);
         String playerPrefixColor = playerPrefix.substring(3,10);
 
-        String message = event.getMessage();
-        event.setFormat(ClymeSkyblockCore.getInstance().getClymeMessage().format(playerPrefix + " " + player.getName() + playerPrefixColor + " » " + playerChatColor) + message);
+        event.setFormat(ClymeSkyblockCore.getInstance().getClymeMessage().format(playerPrefix + " %s" + playerPrefixColor + " » " + playerChatColor) + "%s");
 
         //> Remove screenshare players from Chat
         for(Player screensharePlayer : ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getScreensharing()) event.getRecipients().remove(screensharePlayer);

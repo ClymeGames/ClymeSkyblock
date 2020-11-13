@@ -29,7 +29,7 @@ public class TpacceptCommand implements CommandExecutor {
             return false;
         }
 
-        if(!ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportCache().containsValue(clymePlayer)) {
+        if(!ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportCache().containsValue(clymePlayer) && !ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportHereCache().containsValue(clymePlayer)) {
             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "There is no tpa request you can accept!");
             return false;
         }
@@ -37,8 +37,8 @@ public class TpacceptCommand implements CommandExecutor {
         ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getCommandUtil().getTarget(clymePlayer);
 
         if(clymeTarget != null) {
-            clymeTarget.getPlayer().teleportAsync(player.getLocation());
-            ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportCache().remove(clymeTarget);
+            player.teleportAsync(clymeTarget.getPlayer().getLocation());
+            ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportHereCache().remove(clymeTarget);
 
             clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SECONDARY() + player.getName() + ClymeChatColor.SUCCESS() + " has accepted your tpa request!");
             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have accepted " + ClymeChatColor.SECONDARY() + clymeTarget.getPlayer().getName() + "'s" + ClymeChatColor.SUCCESS() + " tpa request!");

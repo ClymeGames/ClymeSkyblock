@@ -44,13 +44,13 @@ public class TpahereCommand implements CommandExecutor {
 
         ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target);
 
-        if(ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportCache().containsValue(clymePlayer)) {
+        if(ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportHereCache().containsValue(clymePlayer) || ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportCache().containsValue(clymePlayer)) {
             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + clymeTarget.getPlayer().getName() +  ClymeChatColor.ERROR() + " already received a tpa request!");
             return false;
         }
 
-        ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportCache().put(clymeTarget, clymePlayer);
-        ClymeSkyblockCore.getInstance().getCommandUtil().startExpireScheduler(clymeTarget, clymePlayer);
+        ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportHereCache().put(clymePlayer, clymeTarget);
+        ClymeSkyblockCore.getInstance().getCommandUtil().startExpireScheduler(clymePlayer, clymeTarget);
 
         clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have sent a tpahere request to " + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.SUCCESS() + "!");
         clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SECONDARY() + player.getName() +  ClymeChatColor.INFO() + " has sent a request to teleport to him!");

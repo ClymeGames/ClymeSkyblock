@@ -215,6 +215,9 @@ public class MenuGUI implements Listener {
                         case "§6Crates":
                             player.performCommand("crates");
                             break;
+                        case "§6PvP Arena":
+                            player.performCommand("pvp");
+                            break;
                         default:
                             break;
                     }
