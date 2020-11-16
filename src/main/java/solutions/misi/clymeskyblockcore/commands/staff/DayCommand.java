@@ -37,6 +37,7 @@ public class DayCommand implements CommandExecutor {
             case "owner":
                 player.getWorld().setTime(0);
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have set the time to " + ClymeChatColor.SECONDARY() + "DAY");
+                return true;
             default:
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getNoPermission());
                 return false;

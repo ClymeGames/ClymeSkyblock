@@ -90,14 +90,29 @@ public class MoneyCommand implements CommandExecutor {
                             clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You received " + ClymeChatColor.SECONDARY() + "$" + amount + ClymeChatColor.SUCCESS() + " from " + ClymeChatColor.SECONDARY() + player.getName());
                             break;
                         case "set":
+                            if(!player.hasPermission("clymegames.economy.set")) {
+                                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getNoPermission());
+                                return false;
+                            }
+
                             changedTargetBalance = amount;
                             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "The balance of " + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.SUCCESS() + " has been set to " + ClymeChatColor.SECONDARY() + "$" + changedTargetBalance);
                             break;
                         case "add":
+                            if(!player.hasPermission("clymegames.economy.add")) {
+                                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getNoPermission());
+                                return false;
+                            }
+
                             changedTargetBalance = changedTargetBalance.add(amount);
                             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You added " + ClymeChatColor.SECONDARY() + "$" + amount + ClymeChatColor.SUCCESS() + " to " + ClymeChatColor.SECONDARY() + target.getName());
                             break;
                         case "remove":
+                            if(!player.hasPermission("clymegames.economy.remove")) {
+                                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getNoPermission());
+                                return false;
+                            }
+
                             changedTargetBalance = changedTargetBalance.subtract(amount);
                             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You removed " + ClymeChatColor.SECONDARY() + "$" + changedTargetBalance + ClymeChatColor.SUCCESS() + " from " + ClymeChatColor.SECONDARY() + target.getName());
                             break;

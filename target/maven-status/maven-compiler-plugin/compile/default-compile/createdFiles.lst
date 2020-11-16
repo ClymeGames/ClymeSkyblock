@@ -14,6 +14,7 @@ solutions\misi\clymeskyblockcore\utils\SkullCreator.class
 solutions\misi\clymeskyblockcore\commands\staff\StaffpanelCommand.class
 solutions\misi\clymeskyblockcore\commands\message\ReplyCommand.class
 solutions\misi\clymeskyblockcore\islands\settings\flags\events\CreatureSpawnFlagListener.class
+solutions\misi\clymeskyblockcore\commands\staff\SunCommand.class
 solutions\misi\clymeskyblockcore\gui\HomeGUI.class
 solutions\misi\clymeskyblockcore\commands\warps\PvPCommand.class
 solutions\misi\clymeskyblockcore\islands\settings\flags\Flags.class
@@ -44,11 +45,13 @@ solutions\misi\clymeskyblockcore\islands\events\IslandDisbandListener.class
 solutions\misi\clymeskyblockcore\commands\warps\CrateCommand.class
 solutions\misi\clymeskyblockcore\gui\menu\MenuGUI.class
 solutions\misi\clymeskyblockcore\commands\message\MessageCommand.class
+solutions\misi\clymeskyblockcore\commands\staff\RainCommand.class
 solutions\misi\clymeskyblockcore\gui\shop\MinionShopGUI.class
 solutions\misi\clymeskyblockcore\events\PlayerTeleportListener.class
 solutions\misi\clymeskyblockcore\islands\events\IslandCreateListener.class
 solutions\misi\clymeskyblockcore\data\vault\economy\EconomyStorage.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandCreationGUI.class
+solutions\misi\clymeskyblockcore\commands\staff\DayCommand.class
 solutions\misi\clymeskyblockcore\security\CommandHandler$1.class
 solutions\misi\clymeskyblockcore\events\PlayerCommandPreprocessListener.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelInventoryInspectorGUI.class
@@ -61,6 +64,7 @@ solutions\misi\clymeskyblockcore\events\PlayerToggleFlightListener.class
 solutions\misi\clymeskyblockcore\events\PlayerDeathListener.class
 solutions\misi\clymeskyblockcore\events\PlayerQuitListener.class
 solutions\misi\clymeskyblockcore\commands\MoneyCommand.class
+solutions\misi\clymeskyblockcore\commands\staff\NightCommand.class
 solutions\misi\clymeskyblockcore\islands\ClymeIslandManager.class
 solutions\misi\clymeskyblockcore\data\mysql\ClymeHomesTable.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandSettingsGUI.class

@@ -38,6 +38,7 @@ public class SunCommand implements CommandExecutor {
                 player.getWorld().setStorm(false);
                 player.getWorld().setThundering(false);
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have set the weather to " + ClymeChatColor.SECONDARY() + "SUNNY");
+                return true;
             default:
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getNoPermission());
                 return false;

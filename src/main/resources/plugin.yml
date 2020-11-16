@@ -68,3 +68,5 @@ commands:
   rain:
     description: Sets the weather to raining
     aliases: [storm]
+  clymecrystal:
+    description: Gives you the clyme crystal

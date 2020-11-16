@@ -37,6 +37,7 @@ public class NightCommand implements CommandExecutor {
             case "owner":
                 player.getWorld().setTime(18000);
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have set the time to " + ClymeChatColor.SECONDARY() + "NIGHT");
+                return true;
             default:
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getNoPermission());
                 return false;

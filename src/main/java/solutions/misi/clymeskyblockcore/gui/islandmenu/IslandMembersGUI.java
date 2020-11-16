@@ -66,9 +66,9 @@ public class IslandMembersGUI implements Listener {
             memberSkullLore.add(" ");
             memberSkullLore.add("§7Currently " + onlineStatus + "§7!");
             memberSkullLore.add(" ");
-            memberSkullLore.add("§7Rank ➢ §e" + islandRank);
-            memberSkullLore.add("§7Joined ➢ §e" ); //> TODO: PLAYER JOINED ISLAND DATE
-            memberSkullLore.add("§7Last online ➢ §e"); //> TODO: PLAYER LAST ONLINE
+            memberSkullLore.add("§f➢ §7Rank: " + islandRank);
+            memberSkullLore.add("§f➢ §7Joined: " + ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().getFirstJoin(member.getPlayer()));
+            memberSkullLore.add("§f➢ §7Last online: " + ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().getLastJoin(member.getPlayer()));
             memberSkullLore.add(" ");
             memberSkullLore.add("§7Left-Click to kick member from Island");
             memberSkullLore.add("§7Right-Click to promote member to Island Leader");
@@ -119,12 +119,14 @@ public class IslandMembersGUI implements Listener {
             superiorPlayer.getIsland().kickMember(superiorPlayer);
 
             player.closeInventory();
+            Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), (Runnable) player::closeInventory, 2);
             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§e" + superiorPlayer.getName() + " has been kicked from your Island!");
         } else if(event.getClick() == ClickType.RIGHT) {
             SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
             superiorPlayer.getIsland().transferIsland(superiorPlayer);
 
             player.closeInventory();
+            Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), (Runnable) player::closeInventory, 2);
             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§e" + superiorPlayer.getName() + " has been promoted to Island Leader!");
         }
     }

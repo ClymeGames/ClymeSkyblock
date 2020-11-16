@@ -37,6 +37,7 @@ public class RainCommand implements CommandExecutor {
             case "owner":
                 player.getWorld().setStorm(true);
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have set the weather to " + ClymeChatColor.SECONDARY() + "RAINING");
+                return true;
             default:
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getNoPermission());
                 return false;

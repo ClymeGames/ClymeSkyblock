@@ -249,6 +249,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         RainCommand rainCommand = new RainCommand();
         getCommand("rain").setExecutor(rainCommand);
+
+        ClymeCrystalCommand clymeCrystalCommand = new ClymeCrystalCommand();
+        getCommand("clymecrystal").setExecutor(clymeCrystalCommand);
     }
 
     private void setupEconomy() {

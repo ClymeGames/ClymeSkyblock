@@ -88,6 +88,34 @@ public class ClymePlayersTable {
         });
     }
 
+    public Timestamp getFirstJoin(Player player) {
+        try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
+                PreparedStatement select = connection.prepareStatement("SELECT first_join FROM clymePlayers WHERE uuid = ?")) {
+            select.setString(1, player.getUniqueId().toString());
+            ResultSet resultSet = select.executeQuery();
+            if(resultSet.next()) return resultSet.getTimestamp("first_join");
+            resultSet.close();
+        } catch(SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public Timestamp getLastJoin(Player player) {
+        try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
+             PreparedStatement select = connection.prepareStatement("SELECT last_join FROM clymePlayers WHERE uuid = ?")) {
+            select.setString(1, player.getUniqueId().toString());
+            ResultSet resultSet = select.executeQuery();
+            if(resultSet.next()) return resultSet.getTimestamp("last_join");
+            resultSet.close();
+        } catch(SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return null;
+    }
+
     public void saveClymePlayerData(ClymePlayer clymePlayer) {
         Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
             try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
