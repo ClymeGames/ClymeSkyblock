@@ -22,10 +22,7 @@ import solutions.misi.clymeskyblockcore.commands.teleport.TpaCommand;
 import solutions.misi.clymeskyblockcore.commands.teleport.TpacceptCommand;
 import solutions.misi.clymeskyblockcore.commands.teleport.TpahereCommand;
 import solutions.misi.clymeskyblockcore.commands.teleport.TpdenyCommand;
-import solutions.misi.clymeskyblockcore.commands.warps.CrateCommand;
-import solutions.misi.clymeskyblockcore.commands.warps.FarmingCommand;
-import solutions.misi.clymeskyblockcore.commands.warps.PvPCommand;
-import solutions.misi.clymeskyblockcore.commands.warps.SpawnCommand;
+import solutions.misi.clymeskyblockcore.commands.warps.*;
 import solutions.misi.clymeskyblockcore.data.DataManager;
 import solutions.misi.clymeskyblockcore.data.vault.economy.ClymeEconomy;
 import solutions.misi.clymeskyblockcore.events.*;
@@ -155,6 +152,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerTeleportListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDeathListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerRespawnListener(), this);
+        Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), this);
     }
 
     private void registerGUIs() {
@@ -252,6 +250,12 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         ClymeCrystalCommand clymeCrystalCommand = new ClymeCrystalCommand();
         getCommand("clymecrystal").setExecutor(clymeCrystalCommand);
+
+        CosmeticsCommand cosmeticsCommand = new CosmeticsCommand();
+        getCommand("cosmetics").setExecutor(cosmeticsCommand);
+
+        BaltopCommand baltopCommand = new BaltopCommand();
+        getCommand("baltop").setExecutor(baltopCommand);
     }
 
     private void setupEconomy() {

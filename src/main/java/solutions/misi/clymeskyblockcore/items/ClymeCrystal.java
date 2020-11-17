@@ -22,7 +22,7 @@ public class ClymeCrystal {
         clymeCrystalLore.add("§7or weapon, to give it a unique");
         clymeCrystalLore.add("§7power!");
         clymeCrystalLore.add(" ");
-        clymeCrystalLore.add("§f➢ §6Owner:");
+        clymeCrystalLore.add("§f➢ §6Owner");
         clymeCrystalLore.add("§7" + player.getName());
         clymeCrystalLore.add(" ");
         clymeCrystalMeta.setLore(clymeCrystalLore);

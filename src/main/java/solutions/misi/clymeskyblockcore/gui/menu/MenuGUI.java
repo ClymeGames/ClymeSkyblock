@@ -210,13 +210,28 @@ public class MenuGUI implements Listener {
                             player.performCommand("is top");
                             break;
                         case "§6Top Players":
-                            player.performCommand("bal top");
+                            player.performCommand("baltop");
                             break;
                         case "§6Crates":
                             player.performCommand("crates");
                             break;
                         case "§6PvP Arena":
                             player.performCommand("pvp");
+                            break;
+                        case "§6Shop":
+                            player.performCommand("buy");
+                            break;
+                        case "§6Auctionhouse":
+                            player.performCommand("auctionhouse");
+                            break;
+                        case "§6Cosmetics":
+                            player.performCommand("cosmetics");
+                            break;
+                        case "§6Vote":
+                            player.performCommand("vote");
+                            break;
+                        case "§6Daily Rewards":
+                            player.performCommand("dailybonus");
                             break;
                         default:
                             break;

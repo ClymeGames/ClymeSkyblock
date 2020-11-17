@@ -52,9 +52,12 @@ solutions\misi\clymeskyblockcore\islands\events\IslandCreateListener.class
 solutions\misi\clymeskyblockcore\data\vault\economy\EconomyStorage.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandCreationGUI.class
 solutions\misi\clymeskyblockcore\commands\staff\DayCommand.class
+solutions\misi\clymeskyblockcore\events\InventoryClickListener.class
+solutions\misi\clymeskyblockcore\items\ClymeCrystal.class
 solutions\misi\clymeskyblockcore\security\CommandHandler$1.class
 solutions\misi\clymeskyblockcore\events\PlayerCommandPreprocessListener.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelInventoryInspectorGUI.class
+solutions\misi\clymeskyblockcore\commands\ClymeCrystalCommand.class
 solutions\misi\clymeskyblockcore\player\PlayersHandler.class
 solutions\misi\clymeskyblockcore\utils\ClymeChatColor.class
 solutions\misi\clymeskyblockcore\commands\teleport\TpdenyCommand.class

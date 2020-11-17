@@ -14,6 +14,12 @@ public class Aliases implements Listener {
             return;
         }
 
+        //> /money top => /baltop
+        if(event.getMessage().toLowerCase().startsWith("/money top")) {
+            event.setMessage(event.getMessage().replaceFirst("/money top", "/moneytop"));
+            return;
+        }
+
         //> /? => /help
         if(event.getMessage().startsWith("/?")) {
             event.setMessage(event.getMessage().replaceFirst("/?", "/help"));

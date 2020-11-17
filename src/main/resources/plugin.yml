@@ -67,6 +67,12 @@ commands:
     description: Sets the weather to sunny
   rain:
     description: Sets the weather to raining
-    aliases: [storm]
+    aliases: [storm, thunder]
   clymecrystal:
     description: Gives you the clyme crystal
+  cosmetics:
+    description: Opens the cosmetics menu
+    aliases: [pc, cosmetic, gadgets, pets, procosmetics]
+  baltop:
+    description: Teleports you to the richest players leaderboard
+    aliases: [moneytop, ecotop, balancetop, economytop]
