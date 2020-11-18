@@ -1,3 +1,4 @@
+solutions\misi\clymeskyblockcore\commands\CosmeticsCommand.class
 solutions\misi\clymeskyblockcore\events\PlayerJoinListener.class
 solutions\misi\clymeskyblockcore\data\vault\economy\ClymeEconomy.class
 solutions\misi\clymeskyblockcore\events\PlayerMoveListener.class
@@ -9,6 +10,7 @@ solutions\misi\clymeskyblockcore\security\CommandHandler.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandGUI.class
 solutions\misi\clymeskyblockcore\islands\events\IslandUpgradeListener.class
 solutions\misi\clymeskyblockcore\utils\ClymeMessage.class
+solutions\misi\clymeskyblockcore\commands\warps\BaltopCommand.class
 solutions\misi\clymeskyblockcore\commands\teleport\TpacceptCommand.class
 solutions\misi\clymeskyblockcore\utils\SkullCreator.class
 solutions\misi\clymeskyblockcore\commands\staff\StaffpanelCommand.class

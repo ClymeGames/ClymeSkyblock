@@ -10,8 +10,10 @@ public class InventoryClickListener implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-        if(!event.getCursor().getItemMeta().getDisplayName().equals(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.PRIMARY() + "§lCLYME CRYSTAL"))) return;
-        event.setCursor(null);
-        event.setCancelled(true);
+        try {
+            if(!event.getCursor().getItemMeta().getDisplayName().equals(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.PRIMARY() + "§lCLYME CRYSTAL"))) return;
+            event.setCursor(null);
+            event.setCancelled(true);
+        } catch(NullPointerException exception) {}
     }
 }

@@ -86,7 +86,7 @@ public class MoneyCommand implements CommandExecutor {
                             }
 
                             ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(player, changedPlayerBalance);
-                            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You paid " + ClymeChatColor.SECONDARY() + "$" + changedTargetBalance + ClymeChatColor.SUCCESS() + " to " + ClymeChatColor.SECONDARY() + target.getName());
+                            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You paid " + ClymeChatColor.SECONDARY() + "$" + amount + ClymeChatColor.SUCCESS() + " to " + ClymeChatColor.SECONDARY() + target.getName());
                             clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You received " + ClymeChatColor.SECONDARY() + "$" + amount + ClymeChatColor.SUCCESS() + " from " + ClymeChatColor.SECONDARY() + player.getName());
                             break;
                         case "set":
@@ -147,7 +147,6 @@ public class MoneyCommand implements CommandExecutor {
                 case 3:
                     //> Usage: /money set|add|remove|pay (player) (amount)
                     target = Bukkit.getPlayer(args[1]);
-                    ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target);
 
                     if (target == null || !target.isOnline()) {
                         Bukkit.getConsoleSender().sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + args[1] + ClymeChatColor.ERROR() + " is not online!"));
