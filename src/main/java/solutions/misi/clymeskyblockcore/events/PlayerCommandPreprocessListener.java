@@ -20,6 +20,9 @@ public class PlayerCommandPreprocessListener implements Listener {
         ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
         String cmd = event.getMessage();
 
+        //> Disable commands when screenshare is active
+        if(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getScreensharing().contains(player)) event.setCancelled(true);
+
         //> Island menu Command
         if(cmd.equalsIgnoreCase("/is") || cmd.equalsIgnoreCase("/island")) {
             SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);

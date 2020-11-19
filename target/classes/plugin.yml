@@ -10,6 +10,8 @@ depend:
   - UltraMinions
 loadbefore:
   - TAB
+  - AuctionGUIPlus
+  - DailyBonus
 
 commands:
   spawn:

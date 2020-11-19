@@ -427,7 +427,7 @@ public class StaffpanelPlayerGUI implements Listener {
                         break;
                     }
 
-                    if(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getSendingWarning().containsKey(player)) ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getSendingWarning().put(player, target.getPlayer());
+                    if(!ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getSendingWarning().containsKey(player)) ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getSendingWarning().put(player, target.getPlayer());
                     clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Please enter the reason for warning " + ClymeChatColor.SECONDARY() + targetName);
                     break;
             }

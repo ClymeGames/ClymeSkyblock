@@ -196,11 +196,10 @@ public class StaffpanelDurationGUI implements Listener {
 
         ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
         OfflinePlayer target = Bukkit.getOfflinePlayer(UUID.fromString(tempbanData[0]));
-        String duration = ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getPlayerTempBanning().get(player);
 
         Calendar calendar = Calendar.getInstance();
 
-        switch(duration) {
+        switch(tempbanDuration) {
             case "30 minutes":
                 calendar.add(Calendar.MINUTE, 30);
                 break;
@@ -221,6 +220,9 @@ public class StaffpanelDurationGUI implements Listener {
                 break;
             case "90 days":
                 calendar.add(Calendar.MONTH, 3);
+                break;
+            default:
+                Bukkit.broadcastMessage(tempbanDuration);
                 break;
         }
 

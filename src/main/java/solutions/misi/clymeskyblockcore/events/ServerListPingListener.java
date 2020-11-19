@@ -15,5 +15,6 @@ public class ServerListPingListener implements Listener {
                 ClymeSkyblockCore.getInstance().getClymeMessage().getRawPrefix() + " " + ClymeChatColor.SECONDARY() + "[1.16.4]" + "  " +
                 ClymeChatColor.ACCENT() + "§m§l-----" + ClymeChatColor.PRIMARY() + "§m§l-----§r\n" +
                 "                      " + ClymeChatColor.INFO() + "Skyblock Release!" + "                    "));
+        if (event.getNumPlayers() >= event.getMaxPlayers() - 1) event.setMaxPlayers(event.getMaxPlayers() + 1);
     }
 }
