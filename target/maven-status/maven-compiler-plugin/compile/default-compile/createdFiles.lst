@@ -53,6 +53,7 @@ solutions\misi\clymeskyblockcore\events\PlayerTeleportListener.class
 solutions\misi\clymeskyblockcore\islands\events\IslandCreateListener.class
 solutions\misi\clymeskyblockcore\data\vault\economy\EconomyStorage.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandCreationGUI.class
+solutions\misi\clymeskyblockcore\events\PlayerLoginListener.class
 solutions\misi\clymeskyblockcore\commands\staff\DayCommand.class
 solutions\misi\clymeskyblockcore\events\InventoryClickListener.class
 solutions\misi\clymeskyblockcore\items\ClymeCrystal.class

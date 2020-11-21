@@ -11,10 +11,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
-import solutions.misi.clymeskyblockcore.utils.SkullCreator;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -42,8 +42,9 @@ public class MenuGUI implements Listener {
         } catch(IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException | NoSuchFieldException exception) { exception.printStackTrace(); }
         hours = (clymePlayer.getPlaytime() / 1000) / 60 / 60;
         minutes = (clymePlayer.getPlaytime() / 1000) / 60 % 60;
-        ItemStack playerInfo = SkullCreator.itemFromUrl(player.getUniqueId().toString());
-        ItemMeta playerInfoMeta = playerInfo.getItemMeta();
+        ItemStack playerInfo = new ItemStack(Material.PLAYER_HEAD);
+        SkullMeta playerInfoMeta = (SkullMeta) playerInfo.getItemMeta();
+        playerInfoMeta.setOwningPlayer(Bukkit.getOfflinePlayer(player.getUniqueId()));
         playerInfoMeta.setDisplayName(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeChatColor.ACCENT() + "§l" + player.getName()));
         List<String> playerInfoLore = new ArrayList<>();
         playerInfoLore.add(" ");

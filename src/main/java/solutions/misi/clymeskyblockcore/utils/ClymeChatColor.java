@@ -11,8 +11,6 @@ public class ClymeChatColor {
     public static String INFO() {
         return "#0984e3";
     }
-    public static String ERROR() {
-        return "#d63031";
-    }
+    public static String ERROR() { return "#d63031"; }
 
 }

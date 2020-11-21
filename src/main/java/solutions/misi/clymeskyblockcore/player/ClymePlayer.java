@@ -50,11 +50,11 @@ public class ClymePlayer {
     }
 
     public void sendMessage(String message) {
-        getPlayer().sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(message));
+       getPlayer().sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(message));
     }
 
     public void checkBanStatus() {
-        //> check if clymeplayer is banned
+        //> check if ClymePlayer is banned
         if(getBanned() != null && getBanned().after(getLast_join())) {
             Date today = new Date();
             Date banDate = getBanned();

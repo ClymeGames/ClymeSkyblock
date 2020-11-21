@@ -8,6 +8,7 @@ depend:
   - SuperiorSkyblock2
   - WorldGuard
   - UltraMinions
+  - PlaceholderAPI
 loadbefore:
   - TAB
   - AuctionGUIPlus

@@ -1,5 +1,7 @@
 package solutions.misi.clymeskyblockcore.events;
 
+import me.clip.placeholderapi.PlaceholderAPI;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -19,8 +21,14 @@ public class AsyncPlayerChatListener implements Listener {
         String playerPrefix = ClymeSkyblockCore.getInstance().getChat().getPlayerPrefix(player);
         String playerChatColor = ClymeSkyblockCore.getInstance().getChat().getPlayerSuffix(player);
         String playerPrefixColor = playerPrefix.substring(3,10);
+        String message = "%%deluxetags_tag%% " + playerPrefix + " %s ";
 
-        event.setFormat(ClymeSkyblockCore.getInstance().getClymeMessage().format(playerPrefix + " %s" + playerPrefixColor + " » " + playerChatColor) + "%s");
+        message = PlaceholderAPI.setPlaceholders(player, message);
+        message = message + playerPrefixColor + "» " + playerChatColor;
+        message = ClymeSkyblockCore.getInstance().getClymeMessage().format(message) + "%s";
+        if(player.hasPermission("clymeskyblock.chatcolor")) message = ChatColor.translateAlternateColorCodes('&', message);
+
+        event.setFormat(message);
 
         //> Remove screenshare players from Chat
         for(Player screensharePlayer : ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getScreensharing()) event.getRecipients().remove(screensharePlayer);

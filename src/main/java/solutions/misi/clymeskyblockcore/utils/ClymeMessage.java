@@ -47,7 +47,7 @@ public class ClymeMessage {
     }
 
     public String format(String message) {
-        Matcher matcher = PATTERN.matcher(message);
+       Matcher matcher = PATTERN.matcher(message);
         while(matcher.find()) {
             String color = message.substring(matcher.start(), matcher.end());
             message = message.replace(color, ChatColor.of(color) + "");
