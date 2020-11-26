@@ -256,6 +256,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         BaltopCommand baltopCommand = new BaltopCommand();
         getCommand("baltop").setExecutor(baltopCommand);
+
+        DonationCommand donationCommand = new DonationCommand();
+        getCommand("donation").setExecutor(donationCommand);
     }
 
     private void setupEconomy() {
