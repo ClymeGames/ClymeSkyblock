@@ -21,9 +21,9 @@ public class AsyncPlayerChatListener implements Listener {
         String playerPrefix = ClymeSkyblockCore.getInstance().getChat().getPlayerPrefix(player);
         String playerChatColor = ClymeSkyblockCore.getInstance().getChat().getPlayerSuffix(player);
         String playerPrefixColor = playerPrefix.substring(3,10);
-        String message = "%%deluxetags_tag%% " + playerPrefix + " %s ";
-
-        message = PlaceholderAPI.setPlaceholders(player, message);
+        String deluxeTag = "%deluxetags_tag%";
+        deluxeTag = PlaceholderAPI.setPlaceholders(player, deluxeTag);
+        String message = deluxeTag + " " + playerPrefix + " %s ";
         message = message + playerPrefixColor + "» " + playerChatColor;
         message = ClymeSkyblockCore.getInstance().getClymeMessage().format(message) + "%s";
         if(player.hasPermission("clymeskyblock.chatcolor")) message = ChatColor.translateAlternateColorCodes('&', message);
