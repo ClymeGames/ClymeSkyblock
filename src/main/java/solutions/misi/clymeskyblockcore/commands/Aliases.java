@@ -9,7 +9,7 @@ public class Aliases implements Listener {
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent event) {
         //> /pay => /money pay
-        if(event.getMessage().toLowerCase().startsWith("/pay")) {
+        if(event.getMessage().toLowerCase().startsWith("/pay ")) {
             event.setMessage(event.getMessage().replaceFirst("/pay", "/money pay"));
             return;
         }

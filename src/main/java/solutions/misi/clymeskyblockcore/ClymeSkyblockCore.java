@@ -259,6 +259,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         DonationCommand donationCommand = new DonationCommand();
         getCommand("donation").setExecutor(donationCommand);
+
+        PayoutsCommand payoutsCommand = new PayoutsCommand();
+        getCommand("payouts").setExecutor(payoutsCommand);
     }
 
     private void setupEconomy() {

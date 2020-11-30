@@ -68,6 +68,12 @@
       <artifactId>worldguard-bukkit</artifactId>
       <version>7.0.4-SNAPSHOT</version>
       <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>spigot</artifactId>
+          <groupId>org.spigotmc</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.github.MilkBowl</groupId>

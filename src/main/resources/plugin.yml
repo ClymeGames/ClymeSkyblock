@@ -81,3 +81,6 @@ commands:
     aliases: [moneytop, ecotop, balancetop, economytop]
   donation:
     description: Plays the donation effect to all players
+  payouts:
+    description: Teleports you to the payouts info
+    aliases: [payout]

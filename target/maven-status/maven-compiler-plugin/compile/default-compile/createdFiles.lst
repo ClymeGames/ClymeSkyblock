@@ -24,6 +24,7 @@ solutions\misi\clymeskyblockcore\commands\teleport\TpaCommand.class
 solutions\misi\clymeskyblockcore\events\ServerListPingListener.class
 solutions\misi\clymeskyblockcore\events\PlayerRespawnListener.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelPlayerGUI.class
+solutions\misi\clymeskyblockcore\commands\warps\PayoutsCommand.class
 solutions\misi\clymeskyblockcore\commands\warps\SpawnCommand.class
 solutions\misi\clymeskyblockcore\ClymeSkyblockCore.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelGUI.class
@@ -36,6 +37,7 @@ solutions\misi\clymeskyblockcore\gui\islandmenu\SpawnerValuesGUI.class
 solutions\misi\clymeskyblockcore\commands\HomeCommand.class
 solutions\misi\clymeskyblockcore\utils\TimeUtil.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandMembersGUI.class
+solutions\misi\clymeskyblockcore\commands\staff\DonationCommand.class
 solutions\misi\clymeskyblockcore\data\DataManager.class
 solutions\misi\clymeskyblockcore\data\mysql\ClymePlayersTable.class
 solutions\misi\clymeskyblockcore\events\EntityDamageByEntityListener.class
