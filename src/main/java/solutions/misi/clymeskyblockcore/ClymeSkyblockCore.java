@@ -42,6 +42,7 @@ import solutions.misi.clymeskyblockcore.islands.settings.IslandSettings;
 import solutions.misi.clymeskyblockcore.islands.settings.flags.Flags;
 import solutions.misi.clymeskyblockcore.islands.settings.flags.events.CreatureSpawnFlagListener;
 import solutions.misi.clymeskyblockcore.player.PlayersHandler;
+import solutions.misi.clymeskyblockcore.security.CombatLog;
 import solutions.misi.clymeskyblockcore.security.CommandHandler;
 import solutions.misi.clymeskyblockcore.security.Screenshare;
 import solutions.misi.clymeskyblockcore.utils.ClymeMessage;
@@ -65,6 +66,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private TimeUtil timeUtil;
     @Getter private Screenshare screenshare;
     @Getter private CommandUtil commandUtil;
+    @Getter private CombatLog combatLog;
 
     @Getter private IslandGUI islandGUI;
     @Getter private SpawnerValuesGUI spawnerValuesGUI;

@@ -23,10 +23,16 @@ public class PlayerQuitListener implements Listener {
         ClymeSkyblockCore.getInstance().getDataManager().getClymeHomesTable().saveClymePlayerData(clymePlayer);
         ClymeSkyblockCore.getInstance().getPlayersHandler().removeClymePlayer(clymePlayer);
 
+        //> Screenshare Ban
         if(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getScreensharing().contains(player))
             ClymeSkyblockCore.getInstance().getScreenshare().banPlayer(Bukkit.getOfflinePlayer(player.getUniqueId()));
 
+        //> Attack Speed Base Value
         if (player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).getBaseValue() != 4.0D)
             player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(4.0D);
+
+        //> Combat Log
+        if(ClymeSkyblockCore.getInstance().getCombatLog().getInCombat().containsKey(clymePlayer))
+            player.setHealth(0.0);
     }
 }
