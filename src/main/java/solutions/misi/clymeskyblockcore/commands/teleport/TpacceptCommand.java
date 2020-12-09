@@ -1,5 +1,6 @@
 package solutions.misi.clymeskyblockcore.commands.teleport;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -38,10 +39,15 @@ public class TpacceptCommand implements CommandExecutor {
 
         if(clymeTarget != null) {
             player.teleportAsync(clymeTarget.getPlayer().getLocation());
-            ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportHereCache().remove(clymeTarget);
 
-            clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SECONDARY() + player.getName() + ClymeChatColor.SUCCESS() + " has accepted your tpa request!");
-            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have accepted " + ClymeChatColor.SECONDARY() + clymeTarget.getPlayer().getName() + "'s" + ClymeChatColor.SUCCESS() + " tpa request!");
+            Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> {
+                if(player.getLocation().distance(clymeTarget.getPlayer().getLocation()) < 5) {
+                    ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportHereCache().remove(clymeTarget);
+
+                    clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SECONDARY() + player.getName() + ClymeChatColor.SUCCESS() + " has accepted your tpa request!");
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have accepted " + ClymeChatColor.SECONDARY() + clymeTarget.getPlayer().getName() + "'s" + ClymeChatColor.SUCCESS() + " tpa request!");
+                }
+            }, 5);
         }
 
         return true;

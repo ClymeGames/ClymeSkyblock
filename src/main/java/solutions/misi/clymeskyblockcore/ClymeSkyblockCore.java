@@ -51,7 +51,6 @@ import solutions.misi.clymeskyblockcore.utils.TimeUtil;
 
 public class ClymeSkyblockCore extends JavaPlugin {
 
-    //> Classes
     @Getter private static ClymeSkyblockCore instance;
     @Getter private ClymeMessage clymeMessage;
     @Getter private HikariDataSource dataSource;
@@ -121,6 +120,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         timeUtil = new TimeUtil();
         screenshare = new Screenshare();
         commandUtil = new CommandUtil();
+        combatLog = new CombatLog();
 
         islandGUI = new IslandGUI();
         spawnerValuesGUI = new SpawnerValuesGUI();

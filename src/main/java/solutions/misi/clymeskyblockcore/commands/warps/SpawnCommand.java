@@ -30,8 +30,13 @@ public class SpawnCommand implements CommandExecutor {
         spawn.setPitch((float) -0.0);
 
         player.teleportAsync(spawn);
-        player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
-        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the spawn..");
+
+        Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> {
+            if(player.getLocation().distance(spawn) < 5) {
+                player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
+                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the spawn..");
+            }
+        }, 5);
 
         return true;
     }

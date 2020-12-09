@@ -30,8 +30,13 @@ public class BaltopCommand implements CommandExecutor {
         baltop.setPitch((float) 3.2);
 
         player.teleportAsync(baltop);
-        player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
-        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the richest players leaderboard..");
+
+        Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> {
+            if(player.getLocation().distance(baltop) < 5) {
+                player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
+                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the richest players leaderboard..");
+            }
+        }, 5);
 
         return true;
     }

@@ -29,8 +29,13 @@ public class CrateCommand implements CommandExecutor {
         crates.setPitch((float) -1.3);
 
         player.teleportAsync(crates);
-        player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
-        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the crates..");
+
+        Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> {
+            if(player.getLocation().distance(crates) < 5) {
+                player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
+                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the crates..");
+            }
+        }, 5);
 
         return true;
     }

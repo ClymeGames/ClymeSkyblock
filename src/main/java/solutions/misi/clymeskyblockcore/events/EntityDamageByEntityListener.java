@@ -13,11 +13,14 @@ public class EntityDamageByEntityListener implements Listener {
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {
         //> Disable sweep attack
-        if (event.getCause() != EntityDamageEvent.DamageCause.ENTITY_SWEEP_ATTACK) return;
-        event.setCancelled(true);
+        if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_SWEEP_ATTACK) {
+            event.setCancelled(true);
+            return;
+        }
 
         //> Combat-Log
         if(!(event.getEntity() instanceof Player && event.getDamager() instanceof Player)) return;
+        if(event.getDamage() <= 0.0) return;
         ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer((Player) event.getEntity());
         ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer((Player) event.getDamager());
 

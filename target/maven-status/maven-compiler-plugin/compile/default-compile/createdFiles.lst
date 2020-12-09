@@ -42,6 +42,7 @@ solutions\misi\clymeskyblockcore\data\DataManager.class
 solutions\misi\clymeskyblockcore\data\mysql\ClymePlayersTable.class
 solutions\misi\clymeskyblockcore\events\EntityDamageByEntityListener.class
 solutions\misi\clymeskyblockcore\islands\settings\IslandSettings.class
+solutions\misi\clymeskyblockcore\security\CombatLog.class
 solutions\misi\clymeskyblockcore\commands\MenuCommand.class
 solutions\misi\clymeskyblockcore\events\AsyncPlayerChatListener.class
 solutions\misi\clymeskyblockcore\commands\teleport\TpahereCommand.class

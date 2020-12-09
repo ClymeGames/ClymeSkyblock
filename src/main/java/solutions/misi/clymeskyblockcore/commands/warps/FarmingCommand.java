@@ -30,8 +30,13 @@ public class FarmingCommand implements CommandExecutor {
         farming.setPitch((float) 4.4);
 
         player.teleportAsync(farming);
-        player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
-        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the farming world..");
+
+        Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> {
+            if(player.getLocation().distance(farming) < 5) {
+                player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
+                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the farming world..");
+            }
+        }, 5);
 
         return true;
     }

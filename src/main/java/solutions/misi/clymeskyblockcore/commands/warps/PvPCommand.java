@@ -30,8 +30,13 @@ public class PvPCommand implements CommandExecutor {
         pvp.setPitch((float) -0.0);
 
         player.teleportAsync(pvp);
-        player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
-        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the PvP Arena..");
+
+        Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> {
+            if(player.getLocation().distance(pvp) < 5) {
+                player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
+                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the PvP Arena..");
+            }
+        }, 5);
 
         return true;
     }
