@@ -48,6 +48,7 @@ import solutions.misi.clymeskyblockcore.utils.TimeUtil;
 
 public class ClymeSkyblockCore extends JavaPlugin {
 
+    //> Classes
     @Getter private static ClymeSkyblockCore instance;
     @Getter private ClymeMessage clymeMessage;
     @Getter private HikariDataSource dataSource;
