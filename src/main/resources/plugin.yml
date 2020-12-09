@@ -84,3 +84,9 @@ commands:
   payouts:
     description: Teleports you to the payouts info
     aliases: [payout]
+  tp:
+    description: Teleports yourself or others to other players
+    aliases: [teleport]
+  tphere:
+    description: Teleports another player to you
+    aliases: [teleporthere, bring]

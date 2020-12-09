@@ -32,8 +32,7 @@ public class SunCommand implements CommandExecutor {
 
         switch(playerRank) {
             case "admin":
-            case "headmod":
-            case "headadmin":
+            case "manager":
             case "owner":
                 player.getWorld().setStorm(false);
                 player.getWorld().setThundering(false);

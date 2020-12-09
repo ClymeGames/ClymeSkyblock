@@ -32,8 +32,7 @@ public class StaffpanelCommand implements CommandExecutor {
             case "mod":
             case "seniormod":
             case "admin":
-            case "headmod":
-            case "headadmin":
+            case "manager":
             case "owner":
                 //> open staffpanel
                 ClymeSkyblockCore.getInstance().getStaffpanelGUI().open(player);

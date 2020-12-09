@@ -54,8 +54,7 @@ public class GamemodeCommand implements CommandExecutor {
 
         switch(playerRank) {
             case "admin":
-            case "headmod":
-            case "headadmin":
+            case "manager":
             case "owner":
                 switch(gamemode) {
                     case 0:

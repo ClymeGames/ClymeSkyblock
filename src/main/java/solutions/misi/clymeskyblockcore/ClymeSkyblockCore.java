@@ -18,10 +18,7 @@ import solutions.misi.clymeskyblockcore.commands.*;
 import solutions.misi.clymeskyblockcore.commands.message.MessageCommand;
 import solutions.misi.clymeskyblockcore.commands.message.ReplyCommand;
 import solutions.misi.clymeskyblockcore.commands.staff.*;
-import solutions.misi.clymeskyblockcore.commands.teleport.TpaCommand;
-import solutions.misi.clymeskyblockcore.commands.teleport.TpacceptCommand;
-import solutions.misi.clymeskyblockcore.commands.teleport.TpahereCommand;
-import solutions.misi.clymeskyblockcore.commands.teleport.TpdenyCommand;
+import solutions.misi.clymeskyblockcore.commands.teleport.*;
 import solutions.misi.clymeskyblockcore.commands.warps.*;
 import solutions.misi.clymeskyblockcore.data.DataManager;
 import solutions.misi.clymeskyblockcore.data.vault.economy.ClymeEconomy;
@@ -264,6 +261,12 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         PayoutsCommand payoutsCommand = new PayoutsCommand();
         getCommand("payouts").setExecutor(payoutsCommand);
+
+        TpCommand tpCommand = new TpCommand();
+        getCommand("tp").setExecutor(tpCommand);
+
+        TphereCommand tphereCommand = new TphereCommand();
+        getCommand("tphere").setExecutor(tphereCommand);
     }
 
     private void setupEconomy() {

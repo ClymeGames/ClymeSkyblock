@@ -20,9 +20,17 @@ public class PlayerTeleportListener implements Listener {
 
         //> Disable teleporting while in combat
         if(ClymeSkyblockCore.getInstance().getCombatLog().getInCombat().containsKey(clymePlayer)) {
-            event.setCancelled(true);
-            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "You can't teleport during Combat!");
-            return;
+            String playerRank = ClymeSkyblockCore.getInstance().getPermission().getPrimaryGroup(player);
+
+            switch(playerRank) {
+                case "admin":
+                case "owner":
+                    break;
+                default:
+                    event.setCancelled(true);
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "You can't teleport during Combat!");
+                    return;
+            }
         }
 
         //> Attack Speed (disable 1.9+ CD)
