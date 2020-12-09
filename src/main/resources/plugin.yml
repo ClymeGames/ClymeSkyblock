@@ -90,3 +90,6 @@ commands:
   tphere:
     description: Teleports another player to you
     aliases: [teleporthere, bring]
+  fly:
+    description: Toggles if you can fly or not
+    aliases: [f, flight]

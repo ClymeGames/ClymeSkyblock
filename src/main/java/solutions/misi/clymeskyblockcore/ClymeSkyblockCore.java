@@ -268,6 +268,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         TphereCommand tphereCommand = new TphereCommand();
         getCommand("tphere").setExecutor(tphereCommand);
+
+        FlyCommand flyCommand = new FlyCommand();
+        getCommand("fly").setExecutor(flyCommand);
     }
 
     private void setupEconomy() {
