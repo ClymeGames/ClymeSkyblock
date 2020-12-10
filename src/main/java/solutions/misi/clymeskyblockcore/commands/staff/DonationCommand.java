@@ -42,6 +42,13 @@ public class DonationCommand implements CommandExecutor {
             clymePlayer.sendMessage("    &7&o( TIP: They &f&odonated &7at our shop &d&ohttp://store.clyme.games&7&o! )");
         }
 
+        Player target = Bukkit.getPlayer(targetName);
+
+        if(target != null && target.isOnline()) {
+            ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target);
+            clymeTarget.updatePermissions();
+        }
+
         return true;
     }
 }

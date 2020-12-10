@@ -15,6 +15,7 @@ import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 import redis.clients.jedis.JedisPool;
 import solutions.misi.clymeskyblockcore.commands.*;
+import solutions.misi.clymeskyblockcore.commands.donator.*;
 import solutions.misi.clymeskyblockcore.commands.message.MessageCommand;
 import solutions.misi.clymeskyblockcore.commands.message.ReplyCommand;
 import solutions.misi.clymeskyblockcore.commands.staff.*;
@@ -23,6 +24,7 @@ import solutions.misi.clymeskyblockcore.commands.warps.*;
 import solutions.misi.clymeskyblockcore.data.DataManager;
 import solutions.misi.clymeskyblockcore.data.vault.economy.ClymeEconomy;
 import solutions.misi.clymeskyblockcore.events.*;
+import solutions.misi.clymeskyblockcore.gui.DisposalGUI;
 import solutions.misi.clymeskyblockcore.gui.HomeGUI;
 import solutions.misi.clymeskyblockcore.gui.islandmenu.*;
 import solutions.misi.clymeskyblockcore.gui.menu.MenuGUI;
@@ -43,7 +45,7 @@ import solutions.misi.clymeskyblockcore.security.CombatLog;
 import solutions.misi.clymeskyblockcore.security.CommandHandler;
 import solutions.misi.clymeskyblockcore.security.Screenshare;
 import solutions.misi.clymeskyblockcore.utils.ClymeMessage;
-import solutions.misi.clymeskyblockcore.utils.CommandUtil;
+import solutions.misi.clymeskyblockcore.utils.CommandsUtil;
 import solutions.misi.clymeskyblockcore.utils.TimeUtil;
 
 public class ClymeSkyblockCore extends JavaPlugin {
@@ -62,7 +64,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private PlayersHandler playersHandler;
     @Getter private TimeUtil timeUtil;
     @Getter private Screenshare screenshare;
-    @Getter private CommandUtil commandUtil;
+    @Getter private CommandsUtil commandUtil;
     @Getter private CombatLog combatLog;
 
     @Getter private IslandGUI islandGUI;
@@ -77,6 +79,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private MinionShopGUI minionShopGUI;
     @Getter private MenuGUI menuGUI;
     @Getter private HomeGUI homeGUI;
+    @Getter private DisposalGUI disposalGUI;
 
     @Getter private Economy economy;
     @Getter private Permission permission;
@@ -117,7 +120,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         playersHandler = new PlayersHandler();
         timeUtil = new TimeUtil();
         screenshare = new Screenshare();
-        commandUtil = new CommandUtil();
+        commandUtil = new CommandsUtil();
         combatLog = new CombatLog();
 
         islandGUI = new IslandGUI();
@@ -132,6 +135,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         minionShopGUI = new MinionShopGUI();
         menuGUI = new MenuGUI();
         homeGUI = new HomeGUI();
+        disposalGUI = new DisposalGUI();
     }
 
     private void registerEvents() {
@@ -271,6 +275,30 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         FlyCommand flyCommand = new FlyCommand();
         getCommand("fly").setExecutor(flyCommand);
+
+        CraftCommand craftCommand = new CraftCommand();
+        getCommand("craft").setExecutor(craftCommand);
+
+        AnvilCommand anvilCommand = new AnvilCommand();
+        getCommand("anvil").setExecutor(anvilCommand);
+
+        EnderchestCommand enderchestCommand = new EnderchestCommand();
+        getCommand("enderchest").setExecutor(enderchestCommand);
+
+        NearCommand nearCommand = new NearCommand();
+        getCommand("near").setExecutor(nearCommand);
+
+        BlocksCommand blocksCommand = new BlocksCommand();
+        getCommand("blocks").setExecutor(blocksCommand);
+
+        DisposalCommand disposalCommand = new DisposalCommand();
+        getCommand("disposal").setExecutor(disposalCommand);
+
+        FeedCommand feedCommand = new FeedCommand();
+        getCommand("feed").setExecutor(feedCommand);
+
+        NightvisionCommand nightvisionCommand = new NightvisionCommand();
+        getCommand("nightvision").setExecutor(nightvisionCommand);
     }
 
     private void setupEconomy() {

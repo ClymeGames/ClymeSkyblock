@@ -43,7 +43,7 @@ public class ClymePlayersTable {
         Date currentDate = calendar.getTime();
         long currentTime = currentDate.getTime();
         Timestamp joined = new Timestamp(currentTime);
-        int maxHomes = 3;
+        int maxHomes = 2;
 
         String sql = "INSERT INTO clymePlayers (uuid, username, playtime, first_join, last_join, ip, maxHomes) VALUES (?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE last_join = ?";
 

@@ -84,3 +84,25 @@ commands:
   payouts:
     description: Teleports you to the payouts info
     aliases: [payout]
+  tp:
+    description: Teleports yourself or others to other players
+    aliases: [teleport]
+  tphere:
+    description: Teleports another player to you
+    aliases: [teleporthere, bring]
+  fly:
+    description: Toggles if you can fly or not
+    aliases: [f, flight]
+  craft:
+    description: Opens a virtual crafting table
+    aliases: [crafting, wb, workbench]
+  anvil:
+    description: Opens a virtual anvil
+  enderchest:
+    description: Opens a virtual enderchest
+    aliases: [ec, echest]
+  near:
+    description: Shows you all players nearby
+  blocks:
+    description: Condenses all gems in your inventory into blocks
+    aliases: [condense]

@@ -79,4 +79,25 @@ public class ClymePlayer {
             });
         }
     }
+
+    public void updatePermissions() {
+        String playerRank = ClymeSkyblockCore.getInstance().getPermission().getPrimaryGroup(getPlayer());
+
+        switch(playerRank) {
+            case "dazzle":
+                setMaxHomes(3);
+                break;
+            case "olympic":
+                setMaxHomes(6);
+                break;
+            case "supreme":
+                setMaxHomes(10);
+                break;
+            default:
+                break;
+        }
+
+        ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().loadClymePlayerData(this);
+        ClymeSkyblockCore.getInstance().getDataManager().getClymeHomesTable().loadClymePlayerData(this);
+    }
 }

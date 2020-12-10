@@ -29,6 +29,8 @@ public class CombatLog {
         //> Track player
         getInCombat().put(clymePlayer, startCombatTimer(clymePlayer));
         clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You are now in Combat! Logging out will result in punishment");
+        clymePlayer.getPlayer().setFlying(false);
+        clymePlayer.getPlayer().setAllowFlight(false);
     }
 
     private BukkitTask startCombatTimer(ClymePlayer clymePlayer) {

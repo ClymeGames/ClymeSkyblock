@@ -93,3 +93,25 @@ commands:
   fly:
     description: Toggles if you can fly or not
     aliases: [f, flight]
+  craft:
+    description: Opens a virtual crafting table
+    aliases: [crafting, wb, workbench]
+  anvil:
+    description: Opens a virtual anvil
+  enderchest:
+    description: Opens a virtual enderchest
+    aliases: [ec, echest]
+  near:
+    description: Shows you all players nearby
+  blocks:
+    description: Condenses all gems in your inventory into blocks
+    aliases: [condense]
+  disposal:
+    description: Opens a disposal GUI to dispose your un-wanted goods
+    aliases: [dispose, trash]
+  feed:
+    description: Fills your food level instantly
+    aliases: [food, hunger, fillhunger]
+  nightvision:
+    description: Toggles if you can see in the dark or not
+    aliases: [nv]

@@ -8,12 +8,13 @@ import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommandUtil {
+public class CommandsUtil {
 
     @Getter private final Map<ClymePlayer, String> homeCreation = new HashMap<>();
 
     @Getter private final Map<ClymePlayer, ClymePlayer> teleportCache = new HashMap<>();
     @Getter private final Map<ClymePlayer, ClymePlayer> teleportHereCache = new HashMap<>();
+
 
     public ClymePlayer getTarget(ClymePlayer player) {
         for(Map.Entry<ClymePlayer, ClymePlayer> entry : teleportCache.entrySet()) if(entry.getValue() == player) return entry.getKey();

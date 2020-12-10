@@ -1,4 +1,4 @@
-package solutions.misi.clymeskyblockcore.commands;
+package solutions.misi.clymeskyblockcore.commands.staff;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -26,9 +26,7 @@ public class ClymeCrystalCommand implements CommandExecutor {
             String playerRank = ClymeSkyblockCore.getInstance().getPermission().getPrimaryGroup(player);
 
             switch(playerRank) {
-                case "admin":
-                case "headmod":
-                case "headadmin":
+                case "manager":
                 case "owner":
                     break;
                 default:
