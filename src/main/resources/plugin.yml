@@ -115,3 +115,6 @@ commands:
   nightvision:
     description: Toggles if you can see in the dark or not
     aliases: [nv]
+  fix:
+    description: Repairs your items
+    aliases: [repair]

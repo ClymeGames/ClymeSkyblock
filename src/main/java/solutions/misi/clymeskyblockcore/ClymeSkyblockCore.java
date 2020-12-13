@@ -299,6 +299,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         NightvisionCommand nightvisionCommand = new NightvisionCommand();
         getCommand("nightvision").setExecutor(nightvisionCommand);
+
+        FixCommand fixCommand = new FixCommand();
+        getCommand("fix").setExecutor(fixCommand);
     }
 
     private void setupEconomy() {

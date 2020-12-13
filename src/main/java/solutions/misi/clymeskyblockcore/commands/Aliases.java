@@ -25,5 +25,11 @@ public class Aliases implements Listener {
             event.setMessage(event.getMessage().replaceFirst("/?", "/help"));
             return;
         }
+
+        //> /fixall => /fix all
+        if(event.getMessage().toLowerCase().startsWith("/fixall")) {
+            event.setMessage(event.getMessage().replaceFirst("/fixall", "/fix all"));
+            return;
+        }
     }
 }

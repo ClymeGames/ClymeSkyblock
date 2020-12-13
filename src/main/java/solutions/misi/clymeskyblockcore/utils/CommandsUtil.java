@@ -5,7 +5,9 @@ import org.bukkit.Bukkit;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CommandsUtil {
@@ -14,11 +16,11 @@ public class CommandsUtil {
 
     @Getter private final Map<ClymePlayer, ClymePlayer> teleportCache = new HashMap<>();
     @Getter private final Map<ClymePlayer, ClymePlayer> teleportHereCache = new HashMap<>();
-
+    @Getter private final List<String> commandCooldowns = new ArrayList<>();
 
     public ClymePlayer getTarget(ClymePlayer player) {
-        for(Map.Entry<ClymePlayer, ClymePlayer> entry : teleportCache.entrySet()) if(entry.getValue() == player) return entry.getKey();
-        for(Map.Entry<ClymePlayer, ClymePlayer> entry : teleportHereCache.entrySet()) if(entry.getValue() == player) return entry.getKey();
+        for(Map.Entry<ClymePlayer, ClymePlayer> entry : teleportCache.entrySet()) if(entry.getValue().getPlayer() == player.getPlayer()) return entry.getKey();
+        for(Map.Entry<ClymePlayer, ClymePlayer> entry : teleportHereCache.entrySet()) if(entry.getValue().getPlayer() == player.getPlayer()) return entry.getKey();
         return null;
     }
 
@@ -34,5 +36,22 @@ public class CommandsUtil {
                 }
             }
         }, 20*60);
+    }
+
+    public void startCommandCooldown(ClymePlayer player, String command, int duration) {
+        String commandCooldownFormat = player.getUsername() + ":" + command;
+
+        //> Reset cooldown
+        if(commandCooldowns.contains(commandCooldownFormat)) {
+            commandCooldowns.remove(commandCooldownFormat);
+            startCommandCooldown(player, command, duration);
+            return;
+        }
+
+        commandCooldowns.add(commandCooldownFormat);
+
+        Bukkit.getScheduler().runTaskLaterAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
+            commandCooldowns.remove(commandCooldownFormat);
+        }, duration * 20L * 60);
     }
 }

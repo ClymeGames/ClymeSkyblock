@@ -106,3 +106,15 @@ commands:
   blocks:
     description: Condenses all gems in your inventory into blocks
     aliases: [condense]
+  disposal:
+    description: Opens a disposal GUI to dispose your un-wanted goods
+    aliases: [dispose, trash]
+  feed:
+    description: Fills your food level instantly
+    aliases: [food, hunger, fillhunger]
+  nightvision:
+    description: Toggles if you can see in the dark or not
+    aliases: [nv]
+  fix:
+    description: Repairs your items
+    aliases: [repair]
