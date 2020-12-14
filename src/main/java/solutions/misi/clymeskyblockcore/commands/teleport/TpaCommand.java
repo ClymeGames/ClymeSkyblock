@@ -44,6 +44,11 @@ public class TpaCommand implements CommandExecutor {
 
         ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target);
 
+        if(ClymeSkyblockCore.getInstance().getCommandUtil().getTpToggle().contains(clymeTarget)) {
+            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + clymeTarget.getPlayer().getName() + ClymeChatColor.ERROR() + " has disabled tpa requests!");
+            return false;
+        }
+
         if(ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportCache().containsValue(clymeTarget)) {
             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + clymeTarget.getPlayer().getName() +  ClymeChatColor.ERROR() + " already received a tpa request!");
             return false;

@@ -24,6 +24,7 @@ public class PlayerTeleportListener implements Listener {
 
             switch(playerRank) {
                 case "admin":
+                case "manager":
                 case "owner":
                     break;
                 default:

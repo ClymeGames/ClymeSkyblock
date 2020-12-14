@@ -32,7 +32,7 @@ public class BaltopCommand implements CommandExecutor {
         player.teleportAsync(baltop);
 
         Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> {
-            if(player.getLocation().distance(baltop) < 5) {
+            if(player.getWorld() == baltop.getWorld() && player.getLocation().distance(baltop) < 5) {
                 player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the richest players leaderboard..");
             }

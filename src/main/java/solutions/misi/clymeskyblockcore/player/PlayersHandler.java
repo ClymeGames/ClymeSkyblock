@@ -25,6 +25,10 @@ public class PlayersHandler {
     }
 
     public ClymePlayer addClymePlayer(Player player) {
+        for(ClymePlayer clymePlayer : playerList) {
+            if(clymePlayer.getPlayer() == player) return clymePlayer;
+        }
+
         ClymePlayer clymePlayer = new ClymePlayer(player);
         playerList.add(clymePlayer);
         return clymePlayer;

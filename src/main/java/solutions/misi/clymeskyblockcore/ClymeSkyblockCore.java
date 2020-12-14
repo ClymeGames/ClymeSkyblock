@@ -302,6 +302,12 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         FixCommand fixCommand = new FixCommand();
         getCommand("fix").setExecutor(fixCommand);
+
+        SpeedCommand speedCommand = new SpeedCommand();
+        getCommand("speed").setExecutor(speedCommand);
+
+        TpToggleCommand tpToggleCommand = new TpToggleCommand();
+        getCommand("tptoggle").setExecutor(tpToggleCommand);
     }
 
     private void setupEconomy() {

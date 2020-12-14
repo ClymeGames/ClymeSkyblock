@@ -118,3 +118,8 @@ commands:
   fix:
     description: Repairs your items
     aliases: [repair]
+  speed:
+    description: Makes you faster flying and walking
+  tptoggle:
+    description: Toggles if you can receive tpa requests or not
+    aliases: [tpatoggle, teleporttoggle]

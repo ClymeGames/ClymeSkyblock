@@ -32,7 +32,7 @@ public class PayoutsCommand implements CommandExecutor {
         player.teleportAsync(payouts);
 
         Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> {
-            if(player.getLocation().distance(payouts) < 5) {
+            if(player.getWorld() == payouts.getWorld() && player.getLocation().distance(payouts) < 5) {
                 player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the payouts..");
             }

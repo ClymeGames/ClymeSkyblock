@@ -32,7 +32,7 @@ public class FarmingCommand implements CommandExecutor {
         player.teleportAsync(farming);
 
         Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> {
-            if(player.getLocation().distance(farming) < 5) {
+            if(player.getWorld() == farming.getWorld() && player.getLocation().distance(farming) < 5) {
                 player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the farming world..");
             }

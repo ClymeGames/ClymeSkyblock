@@ -13,6 +13,7 @@ solutions\misi\clymeskyblockcore\security\CommandHandler.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandGUI.class
 solutions\misi\clymeskyblockcore\islands\events\IslandUpgradeListener.class
 solutions\misi\clymeskyblockcore\utils\ClymeMessage.class
+solutions\misi\clymeskyblockcore\commands\teleport\TpToggleCommand.class
 solutions\misi\clymeskyblockcore\commands\warps\BaltopCommand.class
 solutions\misi\clymeskyblockcore\commands\teleport\TpacceptCommand.class
 solutions\misi\clymeskyblockcore\utils\SkullCreator.class
@@ -64,6 +65,7 @@ solutions\misi\clymeskyblockcore\commands\staff\RainCommand.class
 solutions\misi\clymeskyblockcore\gui\shop\MinionShopGUI.class
 solutions\misi\clymeskyblockcore\events\PlayerTeleportListener.class
 solutions\misi\clymeskyblockcore\islands\events\IslandCreateListener.class
+solutions\misi\clymeskyblockcore\commands\donator\SpeedCommand.class
 solutions\misi\clymeskyblockcore\commands\donator\DisposalCommand.class
 solutions\misi\clymeskyblockcore\data\vault\economy\EconomyStorage.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandCreationGUI.class
