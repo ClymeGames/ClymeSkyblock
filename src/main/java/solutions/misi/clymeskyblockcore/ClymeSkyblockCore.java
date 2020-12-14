@@ -17,6 +17,7 @@ import redis.clients.jedis.JedisPool;
 import solutions.misi.clymeskyblockcore.commands.*;
 import solutions.misi.clymeskyblockcore.commands.donator.*;
 import solutions.misi.clymeskyblockcore.commands.message.MessageCommand;
+import solutions.misi.clymeskyblockcore.commands.message.MsgToggleCommand;
 import solutions.misi.clymeskyblockcore.commands.message.ReplyCommand;
 import solutions.misi.clymeskyblockcore.commands.staff.*;
 import solutions.misi.clymeskyblockcore.commands.teleport.*;
@@ -308,6 +309,12 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         TpToggleCommand tpToggleCommand = new TpToggleCommand();
         getCommand("tptoggle").setExecutor(tpToggleCommand);
+
+        MsgToggleCommand msgToggleCommand = new MsgToggleCommand();
+        getCommand("msgtoggle").setExecutor(msgToggleCommand);
+
+        RenameCommand renameCommand = new RenameCommand();
+        getCommand("rename").setExecutor(renameCommand);
     }
 
     private void setupEconomy() {

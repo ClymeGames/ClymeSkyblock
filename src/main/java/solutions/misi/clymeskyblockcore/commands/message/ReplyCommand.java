@@ -36,6 +36,11 @@ public class ReplyCommand implements CommandExecutor {
             return false;
         }
 
+        if(ClymeSkyblockCore.getInstance().getCommandUtil().getMsgToggle().contains(clymeTarget)) {
+            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + clymeTarget.getUsername() + ClymeChatColor.ERROR() + " has disabled private messages!");
+            return false;
+        }
+
         StringBuilder messageBuilder = new StringBuilder();
         for(int i = 0; i < args.length; i++) messageBuilder.append(args[i]).append(" ");
         String message = messageBuilder.toString();

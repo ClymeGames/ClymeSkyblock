@@ -31,6 +31,7 @@ public class MessageCommand implements CommandExecutor {
         }
 
         Player target = Bukkit.getPlayer(args[0]);
+        ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target);
 
         if(target == null || !target.isOnline()) {
             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + args[1] + ClymeChatColor.ERROR() + " is not online!");
@@ -42,7 +43,11 @@ public class MessageCommand implements CommandExecutor {
             return false;
         }
 
-        ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target);
+        if(ClymeSkyblockCore.getInstance().getCommandUtil().getMsgToggle().contains(clymeTarget)) {
+            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + clymeTarget.getUsername() + ClymeChatColor.ERROR() + " has disabled private messages!");
+            return false;
+        }
+
         StringBuilder messageBuilder = new StringBuilder();
         for(int i = 1; i < args.length; i++) messageBuilder.append(args[i]).append(" ");
         String message = messageBuilder.toString();

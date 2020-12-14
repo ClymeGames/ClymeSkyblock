@@ -123,3 +123,8 @@ commands:
   tptoggle:
     description: Toggles if you can receive tpa requests or not
     aliases: [tpatoggle, teleporttoggle]
+  msgtoggle:
+    description: Toggles if you can receive private messages or not
+    aliases: [pmtoggle, messagetoggle, messagestoggle]
+  rename:
+    description: Renames the item you are holding in hand
