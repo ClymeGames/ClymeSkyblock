@@ -47,6 +47,7 @@ import solutions.misi.clymeskyblockcore.security.CommandHandler;
 import solutions.misi.clymeskyblockcore.security.Screenshare;
 import solutions.misi.clymeskyblockcore.utils.ClymeMessage;
 import solutions.misi.clymeskyblockcore.utils.CommandsUtil;
+import solutions.misi.clymeskyblockcore.utils.ExperienceUtils;
 import solutions.misi.clymeskyblockcore.utils.TimeUtil;
 
 public class ClymeSkyblockCore extends JavaPlugin {
@@ -67,6 +68,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private Screenshare screenshare;
     @Getter private CommandsUtil commandUtil;
     @Getter private CombatLog combatLog;
+    @Getter private ExperienceUtils experienceUtils;
 
     @Getter private IslandGUI islandGUI;
     @Getter private SpawnerValuesGUI spawnerValuesGUI;
@@ -123,6 +125,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         screenshare = new Screenshare();
         commandUtil = new CommandsUtil();
         combatLog = new CombatLog();
+        experienceUtils = new ExperienceUtils();
 
         islandGUI = new IslandGUI();
         spawnerValuesGUI = new SpawnerValuesGUI();
@@ -340,6 +343,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         PlayertimeCommand playertimeCommand = new PlayertimeCommand();
         getCommand("playertime").setExecutor(playertimeCommand);
+
+        XpbottleCommand xpbottleCommand = new XpbottleCommand();
+        getCommand("xpbottle").setExecutor(xpbottleCommand);
     }
 
     private void setupEconomy() {

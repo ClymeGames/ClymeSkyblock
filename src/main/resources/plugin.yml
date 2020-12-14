@@ -146,3 +146,6 @@ commands:
   playertime:
     description: Changes your personal time
     aliases: [ptime]
+  xpbottle:
+    description: Converts your current exp into xp bottles
+    aliases: [xpbottles, expbottle, expbottles]

@@ -143,3 +143,9 @@ commands:
     description: Opens a virtual smithing table
   stonecutter:
     description: Opens a virtual stonecutter
+  playertime:
+    description: Changes your personal time
+    aliases: [ptime]
+  xpbottle:
+    description: Converts your current exp into xp bottles
+    aliases: [xpbottles, expbottle, expbottles]
