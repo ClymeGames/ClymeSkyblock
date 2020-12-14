@@ -337,6 +337,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         StonecutterCommand stonecutterCommand = new StonecutterCommand();
         getCommand("stonecutter").setExecutor(stonecutterCommand);
+
+        PlayertimeCommand playertimeCommand = new PlayertimeCommand();
+        getCommand("playertime").setExecutor(playertimeCommand);
     }
 
     private void setupEconomy() {
