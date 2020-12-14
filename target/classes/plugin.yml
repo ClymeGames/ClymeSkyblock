@@ -133,3 +133,13 @@ commands:
   clearinventory:
     description: Clears your inventory
     aliases: [ci, clear, clearinv]
+  cartographytable:
+    description: Opens a virtual cartographytable
+  grindstone:
+    description: Opens a virtual grindstone
+  loom:
+    description: Opens a virtual loom
+  smithingtable:
+    description: Opens a virtual smithing table
+  stonecutter:
+    description: Opens a virtual stonecutter

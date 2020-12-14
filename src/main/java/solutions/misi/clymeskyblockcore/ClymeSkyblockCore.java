@@ -158,6 +158,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerDeathListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerRespawnListener(), this);
         Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), this);
+        Bukkit.getPluginManager().registerEvents(new SignChangeListener(), this);
     }
 
     private void registerGUIs() {
@@ -321,6 +322,21 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         ClearinventoryCommand clearinventoryCommand = new ClearinventoryCommand();
         getCommand("clearinventory").setExecutor(clearinventoryCommand);
+
+        CartographytableCommand cartographytableCommand = new CartographytableCommand();
+        getCommand("cartographytable").setExecutor(cartographytableCommand);
+
+        GrindstoneCommand grindstoneCommand = new GrindstoneCommand();
+        getCommand("grindstone").setExecutor(grindstoneCommand);
+
+        LoomCommand loomCommand = new LoomCommand();
+        getCommand("loom").setExecutor(loomCommand);
+
+        SmithingtableCommand smithingtableCommand = new SmithingtableCommand();
+        getCommand("smithingtable").setExecutor(smithingtableCommand);
+
+        StonecutterCommand stonecutterCommand = new StonecutterCommand();
+        getCommand("stonecutter").setExecutor(stonecutterCommand);
     }
 
     private void setupEconomy() {

@@ -10,6 +10,7 @@ solutions\misi\clymeskyblockcore\commands\teleport\TpToggleCommand.class
 solutions\misi\clymeskyblockcore\commands\warps\BaltopCommand.class
 solutions\misi\clymeskyblockcore\utils\SkullCreator.class
 solutions\misi\clymeskyblockcore\commands\staff\StaffpanelCommand.class
+solutions\misi\clymeskyblockcore\commands\donator\GrindstoneCommand.class
 solutions\misi\clymeskyblockcore\commands\message\MsgToggleCommand.class
 solutions\misi\clymeskyblockcore\commands\donator\AnvilCommand.class
 solutions\misi\clymeskyblockcore\commands\staff\SunCommand.class
@@ -24,18 +25,21 @@ solutions\misi\clymeskyblockcore\commands\donator\BlocksCommand.class
 solutions\misi\clymeskyblockcore\utils\TimeUtil.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandMembersGUI.class
 solutions\misi\clymeskyblockcore\commands\donator\CraftCommand.class
+solutions\misi\clymeskyblockcore\commands\donator\StonecutterCommand.class
 solutions\misi\clymeskyblockcore\data\mysql\ClymePlayersTable.class
 solutions\misi\clymeskyblockcore\events\AsyncPlayerChatListener.class
 solutions\misi\clymeskyblockcore\gui\menu\MenuGUI.class
 solutions\misi\clymeskyblockcore\commands\staff\RainCommand.class
 solutions\misi\clymeskyblockcore\gui\shop\MinionShopGUI.class
 solutions\misi\clymeskyblockcore\events\PlayerTeleportListener.class
+solutions\misi\clymeskyblockcore\commands\donator\SmithingtableCommand.class
 solutions\misi\clymeskyblockcore\events\PlayerLoginListener.class
 solutions\misi\clymeskyblockcore\events\InventoryClickListener.class
 solutions\misi\clymeskyblockcore\items\ClymeCrystal.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelInventoryInspectorGUI.class
 solutions\misi\clymeskyblockcore\events\PlayerToggleFlightListener.class
 solutions\misi\clymeskyblockcore\events\PlayerDeathListener.class
+solutions\misi\clymeskyblockcore\events\SignChangeListener.class
 solutions\misi\clymeskyblockcore\commands\staff\NightCommand.class
 solutions\misi\clymeskyblockcore\commands\CosmeticsCommand.class
 solutions\misi\clymeskyblockcore\events\PlayerJoinListener.class
@@ -75,6 +79,7 @@ solutions\misi\clymeskyblockcore\commands\teleport\TpahereCommand.class
 solutions\misi\clymeskyblockcore\islands\events\IslandDisbandListener.class
 solutions\misi\clymeskyblockcore\commands\warps\CrateCommand.class
 solutions\misi\clymeskyblockcore\commands\message\MessageCommand.class
+solutions\misi\clymeskyblockcore\commands\donator\LoomCommand.class
 solutions\misi\clymeskyblockcore\islands\events\IslandCreateListener.class
 solutions\misi\clymeskyblockcore\commands\donator\SpeedCommand.class
 solutions\misi\clymeskyblockcore\commands\donator\DisposalCommand.class
@@ -89,6 +94,7 @@ solutions\misi\clymeskyblockcore\utils\ClymeChatColor.class
 solutions\misi\clymeskyblockcore\commands\teleport\TpdenyCommand.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandSettingsGUI$1.class
 solutions\misi\clymeskyblockcore\player\ClymePlayer.class
+solutions\misi\clymeskyblockcore\commands\donator\CartographytableCommand.class
 solutions\misi\clymeskyblockcore\commands\donator\FlyCommand.class
 solutions\misi\clymeskyblockcore\commands\donator\NearCommand.class
 solutions\misi\clymeskyblockcore\events\PlayerQuitListener.class
