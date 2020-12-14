@@ -315,6 +315,12 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         RenameCommand renameCommand = new RenameCommand();
         getCommand("rename").setExecutor(renameCommand);
+
+        HealCommand healCommand = new HealCommand();
+        getCommand("heal").setExecutor(healCommand);
+
+        ClearinventoryCommand clearinventoryCommand = new ClearinventoryCommand();
+        getCommand("clearinventory").setExecutor(clearinventoryCommand);
     }
 
     private void setupEconomy() {

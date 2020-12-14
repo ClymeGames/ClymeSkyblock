@@ -8,9 +8,9 @@ import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
 
-public class FeedCommand implements CommandExecutor {
+public class HealCommand implements CommandExecutor {
 
-    //> /feed
+    //> /heal
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -22,18 +22,19 @@ public class FeedCommand implements CommandExecutor {
         Player player = (Player) sender;
         ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
 
-        if(!player.hasPermission("clymegames.feed")) {
+        if(!player.hasPermission("clymegames.heal")) {
             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getNoPermission());
             return false;
         }
 
         if(ClymeSkyblockCore.getInstance().getCombatLog().getInCombat().containsKey(clymePlayer)) {
-            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "You can't feed yourself during Combat!");
+            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "You can't heal yourself during Combat!");
             return false;
         }
 
         player.setFoodLevel(20);
-        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully fed yourself!");
+        player.setHealth(20.0);
+        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully healed yourself!");
         return true;
     }
 }

@@ -128,3 +128,8 @@ commands:
     aliases: [pmtoggle, messagetoggle, messagestoggle]
   rename:
     description: Renames the item you are holding in hand
+  heal:
+    description: Heals yourself
+  clearinventory:
+    description: Clears your inventory
+    aliases: [ci, clear, clearinv]

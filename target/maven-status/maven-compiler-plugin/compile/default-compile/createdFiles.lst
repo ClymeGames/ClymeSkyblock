@@ -1,3 +1,4 @@
+solutions\misi\clymeskyblockcore\commands\donator\HealCommand.class
 solutions\misi\clymeskyblockcore\commands\Aliases.class
 solutions\misi\clymeskyblockcore\commands\PlaytimeCommand.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelDurationGUI.class
@@ -52,6 +53,7 @@ solutions\misi\clymeskyblockcore\gui\DisposalGUI.class
 solutions\misi\clymeskyblockcore\commands\warps\PvPCommand.class
 solutions\misi\clymeskyblockcore\commands\teleport\TpaCommand.class
 solutions\misi\clymeskyblockcore\commands\staff\ClymeCrystalCommand.class
+solutions\misi\clymeskyblockcore\commands\donator\ClearinventoryCommand.class
 solutions\misi\clymeskyblockcore\commands\warps\PayoutsCommand.class
 solutions\misi\clymeskyblockcore\commands\warps\SpawnCommand.class
 solutions\misi\clymeskyblockcore\ClymeSkyblockCore.class
