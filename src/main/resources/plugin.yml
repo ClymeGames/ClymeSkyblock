@@ -75,7 +75,7 @@ commands:
     description: Gives you the clyme crystal
   cosmetics:
     description: Opens the cosmetics menu
-    aliases: [pc, cosmetic, gadgets, pets, procosmetics]
+    aliases: [gadgets, pets, effects, particles]
   baltop:
     description: Teleports you to the richest players leaderboard
     aliases: [moneytop, ecotop, balancetop, economytop]

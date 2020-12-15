@@ -31,5 +31,10 @@ public class Aliases implements Listener {
             event.setMessage(event.getMessage().replaceFirst("/fixall", "/fix all"));
             return;
         }
+
+        //> /cosmetic => /cosmetics
+        if(event.getMessage().toLowerCase().startsWith("/cosmetic")) {
+            event.setMessage(event.getMessage().replaceFirst("/cosmetic", "/cosmetics"));
+        }
     }
 }

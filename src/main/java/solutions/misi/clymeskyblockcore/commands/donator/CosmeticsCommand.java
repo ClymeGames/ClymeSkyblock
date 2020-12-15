@@ -1,4 +1,4 @@
-package solutions.misi.clymeskyblockcore.commands;
+package solutions.misi.clymeskyblockcore.commands.donator;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -25,9 +25,11 @@ solutions\misi\clymeskyblockcore\commands\donator\BlocksCommand.class
 solutions\misi\clymeskyblockcore\utils\TimeUtil.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandMembersGUI.class
 solutions\misi\clymeskyblockcore\commands\donator\CraftCommand.class
+solutions\misi\clymeskyblockcore\commands\donator\XpbottleCommand.class
 solutions\misi\clymeskyblockcore\commands\donator\StonecutterCommand.class
 solutions\misi\clymeskyblockcore\data\mysql\ClymePlayersTable.class
 solutions\misi\clymeskyblockcore\events\AsyncPlayerChatListener.class
+solutions\misi\clymeskyblockcore\utils\ExperienceUtils.class
 solutions\misi\clymeskyblockcore\gui\menu\MenuGUI.class
 solutions\misi\clymeskyblockcore\commands\staff\RainCommand.class
 solutions\misi\clymeskyblockcore\gui\shop\MinionShopGUI.class
@@ -41,7 +43,6 @@ solutions\misi\clymeskyblockcore\events\PlayerToggleFlightListener.class
 solutions\misi\clymeskyblockcore\events\PlayerDeathListener.class
 solutions\misi\clymeskyblockcore\events\SignChangeListener.class
 solutions\misi\clymeskyblockcore\commands\staff\NightCommand.class
-solutions\misi\clymeskyblockcore\commands\CosmeticsCommand.class
 solutions\misi\clymeskyblockcore\events\PlayerJoinListener.class
 solutions\misi\clymeskyblockcore\data\vault\economy\ClymeEconomy.class
 solutions\misi\clymeskyblockcore\events\PlayerMoveListener.class
@@ -69,12 +70,14 @@ solutions\misi\clymeskyblockcore\commands\donator\FixCommand.class
 solutions\misi\clymeskyblockcore\commands\staff\GamemodeCommand.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\SpawnerValuesGUI.class
 solutions\misi\clymeskyblockcore\commands\HomeCommand.class
+solutions\misi\clymeskyblockcore\commands\donator\CosmeticsCommand.class
 solutions\misi\clymeskyblockcore\commands\staff\DonationCommand.class
 solutions\misi\clymeskyblockcore\data\DataManager.class
 solutions\misi\clymeskyblockcore\events\EntityDamageByEntityListener.class
 solutions\misi\clymeskyblockcore\islands\settings\IslandSettings.class
 solutions\misi\clymeskyblockcore\security\CombatLog.class
 solutions\misi\clymeskyblockcore\commands\MenuCommand.class
+solutions\misi\clymeskyblockcore\commands\donator\PlayertimeCommand.class
 solutions\misi\clymeskyblockcore\commands\teleport\TpahereCommand.class
 solutions\misi\clymeskyblockcore\islands\events\IslandDisbandListener.class
 solutions\misi\clymeskyblockcore\commands\warps\CrateCommand.class
