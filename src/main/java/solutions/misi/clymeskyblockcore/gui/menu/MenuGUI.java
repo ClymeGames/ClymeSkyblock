@@ -207,6 +207,9 @@ public class MenuGUI implements Listener {
                     player.closeInventory();
 
                     switch(event.getCurrentItem().getItemMeta().getDisplayName()) {
+                        case "§6Tutorial":
+                            player.performCommand("tutorial tutorial");
+                            break;
                         case "§6Top Islands":
                             player.performCommand("is top");
                             break;
