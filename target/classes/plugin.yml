@@ -7,12 +7,12 @@ main: solutions.misi.clymeskyblockcore.ClymeSkyblockCore
 depend:
   - SuperiorSkyblock2
   - WorldGuard
-  - UltraMinions
   - PlaceholderAPI
 loadbefore:
   - TAB
   - AuctionGUIPlus
   - DailyBonus
+  - UltraMinions
 
 commands:
   spawn:

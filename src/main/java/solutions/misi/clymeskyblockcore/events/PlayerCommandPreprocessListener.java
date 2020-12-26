@@ -36,6 +36,7 @@ public class PlayerCommandPreprocessListener implements Listener {
             }
         }
 
+        /*
         //> Island settings Command
         if(cmd.equalsIgnoreCase("/is settings") || cmd.equalsIgnoreCase("/island settings")) {
             SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
@@ -44,7 +45,7 @@ public class PlayerCommandPreprocessListener implements Listener {
                 event.setCancelled(true);
                 ClymeSkyblockCore.getInstance().getIslandSettingsGUI().open(player);
             }
-        }
+        } */
 
         //> Anti Command spam
         ClymeSkyblockCore.getInstance().getCommandHandler().usedCommand(player);
