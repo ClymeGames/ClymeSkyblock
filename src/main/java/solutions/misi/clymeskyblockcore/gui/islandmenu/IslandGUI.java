@@ -217,7 +217,7 @@ public class IslandGUI implements Listener {
                         ClymeSkyblockCore.getInstance().getIslandMembersGUI().open(player);
                         break;
                     case "§aHow to play SkyBlock":
-                        //> TODO: How to play Skyblock GUI
+                        player.performCommand("tutorial tutorial");
                         break;
                     case "§cIsland Border":
                         player.performCommand("is border");

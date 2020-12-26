@@ -19,6 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
+import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,6 +117,13 @@ public class IslandMembersGUI implements Listener {
 
         if(event.getClick() == ClickType.LEFT) {
             SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
+
+            if(superiorPlayer.getName().equals(player.getName())) {
+                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "You can't kick yourself from your Island!");
+                player.closeInventory();
+                return;
+            }
+
             superiorPlayer.getIsland().kickMember(superiorPlayer);
 
             player.closeInventory();
@@ -124,6 +132,12 @@ public class IslandMembersGUI implements Listener {
         } else if(event.getClick() == ClickType.RIGHT) {
             SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
             superiorPlayer.getIsland().transferIsland(superiorPlayer);
+
+            if(superiorPlayer.getName().equals(player.getName())) {
+                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "You already own this Island!");
+                player.closeInventory();
+                return;
+            }
 
             player.closeInventory();
             Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), (Runnable) player::closeInventory, 2);

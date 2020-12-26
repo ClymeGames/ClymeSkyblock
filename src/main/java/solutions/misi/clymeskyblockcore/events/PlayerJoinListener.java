@@ -37,7 +37,11 @@ public class PlayerJoinListener implements Listener {
             clymePlayer.sendMessage(" ");
         });
 
-        player.teleport(new Location(Bukkit.getWorld("world"), 75.432, 175.0, 102.524));
+        //> Teleport player to spawn
+        Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> {
+            player.teleport(new Location(Bukkit.getWorld("world"), 75.432, 175.0, 102.524));
+        }, 10);
+
         player.setFlying(false);
         player.removePotionEffect(PotionEffectType.BLINDNESS);
 

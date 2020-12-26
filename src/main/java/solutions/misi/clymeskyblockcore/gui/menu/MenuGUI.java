@@ -201,6 +201,7 @@ public class MenuGUI implements Listener {
 
         try {
             if(event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0Menu")) {
+                ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
                 event.setCancelled(true);
 
                 if(event.getCurrentItem().getType() != Material.BLACK_STAINED_GLASS_PANE) player.closeInventory();
@@ -223,7 +224,7 @@ public class MenuGUI implements Listener {
                             player.performCommand("pvp");
                             break;
                         case "§6Shop":
-                            player.performCommand("buy");
+                            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Visit " + ClymeChatColor.SECONDARY() + "https://store.clyme.games/ " + ClymeChatColor.INFO() + "to support this Server and purchase Ranks, Crates, Perks & More!");
                             break;
                         case "§6Auctionhouse":
                             player.performCommand("auctionhouse");
