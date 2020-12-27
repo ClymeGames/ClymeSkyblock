@@ -349,6 +349,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         BroadcastCommand broadcastCommand = new BroadcastCommand();
         getCommand("broadcast").setExecutor(broadcastCommand);
+
+        VanishCommand vanishCommand = new VanishCommand();
+        getCommand("vanish").setExecutor(vanishCommand);
     }
 
     private void setupEconomy() {

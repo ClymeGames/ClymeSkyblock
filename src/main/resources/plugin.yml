@@ -152,3 +152,6 @@ commands:
   broadcast:
     description: Broadcasts a message to all players
     aliases: [announce,announcement,bc]
+  vanish:
+    description: Toggles if you are invisible or not
+    aliases: [v]
