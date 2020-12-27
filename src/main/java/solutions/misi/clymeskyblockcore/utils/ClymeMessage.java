@@ -3,6 +3,7 @@ package solutions.misi.clymeskyblockcore.utils;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -59,5 +60,12 @@ public class ClymeMessage {
 
     public void clearChat(Player player) {
         for(int i = 0; i < 255; i++) player.sendMessage(" ");
+    }
+
+    public void broadcastMessage(boolean addPrefix, String message) {
+        String prefix = "";
+        if(addPrefix) prefix = getPrefix();
+
+        Bukkit.broadcastMessage(format(prefix + ClymeChatColor.INFO() + message));
     }
 }

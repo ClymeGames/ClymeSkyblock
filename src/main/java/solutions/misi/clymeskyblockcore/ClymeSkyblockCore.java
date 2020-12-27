@@ -52,6 +52,8 @@ import solutions.misi.clymeskyblockcore.utils.TimeUtil;
 
 public class ClymeSkyblockCore extends JavaPlugin {
 
+    @Getter @Setter private boolean restarting;
+
     //> Classes
     @Getter private static ClymeSkyblockCore instance;
     @Getter private ClymeMessage clymeMessage;
@@ -90,6 +92,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
     @Override
     public void onLoad() {
+        setRestarting(true);
+
         loadClasses();
         registerFlags();
     }
@@ -104,6 +108,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
         setupEconomy();
         setupPermission();
         setupChat();
+
+        setRestarting(false);
     }
 
     @Override
@@ -352,6 +358,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         VanishCommand vanishCommand = new VanishCommand();
         getCommand("vanish").setExecutor(vanishCommand);
+
+        RestartCommand restartCommand = new RestartCommand();
+        getCommand("restart").setExecutor(restartCommand);
     }
 
     private void setupEconomy() {

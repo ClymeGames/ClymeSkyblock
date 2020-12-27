@@ -155,3 +155,6 @@ commands:
   vanish:
     description: Toggles if you are invisible or not
     aliases: [v]
+  restart:
+    description: Restarts the server with a countdown
+    aliases: [stop, shutdown]

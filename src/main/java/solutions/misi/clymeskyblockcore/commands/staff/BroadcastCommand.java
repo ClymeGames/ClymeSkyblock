@@ -1,6 +1,5 @@
 package solutions.misi.clymeskyblockcore.commands.staff;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -39,11 +38,7 @@ public class BroadcastCommand implements CommandExecutor {
                 for(int i = 1; i < args.length; i++) messageBuilder.append(args[i]).append(" ");
                 String message = messageBuilder.toString();
 
-                for(Player target : Bukkit.getOnlinePlayers()) {
-                    ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target);
-                    clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ACCENT() + message);
-                }
-
+                ClymeSkyblockCore.getInstance().getClymeMessage().broadcastMessage(true, message);
                 return true;
             default:
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getNoPermission());

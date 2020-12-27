@@ -21,6 +21,11 @@ public class PlayerJoinListener implements Listener {
 
         event.setJoinMessage("");
 
+        if(ClymeSkyblockCore.getInstance().isRestarting()) {
+            player.kickPlayer("&cThe server is currently restarting!");
+            return;
+        }
+
         Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
             ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().addClymePlayer(player);
             ClymeSkyblockCore.getInstance().getClymeMessage().clearChat(player);
