@@ -149,3 +149,6 @@ commands:
   xpbottle:
     description: Converts your current exp into xp bottles
     aliases: [xpbottles, expbottle, expbottles]
+  broadcast:
+    description: Broadcasts a message to all players
+    aliases: [announce,announcement,bc]

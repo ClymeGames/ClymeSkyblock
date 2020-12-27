@@ -346,6 +346,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         XpbottleCommand xpbottleCommand = new XpbottleCommand();
         getCommand("xpbottle").setExecutor(xpbottleCommand);
+
+        BroadcastCommand broadcastCommand = new BroadcastCommand();
+        getCommand("broadcast").setExecutor(broadcastCommand);
     }
 
     private void setupEconomy() {
