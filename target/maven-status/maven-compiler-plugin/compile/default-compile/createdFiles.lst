@@ -16,6 +16,7 @@ solutions\misi\clymeskyblockcore\commands\donator\AnvilCommand.class
 solutions\misi\clymeskyblockcore\commands\staff\SunCommand.class
 solutions\misi\clymeskyblockcore\gui\HomeGUI.class
 solutions\misi\clymeskyblockcore\islands\settings\flags\Flags.class
+solutions\misi\clymeskyblockcore\commands\staff\VanishCommand.class
 solutions\misi\clymeskyblockcore\events\ServerListPingListener.class
 solutions\misi\clymeskyblockcore\events\PlayerRespawnListener.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelPlayerGUI.class
@@ -104,4 +105,5 @@ solutions\misi\clymeskyblockcore\events\PlayerQuitListener.class
 solutions\misi\clymeskyblockcore\commands\MoneyCommand.class
 solutions\misi\clymeskyblockcore\islands\ClymeIslandManager.class
 solutions\misi\clymeskyblockcore\data\mysql\ClymeHomesTable.class
+solutions\misi\clymeskyblockcore\commands\staff\BroadcastCommand.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandSettingsGUI.class

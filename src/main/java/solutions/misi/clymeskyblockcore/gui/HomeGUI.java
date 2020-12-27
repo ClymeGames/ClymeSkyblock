@@ -88,6 +88,7 @@ public class HomeGUI implements Listener {
                 event.setCancelled(true);
 
                 if(event.getCurrentItem().getType() != Material.BLACK_STAINED_GLASS_PANE) player.closeInventory();
+                if(event.getClickedInventory() != event.getView().getTopInventory()) return;
 
                 ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
 

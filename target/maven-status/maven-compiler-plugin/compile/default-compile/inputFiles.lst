@@ -3,6 +3,7 @@ C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyb
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\utils\SkullCreator.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\FeedCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelPlayerGUI.java
+C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\staff\VanishCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\message\MessageCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\CosmeticsCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\data\DataManager.java
@@ -45,6 +46,7 @@ C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyb
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\staff\GamemodeCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\data\mysql\ClymeHomesTable.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\items\ClymeCrystal.java
+C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\staff\BroadcastCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\events\PlayerJoinListener.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\FixCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\warps\SpawnCommand.java

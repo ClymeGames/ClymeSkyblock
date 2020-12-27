@@ -42,6 +42,9 @@ public class ClymePlayer {
         //> save data in cache
         ClymeSkyblockCore.getInstance().getPlayersHandler().getPlaytimeCache().put(this, System.currentTimeMillis());
 
+        //> update player permissions
+        updatePermissions();
+
         Bukkit.getConsoleSender().sendMessage("[ClymeGames] §aPlayer data from " + getUsername() + " has been loaded!");
     }
 
@@ -83,6 +86,7 @@ public class ClymePlayer {
     public void updatePermissions() {
         String playerRank = ClymeSkyblockCore.getInstance().getPermission().getPrimaryGroup(getPlayer());
 
+        //> Update maxHomes
         switch(playerRank) {
             case "dazzle":
                 setMaxHomes(3);
@@ -94,10 +98,10 @@ public class ClymePlayer {
                 setMaxHomes(10);
                 break;
             default:
+                setMaxHomes(2);
                 break;
         }
 
-        ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().loadClymePlayerData(this);
-        ClymeSkyblockCore.getInstance().getDataManager().getClymeHomesTable().loadClymePlayerData(this);
+        ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().saveClymePlayerData(this);
     }
 }

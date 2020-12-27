@@ -12,7 +12,6 @@ public class HomeCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
         if(!(sender instanceof Player)) {
             sender.sendMessage("[ClymeGames] You can't execute this command through console!");
             return false;
