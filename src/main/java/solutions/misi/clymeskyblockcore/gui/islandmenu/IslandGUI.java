@@ -137,11 +137,11 @@ public class IslandGUI implements Listener {
 
         ItemStack islandGenerator = new ItemStack(Material.COBBLESTONE);
         ItemMeta islandGeneratorMeta = islandGenerator.getItemMeta();
-        islandGeneratorMeta.setDisplayName("§3Island Generator");
+        islandGeneratorMeta.setDisplayName("§3Island Upgrades");
         List<String> islandGeneratorLore = new ArrayList<>();
         islandGeneratorLore.add(" ");
         islandGeneratorLore.add("§7Click here to view & upgrade");
-        islandGeneratorLore.add("§7your Island Generator");
+        islandGeneratorLore.add("§7your Island");
         islandGeneratorLore.add(" ");
         islandGeneratorMeta.setLore(islandGeneratorLore);
         islandGenerator.setItemMeta(islandGeneratorMeta);
@@ -211,7 +211,8 @@ public class IslandGUI implements Listener {
                         player.performCommand("is top");
                         break;
                     case "§fIsland Settings":
-                        ClymeSkyblockCore.getInstance().getIslandSettingsGUI().open(player);
+                        //ClymeSkyblockCore.getInstance().getIslandSettingsGUI().open(player);
+                        player.performCommand("is settings");
                         break;
                     case "§cIsland Team":
                         ClymeSkyblockCore.getInstance().getIslandMembersGUI().open(player);
@@ -222,7 +223,7 @@ public class IslandGUI implements Listener {
                     case "§cIsland Border":
                         player.performCommand("is border");
                         break;
-                    case "§3Island Generator":
+                    case "§3Island Upgrades":
                         player.performCommand("is upgrades");
                         break;
                 }

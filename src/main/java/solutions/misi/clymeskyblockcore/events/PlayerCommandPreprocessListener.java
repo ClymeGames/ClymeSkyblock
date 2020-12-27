@@ -36,6 +36,11 @@ public class PlayerCommandPreprocessListener implements Listener {
             }
         }
 
+        //> Island Values Command
+        if(cmd.equalsIgnoreCase("/is values")) {
+            ClymeSkyblockCore.getInstance().getSpawnerValuesGUI().open(player);
+        }
+
         /*
         //> Island settings Command
         if(cmd.equalsIgnoreCase("/is settings") || cmd.equalsIgnoreCase("/island settings")) {
