@@ -359,8 +359,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
         VanishCommand vanishCommand = new VanishCommand();
         getCommand("vanish").setExecutor(vanishCommand);
 
-        RestartCommand restartCommand = new RestartCommand();
-        getCommand("restart").setExecutor(restartCommand);
+        UpdateCommand updateCommand = new UpdateCommand();
+        getCommand("update").setExecutor(updateCommand);
     }
 
     private void setupEconomy() {

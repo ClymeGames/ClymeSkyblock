@@ -72,6 +72,8 @@ public class PlayersHandler {
                         "§c§oor purchase a ban evasion in our store: §fshop.clyme.games§c§o!" +
                         "\n");
             });
+
+            ClymeSkyblockCore.getInstance().getPlayersHandler().removeClymePlayer(clymeTarget);
         }
     }
 

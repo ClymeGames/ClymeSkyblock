@@ -39,12 +39,12 @@ public class VanishCommand implements CommandExecutor {
             case "manager":
             case "owner":
                 if(player.hasPotionEffect(PotionEffectType.INVISIBILITY)) {
+                    player.removePotionEffect(PotionEffectType.INVISIBILITY);
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have disabled vanish");
+                } else {
                     PotionEffect potionEffect = new PotionEffect(PotionEffectType.INVISIBILITY, 99999999, 10, false, false);
                     player.addPotionEffect(potionEffect);
                     clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have enabled vanish");
-                } else {
-                    player.removePotionEffect(PotionEffectType.INVISIBILITY);
-                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have disabled vanish");
                 }
 
                 return true;

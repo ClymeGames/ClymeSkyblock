@@ -9,9 +9,9 @@ import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
 
-public class RestartCommand implements CommandExecutor {
+public class UpdateCommand implements CommandExecutor {
 
-    //> Usage: /restart
+    //> Usage: /update
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {

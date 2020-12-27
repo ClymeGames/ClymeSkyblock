@@ -103,5 +103,6 @@ public class ClymePlayer {
         }
 
         ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().saveClymePlayerData(this);
+        ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().loadClymePlayerData(this);
     }
 }

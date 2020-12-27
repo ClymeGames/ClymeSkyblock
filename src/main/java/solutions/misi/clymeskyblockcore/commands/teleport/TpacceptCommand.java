@@ -42,6 +42,7 @@ public class TpacceptCommand implements CommandExecutor {
 
             Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> {
                 if(player.getWorld() == clymeTarget.getPlayer().getWorld() && player.getLocation().distance(clymeTarget.getPlayer().getLocation()) < 5) {
+                    ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportCache().remove(clymeTarget);
                     ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportHereCache().remove(clymeTarget);
 
                     clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SECONDARY() + player.getName() + ClymeChatColor.SUCCESS() + " has accepted your tpa request!");

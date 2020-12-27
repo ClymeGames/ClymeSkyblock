@@ -69,6 +69,7 @@ solutions\misi\clymeskyblockcore\commands\warps\FarmingCommand.class
 solutions\misi\clymeskyblockcore\security\Screenshare.class
 solutions\misi\clymeskyblockcore\commands\donator\FixCommand.class
 solutions\misi\clymeskyblockcore\commands\staff\GamemodeCommand.class
+solutions\misi\clymeskyblockcore\commands\staff\RestartCommand.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\SpawnerValuesGUI.class
 solutions\misi\clymeskyblockcore\commands\HomeCommand.class
 solutions\misi\clymeskyblockcore\commands\donator\CosmeticsCommand.class
