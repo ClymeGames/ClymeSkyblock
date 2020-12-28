@@ -57,6 +57,15 @@ public class MessageCommand implements CommandExecutor {
 
         clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "✉ " + ClymeChatColor.SECONDARY() + "(me ➥ " + ClymeChatColor.INFO() + target.getName() + ClymeChatColor.SECONDARY() + ") " + ClymeChatColor.ACCENT() + "» §f" + message);
         clymeTarget.sendMessage(ClymeChatColor.ACCENT() + "✉ " + ClymeChatColor.SECONDARY() + "(" + ClymeChatColor.INFO() + player.getName() + ClymeChatColor.SECONDARY() + " ➥ me) " + ClymeChatColor.ACCENT() + "» §f" + message);
+
+        //> Send message to Staff that enabled SocialSpy
+        for(Player staff : Bukkit.getOnlinePlayers()) {
+            ClymePlayer clymeStaff = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(staff);
+            if(!ClymeSkyblockCore.getInstance().getCommandUtil().getSocialSpy().contains(clymeStaff)) continue;
+
+            clymeStaff.sendMessage("§d✉ (" + player.getName() + " ➥ " + target.getName() + ") » " + message);
+        }
+
         return true;
     }
 }

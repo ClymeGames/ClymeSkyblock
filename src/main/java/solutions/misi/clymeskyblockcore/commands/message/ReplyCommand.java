@@ -1,5 +1,6 @@
 package solutions.misi.clymeskyblockcore.commands.message;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -50,6 +51,15 @@ public class ReplyCommand implements CommandExecutor {
 
         clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "✉ " + ClymeChatColor.SECONDARY() + "(me ➥ " + ClymeChatColor.INFO() + clymeTarget.getPlayer().getName() + ClymeChatColor.SECONDARY() + ") " + ClymeChatColor.ACCENT() + "» §f" + message);
         clymeTarget.sendMessage(ClymeChatColor.ACCENT() + "✉ " + ClymeChatColor.SECONDARY() + "(" + ClymeChatColor.INFO() + player.getName() + ClymeChatColor.SECONDARY() + " ➥ me) " + ClymeChatColor.ACCENT() + "» §f" + message);
+
+        //> Send message to Staff that enabled SocialSpy
+        for(Player staff : Bukkit.getOnlinePlayers()) {
+            ClymePlayer clymeStaff = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(staff);
+            if(!ClymeSkyblockCore.getInstance().getCommandUtil().getSocialSpy().contains(clymeStaff)) continue;
+
+            clymeStaff.sendMessage("§d✉ (" + player.getName() + " ➥ " + clymeTarget.getUsername() + ") » " + message);
+        }
+
         return true;
     }
 }

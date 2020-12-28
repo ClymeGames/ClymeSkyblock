@@ -1,4 +1,4 @@
-package solutions.misi.clymeskyblockcore.commands.staff;
+package solutions.misi.clymeskyblockcore.commands.message;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,9 +8,9 @@ import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
 
-public class BroadcastCommand implements CommandExecutor {
+public class SocialSpyCommand implements CommandExecutor {
 
-    //> Usage: /broadcast <message>
+    //> Usage: /socialspy
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -26,19 +26,23 @@ public class BroadcastCommand implements CommandExecutor {
 
         if(args.length < 1) {
             //> Wrong usage
-            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "Wrong usage! Please use " + ClymeChatColor.SECONDARY() + "/broadcast <message>" + ClymeChatColor.ERROR() + "!");
+            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "Wrong usage! Please use " + ClymeChatColor.SECONDARY() + "/socialspy" + ClymeChatColor.ERROR() + "!");
             return false;
         }
 
         switch(playerRank) {
+            case "seniormod":
             case "admin":
             case "manager":
             case "owner":
-                StringBuilder messageBuilder = new StringBuilder();
-                for(int i = 0; i < args.length; i++) messageBuilder.append(args[i]).append(" ");
-                String message = messageBuilder.toString();
+                if(ClymeSkyblockCore.getInstance().getCommandUtil().getSocialSpy().contains(clymePlayer)) {
+                    ClymeSkyblockCore.getInstance().getCommandUtil().getSocialSpy().remove(clymePlayer);
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully disabled SocialSpy!");
+                } else {
+                    ClymeSkyblockCore.getInstance().getCommandUtil().getSocialSpy().add(clymePlayer);
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully enabled SocialSpy!");
+                }
 
-                ClymeSkyblockCore.getInstance().getClymeMessage().broadcastMessage(true, message);
                 return true;
             default:
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getNoPermission());

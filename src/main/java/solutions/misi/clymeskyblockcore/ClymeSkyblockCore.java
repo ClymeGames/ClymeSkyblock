@@ -19,6 +19,7 @@ import solutions.misi.clymeskyblockcore.commands.donator.*;
 import solutions.misi.clymeskyblockcore.commands.message.MessageCommand;
 import solutions.misi.clymeskyblockcore.commands.message.MsgToggleCommand;
 import solutions.misi.clymeskyblockcore.commands.message.ReplyCommand;
+import solutions.misi.clymeskyblockcore.commands.message.SocialSpyCommand;
 import solutions.misi.clymeskyblockcore.commands.staff.*;
 import solutions.misi.clymeskyblockcore.commands.teleport.*;
 import solutions.misi.clymeskyblockcore.commands.warps.*;
@@ -168,6 +169,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerRespawnListener(), this);
         Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), this);
         Bukkit.getPluginManager().registerEvents(new SignChangeListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerInteractAtEntityListener(), this);
     }
 
     private void registerGUIs() {
@@ -361,6 +363,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         UpdateCommand updateCommand = new UpdateCommand();
         getCommand("update").setExecutor(updateCommand);
+
+        SocialSpyCommand socialSpyCommand = new SocialSpyCommand();
+        getCommand("socialspy").setExecutor(socialSpyCommand);
     }
 
     private void setupEconomy() {

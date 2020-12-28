@@ -38,7 +38,7 @@ public class TpacceptCommand implements CommandExecutor {
         ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getCommandUtil().getTarget(clymePlayer);
 
         if(clymeTarget != null) {
-            if(ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportCache().containsValue(clymeTarget)) {
+            if(ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportHereCache().containsValue(clymePlayer)) {
                 player.teleportAsync(clymeTarget.getPlayer().getLocation());
             } else {
                 clymeTarget.getPlayer().teleportAsync(player.getLocation());
