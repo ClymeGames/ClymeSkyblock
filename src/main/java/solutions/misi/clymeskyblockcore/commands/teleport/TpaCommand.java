@@ -49,7 +49,7 @@ public class TpaCommand implements CommandExecutor {
             return false;
         }
 
-        if(ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportCache().containsValue(clymeTarget)) {
+        if(ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportCache().containsValue(clymeTarget) || ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportHereCache().containsValue(clymeTarget)) {
             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + clymeTarget.getPlayer().getName() +  ClymeChatColor.ERROR() + " already received a tpa request!");
             return false;
         }

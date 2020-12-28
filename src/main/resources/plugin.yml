@@ -12,7 +12,7 @@ loadbefore:
   - TAB
   - AuctionGUIPlus
   - DailyBonus
-  - UltraMinions
+  - VoidChest
 
 commands:
   spawn:

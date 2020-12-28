@@ -5,6 +5,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
+import solutions.misi.clymeskyblockcore.player.ClymePlayer;
+import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
 
 public class MinionsCommand implements CommandExecutor {
 
@@ -16,7 +18,10 @@ public class MinionsCommand implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        ClymeSkyblockCore.getInstance().getMinionShopGUI().open(player);
+        ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
+
+        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "Minions are temporarily disabled!");
+        //ClymeSkyblockCore.getInstance().getMinionShopGUI().open(player);
         return true;
     }
 }

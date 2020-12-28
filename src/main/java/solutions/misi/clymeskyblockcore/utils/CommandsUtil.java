@@ -22,7 +22,7 @@ public class CommandsUtil {
     @Getter private final List<String> commandCooldowns = new ArrayList<>();
 
     public ClymePlayer getTarget(ClymePlayer player) {
-        for(Map.Entry<ClymePlayer, ClymePlayer> entry : teleportCache.entrySet()) if(entry.getValue().getPlayer() == player.getPlayer()) return entry.getValue();
+        for(Map.Entry<ClymePlayer, ClymePlayer> entry : teleportCache.entrySet()) if(entry.getValue().getPlayer() == player.getPlayer()) return entry.getKey();
         for(Map.Entry<ClymePlayer, ClymePlayer> entry : teleportHereCache.entrySet()) if(entry.getValue().getPlayer() == player.getPlayer()) return entry.getKey();
         return null;
     }

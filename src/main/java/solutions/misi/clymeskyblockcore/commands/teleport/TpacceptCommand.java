@@ -38,7 +38,11 @@ public class TpacceptCommand implements CommandExecutor {
         ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getCommandUtil().getTarget(clymePlayer);
 
         if(clymeTarget != null) {
-            player.teleportAsync(clymeTarget.getPlayer().getLocation());
+            if(ClymeSkyblockCore.getInstance().getCommandUtil().getTeleportCache().containsValue(clymeTarget)) {
+                player.teleportAsync(clymeTarget.getPlayer().getLocation());
+            } else {
+                clymeTarget.getPlayer().teleportAsync(player.getLocation());
+            }
 
             Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> {
                 if(player.getWorld() == clymeTarget.getPlayer().getWorld() && player.getLocation().distance(clymeTarget.getPlayer().getLocation()) < 5) {

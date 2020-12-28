@@ -12,7 +12,7 @@ loadbefore:
   - TAB
   - AuctionGUIPlus
   - DailyBonus
-  - UltraMinions
+  - VoidChest
 
 commands:
   spawn:
@@ -155,6 +155,5 @@ commands:
   vanish:
     description: Toggles if you are invisible or not
     aliases: [v]
-  restart:
+  update:
     description: Restarts the server with a countdown
-    aliases: [stop, shutdown]
