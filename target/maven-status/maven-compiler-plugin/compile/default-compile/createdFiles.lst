@@ -35,6 +35,7 @@ solutions\misi\clymeskyblockcore\gui\menu\MenuGUI.class
 solutions\misi\clymeskyblockcore\commands\staff\RainCommand.class
 solutions\misi\clymeskyblockcore\gui\shop\MinionShopGUI.class
 solutions\misi\clymeskyblockcore\events\PlayerTeleportListener.class
+solutions\misi\clymeskyblockcore\events\PlayerInteractAtEntityListener.class
 solutions\misi\clymeskyblockcore\commands\donator\SmithingtableCommand.class
 solutions\misi\clymeskyblockcore\events\PlayerLoginListener.class
 solutions\misi\clymeskyblockcore\events\InventoryClickListener.class
@@ -52,6 +53,7 @@ solutions\misi\clymeskyblockcore\commands\teleport\TphereCommand.class
 solutions\misi\clymeskyblockcore\security\CommandHandler.class
 solutions\misi\clymeskyblockcore\islands\events\IslandUpgradeListener.class
 solutions\misi\clymeskyblockcore\utils\ClymeMessage.class
+solutions\misi\clymeskyblockcore\commands\message\SocialSpyCommand.class
 solutions\misi\clymeskyblockcore\commands\teleport\TpacceptCommand.class
 solutions\misi\clymeskyblockcore\commands\message\ReplyCommand.class
 solutions\misi\clymeskyblockcore\islands\settings\flags\events\CreatureSpawnFlagListener.class

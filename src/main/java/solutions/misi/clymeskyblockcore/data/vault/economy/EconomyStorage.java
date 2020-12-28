@@ -1,5 +1,6 @@
 package solutions.misi.clymeskyblockcore.data.vault.economy;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Pipeline;
@@ -15,7 +16,7 @@ public class EconomyStorage {
         setBalance(player, new BigDecimal(1000));
     }
 
-    public boolean userBalanceExists(Player player) {
+    public boolean userBalanceExists(OfflinePlayer player) {
         Jedis jedis = null;
         Pipeline pipeline;
         String uuid = player.getUniqueId().toString();
@@ -35,7 +36,7 @@ public class EconomyStorage {
         return result;
     }
 
-    public BigDecimal getBalance(Player player) {
+    public BigDecimal getBalance(OfflinePlayer player) {
         if(!userBalanceExists(player)) return null;
 
         Jedis jedis = null;
@@ -57,7 +58,7 @@ public class EconomyStorage {
         return result;
     }
 
-    public void setBalance(Player player, BigDecimal balance) {
+    public void setBalance(OfflinePlayer player, BigDecimal balance) {
         Jedis jedis = null;
         Pipeline pipeline;
         String uuid = player.getUniqueId().toString();
