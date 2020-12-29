@@ -261,84 +261,84 @@ public class MinionShopGUI implements Listener {
                     switch(event.getCurrentItem().getItemMeta().getDisplayName()) {
                         case "§aOak Minion I":
                             if(purchaseMinion(clymePlayer, 5000)) {
-                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 11");
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 1 1");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the oak minion!");
                             }
 
                             break;
                         case "§aCobblestone Minion I":
                             if(purchaseMinion(clymePlayer, 7500)) {
-                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 12");
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 1 2");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the cobblestone minion!");
                             }
 
                             break;
                         case "§aCoal Minion I":
                             if(purchaseMinion(clymePlayer, 10000)) {
-                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 13");
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 1 3");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the coal minion!");
                             }
 
                             break;
                         case "§aIron Minion I":
                             if(purchaseMinion(clymePlayer, 15000)) {
-                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 14");
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 1 4");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the iron minion!");
                             }
 
                             break;
                         case "§9Clay Minion I":
                             if(purchaseMinion(clymePlayer, 20000)) {
-                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 15");
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 1 5");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the clay minion!");
                             }
 
                             break;
                         case "§9Quartz Minion I":
                             if(purchaseMinion(clymePlayer, 25000)) {
-                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 16");
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 1 6");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the quartz minion!");
                             }
 
                             break;
                         case "§aPotato Minion I":
                             if(purchaseMinion(clymePlayer, 5000)) {
-                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " Farmer 11");
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " Farmer 1 1");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the potato minion!");
                             }
 
                             break;
                         case "§aRabbit Minion I":
                             if(purchaseMinion(clymePlayer, 7500)) {
-                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " Spawner 11");
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " Spawner 1 1");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the rabbit minion!");
                             }
 
                             break;
                         case "§9Sheep Minion I":
                             if(purchaseMinion(clymePlayer, 10000)) {
-                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 12");
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " Spawner 1 2");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the sheep minion!");
                             }
 
                             break;
                         case "§9Slayer Minion I":
                             if(purchaseMinion(clymePlayer, 15000)) {
-                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " Slayer 11");
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " Slayer 1 1");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the slayer minion!");
                             }
 
                             break;
                         case "§5Gold Minion I":
                             if(purchaseMinion(clymePlayer, 25000)) {
-                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 17");
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 1 7");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the gold minion!");
                             }
 
                             break;
                         case "§5Netherwart Minion I":
                             if(purchaseMinion(clymePlayer, 25000)) {
-                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " Farmer 12");
+                                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " Farmer 1 2");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the netherwart minion!");
                             }
 
