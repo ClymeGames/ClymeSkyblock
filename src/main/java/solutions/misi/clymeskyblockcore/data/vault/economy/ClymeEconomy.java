@@ -109,6 +109,7 @@ public class ClymeEconomy implements Economy {
     @Override
     public EconomyResponse withdrawPlayer(String s, double v) {
         double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s)).doubleValue() - v;
+        if(changedBalance < 0) return new EconomyResponse(v, changedBalance, EconomyResponse.ResponseType.FAILURE, "");
         ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(Bukkit.getOfflinePlayer(s), new BigDecimal(changedBalance));
         return new EconomyResponse(v, changedBalance, EconomyResponse.ResponseType.SUCCESS, "");
     }
@@ -116,6 +117,7 @@ public class ClymeEconomy implements Economy {
     @Override
     public EconomyResponse withdrawPlayer(OfflinePlayer offlinePlayer, double v) {
         double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(offlinePlayer).doubleValue() - v;
+        if(changedBalance < 0) return new EconomyResponse(v, changedBalance, EconomyResponse.ResponseType.FAILURE, "");
         ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(offlinePlayer, new BigDecimal(changedBalance));
         return new EconomyResponse(v, changedBalance, EconomyResponse.ResponseType.SUCCESS, "");
     }
@@ -123,6 +125,7 @@ public class ClymeEconomy implements Economy {
     @Override
     public EconomyResponse withdrawPlayer(String s, String s1, double v) {
         double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(Bukkit.getPlayer(s)).doubleValue() - v;
+        if(changedBalance < 0) return new EconomyResponse(v, changedBalance, EconomyResponse.ResponseType.FAILURE, "");
         ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(Bukkit.getOfflinePlayer(s), new BigDecimal(changedBalance));
         return new EconomyResponse(v, changedBalance, EconomyResponse.ResponseType.SUCCESS, "");
     }
@@ -130,6 +133,7 @@ public class ClymeEconomy implements Economy {
     @Override
     public EconomyResponse withdrawPlayer(OfflinePlayer offlinePlayer, String s, double v) {
         double changedBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(offlinePlayer).doubleValue() - v;
+        if(changedBalance < 0) return new EconomyResponse(v, changedBalance, EconomyResponse.ResponseType.FAILURE, "");
         ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().setBalance(offlinePlayer, new BigDecimal(changedBalance));
         return new EconomyResponse(v, changedBalance, EconomyResponse.ResponseType.SUCCESS, "");
     }
