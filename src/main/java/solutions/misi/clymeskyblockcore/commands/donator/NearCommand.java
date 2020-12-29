@@ -41,6 +41,7 @@ public class NearCommand implements CommandExecutor {
         for(Player target : Bukkit.getOnlinePlayers()) {
             if(target == player) continue;
             if(target.getWorld() != player.getWorld() || target.getLocation().distance(playerLocation) > 50) continue;
+            if(target.hasPermission("clymegames.near.bypass")) continue;
 
             nearbyPlayers.put(target, (int) Math.round(target.getLocation().distance(playerLocation)));
         }

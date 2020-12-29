@@ -17,7 +17,7 @@ public class ClymeHomesTable {
 
     public ClymeHomesTable() {
         String sql = "CREATE TABLE IF NOT EXISTS clymeHomes"
-                + " (uuid VARCHAR(36) PRIMARY KEY,"
+                + " (uuid VARCHAR(36),"
                 + "world VARCHAR(255),"
                 + "x DOUBLE,"
                 + "y DOUBLE,"
