@@ -366,6 +366,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         SocialSpyCommand socialSpyCommand = new SocialSpyCommand();
         getCommand("socialspy").setExecutor(socialSpyCommand);
+
+        VotecrateCommand votecrateCommand = new VotecrateCommand();
+        getCommand("votecrate").setExecutor(votecrateCommand);
     }
 
     private void setupEconomy() {

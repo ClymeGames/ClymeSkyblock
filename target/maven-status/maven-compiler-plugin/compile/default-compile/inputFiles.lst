@@ -35,6 +35,7 @@ C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyb
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\gui\shop\MinionShopGUI.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\gui\islandmenu\IslandMembersGUI.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\security\CombatLog.java
+C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\events\PlayerInteractAtEntityListener.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\MinionsCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\utils\ExperienceUtils.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\message\ReplyCommand.java
@@ -94,6 +95,7 @@ C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyb
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\warps\BaltopCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\events\ServerListPingListener.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\utils\CommandsUtil.java
+C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\message\SocialSpyCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\security\CommandHandler.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\PlayertimeCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\CartographytableCommand.java

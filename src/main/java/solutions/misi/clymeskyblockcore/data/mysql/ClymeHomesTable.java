@@ -101,6 +101,7 @@ public class ClymeHomesTable {
 
                 playerHomes.put(location, name);
             }
+
             resultSet.close();
         } catch(SQLException exception) {
             exception.printStackTrace();

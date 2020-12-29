@@ -189,9 +189,8 @@ public class MinionShopGUI implements Listener {
         slayerLore.add("§7Price: $15,000");
         slayerLore.add(" ");
         slayerLore.add("§7Place this minion and it will");
-        slayerLore.add("§7start generating and mining");
-        slayerLore.add("§7red mushrooms! Requires an open area to");
-        slayerLore.add("§7place red mushrooms.");
+        slayerLore.add("§7start killing");
+        slayerLore.add("§7mobs!");
         slayerLore.add(" ");
         slayerLore.add("§9§lRARE");
         slayerMeta.setLore(slayerLore);

@@ -152,6 +152,7 @@ public class HomeGUI implements Listener {
 
         playerHomes.put(player.getLocation(), homeName);
         clymePlayer.setHomes(playerHomes);
+        ClymeSkyblockCore.getInstance().getDataManager().getClymeHomesTable().saveClymePlayerData(clymePlayer);
         ClymeSkyblockCore.getInstance().getCommandUtil().getHomeCreation().remove(clymePlayer);
         clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully saved a new home called " + ClymeChatColor.SECONDARY() + homeName);
     }
