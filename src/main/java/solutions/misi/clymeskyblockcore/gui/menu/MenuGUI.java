@@ -34,8 +34,8 @@ public class MenuGUI implements Listener {
         placeholder.setItemMeta(placeholderMeta);
 
         int ping = 0;
-        long hours = 0;
-        long minutes = 0;
+        long hours;
+        long minutes;
         try {
             Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
             ping = (int) entityPlayer.getClass().getField("ping").get(entityPlayer);

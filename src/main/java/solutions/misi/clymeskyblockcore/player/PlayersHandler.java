@@ -42,6 +42,9 @@ public class PlayersHandler {
         //> Playtime
         long addedPlaytime = System.currentTimeMillis() - playtimeCache.get(clymePlayer);
         clymePlayer.setPlaytime(clymePlayer.getPlaytime()+addedPlaytime);
+
+        //> Homes
+        ClymeSkyblockCore.getInstance().getDataManager().getClymeHomesTable().loadClymePlayerData(clymePlayer);
     }
 
     public void banPlayer(OfflinePlayer target, Timestamp duration, String reason) {

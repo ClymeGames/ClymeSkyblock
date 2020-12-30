@@ -116,10 +116,10 @@ public class ClymeHomesTable {
 
     public void saveClymePlayerData(ClymePlayer clymePlayer) {
         Map<Location, String> playerHomes = clymePlayer.getHomes();
-        Map<Location, String> oldPlayerHomes = getPlayerHomes(clymePlayer.getPlayer());
+        //Map<Location, String> oldPlayerHomes = getPlayerHomes(clymePlayer.getPlayer());
 
         //> Update homes to database
-        for(String home : oldPlayerHomes.values()) deleteHome(clymePlayer.getPlayer(), home);
+        //for(String home : oldPlayerHomes.values()) deleteHome(clymePlayer.getPlayer(), home);
         for(Map.Entry<Location, String> entry : playerHomes.entrySet()) setHome(clymePlayer.getPlayer(), entry.getKey(), entry.getValue());
     }
 }

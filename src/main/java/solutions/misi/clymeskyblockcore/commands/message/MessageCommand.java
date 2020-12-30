@@ -62,6 +62,7 @@ public class MessageCommand implements CommandExecutor {
         for(Player staff : Bukkit.getOnlinePlayers()) {
             ClymePlayer clymeStaff = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(staff);
             if(!ClymeSkyblockCore.getInstance().getCommandUtil().getSocialSpy().contains(clymeStaff)) continue;
+            if(player == staff || target == staff) continue;
 
             clymeStaff.sendMessage("§d✉ (" + player.getName() + " ➥ " + target.getName() + ") » " + message);
         }

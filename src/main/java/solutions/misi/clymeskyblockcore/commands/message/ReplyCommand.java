@@ -56,6 +56,7 @@ public class ReplyCommand implements CommandExecutor {
         for(Player staff : Bukkit.getOnlinePlayers()) {
             ClymePlayer clymeStaff = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(staff);
             if(!ClymeSkyblockCore.getInstance().getCommandUtil().getSocialSpy().contains(clymeStaff)) continue;
+            if(player == staff || clymeTarget.getPlayer() == staff) continue;
 
             clymeStaff.sendMessage("§d✉ (" + player.getName() + " ➥ " + clymeTarget.getUsername() + ") » " + message);
         }
