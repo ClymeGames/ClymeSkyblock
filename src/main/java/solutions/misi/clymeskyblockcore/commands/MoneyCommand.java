@@ -41,7 +41,8 @@ public class MoneyCommand implements CommandExecutor {
                         return false;
                     }
 
-                    BigDecimal targetBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(target);
+                    BigDecimal bigTargetBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(target);
+                    double targetBalance = Math.round(bigTargetBalance.doubleValue() * 100.0) / 100.0;
                     clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "The player " + ClymeChatColor.SECONDARY() + args[0] + ClymeChatColor.INFO() + " has " + ClymeChatColor.SECONDARY() + "$" + targetBalance);
                     return true;
                 case 3:
@@ -141,7 +142,8 @@ public class MoneyCommand implements CommandExecutor {
                         return false;
                     }
 
-                    BigDecimal targetBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(target);
+                    BigDecimal bigTargetBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(target);
+                    double targetBalance = Math.round(bigTargetBalance.doubleValue() * 100.0) / 100.0;
                     Bukkit.getConsoleSender().sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "The player " + ClymeChatColor.SECONDARY() + args[0] + ClymeChatColor.INFO() + " has " + ClymeChatColor.SECONDARY() + "$" + targetBalance));
                     return true;
                 case 3:
