@@ -15,7 +15,7 @@ public class CosmeticsCommand implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        player.performCommand("pc open Main");
+        player.performCommand("procosmetics open Main");
         return true;
     }
 }

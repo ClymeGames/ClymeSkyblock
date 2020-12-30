@@ -160,3 +160,6 @@ commands:
   socialspy:
     description: Toggles if you can see other peoples messages or not
     aliases: [ss]
+  votecrate:
+    description: Teleports you to the Vote Crate
+    aliases: [votecrates]

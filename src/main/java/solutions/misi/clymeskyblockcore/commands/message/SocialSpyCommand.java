@@ -24,7 +24,7 @@ public class SocialSpyCommand implements CommandExecutor {
         ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
         String playerRank = ClymeSkyblockCore.getInstance().getPermission().getPrimaryGroup(player);
 
-        if(args.length < 1) {
+        if(args.length != 0) {
             //> Wrong usage
             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "Wrong usage! Please use " + ClymeChatColor.SECONDARY() + "/socialspy" + ClymeChatColor.ERROR() + "!");
             return false;
