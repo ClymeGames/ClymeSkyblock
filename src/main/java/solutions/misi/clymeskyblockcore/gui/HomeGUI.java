@@ -96,15 +96,9 @@ public class HomeGUI implements Listener {
 
                 //> Set new home point
                 if(event.getCurrentItem().getType() == Material.WHITE_BED) {
-                    if(ClymeSkyblockCore.getInstance().getCommandUtil().getHomeCreation().containsKey(clymePlayer)) {
-                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Please enter the name for this Home!");
-                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Or " + ClymeChatColor.SECONDARY() + "EXIT" + ClymeChatColor.INFO() + " to cancel!");
-                        return;
-                    }
+                    player.closeInventory();
 
-                    if(event.getCurrentItem().getType() != Material.WHITE_BED) {
-                        ClymeSkyblockCore.getInstance().getCommandUtil().getHomeCreation().put(clymePlayer, event.getCurrentItem().getItemMeta().getDisplayName());
-                    } else {
+                    if(!ClymeSkyblockCore.getInstance().getCommandUtil().getHomeCreation().containsKey(clymePlayer)) {
                         ClymeSkyblockCore.getInstance().getCommandUtil().getHomeCreation().put(clymePlayer, null);
                     }
 
@@ -138,6 +132,8 @@ public class HomeGUI implements Listener {
                 if(event.getCurrentItem().getType() == Material.ORANGE_BED && event.getClick() == ClickType.LEFT) {
                     Location home = ClymeSkyblockCore.getInstance().getPlayersHandler().getPlayerHomeFromName(clymePlayer, ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName()));
                     clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to " + ClymeChatColor.SECONDARY() + ChatColor.stripColor(event.getCurrentItem().getItemMeta().getDisplayName())  + ClymeChatColor.SUCCESS() + "..");
+
+                    player.closeInventory();
                     player.teleportAsync(home);
                     player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
                 }
@@ -155,15 +151,15 @@ public class HomeGUI implements Listener {
         if(!ClymeSkyblockCore.getInstance().getCommandUtil().getHomeCreation().containsKey(clymePlayer)) return;
         event.setCancelled(true);
 
-        if(clymePlayer.getHomes().containsValue(homeName)) {
+        Map<Location, String> playerHomes = clymePlayer.getHomes();
+
+        if(playerHomes.containsValue(homeName)) {
             if(!homeName.equals(ChatColor.stripColor(ClymeSkyblockCore.getInstance().getCommandUtil().getHomeCreation().get(clymePlayer)))) {
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "You already have a home called " + ClymeChatColor.SECONDARY() + homeName);
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Please try something else or use " + ClymeChatColor.SECONDARY() + "EXIT" + ClymeChatColor.INFO() + " to cancel!");
                 return;
             }
         }
-
-        Map<Location, String> playerHomes = clymePlayer.getHomes();
 
         if(ClymeSkyblockCore.getInstance().getCommandUtil().getHomeCreation().get(clymePlayer) != null) {
             for(Map.Entry<Location, String> entry : clymePlayer.getHomes().entrySet()) {
@@ -176,6 +172,7 @@ public class HomeGUI implements Listener {
         playerHomes.put(player.getLocation(), homeName);
         clymePlayer.setHomes(playerHomes);
         ClymeSkyblockCore.getInstance().getDataManager().getClymeHomesTable().saveClymePlayerData(clymePlayer);
+        ClymeSkyblockCore.getInstance().getDataManager().getClymeHomesTable().setHome(player, player.getLocation(), homeName);
         ClymeSkyblockCore.getInstance().getCommandUtil().getHomeCreation().remove(clymePlayer);
         ClymeSkyblockCore.getInstance().getPlayersHandler().updatePlayerData(clymePlayer);
         clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully saved a new home called " + ClymeChatColor.SECONDARY() + homeName);

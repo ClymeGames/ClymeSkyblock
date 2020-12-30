@@ -44,6 +44,7 @@ public class PlayersHandler {
         clymePlayer.setPlaytime(clymePlayer.getPlaytime()+addedPlaytime);
 
         //> Homes
+        clymePlayer.setHomes(null);
         ClymeSkyblockCore.getInstance().getDataManager().getClymeHomesTable().loadClymePlayerData(clymePlayer);
     }
 
