@@ -37,12 +37,6 @@ public class PlayersHandler {
         playerList.remove(clymePlayer);
     }
 
-    public void updatePlayerData(ClymePlayer clymePlayer) {
-        //> Playtime
-        long addedPlaytime = System.currentTimeMillis() - playtimeCache.get(clymePlayer);
-        clymePlayer.setPlaytime(clymePlayer.getPlaytime()+addedPlaytime);
-    }
-
     public void banPlayer(OfflinePlayer target, Timestamp duration, String reason) {
         ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().banPlayer(target, duration, reason);
 

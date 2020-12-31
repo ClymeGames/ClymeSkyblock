@@ -17,7 +17,6 @@ public class ClymePlayersTable {
         String sql = "CREATE TABLE IF NOT EXISTS clymePlayers"
                             + " (uuid VARCHAR(36) PRIMARY KEY,"
                             + "username VARCHAR(255),"
-                            + "playtime BIGINT,"
                             + "first_join TIMESTAMP NULL DEFAULT NULL,"
                             + "last_join TIMESTAMP NULL DEFAULT NULL,"
                             + "ip VARCHAR(255),"
@@ -45,19 +44,18 @@ public class ClymePlayersTable {
         Timestamp joined = new Timestamp(currentTime);
         int maxHomes = 2;
 
-        String sql = "INSERT INTO clymePlayers (uuid, username, playtime, first_join, last_join, ip, maxHomes) VALUES (?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE last_join = ?";
+        String sql = "INSERT INTO clymePlayers (uuid, username, first_join, last_join, ip, maxHomes) VALUES (?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE last_join = ?";
 
         Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
             try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
                  PreparedStatement insertOrUpdate = connection.prepareStatement(sql)) {
                 insertOrUpdate.setString(1, uuid);
                 insertOrUpdate.setString(2, username.toLowerCase());
-                insertOrUpdate.setLong(3, playtime);
+                insertOrUpdate.setTimestamp(3, joined);
                 insertOrUpdate.setTimestamp(4, joined);
-                insertOrUpdate.setTimestamp(5, joined);
-                insertOrUpdate.setString(6, ip);
-                insertOrUpdate.setInt(7, maxHomes);
-                insertOrUpdate.setTimestamp(8, joined);
+                insertOrUpdate.setString(5, ip);
+                insertOrUpdate.setInt(6, maxHomes);
+                insertOrUpdate.setTimestamp(7, joined);
                 insertOrUpdate.executeUpdate();
             } catch(SQLException exception) {
                 exception.printStackTrace();
@@ -72,7 +70,6 @@ public class ClymePlayersTable {
                 select.setString(1, clymePlayer.getUuid().toString());
                 ResultSet resultSet = select.executeQuery();
                 if(resultSet.next()) {
-                    clymePlayer.setPlaytime(resultSet.getLong("playtime"));
                     clymePlayer.setFirstJoin(resultSet.getTimestamp("first_join"));
                     clymePlayer.setLast_join(resultSet.getTimestamp("last_join"));
                     clymePlayer.setBanned(resultSet.getTimestamp("banned"));
@@ -120,10 +117,9 @@ public class ClymePlayersTable {
         Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
             try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
                     PreparedStatement update = connection.prepareStatement("UPDATE clymePlayers SET playtime = ?, ip = ?, maxHomes = ? WHERE uuid = ?")) {
-                update.setLong(1, clymePlayer.getPlaytime());
-                update.setString(2, clymePlayer.getIp());
-                update.setInt(3, clymePlayer.getMaxHomes());
-                update.setString(4, clymePlayer.getUuid().toString());
+                update.setString(1, clymePlayer.getIp());
+                update.setInt(2, clymePlayer.getMaxHomes());
+                update.setString(3, clymePlayer.getUuid().toString());
                 update.executeUpdate();
             } catch(SQLException exception) {
                 exception.printStackTrace();

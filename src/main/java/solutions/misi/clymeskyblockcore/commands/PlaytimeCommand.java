@@ -1,6 +1,7 @@
 package solutions.misi.clymeskyblockcore.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Statistic;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -28,10 +29,8 @@ public class PlaytimeCommand implements CommandExecutor {
         switch(args.length) {
             case 0:
                 //> Usage: /playtime
-                ClymeSkyblockCore.getInstance().getPlayersHandler().updatePlayerData(clymePlayer);
-
-                hours = (clymePlayer.getPlaytime() / 1000) / 60 / 60;
-                minutes = (clymePlayer.getPlaytime() / 1000) / 60 % 60;
+                hours = (player.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) / 60 / 60;
+                minutes = (player.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) / 60 % 60;
 
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Your playtime: " + ClymeChatColor.SECONDARY() + hours + " hours " + ClymeChatColor.INFO() + "and " + ClymeChatColor.SECONDARY() + minutes + " minutes");
                 return true;
@@ -44,11 +43,8 @@ public class PlaytimeCommand implements CommandExecutor {
                     return false;
                 }
 
-                clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target);
-                ClymeSkyblockCore.getInstance().getPlayersHandler().updatePlayerData(clymeTarget);
-
-                hours = (clymeTarget.getPlaytime() / 1000) / 60 / 60;
-                minutes = (clymeTarget.getPlaytime() / 1000) / 60 % 60;
+                hours = (player.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) / 60 / 60;
+                minutes = (player.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) / 60 % 60;
 
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SECONDARY() + target.getName() + "'s" + ClymeChatColor.INFO() + " playtime: " + ClymeChatColor.SECONDARY() + hours + " hours " + ClymeChatColor.INFO() + "and " + ClymeChatColor.SECONDARY() + minutes + " minutes");
                 return true;
@@ -66,10 +62,7 @@ public class PlaytimeCommand implements CommandExecutor {
                     return false;
                 }
 
-                clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target);
-                clymeTarget.setPlaytime(0);
-                ClymeSkyblockCore.getInstance().getPlayersHandler().getPlaytimeCache().put(clymeTarget, System.currentTimeMillis());
-
+                target.setStatistic(Statistic.PLAY_ONE_MINUTE, 0);
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully reset the playtime of " + ClymeChatColor.SECONDARY() + target.getName());
                 return true;
             default:

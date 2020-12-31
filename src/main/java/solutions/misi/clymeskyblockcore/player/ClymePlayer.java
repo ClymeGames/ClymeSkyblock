@@ -15,7 +15,6 @@ public class ClymePlayer {
     @Getter private final UUID uuid;
     @Getter private final String username;
     @Getter private final String ip;
-    @Getter @Setter private long playtime;
     @Getter @Setter private Timestamp firstJoin;
     @Getter @Setter private Timestamp last_join;
     @Getter @Setter private Timestamp banned;
