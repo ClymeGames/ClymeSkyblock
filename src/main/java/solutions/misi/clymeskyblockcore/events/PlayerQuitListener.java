@@ -18,10 +18,8 @@ public class PlayerQuitListener implements Listener {
 
         event.setQuitMessage("");
 
-        ClymeSkyblockCore.getInstance().getPlayersHandler().updatePlayerData(clymePlayer);
+        //> Save Player data
         ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().saveClymePlayerData(clymePlayer);
-        //ClymeSkyblockCore.getInstance().getDataManager().getClymeHomesTable().saveClymePlayerData(clymePlayer);
-        //ClymeSkyblockCore.getInstance().getPlayersHandler().removeClymePlayer(clymePlayer);
 
         //> Screenshare Ban
         if(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getScreensharing().contains(player))

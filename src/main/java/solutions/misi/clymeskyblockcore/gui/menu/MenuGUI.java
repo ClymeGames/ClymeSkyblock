@@ -4,6 +4,7 @@ import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,8 +25,6 @@ public class MenuGUI implements Listener {
 
     public void open(Player player) {
         Inventory gui = Bukkit.createInventory(null, 36, ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0Menu");
-        ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
-        ClymeSkyblockCore.getInstance().getPlayersHandler().updatePlayerData(clymePlayer);
         SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
 
         ItemStack placeholder = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
@@ -40,8 +39,8 @@ public class MenuGUI implements Listener {
             Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
             ping = (int) entityPlayer.getClass().getField("ping").get(entityPlayer);
         } catch(IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException | NoSuchFieldException exception) { exception.printStackTrace(); }
-        hours = (clymePlayer.getPlaytime() / 1000) / 60 / 60;
-        minutes = (clymePlayer.getPlaytime() / 1000) / 60 % 60;
+        hours = (player.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) / 60 / 60;
+        minutes = (player.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) / 60 % 60;
         ItemStack playerInfo = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta playerInfoMeta = (SkullMeta) playerInfo.getItemMeta();
         playerInfoMeta.setOwningPlayer(Bukkit.getOfflinePlayer(player.getUniqueId()));
