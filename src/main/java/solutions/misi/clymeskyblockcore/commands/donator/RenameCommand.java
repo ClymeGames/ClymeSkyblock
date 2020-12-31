@@ -51,7 +51,11 @@ public class RenameCommand implements CommandExecutor {
         }
 
         ItemMeta itemMeta = player.getInventory().getItemInMainHand().getItemMeta();
-        itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', itemName));
+        if(player.isOp()) {
+            itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', itemName));
+        } else {
+            itemMeta.setDisplayName(itemName);
+        }
         player.getInventory().getItemInMainHand().setItemMeta(itemMeta);
         clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully renamed the item in your hand");
         return true;
