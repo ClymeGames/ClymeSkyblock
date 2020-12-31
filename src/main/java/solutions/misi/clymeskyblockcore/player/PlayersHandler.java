@@ -2,7 +2,6 @@ package solutions.misi.clymeskyblockcore.player;
 
 import lombok.Getter;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
@@ -42,10 +41,6 @@ public class PlayersHandler {
         //> Playtime
         long addedPlaytime = System.currentTimeMillis() - playtimeCache.get(clymePlayer);
         clymePlayer.setPlaytime(clymePlayer.getPlaytime()+addedPlaytime);
-
-        //> Homes
-        clymePlayer.setHomes(null);
-        ClymeSkyblockCore.getInstance().getDataManager().getClymeHomesTable().loadClymePlayerData(clymePlayer);
     }
 
     public void banPlayer(OfflinePlayer target, Timestamp duration, String reason) {
@@ -94,15 +89,5 @@ public class PlayersHandler {
 
             clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You got muted for " + ClymeChatColor.SECONDARY() + timeLeft + ClymeChatColor.INFO() + "!");
         }
-    }
-
-    public Location getPlayerHomeFromName(ClymePlayer player, String name) {
-        Map<Location, String> playerHomes = player.getHomes();
-        for(Map.Entry<Location, String> entry : playerHomes.entrySet()) {
-            if(!entry.getValue().equals(name)) continue;
-            return entry.getKey();
-        }
-
-        return null;
     }
 }

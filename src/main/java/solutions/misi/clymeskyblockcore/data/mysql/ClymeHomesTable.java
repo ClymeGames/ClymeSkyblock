@@ -4,13 +4,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
-import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ClymeHomesTable {
@@ -57,6 +58,35 @@ public class ClymeHomesTable {
                 insert.setDouble(7, pitch);
                 insert.setString(8, name);
                 insert.executeUpdate();
+            } catch(SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
+    public void changeHomeLocation(Player player, Location newLocation, String name) {
+        String uuid = player.getUniqueId().toString();
+        String world = newLocation.getWorld().getName();
+        double x = newLocation.getX();
+        double y = newLocation.getY();
+        double z = newLocation.getZ();
+        double yaw = newLocation.getYaw();
+        double pitch = newLocation.getPitch();
+
+        String sql = "UPDATE clymeHomes SET world = ?, x = ?, y = ?, z = ?, yaw = ?, pitch = ? WHERE uuid = ? AND name = ?";
+
+        Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
+            try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
+                 PreparedStatement update = connection.prepareStatement(sql)) {
+                update.setString(1, world);
+                update.setDouble(2, x);
+                update.setDouble(3, y);
+                update.setDouble(4, z);
+                update.setDouble(5, yaw);
+                update.setDouble(6, pitch);
+                update.setString(7, uuid);
+                update.setString(8, name);
+                update.executeUpdate();
             } catch(SQLException exception) {
                 exception.printStackTrace();
             }
@@ -110,16 +140,21 @@ public class ClymeHomesTable {
         return playerHomes;
     }
 
-    public void loadClymePlayerData(ClymePlayer clymePlayer) {
-        clymePlayer.setHomes(getPlayerHomes(clymePlayer.getPlayer()));
+    public List<Location> getPlayerHomesList(Player player) {
+        Map<Location, String> playerHomesMap = getPlayerHomes(player);
+        List<Location> playerHomesList = new ArrayList<>();
+        for(Map.Entry<Location, String> home : playerHomesMap.entrySet())  { playerHomesList.add(home.getKey()); }
+
+        return playerHomesList;
     }
 
-    public void saveClymePlayerData(ClymePlayer clymePlayer) {
-        Map<Location, String> playerHomes = clymePlayer.getHomes();
-        //Map<Location, String> oldPlayerHomes = getPlayerHomes(clymePlayer.getPlayer());
+    public Location getPlayerHomeFromName(Player player, String name) {
+        Map<Location, String> playerHomes = getPlayerHomes(player);
 
-        //> Update homes to database
-        //for(String home : oldPlayerHomes.values()) deleteHome(clymePlayer.getPlayer(), home);
-        //for(Map.Entry<Location, String> entry : playerHomes.entrySet()) setHome(clymePlayer.getPlayer(), entry.getKey(), entry.getValue());
+        for(Map.Entry<Location, String> home : playerHomes.entrySet()) {
+            if(home.getValue().equals(name)) return home.getKey();
+        }
+
+        return null;
     }
 }

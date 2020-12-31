@@ -3,13 +3,11 @@ package solutions.misi.clymeskyblockcore.player;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.Map;
 import java.util.UUID;
 
 public class ClymePlayer {
@@ -23,7 +21,6 @@ public class ClymePlayer {
     @Getter @Setter private Timestamp banned;
     @Getter @Setter private String banReason;
     @Getter @Setter private Timestamp muted;
-    @Getter @Setter private Map<Location, String> homes;
     @Getter @Setter private int maxHomes;
 
     public ClymePlayer(Player player) {
@@ -37,7 +34,6 @@ public class ClymePlayer {
 
         //> async load data from database
         ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().loadClymePlayerData(this);
-        ClymeSkyblockCore.getInstance().getDataManager().getClymeHomesTable().loadClymePlayerData(this);
 
         //> save data in cache
         ClymeSkyblockCore.getInstance().getPlayersHandler().getPlaytimeCache().put(this, System.currentTimeMillis());

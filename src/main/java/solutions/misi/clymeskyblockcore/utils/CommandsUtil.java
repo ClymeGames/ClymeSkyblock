@@ -12,13 +12,13 @@ import java.util.Map;
 
 public class CommandsUtil {
 
-    @Getter private final Map<ClymePlayer, String> homeCreation = new HashMap<>();
     @Getter private final Map<ClymePlayer, ClymePlayer> teleportCache = new HashMap<>();
     @Getter private final Map<ClymePlayer, ClymePlayer> teleportHereCache = new HashMap<>();
 
     @Getter private final List<ClymePlayer> tpToggle = new ArrayList<>();
     @Getter private final List<ClymePlayer> msgToggle = new ArrayList<>();
     @Getter private final List<ClymePlayer> socialSpy = new ArrayList<>();
+    @Getter private final List<ClymePlayer> homeCreation = new ArrayList<>();
 
     @Getter private final List<String> commandCooldowns = new ArrayList<>();
 
