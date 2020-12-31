@@ -7,9 +7,8 @@ import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 
 import java.sql.*;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.UUID;
+import java.util.*;
 
 public class ClymePlayersTable {
 
@@ -61,6 +60,25 @@ public class ClymePlayersTable {
                 exception.printStackTrace();
             }
         });
+    }
+
+    public List<OfflinePlayer> getAllUniquePlayers() {
+        List<OfflinePlayer> uniquePlayers = new ArrayList<>();
+
+        Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
+            try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
+                 PreparedStatement select = connection.prepareStatement("SELECT * FROM clymePlayers")) {
+                ResultSet resultSet = select.executeQuery();
+                if(resultSet.next()) {
+                    uniquePlayers.add(Bukkit.getOfflinePlayer(resultSet.getString("uuid")));
+                }
+                resultSet.close();
+            } catch(SQLException exception) {
+                exception.printStackTrace();
+            }
+        });
+
+        return uniquePlayers;
     }
 
     public void loadClymePlayerData(ClymePlayer clymePlayer) {

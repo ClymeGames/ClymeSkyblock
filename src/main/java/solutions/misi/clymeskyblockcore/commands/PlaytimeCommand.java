@@ -1,6 +1,7 @@
 package solutions.misi.clymeskyblockcore.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.Statistic;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,6 +10,11 @@ import org.bukkit.entity.Player;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
+import solutions.misi.clymeskyblockcore.utils.SortingUtils;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class PlaytimeCommand implements CommandExecutor {
 
@@ -35,6 +41,29 @@ public class PlaytimeCommand implements CommandExecutor {
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Your playtime: " + ClymeChatColor.SECONDARY() + hours + " hours " + ClymeChatColor.INFO() + "and " + ClymeChatColor.SECONDARY() + minutes + " minutes");
                 return true;
             case 1:
+                //> Usage: /playtime top
+                if(args[0].equalsIgnoreCase("top")) {
+                    List<OfflinePlayer> allPlayers = ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().getAllUniquePlayers();
+                    HashMap<OfflinePlayer, Integer> allPlayersPlaytime = new HashMap<>();
+                    for(OfflinePlayer offlinePlayer : allPlayers) allPlayersPlaytime.put(offlinePlayer, offlinePlayer.getStatistic(Statistic.PLAY_ONE_MINUTE));
+                    Map<OfflinePlayer, Integer> sortedAllPlayersPlaytime = SortingUtils.sortByValue(allPlayersPlaytime);
+
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "The players with most playtime:");
+
+                    int topAmount = 1;
+                    for(Map.Entry<OfflinePlayer, Integer> result : sortedAllPlayersPlaytime.entrySet()) {
+                        if(topAmount > 5) break;
+
+                        hours = (result.getKey().getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) / 60 / 60;
+                        minutes = (result.getKey().getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) / 60 % 60;
+                        clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "#" + topAmount + " " + ClymeChatColor.SECONDARY() + result.getKey().getName() + ClymeChatColor.INFO() + " - " + ClymeChatColor.SECONDARY() + hours + " hours " + ClymeChatColor.INFO() + " and " + ClymeChatColor.SECONDARY() + minutes + " minutes");
+
+                        topAmount++;
+                    }
+
+                    return true;
+                }
+
                 //> Usage: /playtime (player)
                 target = Bukkit.getPlayer(args[0]);
 
@@ -43,8 +72,8 @@ public class PlaytimeCommand implements CommandExecutor {
                     return false;
                 }
 
-                hours = (player.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) / 60 / 60;
-                minutes = (player.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) / 60 % 60;
+                hours = (target.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) / 60 / 60;
+                minutes = (target.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) / 60 % 60;
 
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SECONDARY() + target.getName() + "'s" + ClymeChatColor.INFO() + " playtime: " + ClymeChatColor.SECONDARY() + hours + " hours " + ClymeChatColor.INFO() + "and " + ClymeChatColor.SECONDARY() + minutes + " minutes");
                 return true;
