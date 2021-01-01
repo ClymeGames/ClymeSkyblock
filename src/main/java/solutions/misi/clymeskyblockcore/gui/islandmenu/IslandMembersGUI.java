@@ -12,7 +12,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -143,13 +142,5 @@ public class IslandMembersGUI implements Listener {
             Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), (Runnable) player::closeInventory, 2);
             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§e" + superiorPlayer.getName() + " has been promoted to Island Leader!");
         }
-    }
-
-    @EventHandler
-    public void onClose(InventoryCloseEvent event) {
-        Player player = (Player) event.getPlayer();
-
-        if(!event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0Island Members")) return;
-        Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> ClymeSkyblockCore.getInstance().getIslandGUI().open(player), 1);
     }
 }

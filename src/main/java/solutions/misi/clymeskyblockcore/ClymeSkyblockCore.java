@@ -1,8 +1,5 @@
 package solutions.misi.clymeskyblockcore;
 
-import com.sk89q.worldguard.WorldGuard;
-import com.sk89q.worldguard.protection.flags.StateFlag;
-import com.sk89q.worldguard.protection.flags.registry.FlagRegistry;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,25 +25,25 @@ import solutions.misi.clymeskyblockcore.data.vault.economy.ClymeEconomy;
 import solutions.misi.clymeskyblockcore.events.*;
 import solutions.misi.clymeskyblockcore.gui.DisposalGUI;
 import solutions.misi.clymeskyblockcore.gui.HomeGUI;
-import solutions.misi.clymeskyblockcore.gui.islandmenu.*;
+import solutions.misi.clymeskyblockcore.gui.islandmenu.IslandCreationGUI;
+import solutions.misi.clymeskyblockcore.gui.islandmenu.IslandGUI;
+import solutions.misi.clymeskyblockcore.gui.islandmenu.IslandMembersGUI;
+import solutions.misi.clymeskyblockcore.gui.islandmenu.SpawnerValuesGUI;
 import solutions.misi.clymeskyblockcore.gui.menu.MenuGUI;
 import solutions.misi.clymeskyblockcore.gui.shop.MinionShopGUI;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelDurationGUI;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelGUI;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelInventoryInspectorGUI;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelPlayerGUI;
-import solutions.misi.clymeskyblockcore.islands.ClymeIslandManager;
-import solutions.misi.clymeskyblockcore.islands.events.IslandCreateListener;
-import solutions.misi.clymeskyblockcore.islands.events.IslandDisbandListener;
-import solutions.misi.clymeskyblockcore.islands.events.IslandUpgradeListener;
-import solutions.misi.clymeskyblockcore.islands.settings.IslandSettings;
-import solutions.misi.clymeskyblockcore.islands.settings.flags.Flags;
-import solutions.misi.clymeskyblockcore.islands.settings.flags.events.CreatureSpawnFlagListener;
+import solutions.misi.clymeskyblockcore.leaderboards.PlaytimeLeaderboard;
 import solutions.misi.clymeskyblockcore.player.PlayersHandler;
 import solutions.misi.clymeskyblockcore.security.CombatLog;
 import solutions.misi.clymeskyblockcore.security.CommandHandler;
 import solutions.misi.clymeskyblockcore.security.Screenshare;
-import solutions.misi.clymeskyblockcore.utils.*;
+import solutions.misi.clymeskyblockcore.utils.ClymeMessage;
+import solutions.misi.clymeskyblockcore.utils.CommandsUtil;
+import solutions.misi.clymeskyblockcore.utils.ExperienceUtils;
+import solutions.misi.clymeskyblockcore.utils.TimeUtil;
 
 public class ClymeSkyblockCore extends JavaPlugin {
 
@@ -60,20 +57,16 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
     @Getter private DataManager dataManager;
     @Getter private CommandHandler commandHandler;
-    @Getter private ClymeIslandManager clymeIslandManager;
-    @Getter private IslandSettings islandSettings;
-    @Getter private Flags flags;
     @Getter private PlayersHandler playersHandler;
     @Getter private TimeUtil timeUtil;
     @Getter private Screenshare screenshare;
     @Getter private CommandsUtil commandUtil;
     @Getter private CombatLog combatLog;
     @Getter private ExperienceUtils experienceUtils;
-    @Getter private AsyncHandler asyncHandler;
+    @Getter private PlaytimeLeaderboard playtimeLeaderboard;
 
     @Getter private IslandGUI islandGUI;
     @Getter private SpawnerValuesGUI spawnerValuesGUI;
-    @Getter private IslandSettingsGUI islandSettingsGUI;
     @Getter private IslandMembersGUI islandMembersGUI;
     @Getter private IslandCreationGUI islandCreationGUI;
     @Getter private StaffpanelGUI staffpanelGUI;
@@ -94,7 +87,6 @@ public class ClymeSkyblockCore extends JavaPlugin {
         setRestarting(true);
 
         loadClasses();
-        registerFlags();
     }
 
     @Override
@@ -107,6 +99,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
         setupEconomy();
         setupPermission();
         setupChat();
+
+        playtimeLeaderboard.startPlaytimeCalc();
 
         setRestarting(false);
     }
@@ -122,20 +116,16 @@ public class ClymeSkyblockCore extends JavaPlugin {
         dataSource = new HikariDataSource();
         dataManager = new DataManager();
         commandHandler = new CommandHandler();
-        clymeIslandManager = new ClymeIslandManager();
-        islandSettings = new IslandSettings();
-        flags = new Flags();
         playersHandler = new PlayersHandler();
         timeUtil = new TimeUtil();
         screenshare = new Screenshare();
         commandUtil = new CommandsUtil();
         combatLog = new CombatLog();
         experienceUtils = new ExperienceUtils();
-        asyncHandler = new AsyncHandler();
+        playtimeLeaderboard = new PlaytimeLeaderboard();
 
         islandGUI = new IslandGUI();
         spawnerValuesGUI = new SpawnerValuesGUI();
-        islandSettingsGUI = new IslandSettingsGUI();
         islandMembersGUI = new IslandMembersGUI();
         islandCreationGUI = new IslandCreationGUI();
         staffpanelGUI = new StaffpanelGUI();
@@ -151,14 +141,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
     private void registerEvents() {
         Bukkit.getPluginManager().registerEvents(new Aliases(), this);
 
-        Bukkit.getPluginManager().registerEvents(new CreatureSpawnFlagListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerCommandPreprocessListener(), this);
-        Bukkit.getPluginManager().registerEvents(new IslandCreateListener(), this);
-        Bukkit.getPluginManager().registerEvents(new IslandDisbandListener(), this);
-        Bukkit.getPluginManager().registerEvents(new IslandUpgradeListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerQuitListener(), this);
-        Bukkit.getPluginManager().registerEvents(new ServerListPingListener(), this);
         Bukkit.getPluginManager().registerEvents(new AsyncPlayerChatListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerMoveListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerToggleFlightListener(), this);
@@ -174,7 +159,6 @@ public class ClymeSkyblockCore extends JavaPlugin {
     private void registerGUIs() {
         Bukkit.getPluginManager().registerEvents(new IslandGUI(), this);
         Bukkit.getPluginManager().registerEvents(new SpawnerValuesGUI(), this);
-        Bukkit.getPluginManager().registerEvents(new IslandSettingsGUI(), this);
         Bukkit.getPluginManager().registerEvents(new IslandMembersGUI(), this);
         Bukkit.getPluginManager().registerEvents(new IslandCreationGUI(), this);
         Bukkit.getPluginManager().registerEvents(new StaffpanelGUI(), this);
@@ -184,20 +168,6 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new MinionShopGUI(), this);
         Bukkit.getPluginManager().registerEvents(new MenuGUI(), this);
         Bukkit.getPluginManager().registerEvents(new HomeGUI(), this);
-    }
-
-    private void registerFlags() {
-        FlagRegistry flagRegistry = WorldGuard.getInstance().getFlagRegistry();
-
-        //> Animals Spawning Flag
-        StateFlag animalsSpawningFlag = new StateFlag("animals-spawning", true);
-        flagRegistry.register(animalsSpawningFlag);
-        getFlags().setAnimalsSpawningFlag(animalsSpawningFlag);
-
-        //> Monsters Spawning Flag
-        StateFlag monstersSpawningFlag = new StateFlag("monsters-spawning", true);
-        flagRegistry.register(monstersSpawningFlag);
-        getFlags().setMonstersSpawningFlag(monstersSpawningFlag);
     }
 
     private void loadCommands() {
@@ -267,8 +237,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
         ClymeCrystalCommand clymeCrystalCommand = new ClymeCrystalCommand();
         getCommand("clymecrystal").setExecutor(clymeCrystalCommand);
 
-        CosmeticsCommand cosmeticsCommand = new CosmeticsCommand();
-        getCommand("cosmetics").setExecutor(cosmeticsCommand);
+        CosmeticCommand cosmeticCommand = new CosmeticCommand();
+        getCommand("cosmetic").setExecutor(cosmeticCommand);
 
         BaltopCommand baltopCommand = new BaltopCommand();
         getCommand("baltop").setExecutor(baltopCommand);

@@ -1,32 +1,40 @@
-package solutions.misi.clymeskyblockcore.utils;
+package solutions.misi.clymeskyblockcore.leaderboards;
 
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Statistic;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
-import solutions.misi.clymeskyblockcore.player.ClymePlayer;
+import solutions.misi.clymeskyblockcore.utils.SortingUtils;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AsyncHandler {
+public class PlaytimeLeaderboard {
 
-    public void sendPlaytimeTop(ClymePlayer clymePlayer, List<OfflinePlayer> allPlayers) {
+    final int timerInMinutes = 15;
+    public Map<String, Integer> playtimeTop = new LinkedHashMap<>();
+
+    public void startPlaytimeCalc() {
+        Bukkit.getScheduler().runTaskTimerAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
+            ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().queryAllPlayers();
+        }, 10, 20*60*timerInMinutes);
+    }
+
+    public void update(List<OfflinePlayer> allPlayers) {
         HashMap<OfflinePlayer, Integer> allPlayersPlaytime = new HashMap<>();
         for(OfflinePlayer offlinePlayer : allPlayers) allPlayersPlaytime.put(offlinePlayer, offlinePlayer.getStatistic(Statistic.PLAY_ONE_MINUTE));
         Map<OfflinePlayer, Integer> sortedAllPlayersPlaytime = SortingUtils.sortByValue(allPlayersPlaytime);
 
-        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "The players with most playtime:");
+        playtimeTop.clear();
 
         int topAmount = 1;
         for(Map.Entry<OfflinePlayer, Integer> result : sortedAllPlayersPlaytime.entrySet()) {
             if(topAmount > 5) break;
 
             String username = ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().getNameFromUUID(result.getKey().getName());
-            long hours = (result.getKey().getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) / 60 / 60;
-            long minutes = (result.getKey().getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) / 60 % 60;
-
-            clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "#" + topAmount + " " + ClymeChatColor.SECONDARY() + username + ClymeChatColor.INFO() + " - " + ClymeChatColor.SECONDARY() + hours + " hours " + ClymeChatColor.INFO() + " and " + ClymeChatColor.SECONDARY() + minutes + " minutes");
+            playtimeTop.put(username, result.getValue());
 
             topAmount++;
         }

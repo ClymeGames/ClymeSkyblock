@@ -8,6 +8,7 @@ depend:
   - SuperiorSkyblock2
   - WorldGuard
   - PlaceholderAPI
+  - ProCosmetics
 loadbefore:
   - TAB
   - AuctionGUIPlus
@@ -73,9 +74,9 @@ commands:
     aliases: [storm, thunder]
   clymecrystal:
     description: Gives you the clyme crystal
-  cosmetics:
+  cosmetic:
     description: Opens the cosmetics menu
-    aliases: [gadgets, pets, effects, particles]
+    aliases: [gadgets, pets, effects, particles, cosmetics]
   baltop:
     description: Teleports you to the richest players leaderboard
     aliases: [moneytop, ecotop, balancetop, economytop]

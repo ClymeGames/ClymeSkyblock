@@ -14,7 +14,7 @@ import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 
 public class PlayerCommandPreprocessListener implements Listener {
 
-    @EventHandler (priority = EventPriority.MONITOR)
+    @EventHandler (priority = EventPriority.HIGH)
     public void onCommand(PlayerCommandPreprocessEvent event) {
         Player player = event.getPlayer();
         ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
@@ -38,6 +38,7 @@ public class PlayerCommandPreprocessListener implements Listener {
 
         //> Island Values Command
         if(cmd.equalsIgnoreCase("/is values")) {
+            event.setCancelled(true);
             ClymeSkyblockCore.getInstance().getSpawnerValuesGUI().open(player);
         }
 

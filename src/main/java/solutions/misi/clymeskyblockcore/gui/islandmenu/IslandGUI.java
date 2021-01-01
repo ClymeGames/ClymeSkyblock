@@ -10,7 +10,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -162,17 +161,6 @@ public class IslandGUI implements Listener {
     }
 
     @EventHandler
-    public void onClose(InventoryCloseEvent event) {
-        Player player = (Player) event.getPlayer();
-
-        if(event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0Top Islands")
-            || event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0Island Border")
-            || event.getView().getTitle().equals(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0Island Upgrades")) {
-            Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> ClymeSkyblockCore.getInstance().getIslandGUI().open(player), 1);
-        }
-    }
-
-    @EventHandler
     public void onClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
         ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
@@ -211,7 +199,6 @@ public class IslandGUI implements Listener {
                         player.performCommand("is top");
                         break;
                     case "§fIsland Settings":
-                        //ClymeSkyblockCore.getInstance().getIslandSettingsGUI().open(player);
                         player.performCommand("is settings");
                         break;
                     case "§cIsland Team":

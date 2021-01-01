@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 public class Aliases implements Listener {
 
-    @EventHandler (priority = EventPriority.MONITOR, ignoreCancelled = true)
+    @EventHandler (priority = EventPriority.MONITOR)
     public void onCommand(PlayerCommandPreprocessEvent event) {
         //> /pay => /money pay
         if(event.getMessage().toLowerCase().startsWith("/pay ")) {
@@ -30,12 +30,6 @@ public class Aliases implements Listener {
         //> /fixall => /fix all
         if(event.getMessage().toLowerCase().startsWith("/fixall")) {
             event.setMessage(event.getMessage().replaceFirst("/fixall", "/fix all"));
-            return;
-        }
-
-        //> /cosmetic => /cosmetics
-        if(event.getMessage().toLowerCase().startsWith("/cosmetic")) {
-            event.setMessage(event.getMessage().replaceFirst("/cosmetic", "/cosmetics"));
             return;
         }
 

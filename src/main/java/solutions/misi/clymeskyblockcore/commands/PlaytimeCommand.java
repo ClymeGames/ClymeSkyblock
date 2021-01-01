@@ -10,6 +10,8 @@ import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
 
+import java.util.Map;
+
 public class PlaytimeCommand implements CommandExecutor {
 
     @Override
@@ -37,17 +39,18 @@ public class PlaytimeCommand implements CommandExecutor {
             case 1:
                 //> Usage: /playtime top
                 if(args[0].equalsIgnoreCase("top")) {
-                    String commandCooldownFormat = player.getName() + ":playtimetop";
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "The players with most playtime:");
 
-                    //> Check cooldown
-                    if(ClymeSkyblockCore.getInstance().getCommandUtil().getCommandCooldowns().contains(commandCooldownFormat)) {
-                        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "Please wait! This command has a " + ClymeChatColor.SECONDARY() + "1m " + ClymeChatColor.ERROR() + "cooldown");
-                        return false;
+                    int topAmount = 1;
+                    for(Map.Entry<String, Integer> playtimeMap : ClymeSkyblockCore.getInstance().getPlaytimeLeaderboard().playtimeTop.entrySet()) {
+                        hours = (playtimeMap.getValue() / 20) / 60 / 60;
+                        minutes = (playtimeMap.getValue() / 20) / 60 % 60;
+
+                        clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "#" + topAmount + " " + ClymeChatColor.SECONDARY() + playtimeMap.getKey() + ClymeChatColor.INFO() + " - " + ClymeChatColor.SECONDARY() + hours + " hours " + ClymeChatColor.INFO() + " and " + ClymeChatColor.SECONDARY() + minutes + " minutes");
+
+                        topAmount++;
                     }
 
-                    ClymeSkyblockCore.getInstance().getCommandUtil().startCommandCooldown(clymePlayer, "playtimetop", 1);
-                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Loading playtime of all players..");
-                    ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().getAllUniquePlayers(clymePlayer);
                     return true;
                 }
 
