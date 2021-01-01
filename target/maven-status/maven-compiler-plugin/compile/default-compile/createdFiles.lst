@@ -18,6 +18,7 @@ solutions\misi\clymeskyblockcore\gui\HomeGUI.class
 solutions\misi\clymeskyblockcore\islands\settings\flags\Flags.class
 solutions\misi\clymeskyblockcore\commands\staff\VanishCommand.class
 solutions\misi\clymeskyblockcore\events\ServerListPingListener.class
+solutions\misi\clymeskyblockcore\utils\AsyncHandler.class
 solutions\misi\clymeskyblockcore\events\PlayerRespawnListener.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelPlayerGUI.class
 solutions\misi\clymeskyblockcore\commands\donator\FeedCommand.class
@@ -46,6 +47,7 @@ solutions\misi\clymeskyblockcore\events\PlayerToggleFlightListener.class
 solutions\misi\clymeskyblockcore\events\PlayerDeathListener.class
 solutions\misi\clymeskyblockcore\events\SignChangeListener.class
 solutions\misi\clymeskyblockcore\commands\staff\NightCommand.class
+solutions\misi\clymeskyblockcore\utils\SortingUtils.class
 solutions\misi\clymeskyblockcore\events\PlayerJoinListener.class
 solutions\misi\clymeskyblockcore\data\vault\economy\ClymeEconomy.class
 solutions\misi\clymeskyblockcore\events\PlayerMoveListener.class
@@ -70,6 +72,7 @@ solutions\misi\clymeskyblockcore\utils\CommandsUtil.class
 solutions\misi\clymeskyblockcore\commands\MinionsCommand.class
 solutions\misi\clymeskyblockcore\commands\warps\FarmingCommand.class
 solutions\misi\clymeskyblockcore\security\Screenshare.class
+solutions\misi\clymeskyblockcore\events\SheepRegrowWoolListener.class
 solutions\misi\clymeskyblockcore\commands\donator\FixCommand.class
 solutions\misi\clymeskyblockcore\commands\staff\GamemodeCommand.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\SpawnerValuesGUI.class

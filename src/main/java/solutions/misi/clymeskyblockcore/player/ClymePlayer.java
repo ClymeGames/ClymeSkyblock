@@ -92,6 +92,9 @@ public class ClymePlayer {
             case "supreme":
                 setMaxHomes(10);
                 break;
+            case "owner":
+                setMaxHomes(14);
+                break;
             default:
                 setMaxHomes(2);
                 break;

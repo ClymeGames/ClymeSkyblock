@@ -32,7 +32,7 @@ public class ReplyCommand implements CommandExecutor {
 
         ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getMessagingCache().get(clymePlayer);
 
-        if(clymeTarget == null) {
+        if(clymeTarget == null || clymeTarget.getPlayer() == null || !clymeTarget.getPlayer().isOnline()) {
             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "There is no player you can reply to!");
             return false;
         }

@@ -46,10 +46,7 @@ import solutions.misi.clymeskyblockcore.player.PlayersHandler;
 import solutions.misi.clymeskyblockcore.security.CombatLog;
 import solutions.misi.clymeskyblockcore.security.CommandHandler;
 import solutions.misi.clymeskyblockcore.security.Screenshare;
-import solutions.misi.clymeskyblockcore.utils.ClymeMessage;
-import solutions.misi.clymeskyblockcore.utils.CommandsUtil;
-import solutions.misi.clymeskyblockcore.utils.ExperienceUtils;
-import solutions.misi.clymeskyblockcore.utils.TimeUtil;
+import solutions.misi.clymeskyblockcore.utils.*;
 
 public class ClymeSkyblockCore extends JavaPlugin {
 
@@ -72,6 +69,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private CommandsUtil commandUtil;
     @Getter private CombatLog combatLog;
     @Getter private ExperienceUtils experienceUtils;
+    @Getter private AsyncHandler asyncHandler;
 
     @Getter private IslandGUI islandGUI;
     @Getter private SpawnerValuesGUI spawnerValuesGUI;
@@ -133,6 +131,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         commandUtil = new CommandsUtil();
         combatLog = new CombatLog();
         experienceUtils = new ExperienceUtils();
+        asyncHandler = new AsyncHandler();
 
         islandGUI = new IslandGUI();
         spawnerValuesGUI = new SpawnerValuesGUI();

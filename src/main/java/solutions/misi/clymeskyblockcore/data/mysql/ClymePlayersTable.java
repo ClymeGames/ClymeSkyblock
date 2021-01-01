@@ -36,7 +36,6 @@ public class ClymePlayersTable {
         String uuid = player.getUniqueId().toString();
         String username = player.getName();
         String ip = player.getAddress().getAddress().toString();
-        long playtime = 0;
         Calendar calendar = Calendar.getInstance();
         Date currentDate = calendar.getTime();
         long currentTime = currentDate.getTime();
@@ -62,17 +61,16 @@ public class ClymePlayersTable {
         });
     }
 
-    public List<OfflinePlayer> getAllUniquePlayers() {
+    public List<OfflinePlayer> getAllUniquePlayers(ClymePlayer clymePlayer) {
         List<OfflinePlayer> uniquePlayers = new ArrayList<>();
 
         Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
             try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
-                 PreparedStatement select = connection.prepareStatement("SELECT * FROM clymePlayers")) {
+                 PreparedStatement select = connection.prepareStatement("SELECT uuid FROM clymePlayers")) {
                 ResultSet resultSet = select.executeQuery();
-                if(resultSet.next()) {
-                    uniquePlayers.add(Bukkit.getOfflinePlayer(resultSet.getString("uuid")));
-                }
+                while(resultSet.next()) uniquePlayers.add(Bukkit.getOfflinePlayer(resultSet.getString("uuid")));
                 resultSet.close();
+                ClymeSkyblockCore.getInstance().getAsyncHandler().sendPlaytimeTop(clymePlayer, uniquePlayers);
             } catch(SQLException exception) {
                 exception.printStackTrace();
             }
@@ -96,6 +94,7 @@ public class ClymePlayersTable {
                     clymePlayer.setMaxHomes(resultSet.getInt("maxHomes"));
                     clymePlayer.checkBanStatus();
                 }
+
                 resultSet.close();
             } catch(SQLException exception) {
                 exception.printStackTrace();
@@ -134,7 +133,7 @@ public class ClymePlayersTable {
     public void saveClymePlayerData(ClymePlayer clymePlayer) {
         Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
             try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
-                    PreparedStatement update = connection.prepareStatement("UPDATE clymePlayers SET playtime = ?, ip = ?, maxHomes = ? WHERE uuid = ?")) {
+                    PreparedStatement update = connection.prepareStatement("UPDATE clymePlayers SET ip = ?, maxHomes = ? WHERE uuid = ?")) {
                 update.setString(1, clymePlayer.getIp());
                 update.setInt(2, clymePlayer.getMaxHomes());
                 update.setString(3, clymePlayer.getUuid().toString());
@@ -151,6 +150,20 @@ public class ClymePlayersTable {
             select.setString(1, username.toLowerCase());
             ResultSet resultSet = select.executeQuery();
             if(resultSet.next()) return UUID.fromString(resultSet.getString("uuid"));
+            resultSet.close();
+        } catch(SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public String getNameFromUUID(String uuid) {
+        try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
+                PreparedStatement select = connection.prepareStatement("SELECT username FROM clymePlayers WHERE uuid = ?")) {
+            select.setString(1, uuid);
+            ResultSet resultSet = select.executeQuery();
+            if(resultSet.next()) return resultSet.getString("username");
             resultSet.close();
         } catch(SQLException exception) {
             exception.printStackTrace();
