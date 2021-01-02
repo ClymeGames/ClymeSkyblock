@@ -32,5 +32,7 @@ public class PlayerQuitListener implements Listener {
         //> Combat Log
         if(ClymeSkyblockCore.getInstance().getCombatLog().getInCombat().containsKey(clymePlayer))
             player.setHealth(0.0);
+
+        Bukkit.getConsoleSender().sendMessage("§c" + player.getName() + " has left the Server!");
     }
 }

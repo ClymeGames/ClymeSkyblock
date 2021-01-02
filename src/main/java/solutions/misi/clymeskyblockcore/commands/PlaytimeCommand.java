@@ -23,7 +23,6 @@ public class PlaytimeCommand implements CommandExecutor {
 
         Player player = (Player) sender;
         ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
-        ClymePlayer clymeTarget;
         Player target;
         long hours;
         long minutes;
@@ -46,7 +45,7 @@ public class PlaytimeCommand implements CommandExecutor {
                         hours = (playtimeMap.getValue() / 20) / 60 / 60;
                         minutes = (playtimeMap.getValue() / 20) / 60 % 60;
 
-                        clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "#" + topAmount + " " + ClymeChatColor.SECONDARY() + playtimeMap.getKey() + ClymeChatColor.INFO() + " - " + ClymeChatColor.SECONDARY() + hours + " hours " + ClymeChatColor.INFO() + " and " + ClymeChatColor.SECONDARY() + minutes + " minutes");
+                        clymePlayer.sendMessage(ClymeChatColor.ACCENT() + "#" + topAmount + " " + ClymeChatColor.SECONDARY() + playtimeMap.getKey() + ClymeChatColor.INFO() + " - " + ClymeChatColor.SECONDARY() + hours + " hours" + ClymeChatColor.INFO() + " and " + ClymeChatColor.SECONDARY() + minutes + " minutes");
 
                         topAmount++;
                     }

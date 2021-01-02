@@ -74,9 +74,9 @@ public class TpCommand implements CommandExecutor {
                 if(target.getLocation().distance(target2.getLocation()) < 5) {
                     clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You have been teleported to " + ClymeChatColor.SECONDARY() + target2.getName());
                     target.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
-                    player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have teleported " + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.SUCCESS() + " to " + ClymeChatColor.SECONDARY() + target2);
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have teleported " + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.SUCCESS() + " to " + ClymeChatColor.SECONDARY() + target2);
                 } else {
-                    player.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.ERROR() + " could not get teleported");
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SECONDARY() + target.getName() + ClymeChatColor.ERROR() + " could not get teleported");
                 }
             }, 5);
 

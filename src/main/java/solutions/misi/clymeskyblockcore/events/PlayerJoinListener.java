@@ -52,5 +52,7 @@ public class PlayerJoinListener implements Listener {
 
         //> Disable PvP Cooldown
         player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(100);
+
+        Bukkit.getConsoleSender().sendMessage("§a" + player.getName() + " has joined the Server!");
     }
 }

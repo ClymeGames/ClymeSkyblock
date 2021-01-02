@@ -11,7 +11,7 @@ import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 public class StaffpanelInventoryInspectorGUI implements Listener {
 
     public void open(Player player, Player target) {
-        Inventory gui = Bukkit.createInventory(null, 36, ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0Inventory - " + target.getName());
+        Inventory gui = Bukkit.createInventory(null, 54, ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0Inventory - " + target.getName());
         gui.setContents(target.getInventory().getContents());
         player.openInventory(gui);
     }

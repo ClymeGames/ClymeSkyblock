@@ -19,17 +19,17 @@ public class MoneyCommand implements CommandExecutor {
             Player player = (Player) sender;
             ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
             Player target;
+            ClymePlayer clymeTarget;
 
             switch(args.length) {
                 case 0:
                     //> Usage: /money
-                    BigDecimal balance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(player);
-                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You have " + ClymeChatColor.SECONDARY() + "$" + balance);
-
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You have " + ClymeChatColor.SECONDARY() + clymePlayer.getBalance());
                     return true;
                 case 1:
                     //> Usage: /money (player)
                     target = Bukkit.getPlayer(args[0]);
+                    clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target);
 
                     if(target == null || !target.isOnline()) {
                         clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + args[0] + ClymeChatColor.ERROR() + " is not online!");
@@ -41,14 +41,12 @@ public class MoneyCommand implements CommandExecutor {
                         return false;
                     }
 
-                    BigDecimal bigTargetBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(target);
-                    double targetBalance = Math.round(bigTargetBalance.doubleValue() * 100.0) / 100.0;
-                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "The player " + ClymeChatColor.SECONDARY() + args[0] + ClymeChatColor.INFO() + " has " + ClymeChatColor.SECONDARY() + "$" + targetBalance);
+                    clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "The player " + ClymeChatColor.SECONDARY() + args[0] + ClymeChatColor.INFO() + " has " + ClymeChatColor.SECONDARY() + clymeTarget.getBalance());
                     return true;
                 case 3:
                     //> Usage: /money set|add|remove|pay (player) (amount)
                     target = Bukkit.getPlayer(args[1]);
-                    ClymePlayer clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target);
+                    clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target);
 
                     if(target == null || !target.isOnline()) {
                         clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + args[1] + ClymeChatColor.ERROR() + " is not online!");
@@ -131,20 +129,20 @@ public class MoneyCommand implements CommandExecutor {
             }
         } else {
             Player target;
+            ClymePlayer clymeTarget;
 
             switch (args.length) {
                 case 1:
                     //> Usage: /money (player)
                     target = Bukkit.getPlayer(args[0]);
+                    clymeTarget = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(target);
 
                     if (target == null || !target.isOnline()) {
                         Bukkit.getConsoleSender().sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "The player " + ClymeChatColor.SECONDARY() + args[0] + ClymeChatColor.ERROR() + " is not online!"));
                         return false;
                     }
 
-                    BigDecimal bigTargetBalance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(target);
-                    double targetBalance = Math.round(bigTargetBalance.doubleValue() * 100.0) / 100.0;
-                    Bukkit.getConsoleSender().sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "The player " + ClymeChatColor.SECONDARY() + args[0] + ClymeChatColor.INFO() + " has " + ClymeChatColor.SECONDARY() + "$" + targetBalance));
+                    Bukkit.getConsoleSender().sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "The player " + ClymeChatColor.SECONDARY() + args[0] + ClymeChatColor.INFO() + " has " + ClymeChatColor.SECONDARY() + clymeTarget.getBalance()));
                     return true;
                 case 3:
                     //> Usage: /money set|add|remove|pay (player) (amount)

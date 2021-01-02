@@ -8,6 +8,7 @@ depend:
   - SuperiorSkyblock2
   - WorldGuard
   - PlaceholderAPI
+softdepend:
   - ProCosmetics
 loadbefore:
   - TAB

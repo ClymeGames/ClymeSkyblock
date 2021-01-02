@@ -34,6 +34,7 @@ public class PlaytimeLeaderboard {
             if(topAmount > 5) break;
 
             String username = ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().getNameFromUUID(result.getKey().getName());
+            if(username.equals("1camou")) continue;
             playtimeTop.put(username, result.getValue());
 
             topAmount++;

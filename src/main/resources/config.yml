@@ -1,0 +1,7 @@
+announcements:
+  #> Duration between every announcement (in minutes)
+  timer: 5
+  content:
+    - "Go checkout our latest Monthly Crate for awesome rewards! https://store.clyme.games/"
+    - "Feel free to ask a Staff member if you need help!"
+    - "You can see our Payout Information at /payouts!"

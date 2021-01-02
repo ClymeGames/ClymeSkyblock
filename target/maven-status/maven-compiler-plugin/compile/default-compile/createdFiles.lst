@@ -58,6 +58,7 @@ solutions\misi\clymeskyblockcore\commands\message\SocialSpyCommand.class
 solutions\misi\clymeskyblockcore\commands\teleport\TpacceptCommand.class
 solutions\misi\clymeskyblockcore\commands\message\ReplyCommand.class
 solutions\misi\clymeskyblockcore\gui\DisposalGUI.class
+solutions\misi\clymeskyblockcore\utils\NumberFormatter.class
 solutions\misi\clymeskyblockcore\commands\warps\PvPCommand.class
 solutions\misi\clymeskyblockcore\commands\teleport\TpaCommand.class
 solutions\misi\clymeskyblockcore\commands\staff\ClymeCrystalCommand.class

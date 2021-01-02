@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 
 import java.io.File;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,6 +26,8 @@ public class ClymeMessage {
     @Getter private final String noPermission;
     @Getter private final String noCommand;
 
+    private int currentAnnouncement;
+
     @SneakyThrows
     public ClymeMessage() {
         File messagesFile = new File(ClymeSkyblockCore.getInstance().getDataFolder(), "messages.yml");
@@ -38,6 +41,8 @@ public class ClymeMessage {
         commandSpam = prefix + getFormattedMessage("command-spam");
         noPermission = prefix + getFormattedMessage("no-permission");
         noCommand = prefix + getFormattedMessage("no-command");
+
+        currentAnnouncement = 0;
     }
 
     private String getFormattedMessage(String path) {
@@ -67,5 +72,20 @@ public class ClymeMessage {
         if(addPrefix) prefix = getPrefix();
 
         Bukkit.broadcastMessage(format(prefix + ClymeChatColor.INFO() + message));
+    }
+
+    public void startAnnouncements() {
+        List<String> announcements = ClymeSkyblockCore.getInstance().getConfig().getStringList("announcements.content");
+        final int timer = ClymeSkyblockCore.getInstance().getConfig().getInt("announcements.timer");
+
+        Bukkit.getScheduler().runTaskTimer(ClymeSkyblockCore.getInstance(), () -> {
+            if(currentAnnouncement == announcements.size()) currentAnnouncement = 0;
+            broadcastMessage(true, announcements.get(currentAnnouncement));
+            currentAnnouncement++;
+        }, 20L*60, 20L*60*timer);
+    }
+
+    public String convertLegacyToAdventure(String text) {
+        return text.replaceAll("#", "&#");
     }
 }

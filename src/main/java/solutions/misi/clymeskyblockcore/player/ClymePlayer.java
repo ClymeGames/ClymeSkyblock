@@ -1,11 +1,14 @@
 package solutions.misi.clymeskyblockcore.player;
 
+import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.UUID;
@@ -102,5 +105,15 @@ public class ClymePlayer {
 
         ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().saveClymePlayerData(this);
         ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().loadClymePlayerData(this);
+    }
+
+    public String getBalance() {
+        BigDecimal balance = ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(getPlayer());
+        return ClymeSkyblockCore.getInstance().getNumberFormatter().formatToCurrency(balance);
+    }
+
+    public int getIslandLevel() {
+        SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(getPlayer());
+        return Math.round(superiorPlayer.getIsland().getIslandLevel().intValue());
     }
 }

@@ -25,6 +25,7 @@ public class MenuGUI implements Listener {
 
     public void open(Player player) {
         Inventory gui = Bukkit.createInventory(null, 36, ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§0Menu");
+        ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
         SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
 
         ItemStack placeholder = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
@@ -48,12 +49,12 @@ public class MenuGUI implements Listener {
         List<String> playerInfoLore = new ArrayList<>();
         playerInfoLore.add(" ");
         playerInfoLore.add("§f➢ §7Rank: " + ClymeSkyblockCore.getInstance().getClymeMessage().format(ClymeSkyblockCore.getInstance().getChat().getPlayerPrefix(player)));
-        playerInfoLore.add("§f➢ §7Balance: $" + ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().getBalance(player));
+        playerInfoLore.add("§f➢ §7Balance: $" + clymePlayer.getBalance());
         playerInfoLore.add("§f➢ §7Level: " + player.getLevel());
         playerInfoLore.add("§f➢ §7Ping: " + ping);
         playerInfoLore.add("§f➢ §7Playtime: " + hours + " hours and " + minutes + " minutes");
         if(superiorPlayer.getIsland() != null)
-            playerInfoLore.add("§f➢ §7Island Level: " + superiorPlayer.getIsland().getIslandLevel());
+            playerInfoLore.add("§f➢ §7Island Level: " + clymePlayer.getIslandLevel());
         playerInfoLore.add(" ");
         playerInfoMeta.setLore(playerInfoLore);
         playerInfo.setItemMeta(playerInfoMeta);

@@ -40,10 +40,7 @@ import solutions.misi.clymeskyblockcore.player.PlayersHandler;
 import solutions.misi.clymeskyblockcore.security.CombatLog;
 import solutions.misi.clymeskyblockcore.security.CommandHandler;
 import solutions.misi.clymeskyblockcore.security.Screenshare;
-import solutions.misi.clymeskyblockcore.utils.ClymeMessage;
-import solutions.misi.clymeskyblockcore.utils.CommandsUtil;
-import solutions.misi.clymeskyblockcore.utils.ExperienceUtils;
-import solutions.misi.clymeskyblockcore.utils.TimeUtil;
+import solutions.misi.clymeskyblockcore.utils.*;
 
 public class ClymeSkyblockCore extends JavaPlugin {
 
@@ -64,6 +61,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private CombatLog combatLog;
     @Getter private ExperienceUtils experienceUtils;
     @Getter private PlaytimeLeaderboard playtimeLeaderboard;
+    @Getter private NumberFormatter numberFormatter;
 
     @Getter private IslandGUI islandGUI;
     @Getter private SpawnerValuesGUI spawnerValuesGUI;
@@ -91,6 +89,8 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        saveDefaultConfig();
+
         registerEvents();
         registerGUIs();
         loadCommands();
@@ -101,6 +101,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         setupChat();
 
         playtimeLeaderboard.startPlaytimeCalc();
+        clymeMessage.startAnnouncements();
 
         setRestarting(false);
     }
@@ -123,6 +124,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         combatLog = new CombatLog();
         experienceUtils = new ExperienceUtils();
         playtimeLeaderboard = new PlaytimeLeaderboard();
+        numberFormatter = new NumberFormatter();
 
         islandGUI = new IslandGUI();
         spawnerValuesGUI = new SpawnerValuesGUI();
