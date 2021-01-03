@@ -113,7 +113,11 @@ public class ClymePlayer {
     }
 
     public int getIslandLevel() {
-        SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(getPlayer());
-        return Math.round(superiorPlayer.getIsland().getIslandLevel().intValue());
+        try {
+            SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(getPlayer());
+            return Math.round(superiorPlayer.getIsland().getIslandLevel().intValue());
+        } catch(NullPointerException exception) {
+            return 0;
+        }
     }
 }
