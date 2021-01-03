@@ -11,6 +11,7 @@ import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -68,6 +69,8 @@ public class AsyncPlayerChatListener implements Listener {
         String deluxeTag = "%deluxetags_tag%";
         deluxeTag = PlaceholderAPI.setPlaceholders(player, deluxeTag);
         if (!deluxeTag.equals("")) deluxeTag += " ";
+        long hours = (player.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) / 60 / 60;
+        long minutes = (player.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20) / 60 % 60;
 
         LegacyComponentSerializer ampersandRGB = LegacyComponentSerializer.builder().character('&').hexCharacter('#').hexColors().build();
 
@@ -75,7 +78,8 @@ public class AsyncPlayerChatListener implements Listener {
                         "§f➢ §7Name: " + player.getName() + "\n" +
                         "§f➢ §7Rank: " + playerPrefix + "\n" +
                         "§f➢ §7Money: " + clymePlayer.getBalance() + "\n" +
-                        "§f➢ §7Island Level: " + clymePlayer.getIslandLevel());
+                        "§f➢ §7Island Level: " + clymePlayer.getIslandLevel() + "\n" +
+                        "§f➢ §7Playtime: " + hours + " hours and " + minutes + " minutes");
         Component hover = LegacyComponentSerializer.legacyAmpersand().deserialize(legacyHover);
 
         String legacyFormat = ClymeSkyblockCore.getInstance().getClymeMessage().convertLegacyToAdventure(deluxeTag + playerPrefix + " " + player.getName() + playerPrefixColor + " » ");
@@ -91,8 +95,8 @@ public class AsyncPlayerChatListener implements Listener {
             //> [item]
             Key item = Key.key("minecraft", itemStack.getType().getKey().getKey());
             String itemName = itemStack.getItemMeta().getDisplayName();
-            if(itemName.equals("")) itemName = itemStack.getType().name() + " ";
-            Component chatItem = ampersandRGB.deserialize("§7[ " + itemName + "§7]");
+            if(itemName.equals("")) itemName = itemStack.getType().name();
+            Component chatItem = ampersandRGB.deserialize("§7[ " + itemName + " §7]");
             TextReplacementConfig itemReplacement = TextReplacementConfig.builder()
                     .matchLiteral("[item]")
                     .replacement(matchResult -> Component.text()

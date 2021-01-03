@@ -35,6 +35,7 @@ import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelDurationGUI;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelGUI;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelInventoryInspectorGUI;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelPlayerGUI;
+import solutions.misi.clymeskyblockcore.invites.InviteManager;
 import solutions.misi.clymeskyblockcore.leaderboards.PlaytimeLeaderboard;
 import solutions.misi.clymeskyblockcore.player.PlayersHandler;
 import solutions.misi.clymeskyblockcore.security.CombatLog;
@@ -62,6 +63,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private ExperienceUtils experienceUtils;
     @Getter private PlaytimeLeaderboard playtimeLeaderboard;
     @Getter private NumberFormatter numberFormatter;
+    @Getter private InviteManager inviteManager;
 
     @Getter private IslandGUI islandGUI;
     @Getter private SpawnerValuesGUI spawnerValuesGUI;
@@ -125,6 +127,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         experienceUtils = new ExperienceUtils();
         playtimeLeaderboard = new PlaytimeLeaderboard();
         numberFormatter = new NumberFormatter();
+        inviteManager = new InviteManager();
 
         islandGUI = new IslandGUI();
         spawnerValuesGUI = new SpawnerValuesGUI();
@@ -340,6 +343,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         VotecrateCommand votecrateCommand = new VotecrateCommand();
         getCommand("votecrate").setExecutor(votecrateCommand);
+
+        InviteCommand inviteCommand = new InviteCommand();
+        getCommand("invite").setExecutor(inviteCommand);
     }
 
     private void setupEconomy() {

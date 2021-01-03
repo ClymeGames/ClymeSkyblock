@@ -165,3 +165,5 @@ commands:
   votecrate:
     description: Teleports you to the Vote Crate
     aliases: [votecrates]
+  invite:
+    description: Lets you invite other players to earn rewards
