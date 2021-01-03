@@ -25,6 +25,8 @@ public class InviteManager {
             return;
         }
 
+        getInviting().put(clymePlayer, clymeTarget);
+
         clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully sent an invite request to " + ClymeChatColor.SECONDARY() + clymeTarget.getUsername());
         clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You have received an invite request from " + ClymeChatColor.SECONDARY() + clymePlayer.getUsername());
         clymeTarget.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Use " + ClymeChatColor.SECONDARY() + "/invite accept" + ClymeChatColor.INFO() + " to accept it!");

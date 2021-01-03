@@ -61,6 +61,7 @@ public class InviteCommand implements CommandExecutor {
             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You have denied the invite request from " + ClymeChatColor.SECONDARY() + inviter.getUsername());
             inviter.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SECONDARY() + clymePlayer.getUsername() + ClymeChatColor.INFO() + " has denied your invite request!");
             ClymeSkyblockCore.getInstance().getInviteManager().getInviting().remove(inviter);
+            return true;
         }
 
         //> Send invite

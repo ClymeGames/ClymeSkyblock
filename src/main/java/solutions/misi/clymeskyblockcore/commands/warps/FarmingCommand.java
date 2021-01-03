@@ -2,7 +2,6 @@ package solutions.misi.clymeskyblockcore.commands.warps;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -33,7 +32,6 @@ public class FarmingCommand implements CommandExecutor {
 
         Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> {
             if(player.getWorld() == farming.getWorld() && player.getLocation().distance(farming) < 5) {
-                player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the farming world..");
             }
         }, 5);

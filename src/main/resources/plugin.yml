@@ -167,3 +167,5 @@ commands:
     aliases: [votecrates]
   invite:
     description: Lets you invite other players to earn rewards
+  rules:
+    description: Shows you a link to the server rules

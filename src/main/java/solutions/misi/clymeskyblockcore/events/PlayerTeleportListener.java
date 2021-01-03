@@ -1,6 +1,8 @@
 package solutions.misi.clymeskyblockcore.events;
 
 import org.bukkit.Bukkit;
+import org.bukkit.EntityEffect;
+import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -33,6 +35,10 @@ public class PlayerTeleportListener implements Listener {
                     return;
             }
         }
+
+        //> Teleport effects
+        player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
+        player.playEffect(EntityEffect.WITCH_MAGIC);
 
         //> Attack Speed (disable 1.9+ CD)
         if (event.getFrom().getWorld() == event.getTo().getWorld()) return;

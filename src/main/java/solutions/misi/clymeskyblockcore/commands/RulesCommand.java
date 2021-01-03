@@ -1,7 +1,5 @@
-package solutions.misi.clymeskyblockcore.commands.warps;
+package solutions.misi.clymeskyblockcore.commands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,9 +8,7 @@ import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
 
-public class CrateCommand implements CommandExecutor {
-
-    //> Usage: /crate
+public class RulesCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -23,18 +19,8 @@ public class CrateCommand implements CommandExecutor {
 
         Player player = (Player) sender;
         ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
-        Location crates = new Location(Bukkit.getWorld("world"), 84.106, 171.0, 111.797);
-        crates.setYaw((float) -46.6);
-        crates.setPitch((float) -1.3);
 
-        player.teleportAsync(crates);
-
-        Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> {
-            if(player.getWorld() == crates.getWorld() && player.getLocation().distance(crates) < 5) {
-                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the crates..");
-            }
-        }, 5);
-
+        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Make sure to read our rules at " + ClymeChatColor.ACCENT() + "https://clyme.games/rule/");
         return true;
     }
 }

@@ -346,6 +346,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         InviteCommand inviteCommand = new InviteCommand();
         getCommand("invite").setExecutor(inviteCommand);
+
+        RulesCommand rulesCommand = new RulesCommand();
+        getCommand("rules").setExecutor(rulesCommand);
     }
 
     private void setupEconomy() {

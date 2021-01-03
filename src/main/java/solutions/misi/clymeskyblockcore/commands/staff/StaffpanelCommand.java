@@ -1,5 +1,7 @@
 package solutions.misi.clymeskyblockcore.commands.staff;
 
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,7 +14,7 @@ public class StaffpanelCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(!(sender instanceof Player)) {
+        if (!(sender instanceof Player)) {
             sender.sendMessage("[ClymeGames] You can't execute this command through console!");
             return false;
         }
@@ -21,25 +23,31 @@ public class StaffpanelCommand implements CommandExecutor {
         ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
         String playerRank = ClymeSkyblockCore.getInstance().getPermission().getPrimaryGroup(player);
 
-        if(args.length != 0) {
-            //> Wrong usage
-            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "Wrong usage! Please use " + ClymeChatColor.SECONDARY() + "/staffpanel" + ClymeChatColor.ERROR() + "!");
-            return false;
-        }
-
-        switch(playerRank) {
+        switch (playerRank) {
             case "helper":
             case "mod":
             case "seniormod":
             case "admin":
             case "manager":
             case "owner":
-                //> open staffpanel
-                ClymeSkyblockCore.getInstance().getStaffpanelGUI().open(player);
-                return true;
+                break;
             default:
                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getNoPermission());
                 return false;
         }
+
+        if (args.length == 0) {
+            ClymeSkyblockCore.getInstance().getStaffpanelGUI().open(player);
+        }
+
+        if (args.length != 1) {
+            //> Wrong usage
+            clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "Wrong usage! Please use " + ClymeChatColor.SECONDARY() + "/staffpanel <player>" + ClymeChatColor.ERROR() + "!");
+            return false;
+        }
+
+        OfflinePlayer target = Bukkit.getOfflinePlayer(args[0]);
+        ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().open(player, target.getUniqueId());
+        return true;
     }
 }

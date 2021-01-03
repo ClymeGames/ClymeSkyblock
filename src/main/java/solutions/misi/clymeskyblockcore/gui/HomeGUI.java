@@ -1,6 +1,9 @@
 package solutions.misi.clymeskyblockcore.gui;
 
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -132,7 +135,6 @@ public class HomeGUI implements Listener {
 
                     player.closeInventory();
                     player.teleportAsync(home);
-                    player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
                 }
             }
         } catch(NullPointerException ex) {}
