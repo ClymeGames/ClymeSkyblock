@@ -24,6 +24,7 @@ public class ClymePlayer {
     @Getter @Setter private String banReason;
     @Getter @Setter private Timestamp muted;
     @Getter @Setter private int maxHomes;
+    @Getter @Setter private String nickname;
 
     public ClymePlayer(Player player) {
         this.uuid = player.getUniqueId();

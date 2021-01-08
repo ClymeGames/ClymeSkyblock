@@ -68,6 +68,7 @@ public class AsyncPlayerChatListener implements Listener {
             return;
         }
 
+        String playerNickname = clymePlayer.getNickname();
         String playerPrefix = ClymeSkyblockCore.getInstance().getChat().getPlayerPrefix(player);
         String playerChatColor = ClymeSkyblockCore.getInstance().getChat().getPlayerSuffix(player);
         String playerPrefixColor = playerPrefix.substring(3, 10);
@@ -88,7 +89,7 @@ public class AsyncPlayerChatListener implements Listener {
                         "§f➢ §7Playtime: " + hours + " hours and " + minutes + " minutes");
         Component hover = LegacyComponentSerializer.legacyAmpersand().deserialize(legacyHover);
 
-        String legacyFormat = ClymeSkyblockCore.getInstance().getClymeMessage().convertLegacyToAdventure(deluxeTag + playerPrefix + " " + player.getName() + playerPrefixColor + " » ");
+        String legacyFormat = ClymeSkyblockCore.getInstance().getClymeMessage().convertLegacyToAdventure(deluxeTag + playerPrefix + " " + playerNickname + playerPrefixColor + " » ");
         Component format = ampersandRGB.deserialize(legacyFormat);
 
         String legacyMessage = event.getMessage();
