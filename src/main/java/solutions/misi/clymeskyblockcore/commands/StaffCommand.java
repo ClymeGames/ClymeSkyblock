@@ -8,7 +8,7 @@ import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
 
-public class RulesCommand implements CommandExecutor {
+public class StaffCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -19,8 +19,7 @@ public class RulesCommand implements CommandExecutor {
 
         Player player = (Player) sender;
         ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
-
-        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "Make sure to read our rules at " + ClymeChatColor.ACCENT() + "https://clyme.games/rules/");
+        clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "You can check out our current Staff Team at " + ClymeChatColor.ACCENT() + "https://clyme.games/staff");
         return true;
     }
 }

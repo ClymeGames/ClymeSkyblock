@@ -169,3 +169,6 @@ commands:
     description: Lets you invite other players to earn rewards
   rules:
     description: Shows you a link to the server rules
+  staff:
+    description: Shows a link to our current staff team
+    aliases: [staffteam, helpop]

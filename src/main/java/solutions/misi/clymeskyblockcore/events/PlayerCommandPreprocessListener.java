@@ -36,12 +36,6 @@ public class PlayerCommandPreprocessListener implements Listener {
             }
         }
 
-        //> Island Values Command
-        if(cmd.equalsIgnoreCase("/is values")) {
-            event.setCancelled(true);
-            ClymeSkyblockCore.getInstance().getSpawnerValuesGUI().open(player);
-        }
-
         //> Island Create Command
         if(cmd.equalsIgnoreCase("/is create")) {
             event.setCancelled(true);

@@ -49,9 +49,9 @@ public class MinionShopGUI implements Listener {
 
         ItemStack oak = SkullCreator.itemFromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzIzZTBiYmYwN2FmZGE0OGYyMmM3OWJjZDYyNDk0MWY0YWI3ZmJlZjE5NWI0MjFkOWFjNDJhNWY4MjExYTk0MiJ9fX0=");
         ItemMeta oakMeta = oak.getItemMeta();
-        oakMeta.setDisplayName("§aOak Minion I");
+        oakMeta.setDisplayName("§aOak Minion");
         List<String> oakLore = new ArrayList<>();
-        oakLore.add("§7Price: $5,000");
+        oakLore.add("§7Price: $10,000");
         oakLore.add(" ");
         oakLore.add("§7Place this minion and it will");
         oakLore.add("§7start generating and mining");
@@ -64,9 +64,9 @@ public class MinionShopGUI implements Listener {
 
         ItemStack cobblestone = SkullCreator.itemFromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjljMzhmZTRmYzk4YTI0ODA3OWNkMDRjNjViNmJmZjliNDUwMTdmMTY0NjBkYWIzYzM0YzE3YmZjM2VlMWQyZiJ9fX0=");
         ItemMeta cobblestoneMeta = cobblestone.getItemMeta();
-        cobblestoneMeta.setDisplayName("§aCobblestone Minion I");
+        cobblestoneMeta.setDisplayName("§aCobblestone Minion");
         List<String> cobblestoneLore = new ArrayList<>();
-        cobblestoneLore.add("§7Price: $7,500");
+        cobblestoneLore.add("§7Price: $10,000");
         cobblestoneLore.add(" ");
         cobblestoneLore.add("§7Place this minion and it will");
         cobblestoneLore.add("§7start generating and mining");
@@ -79,9 +79,9 @@ public class MinionShopGUI implements Listener {
 
         ItemStack coal = SkullCreator.itemFromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODU3MDVjZjg2NGRmMmMxODJlMzJjNDg2YjcxNDdjYmY3ODJhMGFhM2RmOGE2ZDYxNDUzOTM5MGJmODRmYjE1ZCJ9fX0=");
         ItemMeta coalMeta = coal.getItemMeta();
-        coalMeta.setDisplayName("§aCoal Minion I");
+        coalMeta.setDisplayName("§aCoal Minion");
         List<String> coalLore = new ArrayList<>();
-        coalLore.add("§7Price: $10,000");
+        coalLore.add("§7Price: $15,000");
         coalLore.add(" ");
         coalLore.add("§7Place this minion and it will");
         coalLore.add("§7start generating and mining");
@@ -94,9 +94,9 @@ public class MinionShopGUI implements Listener {
 
         ItemStack iron = SkullCreator.itemFromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTczMDkyY2FlYTg5ZGQxMmQzNjgzNzVmMWEwOTc3OTZlM2JjODhmODA5YWNjZjMyMDcwNmJkYzA0OGNkNGM1ZSJ9fX0=");
         ItemMeta ironMeta = iron.getItemMeta();
-        ironMeta.setDisplayName("§aIron Minion I");
+        ironMeta.setDisplayName("§aIron Minion");
         List<String> ironLore = new ArrayList<>();
-        ironLore.add("§7Price: $15,000");
+        ironLore.add("§7Price: $20,000");
         ironLore.add(" ");
         ironLore.add("§7Place this minion and it will");
         ironLore.add("§7start generating and mining");
@@ -109,7 +109,7 @@ public class MinionShopGUI implements Listener {
 
         ItemStack clay = SkullCreator.itemFromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDRhMjc5ZTFjYzdkOThmYWE0YjgwY2ZkNGVkMTg2YTFhOTRiNmMxMTkxMGM0ZjdiZDcyMWY4Y2Q0NGI0NTg4YSJ9fX0=");
         ItemMeta clayMeta = clay.getItemMeta();
-        clayMeta.setDisplayName("§9Clay Minion I");
+        clayMeta.setDisplayName("§9Clay Minion");
         List<String> clayLore = new ArrayList<>();
         clayLore.add("§7Price: $20,000");
         clayLore.add(" ");
@@ -124,9 +124,9 @@ public class MinionShopGUI implements Listener {
 
         ItemStack quartz = SkullCreator.itemFromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmU3MmJlMWY3OTFkOTIzOTVjNGNmMDEzMzVkMDc4ZGU1YWY0M2Q5YzZmY2JjM2EzODc1M2RjNTY5NDJmNGE0NiJ9fX0=");
         ItemMeta quartzMeta = quartz.getItemMeta();
-        quartzMeta.setDisplayName("§9Quartz Minion I");
+        quartzMeta.setDisplayName("§9Quartz Minion");
         List<String> quartzLore = new ArrayList<>();
-        quartzLore.add("§7Price: $25,000");
+        quartzLore.add("§7Price: $30,000");
         quartzLore.add(" ");
         quartzLore.add("§7Place this minion and it will");
         quartzLore.add("§7start generating and mining");
@@ -139,9 +139,9 @@ public class MinionShopGUI implements Listener {
 
         ItemStack potato = SkullCreator.itemFromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjM0ZTZlZmVjZTBhMjk3MzE0YThlOTAzM2U1YmUxODcwNTU0YmNhOWM5NmExNDYyY2E2NmRiZDZlZDZlNjM4YSJ9fX0=");
         ItemMeta potatoMeta = potato.getItemMeta();
-        potatoMeta.setDisplayName("§aPotato Minion I");
+        potatoMeta.setDisplayName("§aPotato Minion");
         List<String> potatoLore = new ArrayList<>();
-        potatoLore.add("§7Price: $5,000");
+        potatoLore.add("§7Price: $10,000");
         potatoLore.add(" ");
         potatoLore.add("§7Place this minion and it will");
         potatoLore.add("§7start generating and mining");
@@ -154,9 +154,9 @@ public class MinionShopGUI implements Listener {
 
         ItemStack rabbit = SkullCreator.itemFromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTZmODM3YTEzMDM3MjUzZmVhODljNjUzODJlMjQ4YTM2N2Y5OTM0M2M4YzZkZmQyZjEzYzYzNDRhYTM4MjVkNSJ9fX0=");
         ItemMeta rabbitMeta = rabbit.getItemMeta();
-        rabbitMeta.setDisplayName("§aRabbit Minion I");
+        rabbitMeta.setDisplayName("§aRabbit Minion");
         List<String> rabbitLore = new ArrayList<>();
-        rabbitLore.add("§7Price: $7,500");
+        rabbitLore.add("§7Price: $15,000");
         rabbitLore.add(" ");
         rabbitLore.add("§7Place this minion and it will");
         rabbitLore.add("§7start spawning");
@@ -169,9 +169,9 @@ public class MinionShopGUI implements Listener {
 
         ItemStack sheep = SkullCreator.itemFromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTRlMmFjOWM0YmFhODI0YThiMTY2ZTI4N2ZkOWViZTdmMGRkMWJhZDQ0OWY5NTFhMTg5Y2M3NTM3ODJmNzhmMyJ9fX0=");
         ItemMeta sheepMeta = sheep.getItemMeta();
-        sheepMeta.setDisplayName("§9Sheep Minion I");
+        sheepMeta.setDisplayName("§9Sheep Minion");
         List<String> sheepLore = new ArrayList<>();
-        sheepLore.add("§7Price: $10,000");
+        sheepLore.add("§7Price: $20,000");
         sheepLore.add(" ");
         sheepLore.add("§7Place this minion and it will");
         sheepLore.add("§7start spawning");
@@ -184,9 +184,9 @@ public class MinionShopGUI implements Listener {
 
         ItemStack slayer = SkullCreator.itemFromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDgyM2U1YTI4YzgzZGI1YjRkMjVkYmE3NjMxZjFiYTEzOTc1Y2I0ZTBiOGE1NzIwMDI1NDk1OTllZmExZGRkNSJ9fX0=");
         ItemMeta slayerMeta = slayer.getItemMeta();
-        slayerMeta.setDisplayName("§9Slayer Minion I");
+        slayerMeta.setDisplayName("§9Slayer Minion");
         List<String> slayerLore = new ArrayList<>();
-        slayerLore.add("§7Price: $15,000");
+        slayerLore.add("§7Price: $30,000");
         slayerLore.add(" ");
         slayerLore.add("§7Place this minion and it will");
         slayerLore.add("§7start killing");
@@ -198,9 +198,9 @@ public class MinionShopGUI implements Listener {
 
         ItemStack gold = SkullCreator.itemFromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTkwODIzNWExY2JlY2MwM2E3MmNkZjcxMGY0ZWQ1MTlkNjViNGRhNjJiNTRhNGVmOThhNzQwOGZjZjUxYjgzYiJ9fX0=");
         ItemMeta goldMeta = gold.getItemMeta();
-        goldMeta.setDisplayName("§5Gold Minion I");
+        goldMeta.setDisplayName("§5Gold Minion");
         List<String> goldLore = new ArrayList<>();
-        goldLore.add("§7Price: $25,000");
+        goldLore.add("§7Price: $50,000");
         goldLore.add(" ");
         goldLore.add("§7Place this minion and it will");
         goldLore.add("§7start generating and mining");
@@ -213,9 +213,9 @@ public class MinionShopGUI implements Listener {
 
         ItemStack netherwart = SkullCreator.itemFromBase64("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODI1OGUxYzhmN2U2ZWJiMzYyMmM2NmE1MjFiN2Y4MzhjY2VlOGFhOTI0MjU4YmIzMjYzMzU2Zjk5NzI1YWM1MyJ9fX0=");
         ItemMeta netherwartMeta = netherwart.getItemMeta();
-        netherwartMeta.setDisplayName("§5Netherwart Minion I");
+        netherwartMeta.setDisplayName("§5Netherwart Minion");
         List<String> netherwartLore = new ArrayList<>();
-        netherwartLore.add("§7Price: $25,000");
+        netherwartLore.add("§7Price: $50,000");
         netherwartLore.add(" ");
         netherwartLore.add("§7Place this minion and it will");
         netherwartLore.add("§7start generating and mining");
@@ -258,85 +258,85 @@ public class MinionShopGUI implements Listener {
 
                 if(event.getCurrentItem().getType() != Material.BLACK_STAINED_GLASS_PANE) player.closeInventory();
                     switch(event.getCurrentItem().getItemMeta().getDisplayName()) {
-                        case "§aOak Minion I":
-                            if(purchaseMinion(clymePlayer, 5000)) {
+                        case "§aOak Minion":
+                            if(purchaseMinion(clymePlayer, 10000)) {
                                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 1 1");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the oak minion!");
                             }
 
                             break;
-                        case "§aCobblestone Minion I":
-                            if(purchaseMinion(clymePlayer, 7500)) {
+                        case "§aCobblestone Minion":
+                            if(purchaseMinion(clymePlayer, 10000)) {
                                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 1 2");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the cobblestone minion!");
                             }
 
                             break;
-                        case "§aCoal Minion I":
-                            if(purchaseMinion(clymePlayer, 10000)) {
+                        case "§aCoal Minion":
+                            if(purchaseMinion(clymePlayer, 15000)) {
                                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 1 3");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the coal minion!");
                             }
 
                             break;
-                        case "§aIron Minion I":
-                            if(purchaseMinion(clymePlayer, 15000)) {
+                        case "§aIron Minion":
+                            if(purchaseMinion(clymePlayer, 20000)) {
                                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 1 4");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the iron minion!");
                             }
 
                             break;
-                        case "§9Clay Minion I":
+                        case "§9Clay Minion":
                             if(purchaseMinion(clymePlayer, 20000)) {
                                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 1 5");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the clay minion!");
                             }
 
                             break;
-                        case "§9Quartz Minion I":
-                            if(purchaseMinion(clymePlayer, 25000)) {
+                        case "§9Quartz Minion":
+                            if(purchaseMinion(clymePlayer, 30000)) {
                                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 1 6");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the quartz minion!");
                             }
 
                             break;
-                        case "§aPotato Minion I":
-                            if(purchaseMinion(clymePlayer, 5000)) {
+                        case "§aPotato Minion":
+                            if(purchaseMinion(clymePlayer, 10000)) {
                                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " Farmer 1 1");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the potato minion!");
                             }
 
                             break;
-                        case "§aRabbit Minion I":
-                            if(purchaseMinion(clymePlayer, 7500)) {
+                        case "§aRabbit Minion":
+                            if(purchaseMinion(clymePlayer, 15000)) {
                                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " Spawner 1 1");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the rabbit minion!");
                             }
 
                             break;
-                        case "§9Sheep Minion I":
-                            if(purchaseMinion(clymePlayer, 10000)) {
+                        case "§9Sheep Minion":
+                            if(purchaseMinion(clymePlayer, 20000)) {
                                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " Spawner 1 2");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the sheep minion!");
                             }
 
                             break;
-                        case "§9Slayer Minion I":
-                            if(purchaseMinion(clymePlayer, 15000)) {
+                        case "§9Slayer Minion":
+                            if(purchaseMinion(clymePlayer, 30000)) {
                                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " Slayer 1 1");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the slayer minion!");
                             }
 
                             break;
-                        case "§5Gold Minion I":
-                            if(purchaseMinion(clymePlayer, 25000)) {
+                        case "§5Gold Minion":
+                            if(purchaseMinion(clymePlayer, 50000)) {
                                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " MinerSpawner 1 7");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the gold minion!");
                             }
 
                             break;
-                        case "§5Netherwart Minion I":
-                            if(purchaseMinion(clymePlayer, 25000)) {
+                        case "§5Netherwart Minion":
+                            if(purchaseMinion(clymePlayer, 50000)) {
                                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "jetsminions give " + player.getName() + " Farmer 1 2");
                                 clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "You have successfully purchased the netherwart minion!");
                             }

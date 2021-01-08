@@ -24,9 +24,9 @@ public class FarmingCommand implements CommandExecutor {
 
         Player player = (Player) sender;
         ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
-        Location farming = new Location(Bukkit.getWorld("farming"), -13.316, 130.0, -97.686);
-        farming.setYaw((float) 171.7);
-        farming.setPitch((float) 4.4);
+        Location farming = new Location(Bukkit.getWorld("farmworld"), 491.450, 207.0, -469.437);
+        farming.setYaw((float) 173.3);
+        farming.setPitch((float) 4.1);
 
         player.teleportAsync(farming);
 

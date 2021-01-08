@@ -39,5 +39,8 @@ public class PlaytimeLeaderboard {
 
             topAmount++;
         }
+
+
+        Bukkit.broadcastMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§aPlaytime Leaderboard has been updated!");
     }
 }

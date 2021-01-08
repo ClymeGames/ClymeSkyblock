@@ -28,7 +28,6 @@ import solutions.misi.clymeskyblockcore.gui.HomeGUI;
 import solutions.misi.clymeskyblockcore.gui.islandmenu.IslandCreationGUI;
 import solutions.misi.clymeskyblockcore.gui.islandmenu.IslandGUI;
 import solutions.misi.clymeskyblockcore.gui.islandmenu.IslandMembersGUI;
-import solutions.misi.clymeskyblockcore.gui.islandmenu.SpawnerValuesGUI;
 import solutions.misi.clymeskyblockcore.gui.menu.MenuGUI;
 import solutions.misi.clymeskyblockcore.gui.shop.MinionShopGUI;
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelDurationGUI;
@@ -66,7 +65,6 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private InviteManager inviteManager;
 
     @Getter private IslandGUI islandGUI;
-    @Getter private SpawnerValuesGUI spawnerValuesGUI;
     @Getter private IslandMembersGUI islandMembersGUI;
     @Getter private IslandCreationGUI islandCreationGUI;
     @Getter private StaffpanelGUI staffpanelGUI;
@@ -130,7 +128,6 @@ public class ClymeSkyblockCore extends JavaPlugin {
         inviteManager = new InviteManager();
 
         islandGUI = new IslandGUI();
-        spawnerValuesGUI = new SpawnerValuesGUI();
         islandMembersGUI = new IslandMembersGUI();
         islandCreationGUI = new IslandCreationGUI();
         staffpanelGUI = new StaffpanelGUI();
@@ -163,7 +160,6 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
     private void registerGUIs() {
         Bukkit.getPluginManager().registerEvents(new IslandGUI(), this);
-        Bukkit.getPluginManager().registerEvents(new SpawnerValuesGUI(), this);
         Bukkit.getPluginManager().registerEvents(new IslandMembersGUI(), this);
         Bukkit.getPluginManager().registerEvents(new IslandCreationGUI(), this);
         Bukkit.getPluginManager().registerEvents(new StaffpanelGUI(), this);
@@ -349,6 +345,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         RulesCommand rulesCommand = new RulesCommand();
         getCommand("rules").setExecutor(rulesCommand);
+
+        StaffCommand staffCommand = new StaffCommand();
+        getCommand("staff").setExecutor(staffCommand);
     }
 
     private void setupEconomy() {

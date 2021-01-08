@@ -1,5 +1,7 @@
 package solutions.misi.clymeskyblockcore.events;
 
+import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.key.Key;
@@ -29,6 +31,7 @@ public class AsyncPlayerChatListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
+        SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(player);
 
         //> Remove screenshare players from Chat
         for (Player screensharePlayer : ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getScreensharing())
@@ -53,6 +56,9 @@ public class AsyncPlayerChatListener implements Listener {
             clymePlayer.sendMessage(" ");
             return;
         }
+
+        //> Disable default chat while in Island Chat
+        if(superiorPlayer.hasTeamChatEnabled()) return;
 
         //> Chat Format
         event.setCancelled(true);
@@ -96,7 +102,7 @@ public class AsyncPlayerChatListener implements Listener {
             Key item = Key.key("minecraft", itemStack.getType().getKey().getKey());
             String itemName = itemStack.getItemMeta().getDisplayName();
             if(itemName.equals("")) itemName = itemStack.getType().name();
-            Component chatItem = ampersandRGB.deserialize("§7[ " + itemName + " §7]");
+            Component chatItem = ampersandRGB.deserialize("§7[ " + "§fx" + itemStack.getAmount() +  itemName + " §7]");
             TextReplacementConfig itemReplacement = TextReplacementConfig.builder()
                     .matchLiteral("[item]")
                     .replacement(matchResult -> Component.text()

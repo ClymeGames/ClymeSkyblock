@@ -74,7 +74,6 @@ solutions\misi\clymeskyblockcore\security\Screenshare.class
 solutions\misi\clymeskyblockcore\commands\donator\FixCommand.class
 solutions\misi\clymeskyblockcore\commands\RulesCommand.class
 solutions\misi\clymeskyblockcore\commands\staff\GamemodeCommand.class
-solutions\misi\clymeskyblockcore\gui\islandmenu\SpawnerValuesGUI.class
 solutions\misi\clymeskyblockcore\commands\HomeCommand.class
 solutions\misi\clymeskyblockcore\commands\staff\DonationCommand.class
 solutions\misi\clymeskyblockcore\data\DataManager.class

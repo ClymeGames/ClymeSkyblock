@@ -71,12 +71,12 @@ public class IslandGUI implements Listener {
         islandLevelLore.add("§7Your Island level determines your current");
         islandLevelLore.add("§7ranking against other Islands.");
         islandLevelLore.add(" ");
-        islandLevelLore.add("§7Increase your level by placing spawners on your island.");
+        islandLevelLore.add("§7Increase your level by placing blocks on your island.");
         islandLevelLore.add(" ");
         islandLevelLore.add("§7Current level: §e" + island.getIslandLevel());
         islandLevelLore.add(" ");
         islandLevelLore.add("§7Left-Click to refresh your current level.");
-        islandLevelLore.add("§7Right-Click to view the spawner values.");
+        islandLevelLore.add("§7Right-Click to view the island values.");
         islandLevelLore.add(" ");
         islandLevelMeta.setLore(islandLevelLore);
         islandLevel.setItemMeta(islandLevelMeta);
@@ -191,7 +191,7 @@ public class IslandGUI implements Listener {
                             player.closeInventory();
                             clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + (ClymeChatColor.SUCCESS() + "Successfully calculated the worth of your island.."));
                         } else if(event.getClick() == ClickType.RIGHT) {
-                            ClymeSkyblockCore.getInstance().getSpawnerValuesGUI().open(player);
+                            player.performCommand("is values");
                         }
 
                         break;
