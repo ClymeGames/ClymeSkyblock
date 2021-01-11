@@ -88,7 +88,11 @@ public class ClymePlayersTable {
                 select.setString(1, clymePlayer.getUuid().toString());
                 ResultSet resultSet = select.executeQuery();
                 if(resultSet.next()) {
-                    clymePlayer.setNickname("nickname");
+                    String nickname = resultSet.getString("nickname");
+                    try {
+                        if(nickname.equalsIgnoreCase("null") || nickname.equals("")) nickname = clymePlayer.getUsername();
+                    } catch(NullPointerException exception) { nickname = clymePlayer.getUsername(); }
+                    clymePlayer.setNickname(nickname);
                     clymePlayer.setFirstJoin(resultSet.getTimestamp("first_join"));
                     clymePlayer.setLast_join(resultSet.getTimestamp("last_join"));
                     clymePlayer.setBanned(resultSet.getTimestamp("banned"));
@@ -152,6 +156,20 @@ public class ClymePlayersTable {
         try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
                 PreparedStatement select = connection.prepareStatement("SELECT uuid FROM clymePlayers WHERE username = ?")) {
             select.setString(1, username.toLowerCase());
+            ResultSet resultSet = select.executeQuery();
+            if(resultSet.next()) return UUID.fromString(resultSet.getString("uuid"));
+            resultSet.close();
+        } catch(SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public UUID getUuidFromNickname(String nickname) {
+        try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
+                PreparedStatement select = connection.prepareStatement("SELECT uuid FROM clymePlayers WHERE lower(nickname) = ?")) {
+            select.setString(1, nickname.toLowerCase());
             ResultSet resultSet = select.executeQuery();
             if(resultSet.next()) return UUID.fromString(resultSet.getString("uuid"));
             resultSet.close();

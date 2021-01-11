@@ -171,3 +171,12 @@ commands:
     aliases: [staffteam, helpop]
   nether:
     description: Teleports you to the Netherworld
+  reloadplayer:
+    description: Reloads a ClymePlayers data
+    aliases: [reloadp]
+  nickname:
+    description: Changes your name that shows up in chat
+    aliases: [nick]
+  realname:
+    description: Shows the real name of a nicked player
+    aliases: [rn]

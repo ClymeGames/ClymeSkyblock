@@ -349,6 +349,15 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         NetherCommand netherCommand = new NetherCommand();
         getCommand("nether").setExecutor(netherCommand);
+
+        ReloadPlayer reloadPlayerCommand = new ReloadPlayer();
+        getCommand("reloadplayer").setExecutor(reloadPlayerCommand);
+
+        NicknameCommand nicknameCommand = new NicknameCommand();
+        getCommand("nickname").setExecutor(nicknameCommand);
+
+        RealnameCommand realnameCommand = new RealnameCommand();
+        getCommand("realname").setExecutor(realnameCommand);
     }
 
     private void setupEconomy() {

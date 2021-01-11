@@ -162,10 +162,21 @@ commands:
   socialspy:
     description: Toggles if you can see other peoples messages or not
     aliases: [ss]
-  votecrate:
-    description: Teleports you to the Vote Crate
-    aliases: [votecrates]
   invite:
     description: Lets you invite other players to earn rewards
   rules:
     description: Shows you a link to the server rules
+  staff:
+    description: Shows a link to our current staff team
+    aliases: [staffteam, helpop]
+  nether:
+    description: Teleports you to the Netherworld
+  reloadplayer:
+    description: Reloads a ClymePlayers data
+    aliases: [reloadp]
+  nickname:
+    description: Changes your name that shows up in chat
+    aliases: [nick]
+  realname:
+    description: Shows the real name of a nicked player
+    aliases: [rn]

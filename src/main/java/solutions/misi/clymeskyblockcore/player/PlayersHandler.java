@@ -23,6 +23,11 @@ public class PlayersHandler {
         return null;
     }
 
+    public ClymePlayer getClymePlayer(UUID uuid) {
+        for(ClymePlayer clymePlayer : playerList) if(clymePlayer.getUuid() == uuid) return clymePlayer;
+        return null;
+    }
+
     public ClymePlayer addClymePlayer(Player player) {
         for(ClymePlayer clymePlayer : playerList) {
             if(clymePlayer.getPlayer() == player) return clymePlayer;
@@ -31,6 +36,18 @@ public class PlayersHandler {
         ClymePlayer clymePlayer = new ClymePlayer(player);
         playerList.add(clymePlayer);
         return clymePlayer;
+    }
+
+    public void reloadClymePlayer(ClymePlayer clymePlayer) {
+        ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().saveClymePlayerData(clymePlayer);
+
+        //> Remove clymePlayer
+        Player player = clymePlayer.getPlayer();
+        playerList.remove(clymePlayer);
+
+        //> Add clymePlayer again
+        ClymePlayer newClymePlayer = new ClymePlayer(player);
+        playerList.add(newClymePlayer);
     }
 
     public void removeClymePlayer(ClymePlayer clymePlayer) {
