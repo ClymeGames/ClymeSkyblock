@@ -162,9 +162,6 @@ commands:
   socialspy:
     description: Toggles if you can see other peoples messages or not
     aliases: [ss]
-  votecrate:
-    description: Teleports you to the Vote Crate
-    aliases: [votecrates]
   invite:
     description: Lets you invite other players to earn rewards
   rules:
@@ -172,3 +169,5 @@ commands:
   staff:
     description: Shows a link to our current staff team
     aliases: [staffteam, helpop]
+  nether:
+    description: Teleports you to the Netherworld

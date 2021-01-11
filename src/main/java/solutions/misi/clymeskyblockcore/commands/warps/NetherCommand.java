@@ -10,9 +10,9 @@ import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
 
-public class VotecrateCommand implements CommandExecutor {
+public class NetherCommand implements CommandExecutor {
 
-    //> Usage: /votecrate
+    //> Usage: /nether
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -23,15 +23,15 @@ public class VotecrateCommand implements CommandExecutor {
 
         Player player = (Player) sender;
         ClymePlayer clymePlayer = ClymeSkyblockCore.getInstance().getPlayersHandler().getClymePlayer(player);
-        Location voteCrate = new Location(Bukkit.getWorld("world"), 27.655, 167.0, 102.238);
-        voteCrate.setYaw((float) 88.2);
-        voteCrate.setPitch((float) -1.3);
+        Location nether = new Location(Bukkit.getWorld("world_nether"), 102.802, 120.0, 90.181);
+        nether.setYaw((float) -1.8);
+        nether.setPitch((float) 14.7);
 
-        player.teleportAsync(voteCrate);
+        player.teleportAsync(nether);
 
         Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> {
-            if(player.getWorld() == voteCrate.getWorld() && player.getLocation().distance(voteCrate) < 5) {
-                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the Vote Crate..");
+            if(player.getWorld() == nether.getWorld() && player.getLocation().distance(nether) < 5) {
+                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully teleported to the nether world..");
             }
         }, 5);
 

@@ -156,6 +156,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), this);
         Bukkit.getPluginManager().registerEvents(new SignChangeListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerInteractAtEntityListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerPortalListener(), this);
     }
 
     private void registerGUIs() {
@@ -337,9 +338,6 @@ public class ClymeSkyblockCore extends JavaPlugin {
         SocialSpyCommand socialSpyCommand = new SocialSpyCommand();
         getCommand("socialspy").setExecutor(socialSpyCommand);
 
-        VotecrateCommand votecrateCommand = new VotecrateCommand();
-        getCommand("votecrate").setExecutor(votecrateCommand);
-
         InviteCommand inviteCommand = new InviteCommand();
         getCommand("invite").setExecutor(inviteCommand);
 
@@ -348,6 +346,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         StaffCommand staffCommand = new StaffCommand();
         getCommand("staff").setExecutor(staffCommand);
+
+        NetherCommand netherCommand = new NetherCommand();
+        getCommand("nether").setExecutor(netherCommand);
     }
 
     private void setupEconomy() {
