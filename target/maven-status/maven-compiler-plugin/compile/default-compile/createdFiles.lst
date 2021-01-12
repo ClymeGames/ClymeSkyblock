@@ -45,6 +45,7 @@ solutions\misi\clymeskyblockcore\events\PlayerLoginListener.class
 solutions\misi\clymeskyblockcore\events\InventoryClickListener.class
 solutions\misi\clymeskyblockcore\items\ClymeCrystal.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelInventoryInspectorGUI.class
+solutions\misi\clymeskyblockcore\commands\donator\GodCommand.class
 solutions\misi\clymeskyblockcore\events\PlayerToggleFlightListener.class
 solutions\misi\clymeskyblockcore\events\PlayerDeathListener.class
 solutions\misi\clymeskyblockcore\events\SignChangeListener.class

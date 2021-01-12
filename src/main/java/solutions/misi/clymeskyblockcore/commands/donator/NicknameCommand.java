@@ -45,8 +45,8 @@ public class NicknameCommand implements CommandExecutor {
                 return true;
             }
 
-            String nick = args[0];
-            if(!player.hasPermission("clymegames.nickname.colors")) nick = ChatColor.stripColor(args[0]);
+            String nick = ChatColor.translateAlternateColorCodes('&', args[0]);
+            if(!player.hasPermission("clymegames.nickname.colors")) nick = ChatColor.stripColor(nick);
             String regex = "^[a-zA-Z0-9]+$";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(ChatColor.stripColor(nick));

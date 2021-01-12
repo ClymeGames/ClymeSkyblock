@@ -162,18 +162,20 @@ public class ClymePlayersTable {
         return null;
     }
 
-    public UUID getUuidFromNickname(String nickname) {
+    public List<String> getRealnamesFromNickname(String nickname) {
+        List<String> realnames = new ArrayList<>();
+
         try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
-                PreparedStatement select = connection.prepareStatement("SELECT uuid FROM clymePlayers WHERE lower(nickname) = ?")) {
+                PreparedStatement select = connection.prepareStatement("SELECT username FROM clymePlayers WHERE lower(nickname) = ?")) {
             select.setString(1, nickname.toLowerCase());
             ResultSet resultSet = select.executeQuery();
-            if(resultSet.next()) return UUID.fromString(resultSet.getString("uuid"));
+            while(resultSet.next()) realnames.add(resultSet.getString("username"));
             resultSet.close();
         } catch(SQLException exception) {
             exception.printStackTrace();
         }
 
-        return null;
+        return realnames;
     }
 
     public String getNameFromUUID(String uuid) {
