@@ -361,6 +361,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         GodCommand godCommand = new GodCommand();
         getCommand("god").setExecutor(godCommand);
+
+        BackCommand backCommand = new BackCommand();
+        getCommand("back").setExecutor(backCommand);
     }
 
     private void setupEconomy() {

@@ -40,6 +40,9 @@ public class PlayerTeleportListener implements Listener {
         player.playSound(player.getLocation(), Sound.ENTITY_FOX_TELEPORT, 1.0F, 1.0F);
         player.playEffect(EntityEffect.WITCH_MAGIC);
 
+        //> Save last position
+        ClymeSkyblockCore.getInstance().getCommandUtil().getBackCache().put(clymePlayer, event.getFrom());
+
         //> Attack Speed (disable 1.9+ CD)
         if (event.getFrom().getWorld() == event.getTo().getWorld()) return;
         Bukkit.getScheduler().runTaskLater(ClymeSkyblockCore.getInstance(), () -> {

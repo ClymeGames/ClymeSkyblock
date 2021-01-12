@@ -183,3 +183,5 @@ commands:
   god:
     description: Toggles if you are invulnerable or not
     aliases: [godmode]
+  back:
+    description: Teleports you back to your last location

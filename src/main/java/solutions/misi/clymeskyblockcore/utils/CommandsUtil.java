@@ -2,6 +2,7 @@ package solutions.misi.clymeskyblockcore.utils;
 
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 
@@ -14,6 +15,7 @@ public class CommandsUtil {
 
     @Getter private final Map<ClymePlayer, ClymePlayer> teleportCache = new HashMap<>();
     @Getter private final Map<ClymePlayer, ClymePlayer> teleportHereCache = new HashMap<>();
+    @Getter private final Map<ClymePlayer, Location> backCache = new HashMap<>();
 
     @Getter private final List<ClymePlayer> tpToggle = new ArrayList<>();
     @Getter private final List<ClymePlayer> msgToggle = new ArrayList<>();
