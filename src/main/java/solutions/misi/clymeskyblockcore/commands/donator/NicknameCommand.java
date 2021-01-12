@@ -39,6 +39,12 @@ public class NicknameCommand implements CommandExecutor {
 
         //> Change nickname
         if(args.length == 1) {
+            if(args[0].equalsIgnoreCase("off") || args[0].equalsIgnoreCase("disable") || args[0].equalsIgnoreCase("none")) {
+                clymePlayer.setNickname(clymePlayer.getUsername());
+                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.SUCCESS() + "Successfully disabled your nickname!");
+                return true;
+            }
+
             String nick = args[0];
             if(!player.hasPermission("clymegames.nickname.colors")) nick = ChatColor.stripColor(args[0]);
             String regex = "^[a-zA-Z0-9]+$";
@@ -52,8 +58,8 @@ public class NicknameCommand implements CommandExecutor {
             }
 
             //> Max. Nick length
-            if(ChatColor.stripColor(nick).length() > 20) {
-                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "Your nickname can't be longer than 20 characters!");
+            if(ChatColor.stripColor(nick).length() < 4 && ChatColor.stripColor(nick).length() > 20) {
+                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "Your nickname must have 4 - 20 characters!");
                 return false;
             }
 

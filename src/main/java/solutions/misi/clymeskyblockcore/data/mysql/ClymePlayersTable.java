@@ -88,11 +88,7 @@ public class ClymePlayersTable {
                 select.setString(1, clymePlayer.getUuid().toString());
                 ResultSet resultSet = select.executeQuery();
                 if(resultSet.next()) {
-                    String nickname = resultSet.getString("nickname");
-                    try {
-                        if(nickname.equalsIgnoreCase("null") || nickname.equals("")) nickname = clymePlayer.getUsername();
-                    } catch(NullPointerException exception) { nickname = clymePlayer.getUsername(); }
-                    clymePlayer.setNickname(nickname);
+                    clymePlayer.setNickname(resultSet.getString("nickname"));
                     clymePlayer.setFirstJoin(resultSet.getTimestamp("first_join"));
                     clymePlayer.setLast_join(resultSet.getTimestamp("last_join"));
                     clymePlayer.setBanned(resultSet.getTimestamp("banned"));
@@ -140,10 +136,10 @@ public class ClymePlayersTable {
     public void saveClymePlayerData(ClymePlayer clymePlayer) {
         Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
             try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
-                    PreparedStatement update = connection.prepareStatement("UPDATE clymePlayers SET ip = ?, maxHomes = ?, nickname = ? WHERE uuid = ?")) {
-                update.setString(1, clymePlayer.getIp());
-                update.setInt(2, clymePlayer.getMaxHomes());
-                update.setString(3, clymePlayer.getNickname());
+                    PreparedStatement update = connection.prepareStatement("UPDATE clymePlayers SET nickname = ?, ip = ?, maxHomes = ? WHERE uuid = ?")) {
+                update.setString(1, clymePlayer.getNickname());
+                update.setString(2, clymePlayer.getIp());
+                update.setInt(3, clymePlayer.getMaxHomes());
                 update.setString(4, clymePlayer.getUuid().toString());
                 update.executeUpdate();
             } catch(SQLException exception) {

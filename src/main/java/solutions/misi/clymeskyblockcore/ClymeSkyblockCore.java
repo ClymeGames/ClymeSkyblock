@@ -358,6 +358,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         RealnameCommand realnameCommand = new RealnameCommand();
         getCommand("realname").setExecutor(realnameCommand);
+
+        GodCommand godCommand = new GodCommand();
+        getCommand("god").setExecutor(godCommand);
     }
 
     private void setupEconomy() {

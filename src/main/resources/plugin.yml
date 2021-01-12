@@ -180,3 +180,6 @@ commands:
   realname:
     description: Shows the real name of a nicked player
     aliases: [rn]
+  god:
+    description: Toggles if you are invulnerable or not
+    aliases: [godmode]

@@ -38,6 +38,11 @@ public class ClymePlayer {
         //> async load data from database
         ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().loadClymePlayerData(this);
 
+        //> Evading Errors
+        if(nickname == null || nickname.equalsIgnoreCase("NULL") || nickname.equals("")) {
+            nickname = username;
+        }
+
         //> save data in cache
         ClymeSkyblockCore.getInstance().getPlayersHandler().getPlaytimeCache().put(this, System.currentTimeMillis());
 
@@ -103,9 +108,6 @@ public class ClymePlayer {
                 setMaxHomes(2);
                 break;
         }
-
-        ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().saveClymePlayerData(this);
-        ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().loadClymePlayerData(this);
     }
 
     public String getBalance() {
