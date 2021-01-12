@@ -107,6 +107,7 @@ solutions\misi\clymeskyblockcore\player\ClymePlayer.class
 solutions\misi\clymeskyblockcore\commands\donator\CartographytableCommand.class
 solutions\misi\clymeskyblockcore\commands\donator\FlyCommand.class
 solutions\misi\clymeskyblockcore\commands\donator\NearCommand.class
+solutions\misi\clymeskyblockcore\commands\donator\BackCommand.class
 solutions\misi\clymeskyblockcore\commands\staff\UpdateCommand.class
 solutions\misi\clymeskyblockcore\events\PlayerQuitListener.class
 solutions\misi\clymeskyblockcore\commands\MoneyCommand.class

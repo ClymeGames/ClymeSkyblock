@@ -95,12 +95,17 @@ public class ClymePlayer {
             case "dazzle":
                 setMaxHomes(3);
                 break;
+            case "grover":
+                setMaxHomes(4);
+                break;
             case "olympic":
+                setMaxHomes(5);
+                break;
+            case "ninja":
                 setMaxHomes(6);
                 break;
             case "supreme":
                 setMaxHomes(10);
-                break;
             case "owner":
                 setMaxHomes(14);
                 break;
