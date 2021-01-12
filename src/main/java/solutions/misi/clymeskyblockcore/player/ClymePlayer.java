@@ -40,7 +40,7 @@ public class ClymePlayer {
 
         //> Evading Errors
         if(nickname == null || nickname.equalsIgnoreCase("NULL") || nickname.equals("")) {
-            nickname = username;
+            setNickname(this.username);
         }
 
         //> save data in cache

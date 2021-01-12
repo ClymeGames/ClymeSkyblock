@@ -43,9 +43,13 @@ public class FixCommand implements CommandExecutor {
 
             switch(playerRank) {
                 case "dazzle":
-                    cooldown = 45;
+                    cooldown = 60;
                     break;
+                case "grover":
+                    cooldown = 45;
                 case "olympic":
+                    cooldown = 30;
+                case "ninja":
                     cooldown = 15;
                 case "supreme":
                     cooldown = 5;
@@ -87,6 +91,8 @@ public class FixCommand implements CommandExecutor {
 
             switch(playerRank) {
                 case "olympic":
+                    cooldown = 1440;
+                case "ninja":
                     cooldown = 720;
                 case "supreme":
                     cooldown = 360;
