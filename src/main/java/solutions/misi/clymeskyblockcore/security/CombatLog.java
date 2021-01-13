@@ -33,6 +33,7 @@ public class CombatLog {
         clymePlayer.getPlayer().setFlying(false);
         clymePlayer.getPlayer().setAllowFlight(false);
         clymePlayer.getPlayer().setWalkSpeed((float) 0.2);
+        clymePlayer.getPlayer().setInvulnerable(false);
     }
 
     private BukkitTask startCombatTimer(ClymePlayer clymePlayer) {

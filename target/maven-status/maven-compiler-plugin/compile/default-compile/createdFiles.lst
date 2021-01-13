@@ -37,6 +37,7 @@ solutions\misi\clymeskyblockcore\gui\menu\MenuGUI.class
 solutions\misi\clymeskyblockcore\invites\InviteManager.class
 solutions\misi\clymeskyblockcore\commands\staff\RainCommand.class
 solutions\misi\clymeskyblockcore\gui\shop\MinionShopGUI.class
+solutions\misi\clymeskyblockcore\commands\staff\EnchantCommand.class
 solutions\misi\clymeskyblockcore\commands\StaffCommand.class
 solutions\misi\clymeskyblockcore\events\PlayerTeleportListener.class
 solutions\misi\clymeskyblockcore\events\PlayerInteractAtEntityListener.class

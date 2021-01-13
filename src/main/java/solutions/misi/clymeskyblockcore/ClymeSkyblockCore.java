@@ -364,6 +364,9 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         BackCommand backCommand = new BackCommand();
         getCommand("back").setExecutor(backCommand);
+
+        EnchantCommand enchantCommand = new EnchantCommand();
+        getCommand("enchant").setExecutor(enchantCommand);
     }
 
     private void setupEconomy() {
