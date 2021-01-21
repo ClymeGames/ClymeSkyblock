@@ -33,6 +33,8 @@ public class ClymePlayer {
         this.username = getPlayer().getName();
         this.ip = getPlayer().getAddress().getAddress().toString();
 
+        Bukkit.getConsoleSender().sendMessage("[ClymeGames] §7Loading player data from " + getUsername() + "..");
+
         //> register player to databases
         ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().registerPlayer(getPlayer());
         ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().registerPlayer(getPlayer());
@@ -54,8 +56,6 @@ public class ClymePlayer {
 
         //> load player statistics
         clymeStatistics = new ClymeStatistics(this);
-
-        Bukkit.getConsoleSender().sendMessage("[ClymeGames] §7Loading player data from " + getUsername() + "..");
     }
 
     public Player getPlayer() {

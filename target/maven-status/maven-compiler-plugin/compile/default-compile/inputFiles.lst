@@ -1,5 +1,6 @@
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\RenameCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\events\PlayerDeathListener.java
+C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\events\BlockBreakListener.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\utils\SkullCreator.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\FeedCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelPlayerGUI.java
@@ -88,6 +89,7 @@ C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyb
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\NearCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\Aliases.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\LoomCommand.java
+C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\events\BlockPlaceListener.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\events\InventoryClickListener.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\events\PlayerTeleportListener.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\leaderboards\SugarcaneLeaderboard.java

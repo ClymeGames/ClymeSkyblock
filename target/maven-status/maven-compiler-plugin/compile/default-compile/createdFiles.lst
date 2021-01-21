@@ -24,6 +24,7 @@ solutions\misi\clymeskyblockcore\commands\staff\VanishCommand.class
 solutions\misi\clymeskyblockcore\events\PlayerRespawnListener.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelPlayerGUI.class
 solutions\misi\clymeskyblockcore\commands\donator\FeedCommand.class
+solutions\misi\clymeskyblockcore\events\BlockPlaceListener.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelGUI.class
 solutions\misi\clymeskyblockcore\commands\donator\BlocksCommand.class
 solutions\misi\clymeskyblockcore\utils\TimeUtil.class
