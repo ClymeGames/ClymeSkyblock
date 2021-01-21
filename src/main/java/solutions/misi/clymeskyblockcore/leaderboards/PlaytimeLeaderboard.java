@@ -39,7 +39,7 @@ public class PlaytimeLeaderboard extends ClymeLeaderboard {
         for(Map.Entry<OfflinePlayer, Long> result : sortedAllPlayersPlaytime.entrySet()) {
             if(topAmount > 5) break;
 
-            String username = ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().getNameFromUUID(result.getKey().getName());
+            String username = ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().getNameFromUUID(result.getKey().getUniqueId().toString());
 
             //> Exclude players
             if(username.equals("1camou")) continue;

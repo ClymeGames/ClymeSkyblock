@@ -2,6 +2,7 @@ package solutions.misi.clymeskyblockcore.leaderboards;
 
 import org.bukkit.Bukkit;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
+import solutions.misi.clymeskyblockcore.player.ClymePlayer;
 
 import java.util.Map;
 
@@ -14,6 +15,7 @@ public class SugarcaneLeaderboard extends ClymeLeaderboard {
     @Override
     public void startCalculation() {
         Bukkit.getScheduler().runTaskTimerAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
+            updateOnlinePlayersSugarcane();
             ClymeSkyblockCore.getInstance().getDataManager().getClymeStatisticsTable().querySugarcaneTop();
         }, 10, 20L *60*getTimerInMinutes());
 
@@ -29,5 +31,11 @@ public class SugarcaneLeaderboard extends ClymeLeaderboard {
         }
 
         Bukkit.getConsoleSender().sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§7Sugarcane Leaderboard has been updated!");
+    }
+
+    private void updateOnlinePlayersSugarcane() {
+        for(ClymePlayer clymePlayer : ClymeSkyblockCore.getInstance().getPlayersHandler().getPlayerList()) {
+            ClymeSkyblockCore.getInstance().getDataManager().getClymeStatisticsTable().saveClymeStatistics(clymePlayer);
+        }
     }
 }

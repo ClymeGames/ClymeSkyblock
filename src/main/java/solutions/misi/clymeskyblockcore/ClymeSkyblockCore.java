@@ -162,6 +162,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new SignChangeListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerInteractAtEntityListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerPortalListener(), this);
+        Bukkit.getPluginManager().registerEvents(new BlockBreakListener(), this);
     }
 
     private void registerGUIs() {

@@ -32,14 +32,15 @@ public class ClymeStatisticsTable {
         String uuid = player.getUniqueId().toString();
         long sugarcaneBroken = 0;
 
-        String sql = "INSERT INTO clymeStatistics (uuid, sugarcane_broken) VALUES (?, ?)";
+        String sql = "INSERT INTO clymeStatistics (uuid, sugarcane_broken) VALUES (?, ?) ON DUPLICATE KEY UPDATE uuid = ?";
 
         Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
             try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
-                 PreparedStatement insert = connection.prepareStatement(sql)) {
-                insert.setString(1, uuid);
-                insert.setLong(2, sugarcaneBroken);
-                insert.executeUpdate();
+                 PreparedStatement insertOrUpdate = connection.prepareStatement(sql)) {
+                insertOrUpdate.setString(1, uuid);
+                insertOrUpdate.setLong(2, sugarcaneBroken);
+                insertOrUpdate.setString(3, uuid);
+                insertOrUpdate.executeUpdate();
             } catch(SQLException exception) {
                 exception.printStackTrace();
             }

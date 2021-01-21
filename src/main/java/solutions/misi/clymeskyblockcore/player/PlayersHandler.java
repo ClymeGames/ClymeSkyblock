@@ -12,7 +12,7 @@ import java.util.*;
 
 public class PlayersHandler {
 
-    private final List<ClymePlayer> playerList = new ArrayList<>();
+    @Getter private final List<ClymePlayer> playerList = new ArrayList<>();
 
     //> Player data Cache
     @Getter private final Map<ClymePlayer, Long> playtimeCache = new HashMap<>();
