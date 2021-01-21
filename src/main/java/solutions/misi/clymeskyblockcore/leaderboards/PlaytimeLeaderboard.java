@@ -7,40 +7,49 @@ import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.utils.SortingUtils;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
-public class PlaytimeLeaderboard {
+public class PlaytimeLeaderboard extends ClymeLeaderboard {
 
-    final int timerInMinutes = 15;
-    public Map<String, Integer> playtimeTop = new LinkedHashMap<>();
-
-    public void startPlaytimeCalc() {
+    public PlaytimeLeaderboard() {
+        super(15);
+    }
+    @Override
+    public void startCalculation() {
         Bukkit.getScheduler().runTaskTimerAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
             ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().queryAllPlayers();
-        }, 10, 20*60*timerInMinutes);
+        }, 10, 20L *60*getTimerInMinutes());
     }
 
-    public void update(List<OfflinePlayer> allPlayers) {
-        HashMap<OfflinePlayer, Integer> allPlayersPlaytime = new HashMap<>();
-        for(OfflinePlayer offlinePlayer : allPlayers) allPlayersPlaytime.put(offlinePlayer, offlinePlayer.getStatistic(Statistic.PLAY_ONE_MINUTE));
-        Map<OfflinePlayer, Integer> sortedAllPlayersPlaytime = SortingUtils.sortByValue(allPlayersPlaytime);
+    @Override
+    public void update(Map<String, Long> queryData) {
+        HashMap<OfflinePlayer, Long> allPlayersPlaytime = new HashMap<>();
 
-        playtimeTop.clear();
+        for(String uuid : queryData.keySet()) {
+            OfflinePlayer target = Bukkit.getOfflinePlayer(UUID.fromString(uuid));
+            allPlayersPlaytime.put(target, (long) target.getStatistic(Statistic.PLAY_ONE_MINUTE));
+        }
+
+        Map<OfflinePlayer, Long> sortedAllPlayersPlaytime = SortingUtils.sortByValue(allPlayersPlaytime);
+
+        getLeaderboard().clear();
 
         int topAmount = 1;
-        for(Map.Entry<OfflinePlayer, Integer> result : sortedAllPlayersPlaytime.entrySet()) {
+        for(Map.Entry<OfflinePlayer, Long> result : sortedAllPlayersPlaytime.entrySet()) {
             if(topAmount > 5) break;
 
             String username = ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().getNameFromUUID(result.getKey().getName());
+
+            //> Exclude players
             if(username.equals("1camou")) continue;
-            playtimeTop.put(username, result.getValue());
+
+            getLeaderboard().put(username, result.getValue());
 
             topAmount++;
         }
 
 
-        Bukkit.getConsoleSender().sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§aPlaytime Leaderboard has been updated!");
+        Bukkit.getConsoleSender().sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + "§7Playtime Leaderboard has been updated!");
     }
 }

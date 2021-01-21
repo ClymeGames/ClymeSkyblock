@@ -20,6 +20,7 @@ public class PlayerQuitListener implements Listener {
 
         //> Save Player data
         ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().saveClymePlayerData(clymePlayer);
+        ClymeSkyblockCore.getInstance().getDataManager().getClymeStatisticsTable().saveClymeStatistics(clymePlayer);
 
         //> Screenshare Ban
         if(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getScreensharing().contains(player))

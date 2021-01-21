@@ -63,14 +63,14 @@ public class ClymePlayersTable {
         });
     }
 
-    public List<OfflinePlayer> queryAllPlayers() {
-        List<OfflinePlayer> uniquePlayers = new ArrayList<>();
+    public Map<String, Long> queryAllPlayers() {
+        Map<String, Long> uniquePlayers = new LinkedHashMap<>();
 
         Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
             try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
                  PreparedStatement select = connection.prepareStatement("SELECT uuid FROM clymePlayers")) {
                 ResultSet resultSet = select.executeQuery();
-                while(resultSet.next()) uniquePlayers.add(Bukkit.getOfflinePlayer(resultSet.getString("uuid")));
+                while(resultSet.next()) uniquePlayers.put(resultSet.getString("uuid"), 0L);
                 resultSet.close();
                 ClymeSkyblockCore.getInstance().getPlaytimeLeaderboard().update(uniquePlayers);
             } catch(SQLException exception) {

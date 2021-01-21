@@ -26,6 +26,8 @@ public class ClymePlayer {
     @Getter @Setter private int maxHomes;
     @Getter @Setter private String nickname;
 
+    @Getter private final ClymeStatistics clymeStatistics;
+
     public ClymePlayer(Player player) {
         this.uuid = player.getUniqueId();
         this.username = getPlayer().getName();
@@ -34,6 +36,7 @@ public class ClymePlayer {
         //> register player to databases
         ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().registerPlayer(getPlayer());
         ClymeSkyblockCore.getInstance().getDataManager().getEconomyStorage().registerPlayer(getPlayer());
+        ClymeSkyblockCore.getInstance().getDataManager().getClymeStatisticsTable().registerPlayer(getPlayer());
 
         //> async load data from database
         ClymeSkyblockCore.getInstance().getDataManager().getClymePlayersTable().loadClymePlayerData(this);
@@ -49,7 +52,10 @@ public class ClymePlayer {
         //> update player permissions
         updatePermissions();
 
-        Bukkit.getConsoleSender().sendMessage("[ClymeGames] §aPlayer data from " + getUsername() + " has been loaded!");
+        //> load player statistics
+        clymeStatistics = new ClymeStatistics(this);
+
+        Bukkit.getConsoleSender().sendMessage("[ClymeGames] §7Loading player data from " + getUsername() + "..");
     }
 
     public Player getPlayer() {

@@ -187,3 +187,6 @@ commands:
     description: Teleports you back to your last location
   enchant:
     description: Adds unsafe enchantment to item
+  sugarcane:
+    description: Shows your current statstic about broken sugarcanes
+    aliases: [cane, canes]

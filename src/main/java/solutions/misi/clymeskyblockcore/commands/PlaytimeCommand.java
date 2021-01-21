@@ -14,6 +14,8 @@ import java.util.Map;
 
 public class PlaytimeCommand implements CommandExecutor {
 
+    //> /playtime
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(!(sender instanceof Player)) {
@@ -41,7 +43,7 @@ public class PlaytimeCommand implements CommandExecutor {
                     clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.INFO() + "The players with most playtime:");
 
                     int topAmount = 1;
-                    for(Map.Entry<String, Integer> playtimeMap : ClymeSkyblockCore.getInstance().getPlaytimeLeaderboard().playtimeTop.entrySet()) {
+                    for(Map.Entry<String, Long> playtimeMap : ClymeSkyblockCore.getInstance().getPlaytimeLeaderboard().getLeaderboard().entrySet()) {
                         hours = (playtimeMap.getValue() / 20) / 60 / 60;
                         minutes = (playtimeMap.getValue() / 20) / 60 % 60;
 
