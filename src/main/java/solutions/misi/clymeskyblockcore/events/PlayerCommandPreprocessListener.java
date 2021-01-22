@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.help.HelpTopic;
 import solutions.misi.clymeskyblockcore.ClymeSkyblockCore;
 import solutions.misi.clymeskyblockcore.player.ClymePlayer;
+import solutions.misi.clymeskyblockcore.utils.ClymeChatColor;
 
 public class PlayerCommandPreprocessListener implements Listener {
 
@@ -40,6 +41,20 @@ public class PlayerCommandPreprocessListener implements Listener {
         if(cmd.equalsIgnoreCase("/is create")) {
             event.setCancelled(true);
             ClymeSkyblockCore.getInstance().getIslandCreationGUI().open(player);
+        }
+
+        //> Island Creation Limit
+        if(cmd.toLowerCase().startsWith("/is create ")) {
+            if(ClymeSkyblockCore.getInstance().getCommandUtil().getIslandCreationLimit().size() >= 5) {
+                event.setCancelled(true);
+                clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "Too many people are creating an Island right now! Please wait..");
+                return;
+            }
+
+            ClymeSkyblockCore.getInstance().getCommandUtil().getIslandCreationLimit().add(clymePlayer);
+            Bukkit.getScheduler().runTaskLaterAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
+                ClymeSkyblockCore.getInstance().getCommandUtil().getIslandCreationLimit().remove(clymePlayer);
+            }, 20*5);
         }
 
         //> Anti Command spam

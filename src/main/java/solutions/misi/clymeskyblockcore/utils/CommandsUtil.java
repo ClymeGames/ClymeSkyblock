@@ -21,6 +21,7 @@ public class CommandsUtil {
     @Getter private final List<ClymePlayer> msgToggle = new ArrayList<>();
     @Getter private final List<ClymePlayer> socialSpy = new ArrayList<>();
     @Getter private final List<ClymePlayer> homeCreation = new ArrayList<>();
+    @Getter private final List<ClymePlayer> islandCreationLimit = new ArrayList<>();
 
     @Getter private final List<String> commandCooldowns = new ArrayList<>();
 
