@@ -82,7 +82,7 @@ public class ClymeStatisticsTable {
 
         Bukkit.getScheduler().runTaskAsynchronously(ClymeSkyblockCore.getInstance(), () -> {
             try (Connection connection = ClymeSkyblockCore.getInstance().getDataSource().getConnection();
-                 PreparedStatement select = connection.prepareStatement("SELECT uuid, sugarcane_broken FROM clymeStatistics ORDER BY sugarcane_broken LIMIT 5")) {
+                 PreparedStatement select = connection.prepareStatement("SELECT uuid, sugarcane_broken FROM clymeStatistics ORDER BY sugarcane_broken DESC LIMIT 5")) {
                 ResultSet resultSet = select.executeQuery();
                 while(resultSet.next()) sugarcaneTop.put(resultSet.getString("uuid"), resultSet.getLong("sugarcane_broken"));
                 resultSet.close();

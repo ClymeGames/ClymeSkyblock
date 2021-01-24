@@ -34,6 +34,7 @@ public class BlocksCommand implements CommandExecutor {
             boolean itemsCondensed = false;
 
             if(condenseItems(player, Material.DIAMOND, Material.DIAMOND_BLOCK, 9)) itemsCondensed = true;
+            if(condenseItems(player, Material.GOLD_INGOT, Material.GOLD_BLOCK, 9)) itemsCondensed = true;
             if(condenseItems(player, Material.EMERALD, Material.EMERALD_BLOCK, 9)) itemsCondensed = true;
             if(condenseItems(player, Material.COAL, Material.COAL_BLOCK, 9)) itemsCondensed = true;
             if(condenseItems(player, Material.CHARCOAL, Material.COAL_BLOCK, 9)) itemsCondensed = true;
