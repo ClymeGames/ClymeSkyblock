@@ -149,6 +149,15 @@
             <systemPath>${project.basedir}/dependencies/SuperiorSkyblockAPI.jar</systemPath>
         </dependency>
 
+        <!-- WildTools API -->
+        <dependency>
+            <groupId>OmerBenGera</groupId>
+            <artifactId>WildTools</artifactId>
+            <version>b7</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/dependencies/WildTools.jar</systemPath>
+        </dependency>
+
         <!-- Placeholder API -->
         <dependency>
             <groupId>me.clip</groupId>

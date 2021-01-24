@@ -103,7 +103,7 @@ public class AsyncPlayerChatListener implements Listener {
             Key item = Key.key("minecraft", itemStack.getType().getKey().getKey());
             String itemName = itemStack.getItemMeta().getDisplayName();
             if(itemName.equals("")) itemName = itemStack.getType().name();
-            Component chatItem = ampersandRGB.deserialize("§7[ " + "§fx " + itemStack.getAmount() +  itemName + " §7]");
+            Component chatItem = ampersandRGB.deserialize("§7[ " + "§fx" + itemStack.getAmount() + " " + itemName + " §7]");
             TextReplacementConfig itemReplacement = TextReplacementConfig.builder()
                     .matchLiteral("[item]")
                     .replacement(matchResult -> Component.text()

@@ -108,6 +108,13 @@
       <scope>system</scope>
       <systemPath>${project.basedir}/dependencies/SuperiorSkyblockAPI.jar</systemPath>
     </dependency>
+    <dependency>
+      <groupId>OmerBenGera</groupId>
+      <artifactId>WildTools</artifactId>
+      <version>b7</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/dependencies/WildTools.jar</systemPath>
+    </dependency>
   </dependencies>
   <properties>
     <maven.compiler.target>1.8</maven.compiler.target>

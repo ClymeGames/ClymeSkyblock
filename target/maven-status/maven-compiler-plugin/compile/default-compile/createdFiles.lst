@@ -43,6 +43,7 @@ solutions\misi\clymeskyblockcore\gui\shop\MinionShopGUI.class
 solutions\misi\clymeskyblockcore\commands\staff\EnchantCommand.class
 solutions\misi\clymeskyblockcore\commands\StaffCommand.class
 solutions\misi\clymeskyblockcore\events\PlayerTeleportListener.class
+solutions\misi\clymeskyblockcore\events\HarvesterHoeUseListener.class
 solutions\misi\clymeskyblockcore\events\PlayerInteractAtEntityListener.class
 solutions\misi\clymeskyblockcore\commands\donator\SmithingtableCommand.class
 solutions\misi\clymeskyblockcore\events\PlayerLoginListener.class

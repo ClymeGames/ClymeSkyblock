@@ -31,6 +31,7 @@ public class PlayerTeleportListener implements Listener {
                     break;
                 default:
                     event.setCancelled(true);
+                    player.setFlying(false);
                     clymePlayer.sendMessage(ClymeSkyblockCore.getInstance().getClymeMessage().getPrefix() + ClymeChatColor.ERROR() + "You can't teleport during Combat!");
                     return;
             }
