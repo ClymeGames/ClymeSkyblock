@@ -1,6 +1,5 @@
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\RenameCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\events\PlayerDeathListener.java
-C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\events\BlockBreakListener.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\utils\SkullCreator.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\FeedCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelPlayerGUI.java
@@ -56,7 +55,6 @@ C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyb
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\events\PlayerJoinListener.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\FixCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\warps\SpawnCommand.java
-C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\SugarcaneCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\events\PlayerMoveListener.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\invites\InviteManager.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\ClymeSkyblockCore.java
@@ -79,7 +77,6 @@ C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyb
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\SpeedCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\HomeCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\data\mysql\ClymePlayersTable.java
-C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\data\mysql\ClymeStatisticsTable.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\NightvisionCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelGUI.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\message\MsgToggleCommand.java
@@ -89,14 +86,11 @@ C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyb
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\NearCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\Aliases.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\LoomCommand.java
-C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\events\BlockPlaceListener.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\events\InventoryClickListener.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\events\PlayerTeleportListener.java
-C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\leaderboards\SugarcaneLeaderboard.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\gui\islandmenu\IslandGUI.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\staff\SunCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\leaderboards\ClymeLeaderboard.java
-C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\player\ClymeStatistics.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\NicknameCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\utils\NumberFormatter.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\MoneyCommand.java
@@ -107,6 +101,7 @@ C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyb
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\InviteCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\warps\BaltopCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\donator\BackCommand.java
+C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\events\ServerListPingListener.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\utils\CommandsUtil.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\commands\message\SocialSpyCommand.java
 C:\Users\miste\IdeaProjects\clymeskyblock\src\main\java\solutions\misi\clymeskyblockcore\security\CommandHandler.java

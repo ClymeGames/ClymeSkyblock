@@ -14,6 +14,11 @@ public class PlayerMoveListener implements Listener {
 
         if(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getFrozen().contains(event.getPlayer())) event.setCancelled(true);
         if(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getScreensharing().contains(event.getPlayer())) event.setCancelled(true);
-        if(player.getWorld().getName().equals("pvp")) if(!player.isOp()) player.setFlying(false);
+
+        if(player.getWorld().getName().equals("pvp")) {
+            if(player.isOp()) return;
+            player.setFlying(false);
+            player.setAllowFlight(false);
+        }
     }
 }

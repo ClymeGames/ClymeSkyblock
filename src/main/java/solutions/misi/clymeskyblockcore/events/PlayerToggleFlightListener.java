@@ -13,6 +13,11 @@ public class PlayerToggleFlightListener implements Listener {
         Player player = event.getPlayer();
 
         if(ClymeSkyblockCore.getInstance().getStaffpanelPlayerGUI().getScreensharing().contains(event.getPlayer())) event.setCancelled(true);
-        if(player.getWorld().getName().equals("pvp")) if(!player.isOp()) event.setCancelled(true);
+        if(player.getWorld().getName().equals("pvp")) {
+            if(player.isOp()) return;
+            player.setFlying(false);
+            player.setAllowFlight(false);
+            event.setCancelled(true);
+        }
     }
 }

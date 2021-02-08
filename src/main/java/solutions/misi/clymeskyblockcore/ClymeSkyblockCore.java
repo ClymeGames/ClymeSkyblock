@@ -36,7 +36,6 @@ import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelInventoryInspec
 import solutions.misi.clymeskyblockcore.gui.staffpanel.StaffpanelPlayerGUI;
 import solutions.misi.clymeskyblockcore.invites.InviteManager;
 import solutions.misi.clymeskyblockcore.leaderboards.PlaytimeLeaderboard;
-import solutions.misi.clymeskyblockcore.leaderboards.SugarcaneLeaderboard;
 import solutions.misi.clymeskyblockcore.player.PlayersHandler;
 import solutions.misi.clymeskyblockcore.security.CombatLog;
 import solutions.misi.clymeskyblockcore.security.CommandHandler;
@@ -62,7 +61,6 @@ public class ClymeSkyblockCore extends JavaPlugin {
     @Getter private CombatLog combatLog;
     @Getter private ExperienceUtils experienceUtils;
     @Getter private PlaytimeLeaderboard playtimeLeaderboard;
-    @Getter private SugarcaneLeaderboard sugarcaneLeaderboard;
     @Getter private NumberFormatter numberFormatter;
     @Getter private InviteManager inviteManager;
 
@@ -102,7 +100,6 @@ public class ClymeSkyblockCore extends JavaPlugin {
         setupChat();
 
         playtimeLeaderboard.startCalculation();
-        sugarcaneLeaderboard.startCalculation();
 
         clymeMessage.startAnnouncements();
 
@@ -128,7 +125,6 @@ public class ClymeSkyblockCore extends JavaPlugin {
         combatLog = new CombatLog();
         experienceUtils = new ExperienceUtils();
         playtimeLeaderboard = new PlaytimeLeaderboard();
-        sugarcaneLeaderboard = new SugarcaneLeaderboard();
         numberFormatter = new NumberFormatter();
         inviteManager = new InviteManager();
 
@@ -162,9 +158,7 @@ public class ClymeSkyblockCore extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new SignChangeListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerInteractAtEntityListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerPortalListener(), this);
-        Bukkit.getPluginManager().registerEvents(new BlockBreakListener(), this);
-        Bukkit.getPluginManager().registerEvents(new BlockPlaceListener(), this);
-        Bukkit.getPluginManager().registerEvents(new HarvesterHoeUseListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ServerListPingListener(), this);
     }
 
     private void registerGUIs() {
@@ -375,9 +369,6 @@ public class ClymeSkyblockCore extends JavaPlugin {
 
         EnchantCommand enchantCommand = new EnchantCommand();
         getCommand("enchant").setExecutor(enchantCommand);
-
-        SugarcaneCommand sugarcaneCommand = new SugarcaneCommand();
-        getCommand("sugarcane").setExecutor(sugarcaneCommand);
     }
 
     private void setupEconomy() {

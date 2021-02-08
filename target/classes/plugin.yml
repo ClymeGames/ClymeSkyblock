@@ -1,5 +1,5 @@
 name: ClymeSkyblockCore
-version: 2.0
+version: 3.0
 api-version: 1.16
 author: CAMOU
 website: https://misi.solutions/
@@ -187,6 +187,3 @@ commands:
     description: Teleports you back to your last location
   enchant:
     description: Adds unsafe enchantment to item
-  sugarcane:
-    description: Shows your current statstic about broken sugarcanes
-    aliases: [cane, canes]

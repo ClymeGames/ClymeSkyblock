@@ -19,18 +19,16 @@ solutions\misi\clymeskyblockcore\commands\message\MsgToggleCommand.class
 solutions\misi\clymeskyblockcore\commands\donator\AnvilCommand.class
 solutions\misi\clymeskyblockcore\commands\staff\SunCommand.class
 solutions\misi\clymeskyblockcore\gui\HomeGUI.class
-solutions\misi\clymeskyblockcore\data\mysql\ClymeStatisticsTable.class
 solutions\misi\clymeskyblockcore\commands\staff\VanishCommand.class
+solutions\misi\clymeskyblockcore\events\ServerListPingListener.class
 solutions\misi\clymeskyblockcore\events\PlayerRespawnListener.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelPlayerGUI.class
 solutions\misi\clymeskyblockcore\commands\donator\FeedCommand.class
-solutions\misi\clymeskyblockcore\events\BlockPlaceListener.class
 solutions\misi\clymeskyblockcore\gui\staffpanel\StaffpanelGUI.class
 solutions\misi\clymeskyblockcore\commands\donator\BlocksCommand.class
 solutions\misi\clymeskyblockcore\utils\TimeUtil.class
 solutions\misi\clymeskyblockcore\gui\islandmenu\IslandMembersGUI.class
 solutions\misi\clymeskyblockcore\commands\donator\CraftCommand.class
-solutions\misi\clymeskyblockcore\leaderboards\SugarcaneLeaderboard.class
 solutions\misi\clymeskyblockcore\commands\donator\XpbottleCommand.class
 solutions\misi\clymeskyblockcore\commands\donator\StonecutterCommand.class
 solutions\misi\clymeskyblockcore\data\mysql\ClymePlayersTable.class
@@ -43,7 +41,6 @@ solutions\misi\clymeskyblockcore\gui\shop\MinionShopGUI.class
 solutions\misi\clymeskyblockcore\commands\staff\EnchantCommand.class
 solutions\misi\clymeskyblockcore\commands\StaffCommand.class
 solutions\misi\clymeskyblockcore\events\PlayerTeleportListener.class
-solutions\misi\clymeskyblockcore\events\HarvesterHoeUseListener.class
 solutions\misi\clymeskyblockcore\events\PlayerInteractAtEntityListener.class
 solutions\misi\clymeskyblockcore\commands\donator\SmithingtableCommand.class
 solutions\misi\clymeskyblockcore\events\PlayerLoginListener.class
@@ -59,7 +56,6 @@ solutions\misi\clymeskyblockcore\utils\SortingUtils.class
 solutions\misi\clymeskyblockcore\events\PlayerJoinListener.class
 solutions\misi\clymeskyblockcore\data\vault\economy\ClymeEconomy.class
 solutions\misi\clymeskyblockcore\events\PlayerMoveListener.class
-solutions\misi\clymeskyblockcore\player\ClymeStatistics.class
 solutions\misi\clymeskyblockcore\commands\teleport\TpCommand.class
 solutions\misi\clymeskyblockcore\commands\teleport\TphereCommand.class
 solutions\misi\clymeskyblockcore\security\CommandHandler.class
@@ -109,7 +105,6 @@ solutions\misi\clymeskyblockcore\events\PlayerCommandPreprocessListener.class
 solutions\misi\clymeskyblockcore\commands\donator\NightvisionCommand.class
 solutions\misi\clymeskyblockcore\player\PlayersHandler.class
 solutions\misi\clymeskyblockcore\utils\ClymeChatColor.class
-solutions\misi\clymeskyblockcore\events\BlockBreakListener.class
 solutions\misi\clymeskyblockcore\commands\teleport\TpdenyCommand.class
 solutions\misi\clymeskyblockcore\player\ClymePlayer.class
 solutions\misi\clymeskyblockcore\commands\donator\CartographytableCommand.class
@@ -120,5 +115,4 @@ solutions\misi\clymeskyblockcore\commands\staff\UpdateCommand.class
 solutions\misi\clymeskyblockcore\events\PlayerQuitListener.class
 solutions\misi\clymeskyblockcore\commands\MoneyCommand.class
 solutions\misi\clymeskyblockcore\data\mysql\ClymeHomesTable.class
-solutions\misi\clymeskyblockcore\commands\SugarcaneCommand.class
 solutions\misi\clymeskyblockcore\commands\staff\BroadcastCommand.class
